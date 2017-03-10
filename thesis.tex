@@ -1,0 +1,414 @@
+%
+%  $Description: Author guidelines and sample document in LaTeX 2.09/2e$ 
+%
+%  $Author: Priit Ruberg$
+%  $Date: 2015/02/09 $
+%  $Revision: 2.5 $
+%  
+%  Translated to English 2017/03/10 by Chris Raastad
+%
+\documentclass[12pt]{article} %Document class definition and text size settings
+%
+%Packages can be explored in more details: https://www.ctan.org/pkg/PACKAGE_NAME?lang=en
+%
+\usepackage{graphicx} %Allow using graphics in the text
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry} %Set the page margins
+\usepackage{titlesec} %Package for title style
+\usepackage{longtable} %Package so tables can be longer than one page
+\usepackage{multirow} %Package so table cells can span multiple rows
+\usepackage{todonotes} %Package so you can add nice TODO marks in your paper
+\usepackage{url} %Package in order to nicely use URLs
+\usepackage{float} %Package to improves interface for defining floating objects like figures and tables
+
+\usepackage[english, russian, estonian]{babel} %Specifies possible languages of the document: English, Russian, and Estonian
+	\addto\captionsestonian{\def\refname{\centerline{References}}} %Changes references name and makes it center
+	\addto\captionsestonian{\def\listfigurename{\centerline{List of figures}}} %Changes drawing list name and makes it center
+	\addto\captionsestonian{\def\listtablename{\centerline{List of tables}}} %Changes table list name makes it center
+	\addto\captionsestonian{\def\contentsname{\centerline{Table of contents}}}
+\usepackage[T2A,T1]{fontenc} %Font encodings for Russian and Estonian letters
+\usepackage[utf8]{inputenc} %use UTF8 decodings
+
+\usepackage{tocloft} %Control table of contents, tables, etc.
+%\setlength\cftparskip{-2pt}
+%\setlength\cftbeforechapskip{0pt}
+
+\usepackage{amssymb} %For square itemized listss
+\renewcommand{\labelitemi}{\tiny$\blacksquare$} %For square itemized lists
+
+
+\usepackage{caption} %Needed to customise captions for tables and figures
+\captionsetup{labelsep=period} %Set table and figure caption name to be separated with text with a period
+
+\usepackage{verbatimbox} %To put program code in the center using Verbatim
+
+\titlelabel{\thetitle.\quad} %Adds periods to the end of titles
+
+\usepackage{times} %Sets font to Times New Roman
+\usepackage{fancyhdr} %Allows more control of headers and footers
+\setlength{\parindent}{0cm} %Set paragraph indentation to zero
+\usepackage{setspace} %Allows setting spacing between lines
+\onehalfspacing %Set spacing to 1.5x
+%\usepackage{parskip}
+\setlength{\parskip}{\baselineskip}
+%\hangindent=0.7cm
+
+\hyphenation{põhi-tekstis üliõpilas-kood lehe-küljed joonda-takse} %Correcting incorrect hyphenation (?)
+
+\begin{document}
+
+%------------------------------TITLE PAG#!]---------------------------------
+\thispagestyle{fancy} %Page will include header and footer
+\renewcommand{\headrulewidth}{0pt} %Remove header horizontal line
+\renewcommand{\footrulewidth}{0pt} %Remove footer horizontal line
+\headheight = 57pt %Set header heght (with regards to compiler suggestion)
+\footskip = 11pt %Footer space
+\headsep = 0pt %Decrease header and text line spacing distance to zero
+
+\chead{ %Place the following text header to the center
+ \textsc{\begin{Large} %Make the following text have big letters
+	TALLINN UNIVERSITY OF TECHNOLOGY\\
+	\end{Large} }
+	School of Information Technology\\
+	Department of Software Science
+}
+\vspace*{7 cm} %Make the page beginning and text line spacing correspond to the width
+
+\begin{center} %Text centered
+[Töö kood]\\[0cm]
+[Ees$-$ ja perenimi Matrikkel]\\
+\begin{LARGE}
+\textsc{lõputöö pealkiri\\}
+\end{LARGE}
+[Töö liik]\\[2cm]
+\end{center}
+
+\begin{flushright} %Align text to the right
+[Juhendaja nimi]\\[0cm]
+[Teaduskraad]\\[0cm]
+[Ametinimetus]\\[0cm]
+\end{flushright}
+
+\cfoot{Tallinn 2015} %Add location and year to the header
+%\renewcommand{\headrulewidth}{0pt} %Remove the footer horizontal line
+\pagebreak %End of page
+
+%---------------------------AUTHOR DECLARATION-------------------------
+\section*{\begin{center}
+ Autorideklaratsioon
+\end{center}}
+
+
+Autorideklaratsioon on iga lõputöö kohustuslik osa, mis järgneb tiitellehele.
+Autorideklaratsioon esitatakse järgmise tekstina:
+
+Olen koostanud antud töö iseseisvalt. Kõik töö koostamisel kasutatud teiste autorite tööd, olulised seisukohad, kirjandusallikatest ja mujalt pärinevad andmed on viidatud. Käsolevat tööd ei ole varem esitatud kaitsmisele kusagil mujal.
+
+Autor: [Ees$-$ ja perenimi]
+
+[\today]
+\pagebreak
+
+%---------------------------ANNOTATION---------------------------------
+\section*{\begin{center}
+Annotatsioon
+\end{center}}
+
+Annotatsioon on lõputöö kohustuslik osa, mis annab lugejale ülevaate töö eesmärkidest, olulisematest käsitletud probleemidest ning tähtsamatest tulemustest ja järeldustest. Annotatsioon on töö lühitutvustus, mis ei selgita ega põhjenda midagi, küll aga kajastab piisavalt töö sisu. Inglisekeelset annotatsiooni nimetatakse Abstract, venekeelset aga
+%\foreignlanguage{russian}{Aннотация}.
+
+Sõltuvalt töö põhikeelest, esitatakse töös järgmised annotatsioonid:
+\begin{itemize}
+\item kui töö põhikeel on eesti keel, siis esitatakse annotatsioon eesti keeles mahuga $\frac{1}{2	}$ A4 lehekülge ja annotatsioon \textit{Abstract} inglise keeles mahuga vähemalt 1 A4 lehekülg;
+\item kui töö põhikeel on inglise keel, siis esitatakse annotatsioon (Abstract)  inglise keeles mahuga $\frac{1}{2}$ A4 lehekülge ja annotatsioon eesti keeles mahuga vähemalt 1 A4 lehekülg;
+\item kui töö põhikeel on vene keel, siis esitatakse annotatsioon vene keeles \foreignlanguage{russian}{(\textit{Aннотация})} mahuga $\frac{1}{2}$ A4 lehekülge,  annotatsioon eesti keeles mahuga vähemalt 1 A4 lehekülg ja annotatsioon (\textit{Abstract}) inglise keeles mahuga vähemalt 1 A4 lehekülg; 
+\end{itemize}
+
+Annotatsiooni viimane lõik on kohustuslik ja omab järgmist sõnastust:
+
+Lõputöö on kirjutatud [mis keeles] keeles ning sisaldab teksti [lehekülgede arv] leheküljel, [peatükkide arv] peatükki, [jooniste arv] joonist, [tabelite arv] tabelit.
+\pagebreak
+%-----------------------------ABSTRACT-----------------------------------
+\section*{\begin{center}
+Abstract
+\end{center}}
+Võõrkeelse annotatsiooni koostamise ja vormistamise tingimused on esitatud eestikeelse annotatsiooni juures.
+
+The thesis is in [language] and contains [pages] pages of text, [chapters] chapters, [figures] figures, [tables] tables.
+\pagebreak
+%---------------------ABBREVIATIONS AND GLOSSARY OF TERMS---------------------
+\section*{\begin{center}
+Lühendite ja mõistete sõnastik
+\end{center}}
+Lühendite  ning  mõistete  sõnastikku  lisatakse kõik töö põhitekstis kasutatud  uued  ning  ka mitmetähenduslikud üldtuntud terminid. Näiteks inglisekeelne lühend PC  võib tähendada nii Personal Computer kui ka Program Counter, sõltuvalt kontekstist. Lühendid ja mõisted esitatakse tabuleeritult kahte tulpa selliselt, et vasakul on esitatud lühend või mõiste ja paremal tulbas seletus. Inglisekeelsed sõnad seletustes esitatakse kaldkirjas. Alltoodud näited esitavad lühendite ja mõistete sõnastiku korrektset vormistamist.
+
+\begin{tabular}{p{3 cm}ll} %Table where the first cell width is 3cm
+ATI&TTÜ Arvutitehnika instituut\\
+DPI&\textit{Dots per inch}, punkti tolli kohta
+\end{tabular}
+\pagebreak
+%----------------------------TABLE OF CONTENTS----------------------------------
+\tableofcontents
+\newpage
+%----------------------LIST OF DRAWINGS-------------------------------
+\listoffigures
+\pagebreak
+%----------------------LIST OF TABLES---------------------------------
+\listoftables
+\pagebreak
+%-----------------------------INTRODUCTION------------------------------- 
+\section{Sissejuhatus}
+\label{Sissejuhatus} %Allows you to refer to the title with the \ref command (?)
+
+Antud dokument sisaldab endas Arvutitehnika instituudi (ATI) lõputööde vormistamise nõudeid ning lõputöö koostamise malli kasutamisjuhendit. Käesolev malldokument kirjeldab Arvutitehnika instituudis kehtivaid lõputööde vormistamise nõudeid ning on vormistatud vastavalt ATI vormistamise nõuetele. Malldokument on loodud kasutamiseks Microsoft Office 2010 (inglisekeelse) versiooniga. 
+
+ATI vormistamise nõuded ja mall on allalaetav instituudi kodulehel\\ \texttt{http://ati.ttu.ee/lopetajale}.
+
+\pagebreak
+%--------------------ATI THESIS FORMATING GUIDELINES-----------------
+\section{ATI lõputööde vormistuslikud nõuded}
+\label{ATI lõputööde vormistuslikud nõuded} %Allows you to refer to the title with the \ref command (?)
+Käesolevas peatükis esitatakse ülevaade lõputööde vormistuslikest nõuetest.
+\subsection{Lõputöö vormistuse üldnõuded}
+Lõputöö (bakalaureusetöö, magistritöö) peab olema hästi loetav ning arusaadav. Töös kasutatav stiil peab olema ühesugune kogu töö ulatuses. Lõputöö vormistatakse A4 formaadis (210 x 297 mm) dokumendina, jättes kõik lehekülje servad vabaks ülevalt ja alt 25 mm  ulatuses ning vasakult ja paremalt 30 mm ulatuses.  Töö tekst vormistatakse ühes veerus. Tekst esitatakse kasutades ühtset kirjatüüpi, milleks on Times, Times New Roman, Georgia või muu sarnane püstkiri. Töö tekst, sealhulgas pealkirjad, esitatakse alati kasutades musta värvi; erandiks on joonised, kus värvide kasutamise hulk ei ole piiratud.
+
+Erinevad tekstilõigud eraldatakse nendevahelise tühja reaga  või sellele vastava lõiguvahega 12pt, taandrida ei kasutata. Töös esiletõstmist vajavaid sõnu ja lauseid võib esitada s õ r e n d a t u l t, \textbf{rasvaselt} või \textsl{kaldkirjas}. 
+
+Lubatud on kasutada kolme taset pealkirju. Uue pealkirjataseme rakendamine on õigustatud, kui temas sisaldub rohkem kui üks lõik teksti. 
+
+Esimese taseme pealkirjad algavad alati uuelt leheküljelt, kusjuures nende ette jäetakse vaba ruum 44pt. Pealkirjadele lisatakse ette araabia number, mis eraldatakse pealkirja tekstist punktiga. Mitme pealkirja taseme korral nummerdatakse pealkirjad viitega eelmiste tasemete pealkirjade numbritele. 
+
+Numbreid ei panda järgmiste pealkirjade ette: Autorideklaratsioon, Abstract, \foreignlanguage{russian}{(\textit{Aннотация})}, Lühendite loetelu, Sisukord, Jooniste nimekiri, Tabelite nimekiri, Kasutatud kirjandus, Lisad. Lisade korral näidatakse lisa number pealkirjas peale sõna „Lisa“ (automaatset nummerdamist ei rakendata).
+
+Tabel \ref{tabel1} esitab ülevaate töö tekstiosade vormistusnõuetest ja neile vastavatest stiilidest malldokumendis. Juhul kui ei ole ära näidatud teksti stiili (tavaline, rasvane, kaldkiri, sõrendatud vmt), on eeldatud, et tegu on tavalise tekstiga.
+
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\caption{\it{Teksti vormistusnõuded}}
+\label{tabel1}\\ \hline
+\textbf{Dokumendi osa} &  \textbf{Määrangud}  \\
+\hline
+\endfirsthead
+\multicolumn{2}{l}%
+{\tablename\ \thetable\ -- \textit{Jätkub...}} \\
+\hline
+\textbf{Dokumendi osa}  & \textbf{Määrangud}  \\
+\hline
+\endhead
+\hline \multicolumn{2}{r}{\textit{Jätkub...}} \\
+\endfoot
+\hline
+\endlastfoot
+Päis ja jalus & Kiri 12pt, tavaline tekst, lõiguvahe pärast 6pt \\ 
+\hline
+Töö kood & Kiri 12pt, keskjoondus, lõiguvahe pärast 12pt \\
+Lõpetaja andmed & \\
+Töö liik &  \\ \hline
+Juhendaja andmed & Kiri 12pt, tavaline tekst, paremjoondus, lõiguvahe pärast 6pt \\ \hline
+Töö pealkiri & Kiri 20pt, rasvane tekst, suurtähtedes, lõiguvahe enne ja pärast 18pt \\ \hline
+Töö põhitekst & Kiri 12pt, reavahe 1,5pt, lõiguvahe pärast 12pt, rööpjoondus \\ \hline
+Stiil pealkirjadele: & Kiri 16pt, rasvane tekst, lõiguvahe enne 44pt, pärast 18pt \\
+- Kasutatud kirjandus& \\
+- Lisa(d) &\\ \hline
+Stiil pealkirjadele: & Kiri 16pt, rasvane tekst, lõiguvahe enne 44pt, päras 18 pt \\
+- Autorideklaratsioon & \\
+- Annotatsioon& \\
+- \textit{Abstract} & \\
+- Lühendite loetelu &\\
+- Sisukord &\\
+- Jooniste loetelu &\\
+- Tabelite loetelu &\\ \hline
+I taseme pealkiri & Kiri 16pt, rasvane tekst, vasakjoondamine, lõiguvahe enne 44pt, pärast 18pt, araabia number, millele järgneb punkt, nihe (hanging) 0,9cm \\ \hline
+II taseme pealkiri & Kiri 14pt, rasvane tekst, vasakjoondamine, lõiguvahe enne 24pt, pärast 12pt, eelmise tasemega seotud araabia number, millele järgneb punkt, nihe 0,9 cm \\ \hline
+III taseme pealkiri & Kiri 12pt, rasvane tekst, vasakjoondamine, lõiguvahe enne ja pärast 12pt, eelmise tasemega seotud araabia number, millele järgneb punkt, nihe 0,9cm \\ \hline
+Tabeli päis & Kiri 11pt, rasvane kiri, vasakjoondus, reavahe 1.1, lõiguvahe enne ja päras 3pt \\ \hline
+Tabelis olev tekst & Kiri 11pt, vasakjoondus, reavahe 1.1, lõiguvahe enne ja pärast 3pt \\ \hline
+Tabeli pealkiri, üherealine & Kiri 10pt, kaldkiri, reavahe 1, lõiguvahe enne 6pt ja pärast 10pt, keskjoondus \\ \hline
+Tabeli pealkiri, mitmerealine  & Kiri 10pt, kaldkiri, reavahe 1, lõiguvahe enne 6pt ja pärast 10pt rööpjoondus \\ \hline
+Joonis & Reavahe 1, lõiguvahe enne 6pt, keskjoondus \\ \hline
+Joonise pealkiri, üherealine & Kiri 10pt, kaldkiri, reavahe 1, lõiguvahe enne 10pt ja pärast 12pt, keskjoondus \\ \hline
+Joonise pealkiri, mitmerealine & Kiri 10pt, kaldkiri, reavahe 1, lõiguvahe enne 10pt ja pärast 12pt, rööpjoondus \\ \hline
+Programmikood & Kirjastiil Consolas, 11pt, reavahe 1, lõiguvahe enne ja pärast 4pt, \\
+& vasakjoondus\\ \hline
+Valem & Kiri 12pt, kaldkiri, reavahe 1, lõiguvahe enne ja pärast 12pt \\ \hline
+Täpploend & Kiri 12pt, ruuttäpp, reavahe 1.5, nihe vasakule 6mm \\ \hline
+Numberloend & Kiri 12pt, reavahe 1.5 \\ \hline
+Kasutatud kirjandus & Kiri 11pt, reavahe 1, lõiguvahe 11pt 
+\end{longtable}
+\pagebreak
+ 
+\subsection{Tiitellehe vormistamine}
+\label{Tiitellehe vormistamine} %Allows you to refer to the title with the \ref command (?)
+Tiitelleht vormistatakse kasutades sama kirjastiili, milles on vormistatud töö põhiosa.
+
+Tiitellehe päises (\textit{Header}) tuuakse ära ülikooli, teaduskonna ja instituudi nimi. Jaluses töö kaitsmise koht (linn) ning aastaarv. Tiitellehele määratakse töö põhiosast erinevad päis ja jalus.
+
+Lehekülje algusest jäetakse 8 tühja rida (12pt, reavahe 1, lõiguvahe (\textit{Line Spacing}) 12pt peale lõiku), misjärel tuuakse eraldi ridadel ära lõputöö kood, töö autori ees- ja perenimi, üliõpilaskood. Sellele järgnevalt esitatakse töö pealkiri, millele järgneval real töö liik. Juhendaja andmed esitatakse paremjoondusega peale töö liiki.
+
+\subsection{Lehekülgede nummerdamine}
+\label{Lehekülgede nummerdamine} %Allows you to refer to the title with the \ref command (?)
+Töö leheküljed nummerdatakse alates sissejuhatusest kuni lisade lõpuni. Numeratsioon on läbiv ning haarab kõik lõputöö leheküljed tiitellehest kuni lisade viimase leheküljeni. Lehekülje number märgitakse alla keskele, kasutades malli stiili päise ja jaluse jaoks või kirjasuurust 12pt. Tiitellehelte arvestatakse esimese lehena.
+
+\subsection{Joonised ja tabelid}
+\label{Joonised ja tabelid} %Allows you to refer to the title with the \ref command (?)
+
+Kõik töös olevad joonised ja tabelid peavad olema nummerdatud ning pealkirjastatud. Numeratsioon peab olema läbiv kogu töös. Üherealised jooniste ning tabelite pealkirjad joondatakse keskele. Kahe- ja enamarealised pealkirjad joondatakse mõlema serva järgi (rööpjoondus). Joonise number ning pealkiri lisatakse joonise alla, tabeli number ning pealkiri tabeli kohale. Joonise/tabeli pealkiri asub joonise/tabeliga alati ühel leheküljel. Joonise/tabeli pealkirja lõppu lisatakse alati punkt. Joonise või tabeli pealkiri esitatakse kaldkirjas.
+
+Töös olevad joonised ning tabelid peavad olema esitatud muust tekstist eraldi real (joonis või tabel ei tohi olla tekstiga samal real) ning joondatud keskele. Kõikidele töös esinevatele joonistele/tabelitele tuleb tekstis viidata ning lisada teksti vajalikud seletused.
+
+Võõrkeelsete jooniste/tabelite puhul säilitada nende originaalkeel. Joonisel/tabelis kasutatud lühendid tuleb lahti kirjutada pealkirjas toodud selgituses. Kui lühend on kasutusel ka mujal tekstis, lisada see töö lühendite ning mõistete loetellu. Põhitööst erinevad tähistused ja tingmärgid on joonistel lubatud. Näitena on lisatud Joonis \ref{fig_ati_logo}.
+
+ \begin{figure}[h!]
+ 	\centering
+ 	\includegraphics[width=2.5in]{ATI_logo.png}
+ 	\caption{\it{Arvutitehnika instituudi logo.}}
+ 	\label{fig_ati_logo}
+ \end{figure}
+
+Tabelile vahetult järgneva teksti ja tabeli vahele jäetakse üks tühi rida. Juhul kui tabel paikneb üle mitme lehekülje, peab tabeli pealkiri olema kajastatud igal leheküljel. Soovituslik on taolisi tabeleid vältida.
+
+Soovituslik joonise resolutsioon on 300 või enam punkti tolli kohta (DPI).
+
+\subsection{Programmikood}
+\label{Programmikood} %Allows you to refer to the title with the \ref command (?)
+
+Programmikood vormistatakse samadel alustel joonise vormistamisega, kasutades püsilaiusega kirjatüüpi (nt. Courier, Courier New või Consolas) ning reavahet 1.  Joonis \ref{fig_program_code} esitab näite korrektselt vormistatud programmikoodist. 
+
+
+\begin{verbbox}
+Public Function computeSomething()
+   Dim i, j As Integer
+   For i = 1 To 10
+     For j = 1 To 10
+        ' Do something in loop
+      Next j
+   Next i
+   Return i + j
+End Function
+\end{verbbox}
+
+\begin{figure} [h!] %The command [h!] puts the picture in a concretely given position
+\centering
+\theverbbox
+\caption{\it{Trepitud programmikoodi näidis.}}
+\label{fig_program_code}
+\end{figure}
+
+Programmikood peab alati olema korrektselt trepitud. Programmikood esitatakse katkematult ühel leheküljel, koodi osas vasakjoondusega, sõltumata koodiploki asetusest lehel (keskjoondus, vasakjoondus) ning pealkirjastatakse joonisena. Programmikoodi nihutamiseks keskele märgistada programmikood ning kasutada käsku \textit{Increase indent}.
+
+\subsection{Matemaatilised avaldised ja valemid}
+\label{Matemaatilised avaldised ja valemid} %Allows you to refer to the title with the \ref command (?)
+
+Valemite nummerdamine töös on kohustuslik juhul, kui neile tekstis neile viidatakse. Muudel juhtudel on nummerdamine soovituslik. Valemi juurde käiv number esitatakse valemiga samal real lehekülje paremas servas ümarsulgudes. Valem \ref{valem_näide} esitab näite valemi vormistamisest sellele viitamise korral.
+\begin{equation}
+\label{valem_näide}
+(x + a )^n = \sum\limits_{k=0}^n \frac{n}{k} x^ka^{n-k}
+\end{equation}
+
+
+\subsection{Kasutatud kirjandusele viitamine}
+\label{Kasutatud kirjandusele viitamine} %Allows you to refer to the title with the \ref command (?)
+Kasutatud allikatele viitamisel kasutakse numbrilist viitamist, järjestades kirjed autori nime ja pealkirjade järgi tähestikuliselt või järjestades kirjed tekstis viitamise järjekorras. Loetelu nummerdatakse, ilmumisaasta lisatakse kirje lõppu. Kõik viitamisega seotud nõuded on kirjeldatud TTÜ raamatukogu viitekirja koostamise juhenddokumendis , milles sisalduvad ka konkreetsed näited erinevat liiki viitekirjete vormistamiseks. Ajakohane informatsioon ATI lõputööde vormistamise ning esitamine kohta on toodud ATI kodulehel sakis Lõpetajale \cite{l6petajale13}.
+
+\subsection{Töö maht}
+\label{Töö maht} %Võimaldab pealkirjale viidata \ref käsuga
+Bakalaureusetöö põhiosa maht peaks jääma vahemikku 25 – 35 lehekülge. Magistritöö põhiosa maht peaks jääma vahemikku 45 – 60 lehekülge. Töö põhiosa mahtu arvestatakse tiitellehest kuni kasutatud kirjanduse viimase leheni. Lisade maht ei ole piiratud, millest tulenevalt lisasid töö põhiosa mahu arvestamisel arvesse ei võta. Küll aga peab lisade maht jääma mõislikkuse piiridesse, mis tähendab, et see ei tohi ületada töö põhiosa mahtu.
+
+\subsection{Lõputöö dokumendi ülesehitus}
+\label{Lõputöö dokumendi ülesehitus} %Allows you to refer to the title with the \ref command (?)
+
+Bakalauruse- ja magistritöö dokument koosneb erinevatest kohustuslikest ja valikulistest osadest, mis esitatakse dokumendis alati kindlas järjekorras. Tabel \ref{tabel_lõputöö_osad} esitab lõputöö dokumendi osad nõutud järjekorras ning tingimused nende kohustuslikkuse osas.
+
+\begin{table}
+\caption{\it{Lõputöö dokumendi osade järjekord ja esitamise tingimused.}}
+\label{tabel_lõputöö_osad}
+\begin{tabular}{|l|l|} \hline
+\textbf{Dokumendiosa} & \textbf{Esitamise tingimused} \\ \hline	
+Tiiteleht & Kohustuslik \\ \hline
+Autorideklaratsioon & Kohustuslik \\ \hline
+Lõputöö ülesandeleht & Valikuline; loe tingimusi peatükis \ref{Lõputöö ülesande püstitus / ülesandeleht}. \\ \hline
+Annotatsioon töö põhikeeles & Kohustuslik \\ \hline
+Annotatsioon teises/teistes keeltes & Kohustuslik, vastavalt Annotatsiooni juures  kirjeldatud\\
+& tingimustele \\ \hline
+Lühendite ja mõistete loetelu & Kohustuslik \\ \hline
+Jooniste loetelu & Valikuline; esitatakse vaid jooniste olemasolul \\ \hline
+Tabelite loetelu & Valikuline; esitatakse vaid tabelite olemasolul \\ \hline
+Töö sisukord & Kohustuslik \\ \hline
+Sissejuhatus & Kohustuslik \\ \hline
+Teemaarendus & Kohustuslik \\ \hline
+Kokkuvõte & Kohustuslik \\ \hline
+Kasutatud kirjandus & Kohustuslik \\ \hline
+Lisad & Valikuline; esitatakse vaid lisade olemasolul\\ \hline
+
+\end{tabular}
+\end{table}
+
+Sissejuhatuses tutvustab autor töö teemat, töö eesmärke, lahendatavat probleemistikku, samuti ülevaate töö ülesehitusest. Sissejuhatuses kirjeldatakse ka töö lähtetingimused, alamülesanded ja vajadusel ka täiendavad nõuded.
+
+Kokkuvõttes esitab autor töö põhieesmärgi, vastused Sissejuhatuses püstitatud küsimustele, toob välja töö olulisemad tulemused ja järeldused. 
+
+Töö lisades esitatakse üldjuhul mahukam ja täiendav materjal kui põhiteksti sobiks. Töö põhitekstis vastavatele lisadele viitamine on enam kui soovitatav.
+
+\subsubsection{Lõputöö ülesande püstitus / ülesandeleht}
+\label{Lõputöö ülesande püstitus / ülesandeleht} %Allows you to refer to the title with the \ref command (?)
+Lõputöös peab sisalduma selge lõpetaja poolt lahendatava ülesande püstitus.
+
+Bakalaureusetöös vormistatakse ülesande püstitus eraldi ülesandelehena (allalaetav instituudi veebilehel \texttt{http://ati.ttu.ee/lopetajale}) või antakse see kirjeldus töö peatükis Sissejuhatus, kattes järgmised punktid: 
+\begin{itemize}
+\item töös lahendatavad küsimused ja lähtetingimused,
+\item eritingimused, mida on rakendatud ülesande lahendamisel/ülesande püstitamisel.
+\end{itemize}
+
+Ülesandeleht lisatakse eraldi lehel peale töö autorideklaratsiooni (vt. Tabel \ref{tabel_lõputöö_osad}).
+
+Magistritöös esitatakse lahendatava ülesande püstitus töö sissejuhatuses, kattes järgmised punktid: 
+\begin{itemize}
+\item töös lahendatavad küsimused ja lähtetingimused, 
+\item eritingimused, mida on rakendatud ülesande lahendamisel/ülesande püstitamisel.
+\end{itemize}
+
+\subsection{Lõputöö esitamine}
+\label{Lõputöö esitamine} %Allows you to refer to the title with the \ref command (?)
+Lõputöö (bakalaureusetöö, magistritöö) esitatakse valgel paberil (formaat A4, 210x297mm) ühe- või kahepoolse trükina kahes eksemplaris, ja elektroonselt PDF-formaadis. Kõik esitatavad töö versioonid peavad olema sisult identsed.
+
+Lõputöö võib köita nii kõvaköitega kui ka spiraalköitega. Spiraalköitega köitmisel peab esikaas olema läbipaistvast kilest ning spiraalköite tagumine kaas peab olema tugevamast materjalist (kõvem paber, papp, plastik).
+
+Koos töö paberversiooniga esitatakse ka töö elektroonne versioon, mis vastab üks-üheselt töö paberversioonile. Töö elektroonne versioon esitatakse ühe tervikdokumendina PDF-formaadis hiljemalt üks päev enne kaitsmist, saates selle: 
+\begin{itemize}
+\item lõputööde üldjuhendaja dots. Vladimir Viies'ele e-posti aadressile viis@ati.ttu.ee, 
+\item ja oma juhendajale, kes märgitakse sama e-maili koopia saajaks,
+\end{itemize}
+teemaga ''ATI lõputöö elektroonne versioon'' ning lisades e-maili oma nime, matriklinumbri ja lõputöö pealkirja.
+
+\pagebreak
+
+%-------------------------------SUMMARY---------------------------
+\section{Kokkuvõte}
+\label{Kokkuvõte} %Allows you to refer to the title with the \ref command (?)
+Käesolev dokument sisaldab endas kõiki olulisi ATI lõputööde vormistuslikke nõudeid ning nende näiteid.
+
+\pagebreak
+
+%------------------------------CITATIONS-----------------------------------
+%\section{Kasutatud kirjandus}
+\addcontentsline{toc}{section}{Kasutatud kirjandus}
+
+
+\begin{thebibliography} {9}
+\bibitem{l6petajale13}
+Arvutitehnika instituut. Lõpetajale. [WWW] http://ati.ttu.ee/index.php?page=470 (13.05.2013)
+\end{thebibliography}
+
+Kasutatud kirjanduse loetelu koostamise näidet vaata TTÜ Raamatukogu juhendmaterjalist „Viitekirjete koostamine“ aadressil: \texttt{http://www.ttu.ee/public/r/raamatukogu/juhendid/
+viitekirjetekoostamine.pdf}.
+\pagebreak
+
+%-----------------------------APPENDICES--------------------------------
+\section*{Lisa 1 - [Pealkiri]}
+%\label{Lisa1}
+\addcontentsline{toc}{section}{Lisa 1}
+
+Lisades esitatakse vajadusel täiendav mahukam materjal lisaks töö põhiosale, mis aitab mõnda probleemi paremini mõista, esitab täiendavaid detaile probleemvaldkonnast, jmt. 
+
+Lisad nummerdatakse kasvavas järjekorras (automaatnummerdamist ei rakendata) araabia numbritega või tähestiku tähtedega ning pealkirjastatakse numereerimata I taseme vasakjoondusega pealkirjaga. Lisade vormistamisel on soovitatav juhinduda töö põhiosa vormistusnõuetest. 
+
+
+\end{document}
