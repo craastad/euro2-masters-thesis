@@ -253,7 +253,7 @@ Bitcoin has a major benefit low cost transactions. Currently the transactions ar
 \subsection{Bitcoin Trust Paradox}
 Bitcoin gained an enormous amount of infamous attention with the Silk Road, the ``Ebay for Drugs''\cite{EbayForDrugs}. The website amassed over 1000 vendors, tens of millions of dollars of revenue, and triple digit yearly growth until it was shutdown by the FBI in 2013 after two and a half years operation\cite{NotAnEbayForDrugs}. The buyers were protected in escrow Bitcoin transaction, only releasing payment to the sellar if the buyer was completely satisfied. Bitcoin allowed payments amongst parties that can barely trust each other in real life. \textit{``Anonymity and lack of regulation which is meant to free users from central authorities also empowers drug dealers and money launderers''}\cite{Ali:2015:BPU:2990603.2990632}.
 
-Sas and Khairuddin interviewed 20 Bitcoin users to explore the challenges and opportunities of Bitcoin users with respect to technological, social, and institutional trust\cite{sas2016design}. The economic rationale of holding bitcoins derived from distrust in governments and banks directly having access to bank account funds, fear of unfavourable currency movements due to inflation, economic downturn, or politcal events, and speculation that Bitcoin will become more and more valuable over time. Ironically, they found ``spending bitcoins as a currency appears as an exception rather than a norm''. Bitcoin behaves more like a commodity than a currency\todo{cite why Bitcoin is more like a commodity}. The short term fluctuations of value and difficult to grasp price with regards fiat currency makes it unattractive for end to end commerce in Bitcoin\todo{cite short term fluctuations and pricing}.
+Sas and Khairuddin interviewed 20 Bitcoin users to explore the challenges and opportunities of Bitcoin users with respect to technological, social, and institutional trust\cite{sas2016design}. The economic rationale of holding bitcoins derived from distrust in governments and banks directly having access to bank account funds, fear of unfavourable currency movements due to inflation, economic downturn, or politcal events, and speculation that Bitcoin will become more and more valuable over time. Bitcoin users are not discouraged by the early days of Silk Road or usage for drugs and money laundering. Ironically, they found ``spending bitcoins as a currency appears as an exception rather than a norm''. Bitcoin behaves more like a commodity than a currency\todo{cite why Bitcoin is more like a commodity}. Websites and stores accepting Bitcoin do so more for marketing then actual value of the currency\todo{cite why stores and merchants accept bitcoin}. Merchants pay a 1\% transaction fee to accept Bitcoin payment for fiat currency priced goods with payment provider to directly convert the Bitcoin to a fiat currency bank account, showing little incentive to hold their Bitcoin. The short term fluctuations of value and difficult to grasp price with regards fiat currency makes it unattractive for end to end commerce in Bitcoin\todo{cite short term fluctuations and pricing}.
 
 From the findings of Ali, Clarke, and McCorry \textit{``Bitcoin’s strengths and weaknesses both derive from the same essential ideological and architectural design choices''}\cite{Ali:2015:BPU:2990603.2990632}. Sas and Khairuddin support this statement with their analyse Bitcoin user experiences with regards to the Blockchain's characteristics and their impact on trust \cite{sas2016design}. The decentralised Blockchain gives users a sense of honestly and credibility contrasted to sometimes dishonest central financial institutions. Users value transparency in the public ledger as well as easy, quick, and low cost transactions. Unregulated Blockchain gives users a sense of empowerment, setting no limits to transaction frequency and size, and comfort in the impossibility of governmental intervening with of financial matters directly in the system.
 
@@ -264,9 +264,9 @@ On the other hand, surveyed users showed concern over insecure transactions and 
 	\item \textit{Risks Due to Failure to Recover from Human Error or Malice}
 	\item \textit{Risks Related to Dishonest Partner of Transaction}
 \end{itemize}
-These risks are heightened by hackers benefiting from irreversibility of transactions, lack of regulation, and pseudo-anonymity. The same factors increase the severity of losses to a user's own error, such as a forgotten password, wrong account address, or incorrect amount in a transaction. Off chain components of transactions, such as the exchange of fiat currency for bitcoin or receiving goods, have no security or trace on the Blockchain.
+These risks are heightened by hackers benefiting from irreversibility of transactions, lack of regulation, and pseudo-anonymity. Also highlighted by Ali, Clarke, and McCorry, \textit{``Denoting money as virtual assets to remove reliance on banks also opens the doors to hackers and malware.''}\cite{Ali:2015:BPU:2990603.2990632}. The same factors increase the severity of losses to a user's own error, such as a forgotten password, wrong account address, or incorrect amount in a transaction. Off chain components of transactions, such as the exchange of fiat currency for bitcoin or receiving goods, have no component on the Blockchain and hence are increase risk.
 
-The authors propose strategies for mitigating the risks of dishonest traders, the main source of user distrust in transacting with Bitcoin: \todo{more citations}
+The authors propose strategies for mitigating the risks of dishonest traders, the main aspect of user distrust in transacting with Bitcoin: \todo{more citations needed}
 \begin{itemize}
 	\item \textit{Trade with Authorized Exchanges}
 	\item \textit{Trade with Socially Authorized Traders}
@@ -276,29 +276,55 @@ The authors propose strategies for mitigating the risks of dishonest traders, th
 \end{itemize}
 These propositions to mitigate risks paradoxically nullify some key privacy and decentralised features of Bitcoin. Users are more likely to trust the counter-party when they are socially validated and/or identified and no longer anonymous, a type of user and community driven KYC to build trust. Exchanges add an interface to the traditional financial ecosystem, forcing users to undergo traditional AML/KYC processes. Regulating Bitcoin completely goes against the original vision of Nakamoto, but could help users deal with dishonest traders and bring the security and institutional trust of regulated financial institutions, which is currently best served by exchanges.
 
-The authors propose three general design implications for Bitcoin further undermining the foundation of the protocal:
+The authors propose three general design implications for Bitcoin to ``address the trust challenges of dishonest traders while respecting Blockchain's main characteristics''\cite{sas2016design}:
 \begin{itemize}
-	\item \textit{Supporting Transparency of Two-way Transactions}
+	\item \textit{Supporting Transparency of Two-way Transactions} (on and off chain)
 	\item \textit{Tools for Materialising Trust in Blockchain}
 	\item \textit{Tools to Support Reversible Transactions}
 \end{itemize}
-The key findings of the study demonstrate the need of a usable digital currency and motivate the creation of Euro 2.0 system.
 
-\textit{``Denoting money as virtual assets to remove reliance on banks also opens the doors to hackers and malware.''}\cite{Ali:2015:BPU:2990603.2990632}.
+The study highlights the trust needs of usable digital currency and motivates the creation of Euro 2.0 system.
 
 \subsection{Altcoins}
-\todo[inline]{Citations needed \ldots}
-Bitcoin and altcoins have until now had more traction for long term investment and get-rich-quick speculation then becoming the next generation payment method. Websites and stores accepting Bitcoin do so more for marketing then actual economic incentive. Accepting Bitcoin with a payment provider is in fact just charging a 1\% fee to receive payment directly to a fiat currency bank account with development costs of integrating a new payment method.
+\todo[inline]{Bitcoin copycats for speculation}
+\todo[inline]{Tether}
+\todo[inline]{Zerocoin}
+\todo[inline]{Ethereum}
+\todo[inline]{Project to join Etherum and Zerocoin}
 
 \subsection{What's Missing for Digital Currency?}
 \todo[inline]{Citations needed Bitcoin HCI study \ldots}
 Despite this promising rise of the value transfer protocol, payments for goods and services are still a very niche use case for Bitcoin and other cryptocurrencies. What's preventing cryptocurrencies from widespread adoption for payments? Ironically the defining features of Bitcoin, pseudo anonymity, irreversibility of transactions, and lack of central regulations, make for an unattractive payments system. Exchanges arose to be a more trustworthy source to buy and sell Bitcoins and create a regulated gateway to the traditional financial system. Transacting with individuals outside of exchanges poses great risk with off chain components of transactions. Users end up doing KYC on their counter-party or rely on other community verification to gain trust in completing transactions.
 
-The benefits of digital currency are realised only if there is end to end adoption. Current solutions lack incentives for merchants to keep their funds in a digital currency, adding to costs of converting funds back to a fiat and existing financial system. Users must take risks or pay a cost to get funds from fiat system to the crytpo system. Facelifting the existing financial system from existing fiat to digital fiat currency unlock all of the benefits and decrease the friction in the economy. 
+\todo[inline]{Interest of central banks to issue a digital currency}
+
+\todo[inline]{what are the perceived benefits of Digital currency}
+
+The benefits of digital currency are realised only if there is end to end adoption. Current solutions lack incentives for merchants to keep their funds in a digital currency, adding to costs of converting funds back to a fiat and existing financial system. Users must take risks or pay a cost to get funds from fiat system to existing cryptocurrencies. Facelifting the existing financial system from existing fiat to digital fiat currency unlock all of the benefits and decrease the friction in the economy. Hence this thesis explores the construction of the Euro 2.0 digital currency system.
 
 \subsection{Research Questions}
 
+Which leads us to the main research question:
+\begin{quotation}
+	\textbf{RQ: }\textit{How do we design a usable digital currency without an intermediary for balances and transactions while gaining trust of users, merchants, and governments?}
+\end{quotation}
+
+In which we explore the sub research questions in the thesis chapters 3, 4, 5:
+\begin{quotation}
+	\textbf{RQ1: }\textit{How do we discover the relationships between requirements and stakeholders for Euro 2.0?}
+\end{quotation}
+
+\begin{quotation}
+	\textbf{RQ2: }\textit{How do we implement the balance, transaction, identity, and regulatory features of the digital currency?}
+\end{quotation}
+
+\begin{quotation}
+	\textbf{RQ3: }\textit{How do we show our implementation of the digital currency is secure and privacy is preserved?}
+\end{quotation}
+
 \subsection{Diving into Euro 2.0}
+
+\todo[inline]{A little bit about Euro 2.0 and how the rest of the thesis play out}
 
 \pagebreak
 
