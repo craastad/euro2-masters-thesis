@@ -19,8 +19,8 @@
 \usepackage[colorinlistoftodos]{todonotes} %Package so you can add nice TODO marks in your paper with \todo{TODO text...}
 \usepackage{cite} %For Bibtex
 
-\usepackage[hidelinks]{hyperref}
-\usepackage{url} %Package in order to nicely use URLs
+\usepackage{hyperref}
+% \usepackage{url} %Package in order to nicely use URLs
 \usepackage{float} %Package to improves interface for defining floating objects like figures and tables
 
 \usepackage[english, estonian]{babel} %Specifies possible languages of the document: English, Russian, and Estonian
@@ -215,8 +215,7 @@ KYC & \textit{Know Your Customer}, proccesses of Financial institution to identi
 \pagebreak
 
 %-----------------------------CHAPTER 1 - INTRODUCTION------------------------------- 
-\section{Introduction}
-\label{Introduction}
+\section{Introduction} \label{sec:1}
 
 Payments today are the laggard of the information age. While emails can be sent instantly for free anywhere in the world, money is either slow and/or expensive to move digitally. Bank transfers can take days, only work during business hours, and have high fees across borders. Card payments are instant, but subject merchants to high fees and chargeback risks. Paypal brought convenient payments to the web, but at a high cost to accept payments and move funds internationally. Fintech companies like Venmo and Square can create the illusion of fast payments, but still take days to settle in the background with the potential chargeback risks. This cost comes from the highly regulated centralised financial payments systems with little economic incentive to reduce fees. A usable digital currency would greatly alleviate this friction in transferring value that theoretically costs the economy an estimated 1\% of GDP annually \cite{kaarmann2013cost}.
 
@@ -255,13 +254,12 @@ In order to do a risk analysis, the key features of the Euro 2.0 system need to 
 
 \subsection{Structure of the Thesis}
 
-Chapter 2 will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID, and research methods. Chapter 3 will describe the motivation, features, and implementations of the Euro 2.0 system and prototype needed for analysis. Chapter 4 will analyse the impact of Euro 2.0 on stakeholders using design science research methods to better understand the socio-technical impact of the system. Chapter 5 will perform the full risk analysis of the Euro 2.0 implementation from the angles of Security, Scalability, and Privacy using the ISSRM model and security design patterns research methods. Chapter 6 will evaluate the findings of the risk analysis on the actual running prototype to verify the findings. And finally Chapter 7 the conclusion will answer the research question and suggest future avenues of research.
+\hyperref[sec:2]{Chapter 2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID, and research methods. \hyperref[sec:3]{Chapter 3} will describe the motivation, features, and implementations of the Euro 2.0 system and prototype needed for analysis. \hyperref[sec:4]{Chapter 4} will analyse the impact of Euro 2.0 on stakeholders using design science research methods to better understand the socio-technical impact of the system. \hyperref[sec:5]{Chapter 5} will perform the full risk analysis of the Euro 2.0 implementation from the angles of Security, Scalability, and Privacy using the ISSRM model and security design patterns research methods. \hyperref[sec:6]{Chapter 6} will evaluate the findings of the risk analysis on the actual running prototype to verify the findings. And finally \hyperref[sec:7]{Chapter 7} the conclusion will answer the research question and suggest future avenues of research.
 
 \pagebreak
 
 %--------------------CHAPTER 2 - BRIDGE-----------------
-\section{Chapter 2: Bridge of Knowledge}
-\label{Bridge of Knowledge}
+\section{Chapter 2: Bridge of Knowledge} \label{sec:2}
 
 \todo[inline]{Write Chapter 2}
 
@@ -285,36 +283,71 @@ Existing crypto currencies not great for payments...
 \pagebreak
 
 %--------------------CHAPTER 3-----------------
-\section{Chapter 3}
-\label{Chapter 3}
+\section{Chapter 3} \label{sec:3}
 
-\todo[inline]{Write Chapter 3}
-\begin{itemize}
-	\item general workflow of Euro 2.0
-	
-\end{itemize}
+\subsection{Introduction} \label{ssec:3.1}
+This chapter introduces the Euro 2.0 digital currency system. The contents of this section is based of a prototype developed as a non profit initiative by the Euro 2.0 Foundation. All code is accessible in Github under the MIT License as indicated in \hyperref[ssec:a.1]{Appendix A.1}. The chapter answers the following research question:
+\begin{quotation}
+\textbf{RQ1:} How do we describe the relevant features needed for risk analysis of the Euro 2.0 digital currency?
+\end{quotation}
+Which is broken down into the following research questions:
+\begin{quotation}
+	\textbf{RQ1.1:} What are the features of the Euro 2.0 digital currency?
+\end{quotation}{
+\begin{quotation}
+	\textbf{RQ1.2:} How are the decentralised features implemented?
+\end{quotation}{
+\begin{quotation}
+	\textbf{RQ1.3:} How are the centralised features implemented?
+\end{quotation}
+Answering \textbf{RQ1} describes which features of system will be analysed in \hyperref[sec:4]{Chapters 4} and \hyperref[sec:5]{Chapter 5}. \hyperref[ssec:3.2]{Section 3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. \hyperref[ssec:3.3]{Section 3.3} will give an overview of the system architecture and features currently implemented for the Euro 2.0 answering \textbf{RQ1.1}. \hyperref[ssec:3.4]{Section 3.4} will dive into the technical implementation of the decentralised features of the system on the Ethereum platform answering \textbf{RQ1.2}. Finally \hyperref[ssec:3.5]{Section 3.5} will dive into the technical implementation of the centralised features built with traditional software development architecture, answering \textbf{RQ1.3}.
+
+\subsection{Euro 2.0 Motivation} \label{ssec:3.2}
+
+The idea of Euro 2.0 originated in 2014 from Kristo Käärmann's blogpost \textit{Government Backed Bitcoin}\cite{kaarmann2014government}. Following the success of Bitcoin, he saw an opportunity for a payments on a Government backed cryptocurrency, \textit{EuroCoin}, pegged one to one to real world Euro counterpart. Paypal cofounder Max Levchin supports the same idea, \textit{``I am confident that there will be a form of settlement that will be a crypto-currency''}\cite{pando2014levchin}. Bitcoin's short term fluctuations, functioning both as a commodity and a currency\todo{citation}, in value make it unreasonable for end to end holdings in a fiat based economy. Removing financial intermediaries reduces the costs of transactions.
+
+Even some governments have expressed interests in digital currency. The Swedish central bank has expressed interest in digital currencies as a response to the move away from cash\cite{milne2016sweden}. The UK government pushed for a ``Call for Information'' on digital currencies in order to assess risks\cite{nermin2014ukcall} that was later responded by Citi bank's global Treasury and Trade Services (TTS) Technology and Innovation Team with a suggestion for government to create its own digital currency\cite{spaven2015ukcurrency}:
 
 \begin{quotation}
-\textbf{RQ1:} How do we formalise the relevant balance, transaction, identity, and regulatory features needed for analysis of the Euro 2.0 digital currency?
+	\textit{``The greatest benefits of digital currencies can be realised through the government issuing a digital form of legal tender. This currency would be less expensive, more efficient and provide greater transparency than current physical legal tender or electronic methods.''}
 \end{quotation}
 
-\begin{quotation}
-	\textbf{rq1.1:} What are the relevant decentralised features of the Euro 2.0?
-\end{quotation}{
+Following the rise in popularity of Ethereum, another blogpost by Käärmann \textit{The future of money may be in the ether}\cite{kaarmann2016ether} laid out the skeleton of the system. I can describe Euro 2.0 as solving the business problem:
+
+\subsection{Euro 2.0 Features} \label{ssec:3.3}
 
 \begin{quotation}
-	\textbf{rq1.2:} What are the relevant centralised features of the Euro 2.0?
-\end{quotation}{
+	\textit{How do I build a system to digitally store and transact fiat currency without a centralised for-profit financial intermediary conveniently, trustfully, and securely while satisfying government regulations?}
+\end{quotation}
 
-\begin{quotation}
-	\textbf{rq1.3:} What formal models can we use to describe the features to analysis?
-\end{quotation}{
+From this business problem derives the key aspects of Euro 2.0:
+
+\begin{enumerate}
+	\item Decentralised Accounts and Transactions
+	\item Identity registry of all users of the system
+	\item Convenient Fiat $\Longleftrightarrow$ Digital Euro exchange gateway
+	\item Ability for government to issue money
+	\item Features for law enforcement and AML controls
+\end{enumerate}
+
+(1) comes from the need of having impeccable record and process of storing and transacting value that no centralised party can modify in a database. This is the key benefit and usecase of a distributed ledger technology.
+
+(2) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting blockchain records in the court of law). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main foundation of the current implementation.
+
+(3) opens up a few possibilities of how to get users into using the digital currency. At first this exchange gateway can be a private foundation, similar to Tether\cite{tether2016whitepaper}, with a proof of reserve. Ideally this later is hosted by the central bank itself to completely remove financial intermediaries.
+
+(4) following (3), once the central bank manages more of the system, it can become a convenient place to issue money directly into the digitial monetary system.
+
+(5) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which require means of necessary intervention that typically happen today via cooperation with traditional financial institutions.
+
+\subsection{Euro 2.0 Decentralised Implementation} \label{ssec:3.4}
+
+\subsection{Euro 2.0 Centralised Implementation} \label{ssec:3.5}
 
 \pagebreak
 
 %--------------------CHAPTER 4-----------------
-\section{Chapter 4}
-\label{Chapter 4}
+\section{Chapter 4} \label{sec:4}
 
 \todo[inline]{Write Chapter 4}
 
@@ -335,8 +368,7 @@ Existing crypto currencies not great for payments...
 \pagebreak
 
 %--------------------CHAPTER 5-----------------
-\section{Chapter 5}
-\label{Chapter 5}
+\section{Chapter 5} \label{sec:5}
 
 \todo[inline]{Write Chapter 5 \ldots}
 
@@ -357,32 +389,35 @@ Existing crypto currencies not great for payments...
 \pagebreak
 
 %--------------------CHAPTER 6 - EVALUATION-----------------
-\section{Evaluation}
-\label{Evaluation}
+\section{Evaluation} \label{sec:6}
 
 \todo[inline]{Write Evaluation (Chapter 6) \ldots}
 
 \pagebreak
 
 %-------------------------------SUMMARY---------------------------
-\section{Summary}
-\label{Summary}
+\section{Summary} \label{sec:7}
 
 \todo[inline]{Write Summary (Chapter 7) \ldots}
 
 \pagebreak
 
 %------------------------------Bibliography-----------------------------------
-\addcontentsline{toc}{section}{Bibliography}
-\bibliography{thesis}{}
+\addcontentsline{toc}{section}{References} \label{sec:refs}
+\bibliography{thesis}{References}
 \bibliographystyle{plain}
 \pagebreak
 
 %-----------------------------APPENDICES--------------------------------
-\section*{Appendix 1 - [Heading]}
+\section*{Appendix A - Files} \label{sec:a}
 %\label{Lisa1}
-\addcontentsline{toc}{section}{Appendix 1}
+\addcontentsline{toc}{section}{Appendix A - Files}
 
-\todo[inline]{Add Appendix 1 or delete it}
+\subsection*{A.1: Euro 2.0 Codebase} \label{ssec:a.1}
+\url{http://github.com/cryptofiat}
+
+\subsection*{A.2: Archive of Cited Web Pages}
+\todo[inline]{Add cited web pages archive}
+
 
 \end{document}
