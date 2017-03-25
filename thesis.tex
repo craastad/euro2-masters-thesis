@@ -218,8 +218,13 @@ KYC & \textit{Know Your Customer}, proccesses of Financial institution to identi
 \section{Introduction}
 \label{Introduction}
 
-\todo[inline]{What is the manuscript about?}
+Payments today are the laggard of the information age. While emails can be sent instantly for free anywhere in the world, money is either slow and/or expensive to move digitally. Bank transfers can take days, only work during business hours, and have high fees across borders. Card payments are instant, but subject merchants to high fees and chargeback risks. Paypal brought convenient payments to the web, but at a high cost to accept payments and move funds internationally. Fintech companies like Venmo and Square can create the illusion of fast payments, but still take days to settle in the background with the potential chargeback risks. This cost comes from the highly regulated centralised financial payments systems with little economic incentive to reduce fees. A usable digital currency would greatly alleviate this friction in transferring value that theoretically costs the economy an estimated 1\% of GDP annually \cite{kaarmann2013cost}.
 
+Bitcoin was the first successful implementation of a decentralised digital currency. Nakamoto's peer to peer digital cash system completely sidestepped the existing financial system\cite{nakamoto2008bitcoin}. Its clever proof of work consensus protocol, economic incentives for nodes to maintain the network, pseudo anonymity, and irreversible transactions implemented on the public ledger Blockchain technology has been called ``the next technological revolution''\todo{citation, probably from Blockchain Revolution}. Hundreds of Altcoins followed Bitcoin's lead borrowing from the Blockchain technology to implement other flavours of cryptocurrency and digital asset management. Despite the rapid growth of the cryptocurrency ecosystem, everyday payments are a niche use case for digital currencies, which are more commonly used for investment and financial speculation\cite{Khairuddin:2016:EMB:2851581.2892500}. Merchants accepting Bitcoin payments are in fact immediately converting funds to a fiat currency for a non negligible fee. Bitcoin Exchanges are high cost gatekeepers between the cryptocurrency and financial systems.
+
+What is missing today are incentives for parties on both sides of payments to hold assets end to end in digital currency. The cost and friction of moving between two financial systems, crypto and fiat, eliminates the perceived benefits of crypto currencies. The Euro 2.0 project aims to implement fiat currency on digital currency technology and reduce friction by eliminating unnecessary financial intermediaries. The unanimous adoption of Estonian ID card in Estonia and the Ethereum distributed application platform make a prototype system possible. This thesis introduces the Euro 2.0 system, its impact on stakeholders in the payments, and assesses the security, scalability, and privacy risks of the implementation to determine whether this system can in fact reasonably support a national digital currency.
+
+\subsection{Existing Body of Knowledge}
 \todo[inline]{Existing body of knowledge to gap detection}
 
 
@@ -232,7 +237,7 @@ This thesis explores the feasibility of the Euro 2.0 digital currency by answeri
 
 In which we explore in sub research questions:
 \begin{quotation}
-\textbf{RQ1: }\textit{How do we formalise the relevant balance, transaction, identity, and regulatory features needed for analysis of the Euro 2.0 digital currency?}
+\textbf{RQ1: }\textit{How do we describe the relevant features needed for analysis of the Euro 2.0 digital currency?}
 \end{quotation}
 \begin{quotation}
 \textbf{RQ2: }\textit{How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, governments, and financial institutions?}
@@ -246,11 +251,11 @@ Answering \textbf{RQ} will result in one of two possible outcomes:
 	\item The Euro 2.0 system is free from significant risks in functioning as a digital monetary system.
 	\item The Euro 2.0 system has one or more serious flaws that need to be adressed before significant adoption.
 \end{itemize}
-In order to do a risk analysis, the key features of the Euro 2.0 system need to be identified and implementation details formalised by answering \textbf{RQ1}. Following a clear specification of the system, \textbf{RQ2} explores the current and future relationship with money of key stakeholders after adoption of Euro 2.0. This exploration of the stakeholders' relationship with money grounds the analysis of the impact of realised risks uncovered in \textbf{RQ3}. The severity and likelihood of realised risks to the monetary system lead to an answer to \textbf{RQ}.
+In order to do a risk analysis, the key features of the Euro 2.0 system need to be identified and implementation details described by answering \textbf{RQ1}. Following a clear specification of the system, \textbf{RQ2} explores the current and future relationship with money of key stakeholders after adoption of Euro 2.0. This exploration of the stakeholders' relationship with money grounds the analysis of the impact of realised risks uncovered in \textbf{RQ3}. The severity and likelihood of realised risks to the monetary system lead to an answer to the original research question \textbf{RQ}.
 
 \subsection{Structure of the Thesis}
 
-\todo[inline]{Structure of thesis}
+Chapter 2 will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID, and research methods. Chapter 3 will describe the motivation, features, and implementations of the Euro 2.0 system and prototype needed for analysis. Chapter 4 will analyse the impact of Euro 2.0 on stakeholders using design science research methods to better understand the socio-technical impact of the system. Chapter 5 will perform the full risk analysis of the Euro 2.0 implementation from the angles of Security, Scalability, and Privacy using the ISSRM model and security design patterns research methods. Chapter 6 will evaluate the findings of the risk analysis on the actual running prototype to verify the findings. And finally Chapter 7 the conclusion will answer the research question and suggest future avenues of research.
 
 \pagebreak
 
@@ -284,6 +289,10 @@ Existing crypto currencies not great for payments...
 \label{Chapter 3}
 
 \todo[inline]{Write Chapter 3}
+\begin{itemize}
+	\item general workflow of Euro 2.0
+	
+\end{itemize}
 
 \begin{quotation}
 \textbf{RQ1:} How do we formalise the relevant balance, transaction, identity, and regulatory features needed for analysis of the Euro 2.0 digital currency?
