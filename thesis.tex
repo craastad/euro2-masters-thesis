@@ -51,15 +51,15 @@
 \setlength{\parindent}{0cm} %Set paragraph indentation to zero
 \usepackage{setspace} %Allows setting spacing between lines
 \onehalfspacing %Set spacing to 1.5x
-%\usepackage{parskip}
+\usepackage{parskip}
 \setlength{\parskip}{\baselineskip}
 %\hangindent=0.7cm
 
 \hyphenation{põhi-tekstis üliõpilas-kood lehe-küljed joonda-takse} %Correcting incorrect hyphenation (?)
 
 \usepackage{eurosym}
-\usepackage{quoting} %for quotation format
-\quotingsetup{vskip=0pt,leftmargin=0pt} %for no whitespace around quotations
+\usepackage{quoting} %for quoting format
+\quotingsetup{vskip=0pt} %for no vertical whitespace around quotings
 
 \begin{document}
 
@@ -230,20 +230,20 @@ What is missing today are incentives for parties on both sides of payments to ho
 \subsection{Research Questions}
 
 This thesis explores the feasibility of the Euro 2.0 digital currency by answering the following research question:
-\begin{quotation}
+\begin{quoting}
 	\textbf{RQ: }\textit{How do we assure that the proposed Euro 2.0 digital currency does not have any major security, scalability, or privacy flaws compromising the usefulness of the monetary system?}
-\end{quotation}
+\end{quoting}
 
 In which we explore in sub research questions:
-\begin{quotation}
+\begin{quoting}
 \textbf{RQ1: }\textit{How do we describe the relevant features needed for analysis of the Euro 2.0 digital currency?}
-\end{quotation}
-\begin{quotation}
+\end{quoting}
+\begin{quoting}
 \textbf{RQ2: }\textit{How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, governments, and financial institutions?}
-\end{quotation}
-\begin{quotation}
+\end{quoting}
+\begin{quoting}
 \textbf{RQ3: }\textit{How do we assess the security, scalability, and privacy risks of Euro 2.0 digital currency adoption and potential impact on stakeholders?}
-\end{quotation}
+\end{quoting}
 
 Answering \textbf{RQ} will result in one of two possible outcomes:
 \begin{itemize}
@@ -286,46 +286,45 @@ Existing crypto currencies not great for payments...
 \section{Chapter 3} \label{sec:3}
 
 \subsection{Introduction} \label{ssec:3.1}
-This chapter introduces the Euro 2.0 digital currency system. The contents of this section is based of a prototype developed as a non profit initiative by the Euro 2.0 Foundation. All code is accessible in Github under the MIT License as indicated in \hyperref[ssec:a.1]{Appendix A.1}. The chapter answers the following research question:
+This chapter introduces the Euro 2.0 digital currency system. The contents of this section is based of a prototype developed by the Euro 2.0 Foundation as a non profit initiative. All code is accessible in Github under the MIT License as indicated in \hyperref[ssec:a.1]{Appendix A.1}. The chapter answers the following research question:
 
-\begin{quotation}
-\textbf{RQ1:} How do we describe the relevant features needed for risk analysis of the Euro 2.0 digital currency?
-\end{quotation}
+\begin{quoting}
+\textbf{RQ1:} \textit{How do we describe the relevant features needed for risk analysis of the Euro 2.0 digital currency?}
+\end{quoting}
 
-Which is broken down into the following research questions:
-\begin{quotation}
-	\textbf{RQ1.1:} What are the features of the Euro 2.0 digital currency?
-\end{quotation}{
-\begin{quotation}
-	\textbf{RQ1.2:} How are the decentralised features implemented?
-\end{quotation}{
-\begin{quotation}
-	\textbf{RQ1.3:} How are the centralised features implemented?
-\end{quotation}
+Which is broken down into the following sub-questions:
+\begin{quoting}
+	\textbf{RQ1.1:} \textit{What are the features of the Euro 2.0 digital currency?}
+\end{quoting}{
+\begin{quoting}
+	\textbf{RQ1.2:} \textit{How are the decentralised features implemented?}
+\end{quoting}{
+\begin{quoting}
+	\textbf{RQ1.3:} \textit{How are the centralised features implemented?}
+\end{quoting}
 
-Answering \textbf{RQ1} describes which features of system will be analysed in \hyperref[sec:4]{Chapters 4} and \hyperref[sec:5]{Chapter 5}. \hyperref[ssec:3.2]{Section 3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. \hyperref[ssec:3.3]{Section 3.3} will give an overview of the system architecture and features currently implemented for the Euro 2.0 answering \textbf{RQ1.1}. \hyperref[ssec:3.4]{Section 3.4} will dive into the technical implementation of the decentralised features of the system on the Ethereum platform answering \textbf{RQ1.2}. Finally \hyperref[ssec:3.5]{Section 3.5} will dive into the technical implementation of the centralised features built with traditional software development architecture, answering \textbf{RQ1.3}.
+Answering \textbf{RQ1} lays the groundwork for further analysis in \hyperref[sec:4]{Chapters 4} and \hyperref[sec:5]{Chapter 5}. \hyperref[ssec:3.2]{Section 3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. \hyperref[ssec:3.3]{Section 3.3} will give an overview of the system architecture and features currently implemented answering \textbf{RQ1.1}. \hyperref[ssec:3.4]{Section 3.4} will dive into the technical implementation of the decentralised features of the system on the Ethereum platform answering \textbf{RQ1.2}. Finally \hyperref[ssec:3.5]{Section 3.5} will dive into the technical implementation of the centralised features built with traditional software development architecture answering \textbf{RQ1.3}.
 
 \subsection{Euro 2.0 Motivation} \label{ssec:3.2}
 
-The idea of Euro 2.0 originated in 2014 from Kristo Käärmann's blogpost \textit{Government Backed Bitcoin}\cite{kaarmann2014government}. Following the success of Bitcoin, he saw an opportunity for a payments on a Government backed cryptocurrency, \textit{EuroCoin}, pegged one to one to real world Euro counterpart. Paypal cofounder Max Levchin supports the same idea, \textit{``I am confident that there will be a form of settlement that will be a crypto-currency''}\cite{pando2014levchin}. Bitcoin's short term fluctuations, functioning both as a commodity and a currency\todo{citation}, in value make it unreasonable for end to end holdings in a fiat based economy. Removing financial intermediaries reduces the costs of transactions.
+The idea of Euro 2.0 originated in 2014 from Kristo Käärmann's blogpost \textit{Government Backed Bitcoin}\cite{kaarmann2014government}. Following the success of Bitcoin, he saw an opportunity for a payments settled on a Government backed cryptocurrency, \textit{EuroCoin}, pegged one to one to real world Euro counterpart. Paypal cofounder Max Levchin supports the same idea, \textit{``I am confident that there will be a form of settlement that will be a crypto-currency''}\cite{pando2014levchin}. Bitcoin's short term fluctuations, functioning both as a commodity and a currency\todo{citation}, in value make it unreasonable for end to end holdings in a fiat based economy\todo{cite something about fluctuations}. Removing financial intermediaries in payments reduces the costs of transactions.
 
-Even some governments have expressed interests in digital currency. The Swedish central bank has expressed interest in digital currencies as a response to the move away from cash\cite{milne2016sweden}. The UK government pushed for a ``Call for Information'' on digital currencies in order to assess risks\cite{nermin2014ukcall} that was later responded by Citi bank's global Treasury and Trade Services (TTS) Technology and Innovation Team with a suggestion for government to create its own digital currency\cite{spaven2015ukcurrency}:
+Even some governments have expressed interests in digital currency. The Swedish central bank debated whether to become the first to issue digital currency as a response to the country's move away from cash\cite{milne2016sweden}. The UK government pushed for a ``Call for Information'' on digital currencies in order to assess risks\cite{nermin2014ukcall} that was later responded by Citi bank's global Treasury and Trade Services (TTS) Technology and Innovation Team with a suggestion for government to create its own digital currency\cite{spaven2015ukcurrency}:
 
-\begin{quotation}
+\begin{quoting}
 	\textit{``The greatest benefits of digital currencies can be realised through the government issuing a digital form of legal tender. This currency would be less expensive, more efficient and provide greater transparency than current physical legal tender or electronic methods.''}
-\end{quotation}
+\end{quoting}
 
-Following the rise in popularity of Ethereum, another blogpost by Käärmann \textit{The future of money may be in the ether}\cite{kaarmann2016ether} laid out the skeleton of the system. I can describe Euro 2.0 as solving the business problem:
+Following the rise in popularity of Ethereum, in mid 2016, another blogpost by Käärmann \textit{The future of money may be in the ether}\cite{kaarmann2016ether} laid out the skeleton of the system. I describe Euro 2.0 as solving the business problem:
 
-\subsection{Euro 2.0 Features} \label{ssec:3.3}
-
-\begin{quotation}
+\begin{quoting}
 	\textit{How do I build a system to digitally store and transact fiat currency without a centralised for-profit financial intermediary conveniently, trustfully, and securely while satisfying government regulations?}
-\end{quotation}
+\end{quoting}
 
-From this business problem derives the key aspects of Euro 2.0:
+From this business problem derives the key pillars of Euro 2.0:
 
 \begin{enumerate}
+	\item Fiat Backed
 	\item Decentralised Accounts and Transactions
 	\item Identity registry of all users of the system
 	\item Convenient Fiat $\Longleftrightarrow$ Digital Euro exchange gateway
@@ -333,15 +332,144 @@ From this business problem derives the key aspects of Euro 2.0:
 	\item Features for law enforcement and AML controls
 \end{enumerate}
 
-(1) comes from the need of having impeccable record and process of storing and transacting value that no centralised party can modify in a database. This is the key benefit and usecase of a distributed ledger technology.
+(1) provides monetary stability to the system and builds trust with users and merchants to keep assets in the digital format. This eliminates the issue of constantly fluctuating daily value between real world and digital assets seen in crypto currencies today.
 
-(2) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting blockchain records in the court of law). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main foundation of the current implementation.
+(2) comes from the need of an impeccable record and process of transacting value that no centralised party can modify in a database. This is the key benefit and usecase of distributed ledger technology.
 
-(3) opens up a few possibilities of how to get users into using the digital currency. At first this exchange gateway can be a private foundation, similar to Tether\cite{tether2016whitepaper}, with a proof of reserve. Ideally this later is hosted by the central bank itself to completely remove financial intermediaries.
+(3) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting distributed ledger records in the court). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main driver of the first prototype.
 
-(4) following (3), once the central bank manages more of the system, it can become a convenient place to issue money directly into the digitial monetary system.
+(4) makes it easy for users to gradually start using the digital currency. At first this exchange gateway can be a private financial institution, similar to Tether\cite{tether2016whitepaper}, with a proof of reserve of the one to one Euro backing. Ideally this conversion service is hosted by the central bank itself to completely remove financial intermediaries.
 
-(5) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which require means of necessary intervention that typically happen today via cooperation with traditional financial institutions.
+(5) following (4), the central bank can issue new money directly into the digital monetary system without a real world euro counterpart.
+
+(6) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any third party, including government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which require means of necessary intervention that typically happen today via cooperation with traditional financial institutions\todo{cite relationship between banks and government}.
+
+\begin{center}
+\begin{tabular}{ |c|c| } 
+ \hline
+ Centralised & Decentralised \\
+ \hline
+ Identity & Account \\
+ Reserve & Payments \\
+ Regulation & Network \\
+ Convenience & \\
+ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Euro 2.0 Features} \label{ssec:3.3}
+
+\subsubsection{Entities} \label{sssec:3.3:entities}
+\begin{center}
+\begin{tabular}{ | p{3cm} | p{12cm} | } 
+ \hline
+ Entity & Description \\
+ \hline\hline
+ Address & Ethereum externally controlled address (i.e. public key) \\
+ \hline
+ Key & Ethereum address private key needed to use funds in address \\
+ \hline
+ Account & Sum of total value in all verified Ethereum addresses for an ID \\
+ \hline
+ ID & Estonian ID Code of an individual (citizen, resident, e-resident) \\
+ \hline
+ ID Name & Name associated with an Estonian ID Code \\
+ \hline
+ EUR & Euro currency in an Estonian bank account \\
+ \hline
+ EUR2 & Euro currency in the Euro 2.0 digital form, balance of a token in the Euro 2.0 Ethereum contract \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+
+\subsubsection{Processes} \label{sssec:3.3:processes}
+\begin{center}
+\begin{tabular}{ | p{3cm} | p{12cm} | } 
+ \hline
+ Proccess & Description \\
+ \hline\hline
+ Verify & Link Ethereum address with the an Estonian ID number via certificate verification\\
+ \hline
+ Freeze & ? \\
+ \hline
+ Seize & ? \\
+ \hline
+ Name checks & AML PEP and Sanction Checks \\
+ \hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Accounts} \label{sssec:3.3:accounts}
+
+Client
+\begin{itemize}
+	\item Create address
+	\item Verify address
+\end{itemize}
+
+Server
+\begin{itemize}
+	\item Verify address
+	\item Map ID to address
+\end{itemize}
+
+\subsubsection{Transactions} \label{sssec:3.3:transactions}
+
+Client
+\begin{itemize}
+	\item Send EUR2 to an address
+	\item Send EUR2 to an ID
+\end{itemize}
+
+Server
+\begin{itemize}
+	\item Resolve ID to an address
+	\item Escrow funds to an ID
+	\item \todo[inline]{some operation to verify that this transaction can actually happen}
+\end{itemize}
+
+\subsubsection{EUR $\Leftrightarrow$ EUR2 Conversion} \label{sssec:3.3:conversion}
+
+Client
+\begin{itemize}
+	\item Send EUR to Reserve
+	\item Receive EUR2 from Reserve to an address
+	\item Send EUR2 to a bank account via the Reserve
+\end{itemize}
+
+Server
+\begin{itemize}
+	\item Resolve received EUR from ID to address
+	\item Create EUR2
+	\item Receive EUR2 from an address
+	\item Send EUR to a bank account
+	\item Destroy EUR2
+\end{itemize}
+
+\subsubsection{Key Backup} \label{sssec:3.3:backup}
+
+Client
+\begin{itemize}
+	\item Sync keys to backup server
+	\item Restore keys from backup server
+\end{itemize}
+
+Server
+\begin{itemize}
+	\item Save keys
+	\item Load keys
+\end{itemize}
+
+\subsubsection{Enforcement} \label{sssec:3.3:enforcement}
+
+Server
+\begin{itemize}
+	\item Freeze account
+	\item Seize account
+	\item Name checks on ID name
+	\item Map address to ID
+\end{itemize}
 
 \subsection{Euro 2.0 Decentralised Implementation} \label{ssec:3.4}
 
@@ -354,19 +482,19 @@ From this business problem derives the key aspects of Euro 2.0:
 
 \todo[inline]{Write Chapter 4}
 
-\begin{quotation}
+\begin{quoting}
 	\textbf{RQ2:} How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, governments, and financial institutions?
-\end{quotation}
+\end{quoting}
 
-\begin{quotation}
+\begin{quoting}
 	\textbf{rq2.1:} What is the current relationship of money for stakeholders?
-\end{quotation}
-\begin{quotation}
+\end{quoting}
+\begin{quoting}
 	\textbf{rq2.2:} What changes in the relationship of money for stakeholders after adopting the Euro 2.0 digital currency?
-\end{quotation}
-\begin{quotation}
+\end{quoting}
+\begin{quoting}
 	\textbf{rq2.3:} What are the enabling and inhibiting factors influencing the transition to the Euro 2.0 digital currency?
-\end{quotation}
+\end{quoting}
 
 \pagebreak
 
@@ -375,19 +503,19 @@ From this business problem derives the key aspects of Euro 2.0:
 
 \todo[inline]{Write Chapter 5 \ldots}
 
-\begin{quotation}
+\begin{quoting}
 	\textbf{RQ3:} How do we assess the security, scalability, and privacy risks of Euro 2.0 digital currency adoption and potential impact on stakeholders?
-\end{quotation}
+\end{quoting}
 
-\begin{quotation}
-	\textbf{rq3.1:} What are the security, scalability, and privacy risks associated with the Euro 2.0 digital currency?
-\end{quotation}
-\begin{quotation}
-	\textbf{rq3.2:} What is the impact of the realised risks to stakeholders?
-\end{quotation}
-\begin{quotation}
-	\textbf{rq3.3:} What are the mitigation strategies or alternative design suggestions when implementing Euro 2.0?
-\end{quotation}
+\begin{quoting}
+	\textbf{rq3.1:} \textit{What are the security, scalability, and privacy risks associated with the Euro 2.0 digital currency?}
+\end{quoting}
+\begin{quoting}
+	\textbf{rq3.2:} \textit{What is the impact of the realised risks to stakeholders?}
+\end{quoting}
+\begin{quoting}
+	\textbf{rq3.3:} \textit{What are the mitigation strategies or alternative design suggestions when implementing Euro 2.0?}
+\end{quoting}
 
 \pagebreak
 
