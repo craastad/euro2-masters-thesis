@@ -195,7 +195,8 @@ Table of abbreviations and terms
 BTC & Bitcoin currency code\\
 AML & \textit{Anti Money Laundering}, processes implemented by Financial Institutions to hinder money laundering and comply with regulation\\
 CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial Institutions to hinder terrorist financing and comply with regulation\\
-KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF
+KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
+ISSRM & \textit{Information Systems Security Risk Management} \\
 \end{tabular}
 
 \todo[inline]{Continue adding to table of abbreviations and delete old ones\ldots}
@@ -223,11 +224,11 @@ Bitcoin was the first successful implementation of a decentralised digital curre
 
 What is missing today are incentives for parties on both sides of payments to hold assets end to end in digital currency. The cost and friction of moving between two financial systems, crypto and fiat, eliminates the perceived benefits of crypto currencies. The Euro 2.0 project aims to implement fiat currency on digital currency technology and reduce friction by eliminating unnecessary financial intermediaries. The unanimous adoption of Estonian ID card in Estonia and the Ethereum distributed application platform make a prototype system possible. This thesis introduces the Euro 2.0 system, its impact on stakeholders in the payments, and assesses the security, scalability, and privacy risks of the implementation to determine whether this system can in fact reasonably support a national digital currency.
 
-\subsection{Existing Body of Knowledge}
+\subsection{Existing Body of Knowledge} \label{ssec:1.1}
 \todo[inline]{Existing body of knowledge to gap detection}
 
 
-\subsection{Research Questions}
+\subsection{Research Questions} \label{ssec:1.2}
 
 This thesis explores the feasibility of the Euro 2.0 digital currency by answering the following research question:
 \begin{quoting}
@@ -252,7 +253,16 @@ Answering \textbf{RQ} will result in one of two possible outcomes:
 \end{itemize}
 In order to do a risk analysis, the key features of the Euro 2.0 system need to be identified and implementation details described by answering \textbf{RQ1}. Following a clear specification of the system, \textbf{RQ2} explores the current and future relationship with money of key stakeholders after adoption of Euro 2.0. This exploration of the stakeholders' relationship with money grounds the analysis of the impact of realised risks uncovered in \textbf{RQ3}. The severity and likelihood of realised risks to the monetary system lead to an answer to the original research question \textbf{RQ}.
 
-\subsection{Structure of the Thesis}
+\subsection{Research Methods} \label{ssec:1.3}
+The thesis utilises methods from design science and Information Systems Security Risk Management (ISSRM) to approach the research questions. The main contributions are:
+\begin{itemize}
+	\item Analysis of stakeholders behaviour transition to Euro 2.0 system
+	\item Risk analysis of the current Euro 2.0 system
+	\item Recommendations to mitigate most severe risks
+	\item Validation of risks and vulnerabilities on existing codebase test network
+\end{itemize}
+
+\subsection{Structure of the Thesis} \label{ssec:1.4}
 
 \hyperref[sec:2]{Chapter 2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID, and research methods. \hyperref[sec:3]{Chapter 3} will describe the motivation, features, and implementations of the Euro 2.0 system and prototype needed for analysis. \hyperref[sec:4]{Chapter 4} will analyse the impact of Euro 2.0 on stakeholders using design science research methods to better understand the socio-technical impact of the system. \hyperref[sec:5]{Chapter 5} will perform the full risk analysis of the Euro 2.0 implementation from the angles of Security, Scalability, and Privacy using the ISSRM model and security design patterns research methods. \hyperref[sec:6]{Chapter 6} will evaluate the findings of the risk analysis on the actual running prototype to verify the findings. And finally \hyperref[sec:7]{Chapter 7} the conclusion will answer the research question and suggest future avenues of research.
 
