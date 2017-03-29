@@ -61,6 +61,8 @@
 \usepackage{quoting} %for quoting format
 \quotingsetup{vskip=0pt} %for no vertical whitespace around quotings
 
+\newcommand{\hypernameref}[1]{\hyperref[#1]{\nameref{#1}}}
+
 \begin{document}
 
 %------------------------------ENGLISH TITLE PAGE---------------------------------
@@ -264,7 +266,8 @@ The thesis utilises methods from design science and Information Systems Security
 
 \subsection{Structure of the Thesis} \label{ssec:1.4}
 
-\hyperref[sec:2]{Chapter 2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID, and research methods. \hyperref[sec:3]{Chapter 3} will describe the motivation, features, and implementations of the Euro 2.0 system and prototype needed for analysis. \hyperref[sec:4]{Chapter 4} will analyse the impact of Euro 2.0 on stakeholders using design science research methods to better understand the socio-technical impact of the system. \hyperref[sec:5]{Chapter 5} will perform the full risk analysis of the Euro 2.0 implementation from the angles of Security, Scalability, and Privacy using the ISSRM model and security design patterns research methods. \hyperref[sec:6]{Chapter 6} will evaluate the findings of the risk analysis on the actual running prototype to verify the findings. And finally \hyperref[sec:7]{Chapter 7} the conclusion will answer the research question and suggest future avenues of research.
+\hypernameref{sec:2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID, and research methods. 
+\hypernameref{sec:3} will describe the motivation, features, and implementations of the Euro 2.0 system and prototype needed for analysis. \hypernameref{sec:4} will analyse the impact of Euro 2.0 on stakeholders using design science research methods to better understand the socio-technical impact of the system. \hypernameref{sec:5} will perform the full risk analysis of the Euro 2.0 implementation from the angles of Security, Scalability, and Privacy using the ISSRM model and security design patterns research methods. \hypernameref{sec:6} will evaluate the findings of the risk analysis on the actual running prototype to verify the findings. And finally \hypernameref{sec:7} the conclusion will answer the research question and suggest future avenues of research.
 
 \pagebreak
 
@@ -511,11 +514,9 @@ Server
 %--------------------CHAPTER 5-----------------
 \section{Chapter 5} \label{sec:5}
 
-\todo[inline]{Write Chapter 5 \ldots}
-
 \subsection{Introduction} \label{ssec:5:intro}
 
-After explaining the features and implementation details of the Euro 2.0 system in \hyperref[sec:3]{Chapter 3} and exploring the change in relationship with money of stakeholders \hyperref[sec:4]{Chapter 4}, we are ready to analyze the risks of Euro 2.0 system. This chapter answers the research question:
+After explaining the features and implementation details of the Euro 2.0 system in \hypernameref{sec:3} and exploring the change in relationship with money of stakeholders \hypernameref{sec:4}, we are ready to analyze the risks of Euro 2.0 system. This chapter answers the research question:
 
 \begin{quoting}
 	\textbf{RQ3:} \textit{How do we assess the security, scalability, and privacy risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
@@ -538,9 +539,7 @@ In which we take piece by piece in the research questions:
 	\textbf{RQ3.5: }\textit{What are the mitigation strategies or alternative design suggestions for the Euro 2.0 system?}
 \end{quoting}
 
-Questions \textbf{RQ3.1} through \textbf{RQ3.5} are answered by applying the OCTAVE Allegro risk assessment methodology\cite{CaralliIntroducingOCTAVE2007}.
-
-\todo[inline]{explain what happens in the following sections} 
+\textit{RQ3.1} through \textit{RQ3.5} are answered by applying Steps 1 through 8 of the OCTAVE Allegro risk assessment methodology\cite{CaralliIntroducingOCTAVE2007} to the system described in \hypernameref{sec:3}. Section \ref{ssec:5.1} answers \textit{RQ3.1} by establishing a risk measurement criteria. Section \ref{ssec:5.2} works through constructing an information asset profile and identifying information asset containers to answer \textit{RQ3.2}. Section \ref{ssec:5.3} uses current research in blockchain security, scalability, and privacy to identify concerns and threats to answer \textit{RQ3.3}. In Section \ref{ssec:5.4}, found threats are used in risk identification and analysis to answer \textit{RQ3.4}. Section \ref{ssec:5.5} uses the top risks from of the risk analysis to propose mitigation strategies and Euro 2.0 design suggestions answering \textit{RQ3.5}. Finally from the above analysis we can make conclusions of the overal risks in Euro 2.0 to answer \textit{RQ3} in the Conclusion \ref{ssec:5.6}.
 
 \subsection{Establishing Risk Criteria} \label{ssec:5.1}
 
@@ -551,6 +550,8 @@ Questions \textbf{RQ3.1} through \textbf{RQ3.5} are answered by applying the OCT
 \subsection{Risk Analysis} \label{ssec:5.4}
 
 \subsection{Mitigation Approach} \label{ssec:5.5}
+
+\subsection{Conclusion} \label{ssec:5.6}
 
 \pagebreak
 
