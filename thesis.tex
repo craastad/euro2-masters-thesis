@@ -61,9 +61,25 @@
 \usepackage{quoting} %for quoting format
 \quotingsetup{vskip=0pt} %for no vertical whitespace around quotings
 
+% a bunch of stuff to make paragraph act as a subsubsubsection and numbered and formatted correctly
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% --- new commands ---
+
+% creates hyperref using the name of a section
 \newcommand{\hypernameref}[1]{\hyperref[#1]{\nameref{#1}}}
 
+% creates a hyperref in form "Table #" to a table
+\newcommand{\hypertableref}[1]{\hyperref[#1]{Table \ref{#1}}}
+
+
 \begin{document}
+\selectlanguage{english}
 
 %------------------------------ENGLISH TITLE PAGE---------------------------------
 \thispagestyle{fancy} %Page will include header and footer
@@ -102,6 +118,7 @@ Associated Professor\\[0cm]
 \pagebreak %End of page
 
 %------------------------------TIITELLEHT EESTI KEELES---------------------------------
+\selectlanguage{estonian}
 \thispagestyle{fancy} %Leht sisaldab päist ja jalust
 \renewcommand{\headrulewidth}{0pt} %Eemaldab päisest horisontaalse joone
 \renewcommand{\footrulewidth}{0pt} %Eemaldab jalusest horisontaalse joone
@@ -143,6 +160,7 @@ Associate Professor\\[0cm]  \todo[noline]{Tõlgi Associated Professor eesti keel
 \newpage
 
 %---------------------------AUTHOR DECLARATION-------------------------
+\selectlanguage{english}
 \section*{\begin{center}
  Author’s declaration of originality
 \end{center}}
@@ -154,6 +172,7 @@ May 8th 2017
 \pagebreak
 
 %---------------------------ABSTRACT---------------------------------
+\selectlanguage{estonian}
 \section*{\begin{center}
 Abstract
 \end{center}}
@@ -183,11 +202,12 @@ Annotatsiooni viimane lõik on kohustuslik ja omab järgmist sõnastust:
 
 \todo[inline]{Täitke eesti keele annotatsiooni lõputöö detailid \ldots}
 
-Lõputöö on kirjutatud [mis keeles] keeles ning sisaldab teksti [lehekülgede arv] leheküljel, [peatükkide arv] peatükki, [jooniste arv] joonist, [tabelite arv] tabelit.
+Lõputöö on kirjutatud [mis keeles] keeles ning sisaldab teksti [lehekülgede arv] leheküljel, [peatükkide arv] peatükki, [jooniste arv] joonist, [tabelite arv] textit.
 
 \pagebreak
 
 %---------------------ABBREVIATIONS AND GLOSSARY OF TERMS---------------------
+\selectlanguage{english}
 \section*{\begin{center}
 Table of abbreviations and terms
 \end{center}}
@@ -316,7 +336,7 @@ Which is broken down into the following sub-questions:
 	\textbf{RQ1.3: }\textit{How are the centralised features implemented?}
 \end{quoting}
 
-Answering \textbf{RQ1} lays the groundwork for further analysis in \hyperref[sec:4]{Chapters 4} and \hyperref[sec:5]{Chapter 5}. \hyperref[ssec:3.2]{Section 3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. \hyperref[ssec:3.3]{Section 3.3} will give an overview of the system architecture and features currently implemented answering \textbf{RQ1.1}. \hyperref[ssec:3.4]{Section 3.4} will dive into the technical implementation of the decentralised features of the system on the Ethereum platform answering \textbf{RQ1.2}. Finally \hyperref[ssec:3.5]{Section 3.5} will dive into the technical implementation of the centralised features built with traditional software development architecture answering \textbf{RQ1.3}.
+Answering \textit{RQ1} lays the groundwork for further analysis in \hypernameref{sec:4} and \hypernameref{sec:5}. Section \ref{ssec:3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. Section \ref{ssec:3.3} will give an overview of the system architecture and features currently implemented answering \textit{RQ1.1}. Section \ref{ssec:3.4} will dive into the technical implementation of the decentralised features of the system on the Ethereum platform answering \textit{RQ1.2}. Finally Section \ref{ssec:3.5} will dive into the technical implementation of the centralised features built with traditional software development architecture answering \textit{RQ1.3}.
 
 \subsection{Euro 2.0 Motivation} \label{ssec:3.2}
 
@@ -328,7 +348,7 @@ Even some governments have expressed interests in digital currency. The Swedish 
 	\textit{``The greatest benefits of digital currencies can be realised through the government issuing a digital form of legal tender. This currency would be less expensive, more efficient and provide greater transparency than current physical legal tender or electronic methods.''}
 \end{quoting}
 
-Following the rise in popularity of Ethereum, in mid 2016, another blogpost by Käärmann \textit{The future of money may be in the ether}\cite{kaarmann2016ether} laid out the skeleton of the system. I describe Euro 2.0 as solving the business problem:
+Following the rise in popularity of Ethereum, in mid 2016, another blogpost by Käärmann \textit{The future of money may be in the ether}\cite{kaarmann2016ether} described the rough idea of the system. I describe Euro 2.0 as solving the business problem:
 
 \begin{quoting}
 	\textit{How do I build a system to digitally store and transact fiat currency without a centralised for-profit financial intermediary conveniently, trustfully, and securely while satisfying government regulations?}
@@ -339,23 +359,62 @@ From this business problem derives the key pillars of Euro 2.0:
 \begin{enumerate}
 	\item Fiat Backed
 	\item Decentralised Accounts and Transactions
-	\item Identity registry of all users of the system
-	\item Convenient Fiat $\Longleftrightarrow$ Digital Euro exchange gateway
-	\item Ability for government to issue money
-	\item Features for law enforcement and AML controls
+	\item Identities of all Users
+	\item Convenient Conversion of Fiat to and from Digital Euro
+	\item Government can control monetary supply
+	\item Features for Law Enforcement and AML
 \end{enumerate}
 
-(1) provides monetary stability to the system and builds trust with users and merchants to keep assets in the digital format. This eliminates the issue of constantly fluctuating daily value between real world and digital assets seen in crypto currencies today.
+\textit{Fiat Backed} (1) provides monetary stability to the system and builds trust with users and merchants to keep assets in the digital format. This eliminates the issue of constantly fluctuating daily value between real world and digital assets seen in crypto currencies today.
 
-(2) comes from the need of an impeccable record and process of transacting value that no centralised party can modify in a database. This is the key benefit and usecase of distributed ledger technology.
+\textit{Decentralised Accounts and Transactions} (2) comes from the need of an impeccable record and process of transacting value that no centralised party can modify in a database. This is the key benefit and usecase of distributed ledger technology. 
 
-(3) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting distributed ledger records in the court). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main driver of the first prototype.
+\textit{Identities of all Users} (3) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting distributed ledger records in the court). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main driver of the first prototype.
 
-(4) makes it easy for users to gradually start using the digital currency. At first this exchange gateway can be a private financial institution, similar to Tether\cite{tether2016whitepaper}, with a proof of reserve of the one to one Euro backing. Ideally this conversion service is hosted by the central bank itself to completely remove financial intermediaries.
+\textit{Convenient Conversion of Fiat to and from Digital Euro} (4) makes it easy for users to gradually start using the digital currency from existing financial infrastructure. At first this exchange gateway can be a private financial institution, similar to Tether\cite{tether2016whitepaper}, with a proof of reserve of the one to one Euro backing. Ideally this conversion service is hosted by the central bank itself to limit the number of financial intermediaries.
 
-(5) following (4), the central bank can issue new money directly into the digital monetary system without a real world euro counterpart.
+\textit{Government can control monetary supply} (5) follows from the ideal scenario of (4), the central bank can issue new money directly into the digital monetary system without a real world euro counterpart.
 
-(6) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any third party, including government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which require means of necessary intervention that typically happen today via cooperation with traditional financial institutions\todo{cite relationship between banks and government}.
+\textit{Features for Law Enforcement and AML} (6) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any third party, including government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which require means of necessary intervention that typically happen today via cooperation with traditional financial institutions\todo{cite relationship between banks and government}.
+
+\subsection{Euro 2.0 Features} \label{ssec:3.3}
+
+The following section describes and categorises the main features of the Euro 2.0 system. Features are enumerated with \textbf{XY\#} where:
+\begin{itemize}
+	\item \textbf{X} is an abbreviation of the domain of the feature, described in the \hypernameref{sssec:3.3:domains} section
+	\item \textbf{Y} is client or server, where client is a user of the system, and server is some centralised or decentralised server infrastructure
+	\item \textbf{\#} is the number of a feature for a given \textbf{XY}
+\end{itemize}
+
+\subsubsection{Domains} \label{sssec:3.3:domains}
+
+\hypertableref{tab:domains} gives an overview of the domains of Euro 2.0 used to group features described in later sections.
+
+\begin{center}
+\begin{tabular}{ | l | c | p{10cm} | } 
+ \hline
+ Domain & Abbr. & Description \\
+ \hline
+ \textbf{Account} & A & mechanism of storage of value in the system
+ \\ \hline
+ \textbf{Transaction} & T & mechanism of transfer of value in the system
+ \\ \hline
+ \textbf{Network} & N & decentralised infrastructure settling EUR2 payments
+ \\ \hline
+ \textbf{Identity} & I & features linking real life human identity to users
+ \\ \hline
+ \textbf{Reserve} & R & features regarding the exchange of value between traditional Euro (EUR) in the financial system and digital Euro (EUR2)
+ \\ \hline 
+ \textbf{Enforcement} & E & features for government regulators and law enforcement to police the system for misuse and AML
+ \\ \hline
+ \textbf{Convenience} & C & features for improving user experience and expanding use cases
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Domains of Euro 2.0}
+\label{tab:domains}
+
+\hypertableref{tab:centVsDecent} gives an overview of the distribution of centralised and decentralised domains of the Euro 2.0 system.
 
 \begin{center}
 \begin{tabular}{ |c|c| } 
@@ -363,126 +422,177 @@ From this business problem derives the key pillars of Euro 2.0:
  Centralised & Decentralised \\
  \hline
  Identity & Account \\
- Reserve & Payments \\
- Regulation & Network \\
+ Reserve & Transaction \\
+ Enforcement & Network \\
  Convenience & \\
  \hline
 \end{tabular}
 \end{center}
-
-\subsection{Euro 2.0 Features} \label{ssec:3.3}
+\captionof{table}{Centralised vs. Decentralised Domains of Euro 2.0}
+\label{tab:centVsDecent}
 
 \subsubsection{Entities} \label{sssec:3.3:entities}
+
+\hypertableref{tab:entities} clarifies key data entities used throughout the description of features.
+
 \begin{center}
 \begin{tabular}{ | p{3cm} | p{12cm} | } 
  \hline
- Entity & Description \\
- \hline\hline
- Address & Ethereum externally controlled address (i.e. public key) \\
- \hline
- Key & Ethereum address private key needed to use funds in address \\
- \hline
- Account & Sum of total value in all verified Ethereum addresses for an ID \\
- \hline
- ID & Estonian ID Code of an individual (citizen, resident, e-resident) \\
- \hline
- ID Name & Name associated with an Estonian ID Code \\
- \hline
- EUR & Euro currency in an Estonian bank account \\
- \hline
- EUR2 & Euro currency in the Euro 2.0 digital form, balance of a token in the Euro 2.0 Ethereum contract \\ 
- \hline
+ Entity & Description
+ \\ \hline\hline
+ Address & Ethereum externally controlled address (i.e. public key)
+ \\ \hline
+ Key & Ethereum address private key needed to use funds in address
+ \\ \hline
+ Account & All verified Ethereum addresses for an ID
+ \\ \hline
+ Account Balance & Sum of total balance of an account
+ \\ \hline
+ ID & Estonian ID code of an individual (citizen, resident, e-resident)
+ \\ \hline
+ ID Name & Name of person associated with an Estonian ID Code
+ \\ \hline
+ EUR & Euro currency in an Estonian bank account
+ \\ \hline
+ EUR2 & Euro currency in the Euro 2.0 digital form, balance of an address in the Euro 2.0 Ethereum contract
+ \\ \hline
+ Wallet & Client program (app or mobile web) used as an interface to Euro 2.0 system, accessible keys to addresses
+ \\ \hline
+ Wallet Password & Password used to encrypt and decrypt local wallet
+ \\ \hline
+ Backup Password & Password used to encrypt and decrypt keys and address to send to backup server
+ \\ \hline
 \end{tabular}
 \end{center}
-
+\captionof{table}{Euro 2.0 Entities}
+\label{tab:entities}
 
 \subsubsection{Processes} \label{sssec:3.3:processes}
+
+\hypertableref{tab:processes} clarifies different processes used throughout the description of features.
+
 \begin{center}
 \begin{tabular}{ | p{3cm} | p{12cm} | } 
  \hline
- Proccess & Description \\
- \hline\hline
- Verify & Link Ethereum address with the an Estonian ID number via certificate verification\\
- \hline
- Freeze & ? \\
- \hline
- Seize & ? \\
- \hline
- Name checks & AML PEP and Sanction Checks \\
- \hline
+ Process & Description
+ \\ \hline\hline
+ Approval & Link Ethereum address with the an Estonian ID number via ID card certificate verification
+ \\ \hline
+ Freeze & Stop all transactions from an ID's address
+ \\ \hline
+ Seize & Remove all asets from an ID's account and send them to the court's account
+ \\ \hline
+ Name checks & AML PEP and Sanction list check on real name of person
+ \\ \hline
 \end{tabular}
 \end{center}
+\captionof{table}{Euro 2.0 Processes}
+\label{tab:processes}
 
-\subsubsection{Accounts} \label{sssec:3.3:accounts}
-
-Client
-\begin{itemize}
-	\item Create address
-	\item Verify address
-\end{itemize}
-
-Server
-\begin{itemize}
-	\item Verify address
-	\item Map ID to address
-\end{itemize}
-
-\subsubsection{Transactions} \label{sssec:3.3:transactions}
+\subsubsection{Account Features} \label{sssec:3.3:accounts}
 
 Client
 \begin{itemize}
-	\item Send EUR2 to an address
-	\item Send EUR2 to an ID
+	\item \textbf{AC1} - Create address
+	\item \textbf{AC2} - Approve address
+	\item \textbf{AC3} - View account balance
 \end{itemize}
 
 Server
 \begin{itemize}
-	\item Resolve ID to an address
-	\item Escrow funds to an ID
-	\item \todo[inline]{some operation to verify that this transaction can actually happen}
+	\item \textbf{AS1} - Check external source for valid ID
+	\item \textbf{AS2} - Approve address
+	\item \textbf{AS3} - Map ID to address
+	\item \textbf{AS4} - Aggregate account balance
 \end{itemize}
 
-\subsubsection{EUR $\Leftrightarrow$ EUR2 Conversion} \label{sssec:3.3:conversion}
+\subsubsection{Transaction Features} \label{sssec:3.3:transactions}
 
 Client
 \begin{itemize}
-	\item Send EUR to Reserve
-	\item Receive EUR2 from Reserve to an address
-	\item Send EUR2 to a bank account via the Reserve
+	\item \textbf{TC1} - Send EUR2 to an address
+	\item \textbf{TC2} - Send EUR2 to an ID
+	\item \textbf{TC3} - Receive EUR2 to an address
+	\item \textbf{TC4} - Receive EUR2 to an ID
 \end{itemize}
 
 Server
 \begin{itemize}
-	\item Resolve received EUR from ID to address
-	\item Create EUR2
-	\item Receive EUR2 from an address
-	\item Send EUR to a bank account
-	\item Destroy EUR2
+	\item \textbf{TS1} - Resolve ID to an address
+	\item \textbf{TS2} - Escrow EUR2 to an ID
+	\item \textbf{TS3} - Release escrow EUR2 to an address for an ID
+	\item \textbf{TS4} - Verify transaction
 \end{itemize}
 
-\subsubsection{Key Backup} \label{sssec:3.3:backup}
+\subsubsection{Reserve Features} \label{sssec:3.3:reserve}
 
 Client
 \begin{itemize}
-	\item Sync keys to backup server
-	\item Restore keys from backup server
+	\item \textbf{RC1} - Send EUR to Reserve bank account
+	\item \textbf{RC2} - Receive EUR2 from Reserve to an address
+	\item \textbf{RC3} - Send EUR2 to a EUR bank account via the Reserve
 \end{itemize}
 
 Server
 \begin{itemize}
-	\item Save keys
-	\item Load keys
+	\item \textbf{RS1} - Resolve address from ID of received EUR transaction
+	\item \textbf{RS2} - Send EUR2 to an address
+	\item \textbf{RS3} - Create EUR2
+	\item \textbf{RS4} - Receive EUR2 from an address
+	\item \textbf{RS5} - Send EUR to a bank account
+	\item \textbf{RS6} - Destroy EUR2
 \end{itemize}
 
-\subsubsection{Enforcement} \label{sssec:3.3:enforcement}
+\subsubsection{Enforcement Features} \label{sssec:3.3:enforcement}
 
 Server
 \begin{itemize}
-	\item Freeze account
-	\item Seize account
-	\item Name checks on ID name
-	\item Map address to ID
+	\item \textbf{ES1} - Freeze account
+	\item \textbf{ES2} - Seize account funds to an address
+	\item \textbf{ES3} - Name checks on ID names
+	\item \textbf{ES4} - Map address to ID
 \end{itemize}
+
+\subsubsection{Convenience Features} \label{sssec:3.3:backup}
+
+\paragraph{Wallet Security}
+Client
+\begin{itemize}
+	\item \textbf{CC1} - Set up wallet encryption
+	\item \textbf{CC2} - Decrypt wallet
+\end{itemize}
+
+\paragraph{Key Backup}
+
+Client
+\begin{itemize}
+	\item \textbf{CC3} - Encrypt addresses and keys
+	\item \textbf{CC4} - Sync addresses and keys to backup server
+	\item \textbf{CC5} - Restore addresses and keys from backup server
+	\item \textbf{CC6} - Decrypt addresses and keys
+\end{itemize}
+
+Server
+\begin{itemize}
+	\item \textbf{CS1} - Check ID is approved
+	\item \textbf{CS2} - Save encrypted addresses and keys
+	\item \textbf{CS3} - Load encrypted addresses and keys
+\end{itemize}
+
+\paragraph{Transfer Info}
+
+Client
+\begin{itemize}
+	\item \textbf{CC7} - Save transfer details for a transaction
+	\item \textbf{CC8} - Load transfer details for a transaction
+\end{itemize}
+
+Server
+\begin{itemize}
+	\item \textbf{CS4} - Save transfer details for a transaction
+	\item \textbf{CS5} - Load transfer details for a transaction
+\end{itemize}
+
 
 \subsection{Euro 2.0 Decentralised Implementation} \label{ssec:3.4}
 
