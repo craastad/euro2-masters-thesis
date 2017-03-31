@@ -1,10 +1,10 @@
 %
-%  $Description: Author guidelines and sample document in LaTeX 2.09/2e$ 
+%  $Description: Author guidelines and sample document in LaTeX 2.09/2e$
 %
 %  $Author: Priit Ruberg$
 %  $Date: 2015/02/09 $
 %  $Revision: 2.5 $
-%  
+%
 %  Translated to English 2017/03/10 by Chris Raastad
 %
 \documentclass[12pt]{article} %Document class definition and text size settings
@@ -77,6 +77,13 @@
 % creates a hyperref in form "Table #" to a table
 \newcommand{\hypertableref}[1]{\hyperref[#1]{Table \ref{#1}}}
 
+% make font look like code
+\def\code#1{\texttt{#1}}
+
+% ability to add line breaks in tables (by making a new table...)
+% http://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
 
 \begin{document}
 \selectlanguage{english}
@@ -237,7 +244,7 @@ ISSRM & \textit{Information Systems Security Risk Management} \\
 \listoftables
 \pagebreak
 
-%-----------------------------CHAPTER 1 - INTRODUCTION------------------------------- 
+%-----------------------------CHAPTER 1 - INTRODUCTION-------------------------------
 \section{Introduction} \label{sec:1}
 
 Payments today are the laggard of the information age. While emails can be sent instantly for free anywhere in the world, money is either slow and/or expensive to move digitally. Bank transfers can take days, only work during business hours, and have high fees across borders. Card payments are instant, but subject merchants to high fees and chargeback risks. Paypal brought convenient payments to the web, but at a high cost to accept payments and move funds internationally. Fintech companies like Venmo and Square can create the illusion of fast payments, but still take days to settle in the background with the potential chargeback risks. This cost comes from the highly regulated centralised financial payments systems with little economic incentive to reduce fees. A usable digital currency would greatly alleviate this friction in transferring value that theoretically costs the economy an estimated 1\% of GDP annually \cite{kaarmann2013cost}.
@@ -286,7 +293,7 @@ The thesis utilises methods from design science and Information Systems Security
 
 \subsection{Structure of the Thesis} \label{ssec:1.4}
 
-\hypernameref{sec:2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID, and research methods. 
+\hypernameref{sec:2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID, and research methods.
 \hypernameref{sec:3} will describe the motivation, features, and implementations of the Euro 2.0 system and prototype needed for analysis. \hypernameref{sec:4} will analyse the impact of Euro 2.0 on stakeholders using design science research methods to better understand the socio-technical impact of the system. \hypernameref{sec:5} will perform the full risk analysis of the Euro 2.0 implementation from the angles of Security, Scalability, and Privacy using the ISSRM model and security design patterns research methods. \hypernameref{sec:6} will evaluate the findings of the risk analysis on the actual running prototype to verify the findings. And finally \hypernameref{sec:7} the conclusion will answer the research question and suggest future avenues of research.
 
 \pagebreak
@@ -367,7 +374,7 @@ From this business problem derives the key pillars of Euro 2.0:
 
 \textit{Fiat Backed} (1) provides monetary stability to the system and builds trust with users and merchants to keep assets in the digital format. This eliminates the issue of constantly fluctuating daily value between real world and digital assets seen in crypto currencies today.
 
-\textit{Decentralised Accounts and Transactions} (2) comes from the need of an impeccable record and process of transacting value that no centralised party can modify in a database. This is the key benefit and usecase of distributed ledger technology. 
+\textit{Decentralised Accounts and Transactions} (2) comes from the need of an impeccable record and process of transacting value that no centralised party can modify in a database. This is the key benefit and usecase of distributed ledger technology.
 
 \textit{Identities of all Users} (3) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting distributed ledger records in the court). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main driver of the first prototype.
 
@@ -391,7 +398,7 @@ The following section describes and categorises the main features of the Euro 2.
 \hypertableref{tab:domains} gives an overview of the domains of Euro 2.0 used to group features described in later sections.
 
 \begin{center}
-\begin{tabular}{ | l | c | p{10cm} | } 
+\begin{tabular}{ | l | c | p{10cm} | }
  \hline
  Domain & Abbr. & Description \\
  \hline
@@ -404,7 +411,7 @@ The following section describes and categorises the main features of the Euro 2.
  \textbf{Identity} & I & features linking real life human identity to users
  \\ \hline
  \textbf{Reserve} & R & features regarding the exchange of value between traditional Euro (EUR) in the financial system and digital Euro (EUR2)
- \\ \hline 
+ \\ \hline
  \textbf{Enforcement} & E & features for government regulators and law enforcement to police the system for misuse and AML
  \\ \hline
  \textbf{Convenience} & C & features for improving user experience and expanding use cases
@@ -417,7 +424,7 @@ The following section describes and categorises the main features of the Euro 2.
 \hypertableref{tab:centVsDecent} gives an overview of the distribution of centralised and decentralised domains of the Euro 2.0 system.
 
 \begin{center}
-\begin{tabular}{ |c|c| } 
+\begin{tabular}{ |c|c| }
  \hline
  Centralised & Decentralised \\
  \hline
@@ -436,7 +443,7 @@ The following section describes and categorises the main features of the Euro 2.
 \hypertableref{tab:entities} clarifies key data entities used throughout the description of features.
 
 \begin{center}
-\begin{tabular}{ | p{3cm} | p{12cm} | } 
+\begin{tabular}{ | p{3cm} | p{12cm} | }
  \hline
  Entity & Description
  \\ \hline\hline
@@ -472,7 +479,7 @@ The following section describes and categorises the main features of the Euro 2.
 \hypertableref{tab:processes} clarifies different processes used throughout the description of features.
 
 \begin{center}
-\begin{tabular}{ | p{3cm} | p{12cm} | } 
+\begin{tabular}{ | p{3cm} | p{12cm} | }
  \hline
  Process & Description
  \\ \hline\hline
@@ -583,8 +590,9 @@ Server
 
 Client
 \begin{itemize}
-	\item \textbf{CC7} - Save transfer details for a transaction
-	\item \textbf{CC8} - Load transfer details for a transaction
+	\item \textbf{CC7} - encrypt transfer details
+	\item \textbf{CC8} - Save transfer details for a transaction
+	\item \textbf{CC9} - Load transfer details for a transaction
 \end{itemize}
 
 Server
@@ -595,6 +603,134 @@ Server
 
 
 \subsection{Euro 2.0 Decentralised Implementation} \label{ssec:3.4}
+
+This section walks through the decentralised implementation of the Euro 2.0 system on the Ethereum distributed applications platform. The main container of code deployment is the \textit{Contract}. Once deployed, the contract is on the Blockchain forever processing messages (transactions) sent to it unless an optional destroy function is implemented and called. All function calls and data modifications are irreversible and publicly visible while being executed on the 1000s of computers on the Ethereum network maintaining the Ethereum Blockchain.
+
+The system is comprised of of the main administrator contract (\textit{CryptoFiat}), shared shared contracts (\textit{Constants}, \textit{Relay}, \textit{Data}, \textit{InternalData}), and the upgradable subcontracts providing system functionality (\textit{Accounts}, \textit{Approving}, \textit{Reserve}, \textit{Enforcement}, \textit{AccountRecovery}, \textit{Delegation}). These decentralised contracts function as gateways to the shared data of the Euro 2.0 system used together with centralised servers and clients explained in \hyperref[ssec:3.5]{Section \ref{ssec:3.5}}.
+
+Some simplifications are made describing the system. Little attention is payed to events as its not relevan for describing the providers of functionality. Data types are simplified (i.e. uint256 is just written int). Complete specification can be viewed in the code.
+
+\subsubsection{CryptoFiat Contract} \label{sssec:3.4:cryptofiat}
+
+The heart of decentralised Euro 2.0 is the \textit{CryptoFiat} contract. This contract functions as an administrator, managing the master address and the references to all deployed contracts comprising the main functionality of the Euro 2.0 system.
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{9cm} | }
+ \hline
+ Name & Type & Description
+ \\ \hline\hline
+ \code{masterAccount} & \code{address} & Master ethereum account whose allowed to do operations on the CryptoFiat contract. Set in the constructor and changeable by master account owner.
+ \\ \hline
+ \code{contractAddress} & \code{int => address} & Stores mapping from subcontract id to deployed address of active subcontract.
+ \\ \hline
+ \code{contractId} & \code{address => int} & Stores mapping from active subcontract address to id.
+ \\ \hline
+ \code{contracts} & \code{address[]} & Array with the address of all contracts ever added to the Euro 2.0 system. It's contents is never cleared.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{CryptoFiat contract data}
+\label{tab:cryptoFiatData}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{9cm} | }
+ \hline
+ Function & Args & Description
+ \\ \hline\hline
+ \code{contractActive} & \code{address addr} & Returns \code{bool} whether the subcontract at address \code{addr} is active.
+ \\ \hline
+ \code{contractsLength} & & Returns the length of \code{contracts}, i.e. the number of all contracts ever deployed.
+ \\ \hline
+ \code{appointMasterAccount} & \code{address next} & Sets \code{masterAccount} to \code{next} and hence gives up control of the CryptoFiat contract. Can only be called by master account owner.
+ \\ \hline
+ \code{upgrade} & \specialcell{\code{int id},\\ \code{address next}} & Upgrades the active contract with \code{id} to the address \code{next}. Only owner of master account can call this. \code{prev} cannot be the same contract as \code{next}. \code{next} cannot be an already active contract. \code{contractAddress}, \code{contractId}, and \code{contracts} are updated appropriately.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{CryptoFiat contract functions}
+\label{tab:cryptoFiatFunctions}
+
+\subsubsection{Shared Contracts: Constants, Relay, Data, InternalData} \label{sssec:3.4:shared}
+
+The code in the shared contracts in Euro 2.0 are exposed ultimately in the \textit{InternalData} contract interface that heavily calls \textit{Data contract}. \textit{InternalData} contract acts as an abstract Contract inherited by all the sub contracts providing functionality. Only the \textit{Data} contract is actually constructed and deployed on the Blockchain, the other shared contracts are simply organising code. \textit{InternalData} inherits from \textit{Constants} and \textit{Relay}. While \textit{Relay} inherits from \textit{Constants} and references \textit{Data} for use by \textit{InternalData}. \textit{Data} inherits from \textit{Relay}.
+
+\paragraph{Constants Contract}
+The \textit{Constants} contract holds values for contract ids (used in contract deployment mapping), bucket identifiers (used in data storage keys), account states (used in accounts and transactions), and events.
+
+\begin{center}
+\begin{tabular}{ | l | l | p{10cm} | }
+ \hline
+ Contract Name & Id & Description
+ \\ \hline\hline
+ DATA & 1 & Contains data storage for all Euro 2.0 contracts
+ \\ \hline
+ ACCOUNTS & 2 & Contract regarding account operations
+ \\ \hline
+ APPROVING & 3 & Contract approving accounts based on verified ID
+ \\ \hline
+ RESERVE & 4 & Contract able to increase, decrease, and transfer supply
+ \\ \hline
+ ENFORCEMENT & 5 & Contract with law enforcement operations
+ \\ \hline
+ ACCOUNT\_RECOVERY & 6 & Contract assigning account recovery options
+ \\ \hline
+ DELEGATION & 7 & ???
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Constant contract subcontract ids}
+\label{tab:constantSubcontractIds}
+
+\begin{center}
+\begin{tabular}{ | l | l | p{10cm} | }
+ \hline
+ Contract Name & Id & Description
+ \\ \hline\hline
+ STATUS & 1 & Account states
+ \\ \hline
+ BALANCE & 2 & Account balance
+ \\ \hline
+ DELEGATED\_TRANSFER\_NONCE & 3 & ???
+ \\ \hline
+ RECOVERY\_ACCOUNT & 4 & Recovery account assignments
+ \\ \hline
+ TOTAL\_SUPPLY & 5 & Total supply issued by reserve
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Constant contract bucket identifiers}
+\label{tab:constantBucketIds}
+
+\begin{center}
+\begin{tabular}{ | l | l | p{10cm} | }
+ \hline
+ State & Id & Description
+ \\ \hline\hline
+ APPROVED & 1 & Account has a linked ID approved and can send funds.
+ \\ \hline
+ CLOSED & 2 & Account is closed (by owner or law enforcement) and cannot receive funds.
+ \\ \hline
+ FROZEN & 4 & Account is frozen by law enforcement and cannot send funds.
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Constant contract account state}
+\label{tab:constantAccountStates}
+
+\paragraph{Relay Contract}
+
+\paragraph{Data Contract}
+
+\paragraph{InternalData Contract}
+
+\subsubsection{Accounts Contract} \label{sssec:3.5:accounts}
+\subsubsection{Approving Contract} \label{sssec:3.5:approving}
+\subsubsection{Reserve Contract} \label{sssec:3.5:reserve}
+\subsubsection{Enforcement Contract} \label{sssec:3.5:enforcement}
+\subsubsection{AccountRecovery Contract} \label{sssec:3.5:accountRecovery}
+\subsubsection{Delegation Contract} \label{sssec:3.5:delegation}
 
 \subsection{Euro 2.0 Centralised Implementation} \label{ssec:3.5}
 
@@ -693,6 +829,12 @@ In which we take piece by piece in the research questions:
 \subsection*{A.1: Euro 2.0 Codebase} \label{ssec:a.1}
 \url{http://github.com/cryptofiat}
 
-\subsection*{A.2: Archive of Cited Web Pages}
+\subsection*{A.2: Archive of Cited Web Pages} \label{ssec:a.2}
+
+\subsection*{A.3: Euro 2.0 Contract Codebase} \label{ssec:a.3}
+\url{https://github.com/cryptofiat/contract}
+
+\subsection*{A.4: CryptoFiat Contract} \label{ssec:a.4}
+\url{https://github.com/cryptofiat/contract/blob/master/CryptoFiat.sol}
 
 \end{document}
