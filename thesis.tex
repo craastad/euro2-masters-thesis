@@ -312,7 +312,20 @@ The thesis utilises methods from design science and Information Systems Security
 \subsection{CryptoCurrencies and Payments}
 Existing crypto currencies not great for payments...
 
-\subsection{Ethereum and Smart Contracts}
+\subsection{Ethereum}
+\begin{itemize}
+	\item WTF is this thing?
+	\item addresses
+	\item messages
+\end{itemize}
+
+\subsection{Solidity Smart Contracts}
+\begin{itemize}
+	\item what can they do?
+	\item data
+	\item functions
+	\item modifiers
+\end{itemize}
 
 \subsection{Estonia ID Card}
 
@@ -657,7 +670,7 @@ The heart of decentralised Euro 2.0 is the \textit{CryptoFiat} contract. This co
 The code in the shared contracts in Euro 2.0 are exposed ultimately in the \textit{InternalData} contract interface that heavily calls \textit{Data contract}. \textit{InternalData} contract acts as an abstract Contract inherited by all the sub contracts providing functionality. Only the \textit{Data} contract is actually constructed and deployed on the Blockchain, the other shared contracts are simply organising code. \textit{InternalData} inherits from \textit{Constants} and \textit{Relay}. While \textit{Relay} inherits from \textit{Constants} and references \textit{Data} for use by \textit{InternalData}. \textit{Data} inherits from \textit{Relay}.
 
 \paragraph{Constants Contract}
-The \textit{Constants} contract holds values for contract ids (used in contract deployment mapping), bucket identifiers (used in data storage keys), account states (used in accounts and transactions), and events.
+The \textit{Constants} contract holds values for contract ids (used in contract deployment mapping), bucket identifiers (used in data storage keys), account states (used in accounts and transactions), and events. There is no functionality, just convenient constants to organize data and contract access used in other contracts.
 
 \begin{center}
 \begin{tabular}{ | l | l | p{10cm} | }
@@ -721,15 +734,191 @@ The \textit{Constants} contract holds values for contract ids (used in contract 
 
 \paragraph{Relay Contract}
 
+The \textit{Relay} contract holds convenience methods for subcontracts to access each other. The functions in \hypertableref{tab:relayFunctions} use the reference to \textit{CryptoFiat} in \hypertableref{tab:relayData} to provide a reference to all deployed subcontracts. There is also convenient restriction modifiers listed in \hypertableref{tab:relayModifiers}.
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{9cm} | }
+ \hline
+ Name & Type & Description
+ \\ \hline\hline
+ \code{cryptoFiat} & \code{address} & Reference to main \textit{CryptoFiat} contract deployment used to resolve address to all other contracts
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{Relay contract data}
+\label{tab:relayData}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{9cm} | }
+ \hline
+ Modifier &  Description
+ \\ \hline\hline
+ \code{onlyMasterAccount} & Restricts function to only be usable by master account by checking \code{msg.sender}.
+ \\ \hline
+ \code{onlyContracts} & Restricts function to only be usable by active contracts.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{Relay contract modifiers}
+\label{tab:relayModifiers}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{9cm} | }
+ \hline
+ Function & Args & Description
+ \\ \hline\hline
+ \code{switchCryptoFiat} & \code{address next} & Sets the address of \textit{CryptoFiat} contract. Restricted to \code{onlyMasterAccount}.
+ \\ \hline
+ \code{contractAddress} & \code{int id} & Returns the address of subcontract of \code{id} listed in \hypertableref{tab:constantSubcontractIds}.
+ \\ \hline
+ \code{accounts} & & Returns reference to \code{ACCOUNTS} contract.
+ \\ \hline
+ \code{data} & & Returns reference to \code{DATA} contract.
+ \\ \hline
+ \code{approving} & & Returns reference to \code{APPROVING} contract.
+ \\ \hline
+ \code{reserve} & & Returns reference to \code{RESERVE} contract.
+ \\ \hline
+ \code{accountRecovery} & & Returns reference to \code{ACCOUNT\_RECOVERY} contract.
+ \\ \hline
+ \code{delegation} & & Returns reference to \code{DELEGATION} contract.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{Relay contract functions}
+\label{tab:relayFunctions}
+
 \paragraph{Data Contract}
+
+The \textit{Data} contract provides the main data access layer for all subcontracts which is accessed by convenience methods in the \textit{InternalData} contract. No subcontracts work with this contract directly. The main data object is defined in \hypertableref{tab:dataData} and functions on this data in \hypertableref{tab:dataFunctions}.
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{9cm} | }
+ \hline
+ Name & Type & Description
+ \\ \hline\hline
+ \code{\_data} & \code{map: bytes32 => bytes32} & The shared data storage structure for all subcontracts
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{Data contract data}
+\label{tab:dataData}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{12cm} | }
+ \hline
+ Function & Args & Description
+ \\ \hline\hline
+ \code{set} & \specialcell{\code{int bucket},\\ \code{bytes32 key},\\ \code{bytes32 value}} & Saves the data \code{value} with the hash key \code{sha3(bucket, key)}, with \code{bucket} referring to the bucket id list in \hypertableref{tab:constantBucketIds} and key being an arbitrary value. Restricted to \code{onlyContracts} callers.
+ \\ \hline
+ \code{get} & \code{int id} & Returns \code{byte32} value stored in hash key \code{sha3(bucket, key)}, with bucket id being from the list in \hypertableref{tab:constantBucketIds}.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{Data contract functions}
+\label{tab:dataFunctions}
 
 \paragraph{InternalData Contract}
 
+\textit{InternalData} is the main contract for accessing data storage used by all subcontracts. All functions here are marked \code{internal}, meaning they can only be accessed from within a contract. All subcontracts extend \textit{InternalData}. Data access functions are listed in \hypertableref{tab:internalDataAccessFunctions}, account status functions are listed in \hypertableref{tab:internalDataAccountStatusFunctions}, modifiers in \hypertableref{tab:internalDataModifiers}, and account functions in \hypertableref{tab:internalDataAccountFunctions}.
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{12cm} | }
+ \hline
+ Function & Args & Description
+ \\ \hline\hline
+ \code{\_balanceOf} & \code{address addr} & Returns \code{int} BALANCE stored for address \code{addr}.
+ \\ \hline
+ \code{\_setBalanceOf} & \specialcell{\code{address addr},\\ \code{int value}} & Stores BALANCE of \code{value} for \code{addr}.
+ \\ \hline
+ \code{\_statusOf} & \code{address addr} & Returns \code{int} account STATUS of address \code{addr} as listed in status codes of \hypertableref{tab:constantAccountStates}.
+ \\ \hline
+ \code{\_setStatusOf} & \specialcell{\code{address addr},\\ \code{int value}} & Stores account STATUS of \code{value} for \code{addr}.
+ \\ \hline
+ \code{\_delegatedTransferNonceOf} & \code{address addr} & Returns \code{int} of last nonce used in delegatedTransfer for address \code{addr}.
+ \\ \hline
+ \code{\_setDelegatedTransferNonceOf} & \specialcell{\code{address addr},\\ \code{int value}} & Stores last nonce used \code{value} in delegatedTransfer for address \code{addr}.
+ \\ \hline
+ \code{\_recoveryAccountOf} & \code{address addr} & Returns the \code{address} recovery account set for address \code{addr}.
+ \\ \hline
+ \code{\_setRecoveryAccountOf} & \specialcell{\code{address addr},\\ \code{address value}} & Stores recovery account \code{value} for address \code{addr}.
+ \\ \hline
+ \code{\_totalSupply} & & Returns total supply \code{int} of tokens in circulation.
+ \\ \hline
+ \code{\_setTotalSupply} & \code{int value} & Stores \code{value} of total tokens in circulation.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{InternalData contract account status functions}
+\label{tab:internalDataAccessFunctions}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{12cm} | }
+ \hline
+ Function & Args & Description
+ \\ \hline\hline
+ \code{\_isApproved} & \code{address account} & Returns \code{bool} whether \code{account} is APPROVED.
+ \\ \hline
+ \code{\_isClosed} & \code{address account} & Returns \code{bool} whether \code{account} is CLOSED.
+ \\ \hline
+ \code{\_isFrozen} & \code{address account} & Returns \code{bool} whether \code{account} is FROZEN.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{InternalData account status functions}
+\label{tab:internalDataAccountStatusFunctions}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{12cm} | }
+ \hline
+ Function & Args & Description
+ \\ \hline\hline
+ \code{canSend} & \code{address account} & Validates if \code{account} can send by throwing an exception if it is not approved, frozen, or the address 0.
+ \\ \hline
+ \code{assertSend} & \code{address account} & Function form of \code{canSend}.
+ \\ \hline
+ \code{canReceive} & \code{address account} & Validates if \code{account} can receive by throwing an exception if it is closed or the address 0.
+ \\ \hline
+ \code{assertReceive} & \code{address account} & Function form of \code{canReceive}.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{InternalData modifiers}
+\label{tab:internalDataModifiers}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{12cm} | }
+ \hline
+ Function & Args & Description
+ \\ \hline\hline
+ \code{\_withdraw} & \specialcell{\code{address account},\\ \code{int amount}} & Withdraws \code{amount} from balance of \code{account}. Throws exception if \code{amount} is more than balance.
+ \\ \hline
+ \code{\_deposit} & \specialcell{\code{address account},\\ \code{int amount}} & Deposits \code{amount} into balance for \code{account}. Throws exception if amount to withdraw plus balance is less than balance (overflow).
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{InternalData account functions}
+\label{tab:internalDataAccountFunctions}
+
 \subsubsection{Accounts Contract} \label{sssec:3.5:accounts}
+
 \subsubsection{Approving Contract} \label{sssec:3.5:approving}
+
 \subsubsection{Reserve Contract} \label{sssec:3.5:reserve}
+
 \subsubsection{Enforcement Contract} \label{sssec:3.5:enforcement}
+
 \subsubsection{AccountRecovery Contract} \label{sssec:3.5:accountRecovery}
+
 \subsubsection{Delegation Contract} \label{sssec:3.5:delegation}
 
 \subsection{Euro 2.0 Centralised Implementation} \label{ssec:3.5}
