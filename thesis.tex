@@ -305,18 +305,21 @@ The thesis utilises methods from design science and Information Systems Security
 
 \subsection{Traditional Finance System}
 
-\subsection{Bitcoin}
-
-\subsection{Tether}
-
 \subsection{CryptoCurrencies and Payments}
 Existing crypto currencies not great for payments...
+
+\subsubsection{Bitcoin}
+
+\subsubsection{Tether}
+
+\subsubsection{Anonymity vs. Regulation vs. Trust}
 
 \subsection{Ethereum}
 \begin{itemize}
 	\item WTF is this thing?
 	\item addresses
 	\item messages
+	\item events
 \end{itemize}
 
 \subsection{Solidity Smart Contracts}
@@ -331,8 +334,9 @@ Existing crypto currencies not great for payments...
 \subsection{Estonia ID Card}
 
 \subsection{Future Adoption Research}
+?
 
-\subsection{Security and Privacy Research}
+\subsection{OCTAVE Allegro}
 
 \pagebreak
 
@@ -340,7 +344,7 @@ Existing crypto currencies not great for payments...
 \section{Chapter 3} \label{sec:3}
 
 \subsection{Introduction} \label{ssec:3.1}
-This chapter introduces the Euro 2.0 digital currency system. The contents of this section is based of a prototype developed by the Euro 2.0 Foundation as a non profit initiative. All code is accessible in Github under the MIT License as indicated in \hyperref[ssec:a.1]{Appendix A.1}. The chapter answers the following research question:
+This chapter introduces the Euro 2.0 digital currency system. The contents of this section are based from a prototype developed by the Euro 2.0 Foundation as a non profit initiative. All the original code is accessible in Github under the MIT License as indicated in \hyperref[ssec:a.1]{Appendix A.1}. The chapter answers the following research question:
 
 \begin{quoting}
 \textbf{RQ1:} \textit{How do we describe the relevant features needed for risk analysis of the Euro 2.0 digital currency?}
@@ -400,10 +404,10 @@ From this business problem derives the key pillars of Euro 2.0:
 
 \subsection{Euro 2.0 Features} \label{ssec:3.3}
 
-The following section describes and categorises the main features of the Euro 2.0 system. Features are enumerated with \textbf{XY\#} where:
+The following section describes the main features of the Euro 2.0 system. Features are enumerated with the label \textbf{XY\#} where:
 \begin{itemize}
 	\item \textbf{X} is an abbreviation of the domain of the feature, described in the \hypernameref{sssec:3.3:domains} section
-	\item \textbf{Y} is client or server, where client is a user of the system, and server is some centralised or decentralised server infrastructure
+	\item \textbf{Y} is client, admin, or server. Client is a user of the system, admin is some superuser with special permissions, and server is some centralised or decentralised server infrastructure
 	\item \textbf{\#} is the number of a feature for a given \textbf{XY}
 \end{itemize}
 
@@ -418,11 +422,9 @@ The following section describes and categorises the main features of the Euro 2.
  \hline
  \textbf{Account} & A & mechanism of storage of value in the system
  \\ \hline
- \textbf{Transaction} & T & mechanism of transfer of value in the system
- \\ \hline
- \textbf{Network} & N & decentralised infrastructure settling EUR2 payments
- \\ \hline
  \textbf{Identity} & I & features linking real life human identity to users
+ \\ \hline
+ \textbf{Transaction} & T & mechanism of transfer of value in the system
  \\ \hline
  \textbf{Reserve} & R & features regarding the exchange of value between traditional Euro (EUR) in the financial system and digital Euro (EUR2)
  \\ \hline
@@ -435,22 +437,23 @@ The following section describes and categorises the main features of the Euro 2.
 \captionof{table}{Domains of Euro 2.0}
 \label{tab:domains}
 
-\hypertableref{tab:centVsDecent} gives an overview of the distribution of centralised and decentralised domains of the Euro 2.0 system.
-
-\begin{center}
-\begin{tabular}{ |c|c| }
- \hline
- Centralised & Decentralised \\
- \hline
- Identity & Account \\
- Reserve & Transaction \\
- Enforcement & Network \\
- Convenience & \\
- \hline
-\end{tabular}
-\end{center}
-\captionof{table}{Centralised vs. Decentralised Domains of Euro 2.0}
-\label{tab:centVsDecent}
+% TODO: I'm not sure if this table is actually relevant anymore
+% \hypertableref{tab:centVsDecent} gives an overview of the distribution of centralised and decentralised domains of the Euro 2.0 system.
+%
+% \begin{center}
+% \begin{tabular}{ |c|c| }
+%  \hline
+%  Centralised & Decentralised \\
+%  \hline
+%  Identity & Account \\
+%  Reserve & Transaction \\
+%  Enforcement & Network \\
+%  Convenience & \\
+%  \hline
+% \end{tabular}
+% \end{center}
+% \captionof{table}{Centralised vs. Decentralised Domains of Euro 2.0}
+% \label{tab:centVsDecent}
 
 \subsubsection{Entities} \label{sssec:3.3:entities}
 
@@ -461,13 +464,13 @@ The following section describes and categorises the main features of the Euro 2.
  \hline
  Entity & Description
  \\ \hline\hline
- Address & Ethereum externally controlled address (i.e. public key)
+ Address & Ethereum externally controlled address (i.e. public key) holding EUR2 and Ether
  \\ \hline
- Key & Ethereum address private key needed to use funds in address
+ Key & Ethereum address private key needed to make transactions (EUR2 or Ether) for an address
  \\ \hline
  Account & All verified Ethereum addresses for an ID
  \\ \hline
- Account Balance & Sum of total balance of an account
+ Account Balance & Sum of total balance of EUR2 in an account
  \\ \hline
  ID & Estonian ID code of an individual (citizen, resident, e-resident)
  \\ \hline
@@ -483,10 +486,34 @@ The following section describes and categorises the main features of the Euro 2.
  \\ \hline
  Backup Password & Password used to encrypt and decrypt keys and address to send to backup server
  \\ \hline
+ Designator account & Account collecting seized funds
+ \\ \hline
 \end{tabular}
 \end{center}
 \captionof{table}{Euro 2.0 Entities}
 \label{tab:entities}
+
+\subsubsection{Roles} \label{sssec:3.3:roles}
+
+\begin{center}
+\begin{tabular}{ | p{3cm} | p{12cm} | }
+ \hline
+ Role & Description
+ \\ \hline\hline
+ CryptoFiat Master & Ethereum address (public / private key) to master contract
+ \\ \hline
+ Approver & Ethereum address (public / private key) entitled to approver operations
+ \\ \hline
+ Reserve Bank & Ethereum address (public / private key) entitled to reserve operations and funds
+ \\ \hline
+ Enforcer & Ethereum address (public / private key) entitled to to enforcer operations
+ \\ \hline
+ Designator & Ethereum address (public / private key) entitled to designator operations
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Euro 2.0 Roles}
+\label{tab:roles}
 
 \subsubsection{Processes} \label{sssec:3.3:processes}
 
@@ -497,13 +524,15 @@ The following section describes and categorises the main features of the Euro 2.
  \hline
  Process & Description
  \\ \hline\hline
- Approval & Link Ethereum address with the an Estonian ID number via ID card certificate verification
+ Approval & Link Ethereum address with the an Estonian ID number via ID card certificate verification. Allow Ethereum address to send EUR2.
  \\ \hline
- Freeze & Stop all transactions from an ID's address
+ Freeze & Stop address from sending EUR2.
  \\ \hline
- Seize & Remove all asets from an ID's account and send them to the court's account
+ Close & Stop address from receiving EUR2.
  \\ \hline
- Name checks & AML PEP and Sanction list check on real name of person
+ Seize & Remove EUR2 from an address and send them to the designator account.
+ \\ \hline
+ Name checks & AML PEP and Sanction list check on real name of person.
  \\ \hline
 \end{tabular}
 \end{center}
@@ -515,17 +544,32 @@ The following section describes and categorises the main features of the Euro 2.
 Client
 \begin{itemize}
 	\item \textbf{AC1} - Create address
-	\item \textbf{AC2} - Approve address
-	\item \textbf{AC3} - View account balance
+	\item \textbf{AC2} - View account balance
 \end{itemize}
 
 Server
 \begin{itemize}
-	\item \textbf{AS1} - Check external source for valid ID
-	\item \textbf{AS2} - Approve address
-	\item \textbf{AS3} - Map ID to address
-	\item \textbf{AS4} - Aggregate account balance
+	\item \textbf{AS1} - Aggregate account balance
 \end{itemize}
+
+The account features allow users of store balance of EUR2. The requirement is an Ethereum public and private key pair created in \textbf{AC1}. Viewing account balance is taking the sum of all addresses under ownership of the user's private keys. A server aggregation is needed for retrieving the balances and resolving delegated balances described later.
+
+\subsubsection{Identity Features} \label{sssec:3.3:identity}
+
+Client
+\begin{itemize}
+	\item \textbf{IC1} - Approve address
+\end{itemize}
+
+Server
+\begin{itemize}
+	\item \textbf{IS1} - Check external source for valid ID
+	\item \textbf{IS2} - Approve address
+	\item \textbf{IS3} - Save ID number to address mapping
+	\item \textbf{IS4} - Look up ethereum address by ID
+\end{itemize}
+
+In order for an address to transact EUR2, it needs to be approved, that is linked with an identity. The server here plays a critical role in approving the address by checking a client approval request (\textbf{IC1}) with an external source (\textbf{IS1}) then both approving this address on the blockchain (\textbf{IS2}) and saving this mapping (\textbf{IS3}) for use in other components (\textbf{IS4}).
 
 \subsubsection{Transaction Features} \label{sssec:3.3:transactions}
 
@@ -535,6 +579,7 @@ Client
 	\item \textbf{TC2} - Send EUR2 to an ID
 	\item \textbf{TC3} - Receive EUR2 to an address
 	\item \textbf{TC4} - Receive EUR2 to an ID
+	\item \textbf{TC5} - Send EUR2 to a EUR bank account
 \end{itemize}
 
 Server
@@ -542,79 +587,134 @@ Server
 	\item \textbf{TS1} - Resolve ID to an address
 	\item \textbf{TS2} - Escrow EUR2 to an ID
 	\item \textbf{TS3} - Release escrow EUR2 to an address for an ID
-	\item \textbf{TS4} - Verify transaction
+	\item \textbf{TS4} - Execute valid EUR transaction
+	\item \textbf{TS5} - Execute valid EUR2 transaction
 \end{itemize}
+
+The transaction features are the heart of the EUR2 system. What differentiate Euro 2.0 from other cryptocurrencies is the ability to easily send funds amongst digital (EUR2) and real (EUR) euros. \textbf{TC1} and \textbf{TC3} allow a user to transact EUR2 directly with the Ethereum decentralised system using ethereum addresses. \textbf{TC2} and \textbf{TC4} allow a user to conveniently send EUR2 to a human being via their ID code using the centralised identity infrastructure (\textbf{IS4}). Funds sent to an ID that does not yet have an Ethereum address will have EUR2 held to a new ethereum address in Escrow (\textbf{TS2}) and then later released and transferred to an address created and approved by the receiver (\textbf{TS3}). \textbf{TS5} provides the infrastructure to execute EUR2 transactions for \textbf{TC1} through \textbf{TC4}. A centralised party needs to provide the mediation gateway (\textbf{TS4}) allowing a user to send EUR2 to a EUR bank account (\textbf{TC5}).
 
 \subsubsection{Reserve Features} \label{sssec:3.3:reserve}
 
 Client
 \begin{itemize}
-	\item \textbf{RC1} - Send EUR to Reserve bank account
-	\item \textbf{RC2} - Receive EUR2 from Reserve to an address
-	\item \textbf{RC3} - Send EUR2 to a EUR bank account via the Reserve
+	\item \textbf{RC1} - Convert EUR to EUR2
+	\item \textbf{RC2} - Convert EUR2 to EUR
+	\item \textbf{RC3} - Proof of reserve
+\end{itemize}
+
+Admin
+\begin{itemize}
+	\item \textbf{RA1} - Assign reserve bank address
+	\item \textbf{RA2} - Manage reserve bank account
 \end{itemize}
 
 Server
 \begin{itemize}
 	\item \textbf{RS1} - Resolve address from ID of received EUR transaction
-	\item \textbf{RS2} - Send EUR2 to an address
-	\item \textbf{RS3} - Create EUR2
-	\item \textbf{RS4} - Receive EUR2 from an address
-	\item \textbf{RS5} - Send EUR to a bank account
-	\item \textbf{RS6} - Destroy EUR2
+	\item \textbf{RS2} - Create EUR2
+	\item \textbf{RS3} - Destroy EUR2
 \end{itemize}
+
+The reserve features allow convenient conversion between EUR and EUR2. The reserve process for converting from EUR to EUR2 is to to receive a EUR bank transaction with an individuals ID (\textbf{RS1}), create EUR2 (\textbf{RS2}) of the equivalent amount, resolve the ID to an ethereum address (\textbf{TS1}), and send this to the address for the ID (\textbf{TS5}).  Likewise the process from converting EUR2 to EUR is receiving a EUR2 transaction (\textbf{RC1}), destroy the EUR2 (\textbf{RS3}), and send a bank transfer of the equivalent amount in EUR (\textbf{TS4}). Finally there is admin feature to assign the reserve EUR2 address to make conversions (\textbf{RA1}) and actually perform manage the banking operations on the bank account (\textbf{RA2}).
 
 \subsubsection{Enforcement Features} \label{sssec:3.3:enforcement}
 
-Server
+Admin
 \begin{itemize}
-	\item \textbf{ES1} - Freeze account
-	\item \textbf{ES2} - Seize account funds to an address
-	\item \textbf{ES3} - Name checks on ID names
-	\item \textbf{ES4} - Map address to ID
+	\item \textbf{EA1} - Freeze account
+	\item \textbf{EA2} - Seize account funds to designator's address, closing the account
+	\item \textbf{EA3} - Assign enforcement
+	\item \textbf{EA4} - Assign designator
+	\item \textbf{EA5} - Set designator address
+	\item \textbf{EA6} - View name check and analysis data
 \end{itemize}
 
+Server
+\begin{itemize}
+	\item \textbf{ES1} - Name checks on ID names
+	\item \textbf{ES2} - Create database of transactions with ID
+\end{itemize}
+
+The enforcement features allow law enforcement to do their job that would be traditionally be done via financial institutions. Law enforcement can freeze (\textbf{EA1}) and seize (\textbf{EA2}) funds to the designator address (\textbf{EA5}). Admin controls exist to assign the role of enforcer (\textbf{EA3}) and designator (\textbf{EA4}). Finally automatic processes in the server need to perform name checks on all users of the system (\textbf{ES1}) and create a database of identities and transactions (\textbf{ES2}) to be usable by some analysts (\textbf{EA6}).
+
 \subsubsection{Convenience Features} \label{sssec:3.3:backup}
+
+The convenience features are not necessarily central to a functioning and compliant fiat and digital monetary system, but are quite useful to increase the usefulness and usability barrier. They are quite important to consider in a security analysis, hence listed here.
 
 \paragraph{Wallet Security}
 Client
 \begin{itemize}
-	\item \textbf{CC1} - Set up wallet encryption
+	\item \textbf{CC1} - Encrypt wallet
 	\item \textbf{CC2} - Decrypt wallet
 \end{itemize}
+
+Since private keys are stored locally on a user's device, they should be encrypted (\textbf{CC1}) with some password when not in use and decrypted (\textbf{CC2}) when needed for signing transactions.
 
 \paragraph{Key Backup}
 
 Client
 \begin{itemize}
-	\item \textbf{CC3} - Encrypt addresses and keys
-	\item \textbf{CC4} - Sync addresses and keys to backup server
-	\item \textbf{CC5} - Restore addresses and keys from backup server
-	\item \textbf{CC6} - Decrypt addresses and keys
+	\item \textbf{CC3} - Encrypt keys for addresses
+	\item \textbf{CC4} - Create a challenge question
+	\item \textbf{CC5} - Send addresses, keys, and challenge to backup server for an ID
+	\item \textbf{CC6} - Retrieve addresses and keys from backup server for an ID with challenge answer
+	\item \textbf{CC7} - Decrypt keys for addresses
 \end{itemize}
 
 Server
 \begin{itemize}
-	\item \textbf{CS1} - Check ID is approved
-	\item \textbf{CS2} - Save encrypted addresses and keys
-	\item \textbf{CS3} - Load encrypted addresses and keys
+	\item \textbf{CS1} - Save encrypted addresses and keys for an ID
+	\item \textbf{CS2} - Check challenge answer
+	\item \textbf{CS3} - Load encrypted addresses and keys for an ID
 \end{itemize}
+
+Since keys are stored locally, if not backed up, they can be easily lost with the device. Euro2.0 provides a centralised convenience feature to back up these keys for an ID and secured by a challenge question. The user can encrypt their keys with a password (\textbf{CC3}), create a challenge question (\textbf{CC4}), send the addresses, encrypted keys, and challenge to the server (\textbf{CC5}) to be saved (\textbf{CS1}). The user can then retrieve the addresses and encrypted keys for an ID from the server (\textbf{CC6}) by providing the correct challenge answer checked by the server (\textbf{CS2}) (\textbf{CS3}), and finally the keys can be decrypted by the user (\textbf{CC7}).
 
 \paragraph{Transfer Info}
 
 Client
 \begin{itemize}
-	\item \textbf{CC7} - encrypt transfer details
-	\item \textbf{CC8} - Save transfer details for a transaction
-	\item \textbf{CC9} - Load transfer details for a transaction
+	\item \textbf{CC8} - Encrypt copies of transfer details for sender and receiver
+	\item \textbf{CC9} - Save transfer details for a transaction hash
+	\item \textbf{CC10} - Load transfer details for a transaction hash
+	\item \textbf{CC11} - Decrypt transfer details for sender or recipient
 \end{itemize}
 
 Server
 \begin{itemize}
-	\item \textbf{CS4} - Save transfer details for a transaction
-	\item \textbf{CS5} - Load transfer details for a transaction
+	\item \textbf{CS4} - Save transfer details for a transaction hash
+	\item \textbf{CS5} - Load transfer details for a transaction hash
 \end{itemize}
 
+Transfer info features provide extra information to transfers only visible to sender and receiver. First a sender of a transaction encrypts two copies of the transfer details, one with the sender's public key and the other with the recipient's private key (\textbf{CC8}). Then these can be saved to the transfer info server with the transaction's hash (\textbf{CC9} and \textbf{CS4}). Then these details can be loaded from the server (\textbf{CS5}) by the sender or receiver from the server (\textbf{CC10}) and decrypted with their respective private key (\textbf{CC11}).
+
+\paragraph{Account Recovery}
+
+Client
+\begin{itemize}
+	\item \textbf{CC12} - Set address recovery address
+	\item \textbf{CC13} - Recover address funds
+\end{itemize}
+
+Server
+\begin{itemize}
+	\item \textbf{CS6} - Execute address funds recovery transaction and close account
+\end{itemize}
+
+Account recovery features offer some protection from accidentally losing keys to an address. A user can set a very trusted address, a friend or close relative, with the able to recover funds (\textbf{CC12}). This trusted party at any time can perform the funds recovery and withdram all of the account's funds to their account with their key (\textbf{CC13}) executed by the server (\textbf{CS6}).
+
+\paragraph{Delegated Transfers - Send without Ether}
+
+Client
+\begin{itemize}
+	\item \textbf{CC13} - Execute EUR2 transaction with EUR2 fee without gas
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{CS7} - Fulfil delegated EUR2 transaction and claim EUR2 fee
+\end{itemize}
+
+Finally, this convenience feature eliminates the side effect of using Ethereum, consuming gas (ether) in transactions. A trusted third party, the wallet server in this case, can execute transactions on behalf of the sender (\textbf{CC13}) and take the fee in EUR2 cents instead of ether (\textbf{CS7}). This requires only the trusted third party to have Ether and the user can only worry about EUR2.
 
 \subsection{Euro 2.0 Decentralised Implementation} \label{ssec:3.4}
 
@@ -1126,8 +1226,6 @@ Its functions are listed in \hypertableref{tab:delegationFunctions}}.
  \\ \hline\hline
  \code{nonceOf} & \code{address account} & Sets delegated transfer nonce of \code{account}.
  \\ \hline
- \code{recoverSigner} & \specialcell{\code{bytes32 hash}, \\ \code{bytes signature}} & Magic...
- \\ \hline
  \code{transfer} 
     & \specialcell{
  		% transfer request
@@ -1141,8 +1239,6 @@ Its functions are listed in \hypertableref{tab:delegationFunctions}}.
         \code{address delegate}
  	   } 
     & Magic...
- \\ \hline
- \code{recoverXfer} & \specialcell{\code{bytes data}, \\ \code{uint offset}} & Magic ...
  \\ \hline
  \code{multitransfer} 
  	& \specialcell{\code{uint256 count}, \\ \code{bytes transfers}, \\ \code{address delegate}}
