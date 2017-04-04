@@ -77,6 +77,9 @@
 % creates a hyperref in form "Table #" to a table
 \newcommand{\hypertableref}[1]{\hyperref[#1]{Table \ref{#1}}}
 
+% creates a hyperref in form "Section #" to a table
+\newcommand{\hypersectionref}[1]{\hyperref[#1]{Section \ref{#1}}}
+
 % make font look like code
 \def\code#1{\texttt{#1}}
 
@@ -355,13 +358,16 @@ Which is broken down into the following sub-questions:
 	\textbf{RQ1.1: }\textit{What are the features of the Euro 2.0 digital currency?}
 \end{quoting}{
 \begin{quoting}
-	\textbf{RQ1.2: }\textit{How are the decentralised features implemented?}
+	\textbf{RQ1.2: }\textit{What are the decentralized components?}
 \end{quoting}{
 \begin{quoting}
-	\textbf{RQ1.3: }\textit{How are the centralised features implemented?}
+	\textbf{RQ1.3: }\textit{What are the centralized components?}
+\end{quoting}
+\begin{quoting}
+	\textbf{RQ1.4: }\textit{How do the decentralized and centralized work together to provide the features?}
 \end{quoting}
 
-Answering \textit{RQ1} lays the groundwork for further analysis in \hypernameref{sec:4} and \hypernameref{sec:5}. Section \ref{ssec:3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. Section \ref{ssec:3.3} will give an overview of the system architecture and features currently implemented answering \textit{RQ1.1}. Section \ref{ssec:3.4} will dive into the technical implementation of the decentralised features of the system on the Ethereum platform answering \textit{RQ1.2}. Finally Section \ref{ssec:3.5} will dive into the technical implementation of the centralised features built with traditional software development architecture answering \textit{RQ1.3}.
+Answering \textit{RQ1} lays the groundwork for further analysis in \hypernameref{sec:4} and \hypernameref{sec:5}. \hypersectionref{ssec:3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. \hypersectionref{ssec:3.3} will give an overview of the system architecture and features currently implemented answering \textit{RQ1.1}. \hypersectionref{ssec:3.4} will give an overview of the decentralized components built on the Ethereum platform answering \textit{RQ1.2}. \hypersectionref{ssec:3.5} will give an overview of centralized components built with traditional software development architecture answering \textit{RQ1.3}. Finally \hypersectionref{ssec:3.6} will briefly describe how the centralized and decentralized components work together to fulfill the features of \hypersectionref{ssec:3.2} answering \textit{RQ1.4}.
 
 \subsection{Euro 2.0 Motivation} \label{ssec:3.2}
 
@@ -407,9 +413,11 @@ From this business problem derives the key pillars of Euro 2.0:
 The following section describes the main features of the Euro 2.0 system. Features are enumerated with the label \textbf{XY\#} where:
 \begin{itemize}
 	\item \textbf{X} is an abbreviation of the domain of the feature, described in the \hypernameref{sssec:3.3:domains} section
-	\item \textbf{Y} is client, admin, or server. Client is a user of the system, admin is some superuser with special permissions, and server is some centralised or decentralised server infrastructure
+	\item \textbf{Y} is client, admin, or server. Client is a user of the system, admin is some superuser with special permissions, and server is some centralized or decentralized server infrastructure
 	\item \textbf{\#} is the number of a feature for a given \textbf{XY}
 \end{itemize}
+
+Features are implemented with a combination of decentralized and centralized components described in \hypersectionref{ssec:3.4} and \hypersectionref{ssec:3.5} respectively.
 
 \subsubsection{Domains} \label{sssec:3.3:domains}
 
@@ -701,7 +709,7 @@ Server
 	\item \textbf{CS6} - Execute address funds recovery transaction and close account
 \end{itemize}
 
-Account recovery features offer some protection from accidentally losing keys to an address. A user can set a very trusted address, a friend or close relative, with the able to recover funds (\textbf{CC12}). This trusted party at any time can perform the funds recovery and withdram all of the account's funds to their account with their key (\textbf{CC13}) executed by the server (\textbf{CS6}).
+Account recovery features offer some protection from accidentally losing keys to an address. A user can set a very trusted address, a friend or close relative, with the able to recover funds (\textbf{CC12}). This trusted party at any time can perform the funds recovery and withdraw all of the account's funds to their account with their key (\textbf{CC13}) executed by the server (\textbf{CS6}).
 
 \paragraph{Delegated Transfers - Send without Ether}
 
@@ -711,24 +719,22 @@ Client
 \end{itemize}
 
 \begin{itemize}
-	\item \textbf{CS7} - Fulfil delegated EUR2 transaction and claim EUR2 fee
+	\item \textbf{CS7} - Fulfill delegated EUR2 transaction and claim EUR2 fee
 \end{itemize}
 
 Finally, this convenience feature eliminates the side effect of using Ethereum, consuming gas (ether) in transactions. A trusted third party, the wallet server in this case, can execute transactions on behalf of the sender (\textbf{CC13}) and take the fee in EUR2 cents instead of ether (\textbf{CS7}). This requires only the trusted third party to have Ether and the user can only worry about EUR2.
 
-\subsection{Euro 2.0 Decentralised Implementation} \label{ssec:3.4}
+\subsection{Decentralized Components} \label{ssec:3.4}
 
-This section walks through the decentralised implementation of the Euro 2.0 system on the Ethereum distributed applications platform. The main container of code deployment is the \textit{Contract}. Once deployed, the contract is on the Blockchain forever processing messages (transactions) sent to it unless an optional destroy function is implemented and called. All function calls and data modifications are irreversible and publicly visible while being executed on the 1000s of computers on the Ethereum network maintaining the Ethereum Blockchain.
+This section walks through the decentralized components of the Euro 2.0 system on the Ethereum distributed applications platform. The main container of code deployment is the \textit{Contract}. Once deployed, the contract is on the Blockchain forever processing messages (transactions) sent to it unless an optional destroy function is implemented and called. All function calls and data modifications are irreversible and publicly visible while being executed on the 1000s of computers on the Ethereum network maintaining the Ethereum Blockchain. Thus we describe the implementation of the contracts in detail, since there is an of the code, once deployed, and is important in the security analysis considerations.
 
-The system is comprised of of the main administrator contract (\textit{CryptoFiat}), shared shared contracts (\textit{Constants}, \textit{Relay}, \textit{Data}, \textit{InternalData}), and the upgradable subcontracts providing system functionality (\textit{Accounts}, \textit{Approving}, \textit{Reserve}, \textit{Enforcement}, \textit{AccountRecovery}, \textit{Delegation}). These decentralised contracts function as gateways to the shared data of the Euro 2.0 system used together with centralised servers and clients explained in \hyperref[ssec:3.5]{Section \ref{ssec:3.5}}.
-
-Some simplifications are made describing the system. Little attention is payed to events as its not relevan for describing the providers of functionality. Data types are simplified (i.e. uint256 is just written int). Complete specification can be viewed in the code.
+The decentralized contracts are comprised of of the main administrator contract (\textit{CryptoFiat}), shared contracts (\textit{Constants}, \textit{Relay}, \textit{Data}, \textit{InternalData}), and the upgradable subcontracts providing functionality to the system (\textit{Accounts}, \textit{Approving}, \textit{Reserve}, \textit{Enforcement}, \textit{AccountRecovery}, \textit{Delegation}). These decentralized contracts function as gateways to the shared decentralized data of the Euro 2.0 system used together with centralized components and client explained in \hypersectionref{ssec:3.5} to fulfill the features, described in \hypersectionref{ssec:3.6}.
 
 \todo[inline]{Diagram with inheritance structure of all contracts}
 
 \subsubsection{CryptoFiat Contract} \label{sssec:3.4:cryptofiat}
 
-The heart of decentralised Euro 2.0 is the \textit{CryptoFiat} contract. This contract functions as an administrator, managing the master address and the references to all deployed contracts comprising the main functionality of the Euro 2.0 system.
+The heart of decentralized Euro 2.0 is the \textit{CryptoFiat} contract. This contract functions as an administrator, managing the master address and the references to all deployed contracts comprising the main functionality of the Euro 2.0 system.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -738,9 +744,9 @@ The heart of decentralised Euro 2.0 is the \textit{CryptoFiat} contract. This co
  \\ \hline\hline
  \code{masterAccount} & \code{address} & Master ethereum account whose allowed to do operations on the CryptoFiat contract. Set in the constructor and changeable by master account owner.
  \\ \hline
- \code{contractAddress} & \code{int => address} & Stores mapping from subcontract id to deployed address of active subcontract.
+ \code{contractAddress} & \code{uint256 => address} & Stores mapping from subcontract id to deployed address of active subcontract.
  \\ \hline
- \code{contractId} & \code{address => int} & Stores mapping from active subcontract address to id.
+ \code{contractId} & \code{address => uint256} & Stores mapping from active subcontract address to id.
  \\ \hline
  \code{contracts} & \code{address[]} & Array with the address of all contracts ever added to the Euro 2.0 system. It's contents is never cleared.
  \\ \hline
@@ -761,19 +767,35 @@ The heart of decentralised Euro 2.0 is the \textit{CryptoFiat} contract. This co
  \\ \hline
  \code{appointMasterAccount} & \code{address next} & Sets \code{masterAccount} to \code{next} and hence gives up control of the CryptoFiat contract. Can only be called by master account owner.
  \\ \hline
- \code{upgrade} & \specialcell{\code{int id},\\ \code{address next}} & Upgrades the active contract with \code{id} to the address \code{next}. Only owner of master account can call this. \code{prev} cannot be the same contract as \code{next}. \code{next} cannot be an already active contract. \code{contractAddress}, \code{contractId}, and \code{contracts} are updated appropriately.
+ \code{upgrade} & \specialcell{\code{uint256 id},\\ \code{address next}} & Upgrades the active contract with \code{id} to the address \code{next}. Only owner of master account can call this. \code{prev} cannot be the same contract as \code{next}. \code{next} cannot be an already active contract. \code{contractAddress}, \code{contractId}, and \code{contracts} are updated appropriately.
  \\ \hline
 \end{tabular}}
 \end{center}
 \captionof{table}{CryptoFiat contract functions}
 \label{tab:cryptoFiatFunctions}
 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{9cm} | }
+ \hline
+ Event & Args & Description
+ \\ \hline\hline
+ \code{ContractUpgraded} 
+ & \specialcell{\code{uint256 indexed id} \\ \code{address previous} \\ \code{address next}}
+ & Event describing upgrading the contract of index \code{id} from \code{previous} to \code{next}
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{CryptoFiat contract events}
+\label{tab:cryptoFiatEvents}
+
 \subsubsection{Shared Contracts: Constants, Relay, Data, InternalData} \label{sssec:3.4:shared}
 
 The code in the shared contracts in Euro 2.0 are exposed ultimately in the \textit{InternalData} contract interface that heavily calls \textit{Data contract}. \textit{InternalData} contract acts as an abstract Contract inherited by all the sub contracts providing functionality. Only the \textit{Data} contract is actually constructed and deployed on the Blockchain, the other shared contracts are simply organising code. \textit{InternalData} inherits from \textit{Constants} and \textit{Relay}. While \textit{Relay} inherits from \textit{Constants} and references \textit{Data} for use by \textit{InternalData}. \textit{Data} inherits from \textit{Relay}.
 
 \paragraph{Constants Contract}
-The \textit{Constants} contract holds values for contract ids (used in contract deployment mapping), bucket identifiers (used in data storage keys), account states (used in accounts and transactions), and events. There is no functionality, just convenient constants to organize data and contract access used in other contracts.
+
+The \textit{Constants} contract has no functionality, but holds convenient values accessible to all subcontracts. The contract ids in \hypertableref{tab:constantSubcontractIds} are used in contract deployment mapping to access particular subcontracts. Bucket identifiers in \hypertableref{tab:constantBucketIds} are used in data storage key computation to distinguish types of data. Account states listed in \hypertableref{tab:constantAccountStates} are boolean flags used as permissions for flow of transactions. Finally events listed in \hypertableref{tab:constantEvents} are a convenient record of when some action occurred in the system.
 
 \begin{center}
 \begin{tabular}{ | l | l | p{10cm} | }
@@ -835,6 +857,38 @@ The \textit{Constants} contract holds values for contract ids (used in contract 
 \captionof{table}{Constant contract account state}
 \label{tab:constantAccountStates}
 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{9cm} | }
+ \hline
+ Event & Args & Description
+ \\ \hline\hline
+ \code{Transfer} 
+ & \specialcell{\code{address indexed source} \\ \code{address indexed destination} \\ \code{uint256 amount}}
+ & Event when \code{amount} was transferred from \code{source} to \code{value}.
+ \\ \hline
+ \code{AccountApproved} 
+ & \code{address indexed source}
+ & Event signifying address \code{source} was approved.
+ \\ \hline
+ \\ \hline
+ \code{AccountClosed} 
+ & \code{address indexed source}
+ & Event signifying address \code{source} was closed.
+ \\ \hline
+ \code{AccountFreeze} 
+ & \specialcell{\code{address indexed source}, \code{bool frozen}}
+ & Event signifying address \code{source} was frozen.
+ \\ \hline
+ \code{SupplyChanged} 
+ & \code{uint256 totalSupply}
+ & Event signifying total supply changed to \code{totalSupply}.
+ \\ \hline
+\end{tabular}}
+\end{center}
+\captionof{table}{Constant contract events}
+\label{tab:constantEvents}
+
 \paragraph{Relay Contract}
 
 The \textit{Relay} contract holds convenience methods for subcontracts to access each other. The functions in \hypertableref{tab:relayFunctions} use the reference to \textit{CryptoFiat} in \hypertableref{tab:relayData} to provide a reference to all deployed subcontracts. There is also convenient restriction modifiers listed in \hypertableref{tab:relayModifiers}.
@@ -875,7 +929,7 @@ The \textit{Relay} contract holds convenience methods for subcontracts to access
  \\ \hline\hline
  \code{switchCryptoFiat} & \code{address next} & Sets the address of \textit{CryptoFiat} contract. Restricted to \code{onlyMasterAccount}.
  \\ \hline
- \code{contractAddress} & \code{int id} & Returns the address of subcontract of \code{id} listed in \hypertableref{tab:constantSubcontractIds}.
+ \code{contractAddress} & \code{uint256 id} & Returns the address of subcontract of \code{id} listed in \hypertableref{tab:constantSubcontractIds}.
  \\ \hline
  \code{accounts} & & Returns reference to \code{ACCOUNTS} contract.
  \\ \hline
@@ -904,7 +958,7 @@ The \textit{Data} contract provides the main data access layer for all subcontra
  \hline
  Name & Type & Description
  \\ \hline\hline
- \code{\_data} & \code{map: bytes32 => bytes32} & The shared data storage structure for all subcontracts
+ \code{\_data} & \code{bytes32 => bytes32} & The shared data storage structure for all subcontracts
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -917,9 +971,9 @@ The \textit{Data} contract provides the main data access layer for all subcontra
  \hline
  Function & Args & Description
  \\ \hline\hline
- \code{set} & \specialcell{\code{int bucket},\\ \code{bytes32 key},\\ \code{bytes32 value}} & Saves the data \code{value} with the hash key \code{sha3(bucket, key)}, with \code{bucket} referring to the bucket id list in \hypertableref{tab:constantBucketIds} and key being an arbitrary value. Restricted to \code{onlyContracts} callers.
+ \code{set} & \specialcell{\code{uint256 bucket}\\ \code{bytes32 key}\\ \code{bytes32 value}} & Saves the data \code{value} with the hash key \code{sha3(bucket, key)}, with \code{bucket} referring to the bucket id list in \hypertableref{tab:constantBucketIds} and key being an arbitrary value. Restricted to \code{onlyContracts} callers.
  \\ \hline
- \code{get} & \code{int id} & Returns \code{byte32} value stored in hash key \code{sha3(bucket, key)}, with bucket id being from the list in \hypertableref{tab:constantBucketIds}.
+ \code{get} & \code{uint256 id} & Returns \code{byte32} value stored in hash key \code{sha3(bucket, key)}, with bucket id being from the list in \hypertableref{tab:constantBucketIds}.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -936,25 +990,25 @@ The \textit{Data} contract provides the main data access layer for all subcontra
  \hline
  Function & Args & Description
  \\ \hline\hline
- \code{\_balanceOf} & \code{address addr} & Returns \code{int} BALANCE stored for address \code{addr}.
+ \code{\_balanceOf} & \code{address addr} & Returns \code{uint256} BALANCE stored for address \code{addr}.
  \\ \hline
- \code{\_setBalanceOf} & \specialcell{\code{address addr},\\ \code{int value}} & Stores BALANCE of \code{value} for \code{addr}.
+ \code{\_setBalanceOf} & \specialcell{\code{address addr},\\ \code{uint256 value}} & Stores BALANCE of \code{value} for \code{addr}.
  \\ \hline
- \code{\_statusOf} & \code{address addr} & Returns \code{int} account STATUS of address \code{addr} as listed in status codes of \hypertableref{tab:constantAccountStates}.
+ \code{\_statusOf} & \code{address addr} & Returns \code{uint256} account STATUS of address \code{addr} as listed in status codes of \hypertableref{tab:constantAccountStates}.
  \\ \hline
- \code{\_setStatusOf} & \specialcell{\code{address addr},\\ \code{int value}} & Stores account STATUS of \code{value} for \code{addr}.
+ \code{\_setStatusOf} & \specialcell{\code{address addr},\\ \code{uint256 value}} & Stores account STATUS of \code{value} for \code{addr}.
  \\ \hline
- \code{\_delegatedTransferNonceOf} & \code{address addr} & Returns \code{int} of last nonce used in delegatedTransfer for address \code{addr}.
+ \code{\_delegatedTransferNonceOf} & \code{address addr} & Returns \code{uint256} of last nonce used in delegatedTransfer for address \code{addr}.
  \\ \hline
- \code{\_setDelegatedTransferNonceOf} & \specialcell{\code{address addr},\\ \code{int value}} & Stores last nonce used \code{value} in delegatedTransfer for address \code{addr}.
+ \code{\_setDelegatedTransferNonceOf} & \specialcell{\code{address addr},\\ \code{uint256 value}} & Stores last nonce used \code{value} in delegatedTransfer for address \code{addr}.
  \\ \hline
  \code{\_recoveryAccountOf} & \code{address addr} & Returns the \code{address} recovery account set for address \code{addr}.
  \\ \hline
  \code{\_setRecoveryAccountOf} & \specialcell{\code{address addr},\\ \code{address value}} & Stores recovery account \code{value} for address \code{addr}.
  \\ \hline
- \code{\_totalSupply} & & Returns total supply \code{int} of tokens in circulation.
+ \code{\_totalSupply} & & Returns total supply \code{uint256} of tokens in circulation.
  \\ \hline
- \code{\_setTotalSupply} & \code{int value} & Stores \code{value} of total tokens in circulation.
+ \code{\_setTotalSupply} & \code{uint256 value} & Stores \code{value} of total tokens in circulation.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1003,9 +1057,9 @@ The \textit{Data} contract provides the main data access layer for all subcontra
  \hline
  Function & Args & Description
  \\ \hline\hline
- \code{\_withdraw} & \specialcell{\code{address account},\\ \code{int amount}} & Withdraws \code{amount} from balance of \code{account}. Throws exception if \code{amount} is more than balance.
+ \code{\_withdraw} & \specialcell{\code{address account},\\ \code{uint256 amount}} & Withdraws \code{amount} from balance of \code{account}. Throws exception if \code{amount} is more than balance.
  \\ \hline
- \code{\_deposit} & \specialcell{\code{address account},\\ \code{int amount}} & Deposits \code{amount} into balance for \code{account}. Throws exception if amount to withdraw plus balance is less than balance (overflow).
+ \code{\_deposit} & \specialcell{\code{address account},\\ \code{uint256 amount}} & Deposits \code{amount} into balance for \code{account}. Throws exception if amount to withdraw plus balance is less than balance (overflow).
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1021,9 +1075,9 @@ The \textit{Accounts} contract exposes all the functions, listed in \hypertabler
  \hline
  Function & Args & Description
  \\ \hline\hline
- \code{balanceOf} & \code{address account} & Returns \code{int} balance of \code{account}.
+ \code{balanceOf} & \code{address account} & Returns \code{uint256} balance of \code{account}.
  \\ \hline
- \code{statusOf} & \code{address account} & Returns \code{int} status of \code{account} as defined in table \hypertableref{tab:constantAccountStates}.
+ \code{statusOf} & \code{address account} & Returns \code{uint256} of boolean flags with the status of \code{account} as defined in table \hypertableref{tab:constantAccountStates}.
  \\ \hline
  \code{isApproved} & \code{address account} & Returns \code{bool} whether \code{account} is approved (can send funds).
  \\ \hline
@@ -1031,7 +1085,7 @@ The \textit{Accounts} contract exposes all the functions, listed in \hypertabler
  \\ \hline
  \code{isFrozen} & \code{address account} &  Returns \code{bool} whether \code{account} is frozen (can not send funds).
  \\ \hline
- \code{transfer} & \specialcell{\code{address destination},\\ \code{int amount}} & Withdraws \code{amount} from caller \code{msg.sender} and deposits \code{amount} into \code{destination}. Restricted to \code{msg.sender} that \code{canSend} and \code{destination} that \code{canReceive}.
+ \code{transfer} & \specialcell{\code{address destination},\\ \code{uint256 amount}} & Withdraws \code{amount} from caller \code{msg.sender} and deposits \code{amount} into \code{destination}. Restricted to \code{msg.sender} that \code{canSend} and \code{destination} that \code{canReceive}. Logs \code{Transfer} event for \code{source}, \code{destination}, and \code{amount}.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1075,11 +1129,11 @@ The \textit{Accounts} contract exposes all the functions, listed in \hypertabler
  \\ \hline\hline
  \code{appointAccountApprover} & \code{address next} & Assigns address of \code{accountApprover} to \code{next}, removing approving privileges to the old address. Restricted to \code{onlyAccountApprover}.
  \\ \hline
- \code{approveAccount} & \code{address account} & Sets status of \code{account} to APPROVED to be able to send money. Restricted to \code{onlyAccountApprover}.
+ \code{approveAccount} & \code{address account} & Sets status of \code{account} to APPROVED to be able to send money. Restricted to \code{onlyAccountApprover}. Logs \code{AccountApproved} event for the approved \code{account}.
  \\ \hline
- \code{approveAccounts} & \code{address[] accounts} & Sets status of each account in \code{accounts} to APPROVED to be able to send money. Restricted to \code{onlyAccountApprover}.
- \\ \hline 
- \code{closeAccount} & \code{address account} & Sets status of \code{account} to CLOSED to prevent the account from receiving money. Restricted to \code{onlyAccountApprover}.
+ \code{approveAccounts} & \code{address[] accounts} & Sets status of each account in \code{accounts} to APPROVED to be able to send money. Restricted to \code{onlyAccountApprover}. Logs \code{AccountApproved} event for the approved \code{account}.
+ \\ \hline
+ \code{closeAccount} & \code{address account} & Sets status of \code{account} to CLOSED to prevent the account from receiving money. Restricted to \code{onlyAccountApprover}. Logs \code{AccountClosed} event for the closed \code{account}.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1124,11 +1178,11 @@ The \textit{Reserve} contract exposes the functions to increase and decrease sup
  \\ \hline\hline
  \code{appointReserveBank} & \code{address next} & Assigns address of \code{reserveBank} to \code{next}, removing  privileges of the old address. Restricted to \code{onlyReserveBank}.
  \\ \hline
- \code{totalSupply} & & Returns \code{int} total supply of Euro 2.0 system. No restrictions on calling this method. 
+ \code{totalSupply} & & Returns \code{uint256} total supply of Euro 2.0 system. No restrictions on calling this method.
  \\ \hline
- \code{increaseSupply} & \code{int amount} & Increases supply by \code{amount} and deposits \code{amount} of newly created EUR2 to the \code{reserveBank}. Restricted to \code{onlyReserveBank} and \code{reserveBank} \code{canReceive}. Throws exception if supply plus amount overflows.
- \\ \hline 
- \code{decreaseSupply} & \code{int amount} & Decreases supply by \code{amount} and withdraws \code{amount} from \code{reserveBank}, destroying the EUR2. Restricted to \code{onlyReserveBank} and \code{reserveBank} \code{canSend}. Throws exception if supply is less than amount.
+ \code{increaseSupply} & \code{uint256 amount} & Increases supply by \code{amount} and deposits \code{amount} of newly created EUR2 to the \code{reserveBank}. Restricted to \code{onlyReserveBank} and \code{reserveBank} \code{canReceive}. Throws exception if supply plus amount overflows.
+ \\ \hline
+ \code{decreaseSupply} & \code{uint256 amount} & Decreases supply by \code{amount} and withdraws \code{amount} from \code{reserveBank}, destroying the EUR2. Restricted to \code{onlyReserveBank} and \code{reserveBank} \code{canSend}. Throws exception if supply is less than amount. Logs \code{SupplyChanged} for the new supply \code{amount}.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1181,11 +1235,11 @@ The \textit{Enforcement} contract exposes the functions for law enforcement to f
  \\ \hline
  \code{appointAccountDesignator} & \code{address next} & Assigns address of \code{accountDesignator} to \code{next}, removing privileges of the old address. Restricted to \code{onlyAccountDesignator}.
  \\ \hline
- \code{withdraw} & \specialcell{\code{address from}, \\ \code{int amount}} & Withdraws \code{amount} from account \code{from} and deposits \code{amount} into law enforcement \code{account}. Restricted to \code{onlyLawEnforcer} and \code{account} \code{canReceive}.
+ \code{withdraw} & \specialcell{\code{address from}, \\ \code{uint256 amount}} & Withdraws \code{amount} from account \code{from} and deposits \code{amount} into law enforcement \code{account}. Restricted to \code{onlyLawEnforcer} and \code{account} \code{canReceive}. Logs \code{Transfer} event with \code{from}, designator \code{account}, and \code{amount}.
  \\ \hline
- \code{freezeAccount} & \code{address target} & Sets status of \code{target} account to FROZEN so it can no longer send funds. Restricted to \code{onlyLawEnforcer}.
+ \code{freezeAccount} & \code{address target} & Sets status of \code{target} account to FROZEN so it can no longer send funds. Restricted to \code{onlyLawEnforcer}. Logs \code{AccountFreeze} event with \code{target} and value {true}.
  \\ \hline
- \code{unFreezeAccount} & \code{address target} & Removes FROZEN status of \code{target} account so it can send funds again. Restricted to \code{onlyLawEnforcer}.
+ \code{unFreezeAccount} & \code{address target} & Removes FROZEN status of \code{target} account so it can send funds again. Restricted to \code{onlyLawEnforcer}. Logs \code{AccountFreeze} event with \code{target} and value \code{false}.
  \\ \hline
  \code{designateAccount} & \code{address account} & Sets law enforcement \code{account} to given \code{account}. Restricted to \code{onlyAccountDesignator} and \code{account} \code{canReceive}.
  \\ \hline
@@ -1206,7 +1260,7 @@ The \textit{AccountRecovery} exposes functionality intended for an account recov
  \\ \hline\hline
  \code{designateRecoveryAccount} & \code{address recoveryAccount} & Sets the recovery account for \code{msg.sender} to address \code{recoveryAccount}, replacing an existing \code{recoveryAccount}. To remove a recovery account the address 0 can be set.
  \\ \hline
- \code{recoverBalance} & \specialcell{\code{address from}, \\ \code{address into}} & Withdraws all funds from account \code{from} and deposits all funds to account \code{into} and then closing account \code{from} by setting its status to CLOSED. Restricted to account \code{from} \code{canSend} and account \code{into} \code{canReceive}.
+ \code{recoverBalance} & \specialcell{\code{address from}, \\ \code{address into}} & Withdraws all funds from account \code{from} and deposits all funds to account \code{into} and then closing account \code{from} by setting its status to CLOSED. Restricted to account \code{from} \code{canSend} and account \code{into} \code{canReceive}. Logs \code{AccountClosed} event of \code{from} account and \code{Transfer} event of \code{from} account, \code{into} account, and \code{amount}.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1226,7 +1280,7 @@ Its functions are listed in \hypertableref{tab:delegationFunctions}}.
  \\ \hline\hline
  \code{nonceOf} & \code{address account} & Sets delegated transfer nonce of \code{account}.
  \\ \hline
- \code{transfer} 
+ \code{transfer}
     & \specialcell{
  		% transfer request
         \code{uint256 nonce}, \\
@@ -1237,19 +1291,23 @@ Its functions are listed in \hypertableref{tab:delegationFunctions}}.
         \code{bytes signature}, \\
         % whom to pay for fulfilling transfer
         \code{address delegate}
- 	   } 
-    & Magic...
+ 	   }
+    & Makes a delegate transfer from a \code{source} account, recovered by extracting public key from elliptic curve \code{signature}, to \code{destination} of \code{amount} with fee \code{fee} paid to \code{delegate}. \code{nonce} is used to prevent replay attacks. Logs \code{Transfer} event for \code{source} account (in signature), \code{destination}, and \code{amount} and if there is a fee, also logs \code{Transfer} event for \code{source}, \code{delegate}, and the \code{fee}.
  \\ \hline
- \code{multitransfer} 
+ \code{multitransfer}
  	& \specialcell{\code{uint256 count}, \\ \code{bytes transfers}, \\ \code{address delegate}}
-	& Magic ...
+	& Performs the same logic as \code{transfer} for \code{count} number of transfers encoded in \code{transfers} byte array.
  \\ \hline
 \end{tabular}}
 \end{center}
 \captionof{table}{Delegation contract functions}
 \label{tab:delegationFunctions}
 
-\subsection{Euro 2.0 Centralised Implementation} \label{ssec:3.5}
+\subsection{Centralized Components} \label{ssec:3.5}
+
+
+
+\subsection{Fulfillment of Features} \label{ssec:3.6}
 
 \pagebreak
 
