@@ -222,16 +222,15 @@ Lõputöö on kirjutatud [mis keeles] keeles ning sisaldab teksti [lehekülgede 
 Table of abbreviations and terms
 \end{center}}
 
-
-\begin{tabular}{p{3 cm}ll} %Table where the first cell width is 3cm
+\begin{tabular}{p{3 cm} p{10cm}}
 BTC & Bitcoin currency code\\
 AML & \textit{Anti Money Laundering}, processes implemented by Financial Institutions to hinder money laundering and comply with regulation\\
 CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial Institutions to hinder terrorist financing and comply with regulation\\
 KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
 ISSRM & \textit{Information Systems Security Risk Management} \\
+SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system. \\
+LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK
 \end{tabular}
-
-\todo[inline]{Continue adding to table of abbreviations and delete old ones\ldots}
 
 \pagebreak
 
@@ -780,7 +779,7 @@ The heart of decentralized Euro 2.0 is the \textit{CryptoFiat} contract. This co
  \hline
  Event & Args & Description
  \\ \hline\hline
- \code{ContractUpgraded} 
+ \code{ContractUpgraded}
  & \specialcell{\code{uint256 indexed id} \\ \code{address previous} \\ \code{address next}}
  & Event describing upgrading the contract of index \code{id} from \code{previous} to \code{next}
  \\ \hline
@@ -863,24 +862,24 @@ The \textit{Constants} contract has no functionality, but holds convenient value
  \hline
  Event & Args & Description
  \\ \hline\hline
- \code{Transfer} 
+ \code{Transfer}
  & \specialcell{\code{address indexed source} \\ \code{address indexed destination} \\ \code{uint256 amount}}
  & Event when \code{amount} was transferred from \code{source} to \code{value}.
  \\ \hline
- \code{AccountApproved} 
+ \code{AccountApproved}
  & \code{address indexed source}
  & Event signifying address \code{source} was approved.
  \\ \hline
  \\ \hline
- \code{AccountClosed} 
+ \code{AccountClosed}
  & \code{address indexed source}
  & Event signifying address \code{source} was closed.
  \\ \hline
- \code{AccountFreeze} 
+ \code{AccountFreeze}
  & \specialcell{\code{address indexed source}, \code{bool frozen}}
  & Event signifying address \code{source} was frozen.
  \\ \hline
- \code{SupplyChanged} 
+ \code{SupplyChanged}
  & \code{uint256 totalSupply}
  & Event signifying total supply changed to \code{totalSupply}.
  \\ \hline
@@ -1305,7 +1304,214 @@ Its functions are listed in \hypertableref{tab:delegationFunctions}}.
 
 \subsection{Centralized Components} \label{ssec:3.5}
 
+The centralized components of the Euro 2.0 prototype are built with traditional client server architecture. Currently these are maintained by the Euro 2.0 Foundation, but would ideally be given over to government or the central bank to run their own monetary system. We only give a high level overview of the centralized component architecture, not going into any significant details of their implementation. At the time of the writing the components are based off of an unfinished prototype with quite a few bugs and some components not yet built. The goal of the subsection is to describe how the centralize components could be set up in such a system, where are the important keys and data are held, and in \hypersectionref{ssec:3.6} how these components interact with the client and Ethereum to fulfill the features described in \hypersectionref{ssec:3.2}.
 
+\subsubsection{Client} \label{sssec:3.5:client}
+For our purposes the client refers to code running on a user's device interacting with the Euro 2.0 system. This can be a smart phone application or laptop browser. This is typically Javascript displaying the UI and making HTTP REST calls to the servers for interactions with the system. In the current prototype the client library does not interact directly with the decentralized components, but goes through the servers for all actions. The client will typically be storing a user's private keys in order to access their EUR2 funds.
+
+\subsubsection{ID Server} \label{sssec:3.5:idServer}
+The ID server is an interface to all the ID operations of the system. It's main functions include:
+
+\begin{itemize}
+	\item Authorization process for ID card, mobile ID, or bank transfer
+	\item Approving addresses authorized by an ID
+	\item Maintaining the mapping between addresses and ID
+	\item Create and Claim Escrowed funds to an ID
+	\item Addresses and keys backup system for an ID
+\end{itemize}
+
+\subsubsection{ID Database} \label{sssec:3.5:idDatabase}
+
+The ID Database holds the data needed for the ID server. The tables include:
+
+\begin{center}
+\begin{tabular}{ | l | p{10cm} | }
+ \hline
+ \textbf{backup\_challenge} & ...
+ \\ \hline\hline
+ id\_code & ...
+ \\ \hline
+ plaintext & ...
+ \\ \hline
+ encrypted & ...
+ \\ \hline
+ active & ...
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Id Database Backup Challenge Table}
+\label{tab:idDatabaseBackupChallenge}
+
+\begin{center}
+\begin{tabular}{ | l | p{10cm} | }
+ \hline
+ \textbf{escrow} & ...
+ \\ \hline\hline
+ id\_code & ...
+ \\ \hline
+ private\_key & ...
+ \\ \hline
+ address & ...
+ \\ \hline
+ cleared & ...
+ \\ \hline
+ clearing\_hash & ...
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{ID Database Escrow Table}
+\label{tab:idDatabaseEscrow}
+
+\begin{center}
+\begin{tabular}{ | l | p{10cm} | }
+ \hline
+ \textbf{ethereum\_account} & ...
+ \\ \hline\hline
+ owner\_id & ...
+ \\ \hline
+ address & ...
+ \\ \hline
+ activated & ...
+ \\ \hline
+ creation\_time & ...
+ \\ \hline
+ modification\_time & ...
+ \\ \hline
+ authorisation\_type & ...
+ \\ \hline
+ transaction\_hash & ...
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{ID Database Ethereum Address Table}
+\label{tab:idDatabaseEthereumAddress}
+
+\begin{center}
+\begin{tabular}{ | l | p{10cm} | }
+ \hline
+ \textbf{ethereum\_account} & ...
+ \\ \hline\hline
+ key\_backup & ...
+ \\ \hline
+ challenge & ...
+ \\ \hline
+ address & ...
+ \\ \hline
+ key\_enc & ...
+ \\ \hline
+ active & ...
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{ID Database Key Backup Table}
+\label{tab:idDatabaseKeyBackup}
+
+\begin{center}
+\begin{tabular}{ | l | p{10cm} | }
+ \hline
+ \textbf{ethereum\_account} & ...
+ \\ \hline\hline
+ ldap\_response & ...
+ \\ \hline
+ id\_code & ...
+ \\ \hline
+ first\_name & ...
+ \\ \hline
+ last\_name & ...
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{ID Database LDAP Response Table}
+\label{tab:idDatabaseLdapResponse}
+
+\begin{center}
+\begin{tabular}{ | l | p{10cm} | }
+ \hline
+ \textbf{pending\_authorisation} & ...
+ \\ \hline\hline
+ auth\_identifier & ...
+ \\ \hline
+ type & ...
+ \\ \hline
+ address & ...
+ \\ \hline
+ serialised\_mobile\_id\_session & ...
+ \\ \hline
+ creation\_time & ...
+ \\ \hline
+ modification\_time & ...
+ \\ \hline
+ bank\_transfer\_payment\_reference & ...
+ \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{ID Database Pending Authorization Table}
+\label{tab:idDatabasePendingAuthorization}
+
+\subsubsection{SK LDAP Directory Service}
+
+Estonian certificate center (SK)\cite{aboutSk2017} provides an LDAP (Lightweight Directory Access Protocol) server to look up public certificates and legal name for a given Estonia ID number\cite{skAboutLdap2017}\cite{skLdapTechnical2017}. This service is the provider for ID server to look up real names given an Estonian ID code.
+
+\subsubsection{SK DigiDocService}
+
+Estonian certificate center (SK) provides a DigiDocService which allows registered services to provide the ability for users to authenticate themselves with Estonian Mobile-ID or ID card\cite{skDigiDocService2017}. This service is the provider for ID Server to authenticate users using their Mobile ID or Estonian ID card.
+
+\subsubsection{Wallet Server} \label{sssec:3.5:walletServer}
+
+Wallet server is the main entry point for conveniently creating transactions in the Euro 2.0 system and retrieving data from Etherum. It provides the following functionality:
+
+\begin{itemize}
+	\item Get transaction info for a transaction hash
+	\item Create delegated transfer to another an approved address where the server pays the ether
+	\item Create transfer to a bank account via a delegated transfer to the reserve bank
+	\item Get address status, balance, and delegate transfer nonce
+	\item Get all transfers involving an address
+	\item Get transfer fees in EUR2
+	\item Get supply amount
+\end{itemize}
+
+\subsubsection{Transfer Details Server} \label{sssec:3.5:transferDetailsServer}
+
+Transfer info server has a single purpose of saving transfer info for transactions off chain. It provides a general purpose interface that is up to the client to ensure proper encryption of transfer details so that sender and recipient can view the details. The functionality is simply:
+
+\begin{itemize}
+	\item Save transfer details for a transaction hash
+	\item Load transfer details for a transaction hash
+\end{itemize}
+
+\subsubsection{Transfer Info Database} \label{sssec:3.5:transferInfoDatabase}
+
+This is the database providing for the Transfer Info Server. It's simply a key value store with transaction hash as the key and a blob of data as the value (reference implementation is Google's LevelDB).
+
+\subsubsection{Bank Gateway} \label{sssec:3.5:bankGateway}
+
+The Bank Gateway is the entry point for the real euros in Euro 2.0. The functionality includes:
+
+\begin{itemize}
+	\item Update total reserve from uploaded bank statement files
+	\item Update total supply
+	\item Parse received EUR transactions and send EUR2 to addresses
+	\item Handle EUR2 to EUR payments
+\end{itemize}
+
+\subsubsection{AML Server} \label{sssec:3.5:amlServer}
+
+The AML server provides the functionality to law enforcement to police the system, including:
+
+\begin{itemize}
+	\item Convenience interface for freezing and seizing funds
+	\item Convenience interface for accessing AML database
+	\item Runs jobs to fill AML database with transaction data
+	\item Runs name check jobs on user identities
+\end{itemize}
+
+\subsubsection{AML Database} \label{sssec:3.5:amlDatabase}
+
+The AML database provides law enforcement the transaction and identity data needed for AML investigations.
+
+\subsubsection{Ethereum Gateway} \label{sssec:3.5:ethereumGateway}
+
+The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC calls to post and receive data from the Ethereum network. All RPC calls from centralized components go through this interface.
 
 \subsection{Fulfillment of Features} \label{ssec:3.6}
 
