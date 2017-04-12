@@ -274,7 +274,7 @@ In which we explore in sub research questions:
 \textbf{RQ2: }\textit{How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, governments, and financial institutions?}
 \end{quoting}
 \begin{quoting}
-\textbf{RQ3: }\textit{How do we assess the security, scalability, and privacy risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
+\textbf{RQ3: }\textit{How do we assess the security and privacy risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
 \end{quoting}
 
 Answering \textbf{RQ} will result in one of two possible outcomes:
@@ -883,7 +883,8 @@ The \textit{Constants} contract has no functionality, but holds convenient value
  & \code{uint256 totalSupply}
  & Event signifying total supply changed to \code{totalSupply}.
  \\ \hline
-\end{tabular}}
+\end{tabular}
+}
 \end{center}
 \captionof{table}{Constant contract events}
 \label{tab:constantEvents}
@@ -1515,6 +1516,8 @@ The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC 
 
 \subsection{Fulfillment of Features} \label{ssec:3.6}
 
+\todo[inline]{Write how the features are fulfilled (with many many diagrams)}
+
 \pagebreak
 
 %--------------------CHAPTER 4-----------------
@@ -1546,39 +1549,109 @@ The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC 
 After explaining the features and implementation details of the Euro 2.0 system in \hypernameref{sec:3} and exploring the change in relationship with money of stakeholders \hypernameref{sec:4}, we are ready to analyze the risks of Euro 2.0 system. This chapter answers the research question:
 
 \begin{quoting}
-	\textbf{RQ3:} \textit{How do we assess the security, scalability, and privacy risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
+	\textbf{RQ3:} \textit{How do we assess the security and privacy risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
 \end{quoting}
 
-In which we take piece by piece in the research questions:
+In which we explore in the sub research questions:
 \begin{quoting}
-	\textbf{RQ3.1: }\textit{What are risk criteria for the system consistent with the mission of the project?}
-\end{quoting}
-\begin{quoting}
-	\textbf{RQ3.2: }\textit{What are the assets and information asset containers of the system?}
+	\textbf{RQ3.1: }\textit{What are risk criteria for the digital currency consistent with the mission of the foundation?}
 \end{quoting}
 \begin{quoting}
-	\textbf{RQ3.3: }\textit{What are the areas of concern and threats of the system?}
+	\textbf{RQ3.2: }\textit{What are the information assets and asset containers of the digital currency?}
 \end{quoting}
 \begin{quoting}
-	\textbf{RQ3.4: }\textit{What are the risks of the system and potential impact on stakeholders?}
+	\textbf{RQ3.3: }\textit{What are the threats and risks of the digital currency and consequences to stakeholders?}
 \end{quoting}
 \begin{quoting}
-	\textbf{RQ3.5: }\textit{What are the mitigation strategies or alternative design suggestions for the Euro 2.0 system?}
+	\textbf{RQ3.4: }\textit{What are the mitigation strategies or alternative design suggestions for the Euro 2.0 system?}
 \end{quoting}
 
-\textit{RQ3.1} through \textit{RQ3.5} are answered by applying Steps 1 through 8 of the OCTAVE Allegro risk assessment methodology\cite{CaralliIntroducingOCTAVE2007} to the system described in \hypernameref{sec:3}. Section \ref{ssec:5.1} answers \textit{RQ3.1} by establishing a risk measurement criteria. Section \ref{ssec:5.2} works through constructing an information asset profile and identifying information asset containers to answer \textit{RQ3.2}. Section \ref{ssec:5.3} uses current research in blockchain security, scalability, and privacy to identify concerns and threats to answer \textit{RQ3.3}. In Section \ref{ssec:5.4}, found threats are used in risk identification and analysis to answer \textit{RQ3.4}. Section \ref{ssec:5.5} uses the top risks from of the risk analysis to propose mitigation strategies and Euro 2.0 design suggestions answering \textit{RQ3.5}. Finally from the above analysis we can make conclusions of the overal risks in Euro 2.0 to answer \textit{RQ3} in the Conclusion \ref{ssec:5.6}.
+\textit{RQ3.1} through \textit{RQ3.4} are answered by applying Steps 1 through 8 of the OCTAVE Allegro risk assessment methodology\cite{CaralliIntroducingOCTAVE2007} to the system described in \hypernameref{sec:3}. \hypersectionref{ssec:5.1} answers \textit{RQ3.1} by establishing a risk measurement criteria consistent with the values of the Euro 2.0 foundation. \hypersectionref{ssec:5.2} works through constructing information asset profiles and identifying information asset containers to answer \textit{RQ3.2}. In \hypersectionref{ssec:5.3} we identify areas of concern and threat scenarios to construct comprehensive information asset risk profiles, answering \textit{RQ3.3}. \hypersectionref{ssec:5.4} users the risk profiles to perform a risk analysis and propose mitigation strategies and design suggestions answering \textit{RQ3.4}. Finally from the above analysis we can make conclusions of the overall risks in Euro 2.0 to answer \textit{RQ3} and also suggest further avenues of research in the \hyperref[ssec:5.5]{Conclusion}.
 
-\subsection{Establishing Risk Criteria} \label{ssec:5.1}
+The OCTAVE Allegro risk assessment was chosen for its simplicity and organization value based risk analysis methodology. The literature was interpreted for application to the Euro 2.0 System and Foundation with assumptions on hypothetical organization structure when the system is production ready.
 
-\subsection{Identifying Assets and Containers} \label{ssec:5.2}
+\subsection{Foundation and Risk Criteria} \label{ssec:5.1}
+In this section we perform \textit{Step 1 - Establish Risk Measurement Criteria} of the OCTAVE Allegro risk assessment. The main outcome of this section is a description of the theoretical organization structure of the Euro 2.0 foundation, its business objectives, and a set risk measurement criteria to be used as the basis of the risk analysis in subsequent sections.
 
-\subsection{Identifying Threats} \label{ssec:5.3}
+\subsubsection{Foundation Mission and Objectives} \label{sssec:5.1:objectives}
 
-\subsection{Risk Analysis} \label{ssec:5.4}
+The Euro 2.0 Foundation is a non profit initiative to bring transparency and friction to the monetary system through digital currency. In order for the system to reach wide spread adoption and be financially sustainable, it must be completely taken over and supported by the government. Throughout the risk analysis we will refer to the \textit{Euro 2.0 Foundation} as the government entity responsible for launching and maintaining this government backed digital currency. In the OCTAVE Allegro risk assessment, we interpret all references to Business and Organization to mean the Euro 2.0 Foundation.
 
-\subsection{Mitigation Approach} \label{ssec:5.5}
+The Euro 2.0 Foundation mission is to \textit{``Reduce friction in transfer of value in the economy by unlocking the power of digital currency''}. It's objectives are:
 
-\subsection{Conclusion} \label{ssec:5.6}
+\begin{itemize}
+	\item Provide the means to conveniently secure and use digital currency for users and merchants
+	\item Avoid for profit financial intermediaries to reduce costs
+	\item Be fully compliant with AML and CTF regulations
+	\item Interoperate with the existing financial system
+\end{itemize}
+
+The organization is structured with the following functions:
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{12cm} | }
+ \hline
+ Unit & Function
+ \\ \hline\hline
+ Reserve Bank & Manage the conversion between EUR and EUR2 as well as the creation and destruction of EUR2.
+ \\ \hline
+ Identity & Manage the ID to address mapping and approval of users to the system, communication with Estonian ID servers, as well as user key backups and escrow transactions.
+ \\ \hline
+ Law Enforcement & Manage the AML proccesses, seizing, and freezing of funds.
+ \\ \hline
+ Usability & Responsible for building the clients to use the system and maintaining convenience servers as well as the delegate transaction mechanism.
+ \\ \hline
+ Ethereum & Responsible for building, deploying, and maintaining the Ethereum smart contract and full node used to to communicate with the Ethereum network. Also assists other departments in managing private admin keys.
+ \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Euro 2.0 Organization Structure}
+\label{tab:organizationStructure}
+
+\subsubsection{Defining Risk Measurement Criteria} \label{sssec:5.1:defining}
+
+\todo[inline]{Write down and describe these risk criteria and move on with life}
+
+
+\subsubsection{Ranking Risk Measurement Criteria} \label{sssec:5.1:ranking}
+
+\hypertableref{tab:riskCriteriaRanking} shows the rank risk criteria of Euro 2.0.
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | p{10cm} | }
+  \hline
+  \textbf{Ranking} & \textbf{Abbreviation} & \textbf{Name}
+  \\ \hline
+  6 & M & One Time Monetary Loss for a User
+  \\ \hline
+  5 & R & Reputation and Monetary Confidence
+  \\ \hline
+  4 & P & Privacy - User Financial Information Revealed
+  \\ \hline
+  3 & A & Availability - Payments Network Unusable
+  \\ \hline
+  2 & F & One Time Financial Loss for the Foundation
+  \\ \hline
+  1 & L & Legal - Fines and Lawsuits
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Criteria Ranking}
+\label{tab:riskCriteriaRanking}
+
+The most important risk criteria are those that are significant detractors to user growth of the new digital currency. The financial livelihood of the user (\textbf{M}) is at the top of the list. A realized risk resulting in monetary loss of the user will likely lose the user and negative virality (user telling his friends Euro 2.0 is risky) will prevent other users from joining.  The reputation of the organization and monetary confidence (\textbf{R}) is next in the line as a realized risk here discourages users from joining. Next is the privacy of users (\textbf{P}) which also encourages a negative user experience and detracts growth if significantly breached. Next is the availability (\textbf{A}) system. Finally, the least important of the risk criteria, is the financial losses of the organization (\textbf{F}) and legal fines and lawsuits (\textbf{L}). Mistakes are likely to happen, as long as the foundation is still alive, there is more value at the start to ensure user happiness and growth.
+
+\subsection{Assets and Containers} \label{ssec:5.2}
+
+\subsection{Risk Profiles} \label{ssec:5.3}
+
+\subsection{Risk Analysis and Mitigation} \label{ssec:5.4}
+
+\subsection{Conclusion} \label{ssec:5.5}
 
 \pagebreak
 
