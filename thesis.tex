@@ -1568,7 +1568,7 @@ In which we explore in the sub research questions:
 
 \textit{RQ3.1} through \textit{RQ3.4} are answered by applying Steps 1 through 8 of the OCTAVE Allegro risk assessment methodology\cite{CaralliIntroducingOCTAVE2007} to the system described in \hypernameref{sec:3}. \hypersectionref{ssec:5.1} answers \textit{RQ3.1} by establishing a risk measurement criteria consistent with the values of the Euro 2.0 foundation. \hypersectionref{ssec:5.2} works through constructing information asset profiles and identifying information asset containers to answer \textit{RQ3.2}. In \hypersectionref{ssec:5.3} we identify areas of concern and threat scenarios to construct comprehensive information asset risk profiles, answering \textit{RQ3.3}. \hypersectionref{ssec:5.4} users the risk profiles to perform a risk analysis and propose mitigation strategies and design suggestions answering \textit{RQ3.4}. Finally from the above analysis we can make conclusions of the overall risks in Euro 2.0 to answer \textit{RQ3} and also suggest further avenues of research in the \hyperref[ssec:5.5]{Conclusion}.
 
-The OCTAVE Allegro risk assessment was chosen for its simplicity and organization value based risk analysis methodology. The literature was interpreted for application to the Euro 2.0 System and Foundation with assumptions on hypothetical organization structure when the system is production ready.
+The OCTAVE Allegro risk assessment was chosen for its simplicity and organization value based risk analysis methodology. The literature was interpreted for application to the Euro 2.0 System and Foundation with assumptions on hypothetical organization structure when the system is production ready. For the risk assessment, user represents both personal users and merchants in the Euro 2.0 digital currency.
 
 \subsection{Foundation and Risk Criteria} \label{ssec:5.1}
 In this section we perform \textit{Step 1 - Establish Risk Measurement Criteria} of the OCTAVE Allegro risk assessment. The main outcome of this section is a description of the theoretical organization structure of the Euro 2.0 foundation, its business objectives, and a set risk measurement criteria to be used as the basis of the risk analysis in subsequent sections.
@@ -1612,12 +1612,178 @@ The organization is structured with the following functions:
 
 \subsubsection{Defining Risk Measurement Criteria} \label{sssec:5.1:defining}
 
-\todo[inline]{Write down and describe these risk criteria and move on with life}
+OCTAVE Allegro Step 1 Activity 2 is the definition of a qualitative set of risk measurement criteria and impact areas to the foundation. Each impact area is a factor in the risk analysis in \hypersectionref{ssec:5.4}. The supplemented impact areas by the OCTAVE Allegro framework were used as a starting point for defining the impact areas specifically for Euro 2.0, although most of the resulting impact areas were created specifically for this risk assessment. \hypertableref{tab:riskImpactAreas} lists the final risk measurement impact areas:
+
+\begin{center}
+\begin{tabular}{ | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Symbol}
+  \\ \hline
+  Reputation & R
+  \\ \hline
+  One Time Monetary Loss for a User & M
+  \\ \hline
+  One Time Financial Loss for the Foundation & F
+  \\ \hline
+  Fines and Legal Penalties & L
+  \\ \hline
+  Privacy - User Financial Information Revealed & P
+  \\ \hline
+  Availability - Payments Network Unusable & A
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Risk Impact Areas}
+\label{tab:riskImpactAreas}
+
+Each impact area has criteria for levels not applicable (N/A), low, medium, and high. The N/A level is not part of the OCTAVE Allegro methodology, but was added to this risk assessment later not skew the final risk rankings by risks that don't actually affect some impact areas. The derivation of these impact areas and the their risk measurement criteria levels are described in more details below.
+
+\paragraph{Ignored Impact Areas}
+
+OCTAVE suggested impact areas Productivity and Safety and Health were not included in the Euro 2.0 risk assessment. Productivity is not applicable since there is no clear measurable output of the Foundation based off of human hours. Safety and Health are not applicable since the Foundation does not have any physical proccesses or strenuous activities that reasonably need consideration in a security risk assessment.
+
+\paragraph{(R) Reputation}
+
+\textit{Reputation} is derived from the \textit{Reputation and Customer Confidence} Allegro Worksheet 1. This impact area describes the loss of user confidence in the Euro 2.0 Foundation and subsequent difficulty in attracting users following a realized risk in this area. From this worksheet, Customer Loss was also considered to be included as an impact area rebranded as \textit{Loss of User Acquisition Rate}, but was not included because of the lack of meaningful way to measure its current level and expected change as a realized risk, making it no different than reputation. \hypertableref{tab:reputationRiskCriteria} describes the levels for this impact area.
+
+\begin{center}
+\begin{tabular}{ | l | p{12cm} | }
+  \hline
+  \multicolumn{2}{|c|}{\textbf{(R) Reputation}}
+  \\ \hline
+  \textbf{N/A} & No impact on reputation.
+  \\ \hline
+  \textbf{Low} & Reputation is minimally affected. Little or no effort or expense is required to recover.
+  \\ \hline
+  \textbf{Medium} & Reputation is damaged, and some effort and expense is required to recover.
+  \\ \hline
+  \textbf{High} & Reputation is irrevocably destroyed or damaged.
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Reputation Risk Criteria}
+\label{tab:reputationRiskCriteria}
+
+\paragraph{(M) One Time Monetary Loss for a User}
+
+\textit{One Time Monetary Loss for a User} started as an \textit{Other} fill in impact area in \textit{Risk Measurement Criteria - Reputation and Customer Confidence} Allegro Worksheet 1. This impact area represents the concern of Euro 2.0 users about the safety of their money, an important aspect of a monetary system. \hypertableref{tab:userMonetaryLossRiskCriteria} describes the levels for this impact area.
+
+\begin{center}
+\begin{tabular}{ | l | p{12cm} | }
+  \hline
+  \multicolumn{2}{|c|}{\textbf{(M) One Time Monetary Loss for a User}}
+  \\ \hline
+  \textbf{N/A} & No user monetary loss, 0 EUR.
+  \\ \hline
+  \textbf{Low} & User monetary loss less than 100 EUR.
+  \\ \hline
+  \textbf{Medium} & User monetary loss between 100 and 1000 EUR inclusive.
+  \\ \hline
+  \textbf{High} & User monetary loss greater than 1000 EUR.
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{One Time Monetary Loss for a User Risk Criteria}
+\label{tab:userMonetaryLossRiskCriteria}
+
+The loss amounts in the risk criteria are arbitrary and for approximate qualitative representation. The Low level represents the loss of a single transaction or daily spending amount, the Medium level represents the loss of a monthly salary of spending, while the High level represents the loss of a savings account or the total account.
+
+\paragraph{(F) One Time Financial Loss for the Foundation}
+
+\textit{One Time Financial Loss for the Foundation} is the only prescribed impact area from the \textit{Risk Measurement Criteria - Financial} Allegro Worksheet 2. This impact area describes the one time monetary losses the Euro 2.0 Foundation is liable for based on realized risks. \textit{Operating Costs} did not make sense to include due to the lack of financials about the projected operating costs of the Euro 2.0 Foundation. \textit{Revenue Loss} doesn't make sense to include since this is currently a non-profit initiative without the intention of revenue. The risk measurement criteria for this impact area are described in \hypertableref{tab:foundationFinancialLossRiskCriteria}.
+
+\begin{center}
+\begin{tabular}{ | l | p{12cm} | }
+  \hline
+  \multicolumn{2}{|c|}{\textbf{(F) One Time Financial Loss for the Foundation}}
+  \\ \hline
+  \textbf{N/A} & No one time financial loss.
+  \\ \hline
+  \textbf{Low} & One time financial loss of less than 1000 EUR.
+  \\ \hline
+  \textbf{Medium} & One time financial loss between 1000 and 10000 EUR.
+  \\ \hline
+  \textbf{High} & One time financial loss greater than 10000 EUR.
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{One Time Financial Loss for the Foundation Risk Criteria}
+\label{tab:foundationFinancialLossRiskCriteria}
+
+The loss amounts in the risk criteria are arbitrary and for approximate qualitative representation. The Low level represents the loss easily covered from a 50 to 100 EUR donation by 10 to 20 members of the Foundation. The Medium level represents a loss that would be significantly challenge for Foundation members requiring possibly a debt payed back over a few months. While the High level represents a possibly crippling loss to the organization, possibly resulting in bankruptcy.
+
+\paragraph{(L) Fines and Legal Penalties}
+
+\textit{Fines and Legal Penalties} came directly from the \textit{Risk Measurement Criteria - Fines and Legal Penalties} Allegro Worksheet 3. This impact area describes the monetary losses from penalties the Euro 2.0 Foundation would be liable for from realized risks. \textit{Fines} and \textit{Lawsuits} from the worksheet were combined into one impact area in this risk assessment since there is not enough existing knowledge to really distinguish the two impact areas in risk profiling. The risk measurement criteria for this impact area are described in \hypertableref{tab:legalRiskCriteria}.
+
+\begin{center}
+\begin{tabular}{ | l | p{12cm} | }
+  \hline
+  \multicolumn{2}{|c|}{\textbf{(L) Fines and Legal Penalties}}
+  \\ \hline
+  \textbf{N/A} & No legal financial loss.
+  \\ \hline
+  \textbf{Low} & Legal financial loss of less than 1000 EUR.
+  \\ \hline
+  \textbf{Medium} & Legal financial loss between 1000 and 10000 EUR.
+  \\ \hline
+  \textbf{High} & Legal financial loss of user greater than 10000 EUR.
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Legal - Fines and Lawsuits Risk Criteria}
+\label{tab:legalRiskCriteria}
+
+The amounts are arbitrary and derived from the same reasoning as \textit{One Time Financial Loss for the Foundation}.
+
+\paragraph{(P) - Privacy - User Financial Information Revealed}
+
+\textit{Privacy - User Financial Information Revealed} is a user defined impact area from \textit{Risk Measurement Criteria - User Defined} Allegro Worksheet 6. The risk criteria qualifies the amount of customers with personally identifiable financial data disclosed. Users knowing about their financial data disclosed are likely to encourage other users to not use the Euro 2.0 system. The risk criteria are explained in \hypertableref{tab:privacyRiskCriteria}.
+
+\begin{center}
+\begin{tabular}{ | l | p{12cm} | }
+  \hline
+  \multicolumn{2}{|c|}{\textbf{(P) Privacy - User Financial Information Revealed}}
+  \\ \hline
+  \textbf{N/A} & No users with disclosed personally identifiable financial information.
+  \\ \hline
+  \textbf{Low} & A few users (less than 10) with disclosed personally identifiable financial information.
+  \\ \hline
+  \textbf{Medium} & Many users (between 10 and 1000) with personally identifiable financial information.
+  \\ \hline
+  \textbf{High} & All users in the system with disclosed personally identifiable financial information.
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Privacy - User Financial Information Revealed Risk Criteria}
+\label{tab:privacyRiskCriteria}
+
+\paragraph{(A) - Availability - Payments Network Unusable}
+
+\textit{Availability - Payments Network Unusable} is a user defined impact area from \textit{Risk Measurement Criteria - User Defined} Allegro Worksheet 6. The risk criteria qualifies the level of disruption to payment operations of users in the system. Users who cannot use the payments network will quickly lose trust in it for their financial needs. The risk criteria are explained in \hypertableref{tab:availabilityRiskCriteria}.
+
+\begin{center}
+\begin{tabular}{ | l | p{12cm} | }
+  \hline
+  \multicolumn{2}{|c|}{\textbf{(A) Availability - Payments Network Unusable}}
+  \\ \hline
+  \textbf{N/A} & No disruption to usability of network (1-60 seconds per payment operation).
+  \\ \hline
+  \textbf{Low} & Some disruption, 1 to 5 minute delay for payment operations.
+  \\ \hline
+  \textbf{Medium} & Noticeable disruption, 5 to 60 minute delay for payment operations.
+  \\ \hline
+  \textbf{High} & Sever disruption, more than 60 minute delay for payment operations.
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Availability - Payments Network Unusable Risk Criteria}
+\label{tab:availabilityRiskCriteria}
 
 
 \subsubsection{Ranking Risk Measurement Criteria} \label{sssec:5.1:ranking}
 
-\hypertableref{tab:riskCriteriaRanking} shows the rank risk criteria of Euro 2.0.
+Activity 2 of Step 1 of OCTAVE Allegro is prioritization of the risk criteria determined in Activity 1. \hypertableref{tab:riskCriteriaRanking} shows the rank risk criteria of Euro 2.0 ranked with 6 as the highest and 1 as the lowest.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
