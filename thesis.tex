@@ -71,6 +71,8 @@
 
 \usepackage{enumerate} %for more control of ordered lists
 
+\usepackage[none]{hyphenat} %kill hyphenation
+
 % --- new commands ---
 
 % creates hyperref using the name of a section
@@ -1925,9 +1927,218 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
 
 \subsubsection{Critical Asset I: User Money} \label{sssec:5.2:userMoney}
 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | p{5cm} | p{12cm} | }
+  \hline
+  \textbf{(1) Critical Asset} & User Money
+  \\ \hline
+  \textbf{(2) Rationale for Selection} & User money is the most important information asset for users of a digital currency and Euro 2.0 and must be secured. Discrepancy of balance of money undermines the entire usefulness of Euro 2.0. This asset is definitely subject to regulatory requirements but out of scope of this thesis.
+  \\ \hline
+  \textbf{(3) Description} & This is money, including the EUR and EUR2 holdings of users, merchants, and other admin accounts as they enter, reside, and leave the Euro 2.0 system.
+  \\ \hline
+  \textbf{(4) Owners} & Ultimately ownership of user, merchant, and admin funds are the respective parties. While EUR2 is being held and transacted in the system, an equivalent amount of EUR is held and shared ownership by the Reserve.
+  \\ \hline
+  \textbf{(5) Security Requirements} &
+  	\hskip-0.2cm
+  	\begin{tabular}{p{2.5cm}|p{9.06cm}}
+		\textbf{Confidentiality} & Only the owner of funds should be able to use them. By design the amount of funds is not confidential but the owner of the funds should be (which is critical Asset III).
+		\\ \hline
+		\textbf{Integrity} & 100\% this asset should never change against rules.
+		\\ \hline
+		\textbf{Availability} & Ideally available more than 99\% of the time, but not super important.
+	\end{tabular}
+  \\ \hline
+  \textbf{(6) Most Important Security Requirement} & \textbf{Integrity}. Money being created and destroyed arbitrary completely undermines the system.
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{User Money Asset Profile}
+\label{tab:assetProfileUserMoney}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | l | p{10cm} |}
+  \hline
+  \textbf{Container} & \textbf{Type} & \textbf{Owners} & \textbf{Description}
+  \\ \hline
+  Wallet Server & \specialcell{Technical \\ Internal} & Convenience Department & The wallet service performs the EUR2 delegate transfer operation. 
+  \\ \hline
+  ID Server & \specialcell{Technical \\ Internal} & Identity Department & The ID server currently handles escrow of funds to an ID and addresses and keys backup.
+  \\ \hline
+  Bank Gateway Server & \specialcell{Technical \\ Internal} & Reserve Department & The bank gateway server handles the conversion from EUR to EUR2.
+  \\ \hline
+  Ethereum Node & \specialcell{Technical \\ Internal} & Ethereum Department & This node is the interface to all the operations with the Ethereum network.
+  \\ \hline
+  User Client & \specialcell{Technical \\ External} & \specialcell{User \\ Foundation} & User's device to interact with the Euro 2.0 system.
+  \\ \hline
+  Ethereum Smart Contracts & \specialcell{Technical \\ External} & \specialcell{No Owner \\ Ethereum Department} & Deployed smart contracts on Ethereum Blockchain that hold all of the decentralized balance and account data and operations in the system.
+  \\ \hline
+  Reserve Bank Account & \specialcell{Technical \\ External} & \specialcell{A Bank \\ Reserve Department} & Bank account used for all EUR operations.
+  \\ \hline
+  Reserve Bank Account Admin & \specialcell{People \\ Internal} & Reserve Department & Bank account used for all EUR operations.
+  \\ \hline
+  Internet & \specialcell{Technical \\ External} & No owner & Communication channel for all communication between all components.
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{User Money Asset Containers}
+\label{tab:assetContainersUserMoney}
+
 \subsubsection{Critical Asset II: Ethereum Admin Keys} \label{sssec:5.2:ethereumAdminKeys}
 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | p{5cm} | p{12cm} | }
+  \hline
+  \textbf{(1) Critical Asset} & The Ethereum Admin keys are those ethereum address keys that control the critical functionality inside the Euro 2.0 smart contracts.
+  \\ \hline
+  \textbf{(2) Rationale for Selection} & The core of the monetary system is controlled with these keys. Deploying and changing new contracts and rules of how data can be read and written. A compromised admin key could prove devastating for the entire system.
+  \\ \hline
+  \textbf{(3) Description} &
+  	\specialcell {
+		These are electronically generated cryptographic keys. \\
+		The admin keys and functions include: \\
+		\quad \textit{CryptoFiat Master} - can deploy and upgrade contracts \\
+		\quad \textit{Reserve} - can manage supply, create and destroy money \\
+		\quad \textit{Approver} - can approve addresses \\
+		\quad \textit{Delegate} - can sign delegate transfers on behalf of wallet server \\
+		\quad \textit{Enforcement} - can freeze accounts and seize funds \\
+		\quad \textit{Designator} - can access seized funds
+	}
+  \\ \hline
+  \textbf{(4) Owners} & \specialcell {
+  	Each key is owned by a different part of the \hyperref[tab:organizationStructure]{Euro 2.0 Foundation}: \\
+	\quad \textit{CryptoFiat Master} - Ethereum department \\
+	\quad \textit{Reserve} - Reserve department \\
+	\quad \textit{Approver} - Identity department \\
+	\quad \textit{Delegate} - Convenience department \\
+	\quad \textit{Enforcement} - Law Enforcement Department \\
+	\quad \textit{Designator} - Law Enforcement Department
+  }
+  \\ \hline
+  \textbf{(5) Security Requirements} &
+  	\hskip-0.2cm
+  	\begin{tabular}{p{2.5cm}|p{9.06cm}}
+		\textbf{Confidentiality} & This asset must be key utmost confidential.
+		\\ \hline
+		\textbf{Integrity} & Keys don't work if they are modified so this is quite important.
+		\\ \hline
+		\textbf{Availability} & Approver, Delegate, and Reserve need to be available most of the time for operations. Enforcement and Designator only need to be available during these rare operations. CryptoFiat master only needs to be available on deploys.
+	\end{tabular}
+  \\ \hline
+  \textbf{(6) Most Important Security Requirement} & \textbf{Confidentiality}. Without a question a breach of confidentiality of the keys is devastating to the digital currency.
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Ethereum Admin Keys Asset Profile}
+\label{tab:assetProfileEthereumAdminKeys}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | l | p{10cm} |}
+  \hline
+  \textbf{Container} & \textbf{Type} & \textbf{Owners} & \textbf{Description}
+  \\ \hline
+  Key Generating Device & \specialcell{Technical \\ Internal} & Ethereum Department & The device used to generate an Ethereum admin key and address.
+  \\ \hline
+  Key File & \specialcell{Technical \\ Internal} & Depends on Key & File used to store Ethereum private key.
+  \\ \hline
+  Physical Backup of Key & \specialcell{Physical \\ Internal} & Depends on Key & Physical backup of admin key.
+  \\ \hline
+  Key Encryption Password & \specialcell{People \\ Internal} & Depends on Key & Password used to encrypt and decrypt a key file.
+  \\ \hline
+  CryptoFiat Master Device & \specialcell{Technical \\ Internal} & Ethereum Department & Device holding the CryptoFiat master key file.
+  \\ \hline
+  CryptoFiat Master Transactor & \specialcell{Technical \\ Internal} & Ethereum Department & Device used to broadcast master operations to Ethereum network.
+  \\ \hline
+  Law Enforcement Device & \specialcell{Technical \\ Internal} & Law Enforcement Department & Device holding the Law Enforcement key file.
+  \\ \hline
+  Designator Device & \specialcell{Technical \\ Internal} & Designator Department & Device holding the Law Enforcement key file.
+  \\ \hline
+  AML Server & \specialcell{Technical \\ Internal} & Designator Department & Device used to broadcast Law Enforcement and Enforcer operations to the Ethereum network.
+  \\ \hline
+  Bank Gateway & \specialcell{Technical \\ Internal} & Reserve Department & Device holding the reserve key file used to sign transactions and do operations for the reserve.
+  \\ \hline
+  ID Server & \specialcell{Technical \\ Internal} & Identity Department & Server holding the approver key file needed to approve addresses for authorized IDs.
+  \\ \hline
+  Wallet Server & \specialcell{Technical \\ Internal} & Convenience Department & Server holding the delegator key file needed to sign delegate transactions on behalf of users.
+  \\ \hline
+  Ethereum Node & \specialcell{Technical \\ Internal} & Ethereum Department & This node is the interface to all the operations with the Ethereum network.
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Ethereum Admin Keys Asset Containers}
+\label{tab:assetContainersEthereumAdminKeys}
+
 \subsubsection{Critical Asset III: User Identity} \label{sssec:5.2:userIdentity}
+
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | p{5cm} | p{12cm} | }
+  \hline
+  \textbf{(1) Critical Asset} & User Identity in any format in the Euro 2.0 system.
+  \\ \hline
+  \textbf{(2) Rationale for Selection} & If the Identity of a user is linked to their Ethereum address, all transaction history is visible on the Ethereum Blockchain under the current implementation.
+  \\ \hline
+  \textbf{(3) Description} & Identity refers to ID code and any other personally identifiable information.
+  \\ \hline
+  \textbf{(4) Owners} & The User and partially the Identity department. 
+  \\ \hline
+  \textbf{(5) Security Requirements} &
+  	\hskip-0.2cm
+  	\begin{tabular}{p{2.5cm}|p{9.06cm}}
+		\textbf{Confidentiality} & Highly confidential, only the ID server, owning user, and other users that have been told that ID code.
+		\\ \hline
+		\textbf{Integrity} & The ID should be exactly as is for the ID server or user approving an address.
+		\\ \hline
+		\textbf{Availability} & Only needs to be available when user looks up an address by ID or approves an address.
+	\end{tabular}
+  \\ \hline
+  \textbf{(6) Most Important Security Requirement} & \textbf{Confidentiality} because of the consequences of a server 	
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{User Identity Asset Profile}
+\label{tab:assetProfileUserIdentity}
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | l | p{10cm} |}
+  \hline
+  \textbf{Container} & \textbf{Type} & \textbf{Owners} & \textbf{Description}
+  \\ \hline
+  ID Server & \specialcell{Technical \\ Internal} & Identity Department & Manages ID authentication and approval of Ethereum addresses for users.
+  \\ \hline
+  ID Database & \specialcell{Technical \\ Internal} & Identity Department & Database storing ID to Ethereum address mapping, escrow, and keys backups.
+  \\ \hline
+  AML Server & \specialcell{Technical \\ Internal} & Law Enforcement Department & Server providing AML operations to Law Enforcement.
+  \\ \hline
+  AML Database & \specialcell{Technical \\ Internal} & Law Enforcement Department & Database storing transactions, addresses, and IDs for AML analysis.
+  \\ \hline
+  Ethereum Node & \specialcell{Technical \\ Internal} & Ethereum Department & This node is the interface to all the operations with the Ethereum network.
+  \\ \hline
+  User Client & \specialcell{Technical \\ External} & \specialcell{User \\ Foundation} & User's device to interact with the Euro 2.0 system.
+  \\ \hline
+  Ethereum Smart Contracts & \specialcell{Technical \\ External} & \specialcell{No Owner \\ Ethereum Department} & Deployed smart contracts on Ethereum Blockchain that hold all of the decentralized balance and account data and operations in the system.
+  \\ \hline
+  SK ID LDAP & \specialcell{Technical \\ External} & SK ID Solutions AS & Directory lookup for information based on an Estonian ID number.
+  \\ \hline
+  SK DigiDocService & \specialcell{Technical \\ External} & SK ID Solutions AS & Estonian ID authentication services.
+  \\ \hline
+  People & \specialcell{People \\ External} & Anyone & Knowledge of ID numbers can be found in many external proccesses in Estonia.
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{User Identity Asset Containers}
+\label{tab:assetContainersUserIdentity}
 
 \subsection{Risk Profiles} \label{ssec:5.3}
 
