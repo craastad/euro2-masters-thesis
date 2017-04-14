@@ -69,6 +69,8 @@
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
+\usepackage{enumerate} %for more control of ordered lists
+
 % --- new commands ---
 
 % creates hyperref using the name of a section
@@ -1571,7 +1573,7 @@ In which we explore in the sub research questions:
 The OCTAVE Allegro risk assessment was chosen for its simplicity and organization value based risk analysis methodology. The literature was interpreted for application to the Euro 2.0 System and Foundation with assumptions on hypothetical organization structure when the system is production ready. For the risk assessment, user represents both personal users and merchants in the Euro 2.0 digital currency.
 
 \subsection{Foundation and Risk Criteria} \label{ssec:5.1}
-In this section we perform \textit{Step 1 - Establish Risk Measurement Criteria} of the OCTAVE Allegro risk assessment. The main outcome of this section is a description of the theoretical organization structure of the Euro 2.0 foundation, its business objectives, and a set risk measurement criteria to be used as the basis of the risk analysis in subsequent sections.
+In this section we perform \textit{Step 1 - Establish Risk Measurement Criteria} of the OCTAVE Allegro risk assessment. The main outcome of this section is a description of the theoretical organization structure of the Euro 2.0 foundation, its business objectives, and a set of impact areas with risk measurement criteria to be used as the basis of the risk analysis in subsequent sections.
 
 \subsubsection{Foundation Mission and Objectives} \label{sssec:5.1:objectives}
 
@@ -1612,7 +1614,7 @@ The organization is structured with the following functions:
 
 \subsubsection{Defining Risk Measurement Criteria} \label{sssec:5.1:defining}
 
-OCTAVE Allegro Step 1 Activity 2 is the definition of a qualitative set of risk measurement criteria and impact areas to the foundation. Each impact area is a factor in the risk analysis in \hypersectionref{ssec:5.4}. The supplemented impact areas by the OCTAVE Allegro framework were used as a starting point for defining the impact areas specifically for Euro 2.0, although most of the resulting impact areas were created specifically for this risk assessment. \hypertableref{tab:riskImpactAreas} lists the final risk measurement impact areas:
+OCTAVE Allegro Step 1 Activity 2 is the definition of a qualitative set of impact areas with risk measurement criteria to the foundation. Each impact area is a factor in the risk analysis in \hypersectionref{ssec:5.4}. The supplemented impact areas by the OCTAVE Allegro framework were used as a starting point for defining the impact areas specifically for Euro 2.0, although most of the resulting impact areas were created specifically for this risk assessment. \hypertableref{tab:riskImpactAreas} lists the final risk measurement impact areas:
 
 \begin{center}
 \begin{tabular}{ | l | l |}
@@ -1636,7 +1638,7 @@ OCTAVE Allegro Step 1 Activity 2 is the definition of a qualitative set of risk 
 \captionof{table}{Risk Impact Areas}
 \label{tab:riskImpactAreas}
 
-Each impact area has criteria for levels not applicable (N/A), low, medium, and high. The N/A level is not part of the OCTAVE Allegro methodology, but was added to this risk assessment later not skew the final risk rankings by risks that don't actually affect some impact areas. The derivation of these impact areas and the their risk measurement criteria levels are described in more details below.
+Each impact area has criteria for levels not applicable (N/A), low, medium, and high. The N/A level is not part of the OCTAVE Allegro methodology, but was added to this risk assessment so that final risk analysis rankings were not skewed by risks that don't affect the impact areas. The derivation of these impact areas and the their risk measurement criteria levels are described in more details below.
 
 \paragraph{Ignored Impact Areas}
 
@@ -1793,7 +1795,7 @@ Activity 2 of Step 1 of OCTAVE Allegro is prioritization of the risk criteria de
   \\ \hline
   6 & M & One Time Monetary Loss for a User
   \\ \hline
-  5 & R & Reputation and Monetary Confidence
+  5 & R & Reputation
   \\ \hline
   4 & P & Privacy - User Financial Information Revealed
   \\ \hline
@@ -1801,7 +1803,7 @@ Activity 2 of Step 1 of OCTAVE Allegro is prioritization of the risk criteria de
   \\ \hline
   2 & F & One Time Financial Loss for the Foundation
   \\ \hline
-  1 & L & Legal - Fines and Lawsuits
+  1 & L & Fines and Legal Penalties
   \\ \hline
 \end{tabular}
 }
@@ -1811,7 +1813,121 @@ Activity 2 of Step 1 of OCTAVE Allegro is prioritization of the risk criteria de
 
 The most important risk criteria are those that are significant detractors to user growth of the new digital currency. The financial livelihood of the user (\textbf{M}) is at the top of the list. A realized risk resulting in monetary loss of the user will likely lose the user and negative virality (user telling his friends Euro 2.0 is risky) will prevent other users from joining.  The reputation of the organization and monetary confidence (\textbf{R}) is next in the line as a realized risk here discourages users from joining. Next is the privacy of users (\textbf{P}) which also encourages a negative user experience and detracts growth if significantly breached. Next is the availability (\textbf{A}) system. Finally, the least important of the risk criteria, is the financial losses of the organization (\textbf{F}) and legal fines and lawsuits (\textbf{L}). Mistakes are likely to happen, as long as the foundation is still alive, there is more value at the start to ensure user happiness and growth.
 
-\subsection{Assets and Containers} \label{ssec:5.2}
+\subsection{Information Assets and Containers} \label{ssec:5.2}
+
+In this section we define the information assets and asset containers following \textit{Step 2 - Develop an Information Asset Profile} and \textit{Step 3 - Identify Information Asset Containers} of the OCTAVE Allegro Risk Assessment. These information assets and asset containers are the main subject of risk profiles constructed in \hypersectionref{ssec:5.3} which are analyzed and mitigated \hypersectionref{ssec:5.4}. First we walk through defining the possible information assets of Euro 2.0. Next we narrow down to a \textit{critical few} information assets to be the subject of the risk analysis. Then for each critical information assets, we build a full profile with information asset containers.
+
+\subsubsection{Enumerating Information Assets} \label{sssec:5.2:enumeratingAssets}
+
+An \textit{Information Asset} is any information or data that can be valuable to the foundation existing in either electronic or physical form. Enumerating information assets can be done by answering the following questions\cite{CaralliIntroducingOCTAVE2007}:
+
+\begin{itemize}
+	\item ``What information assets are of most value to your organization?''
+	\item ``What information assets are used in day-to-day work processes and operations?''
+	\item ``What information assets, if lost, would significantly disrupt your organization’s ability to accomplish its goals and contribute to achieving the organization’s mission?''
+	\item ``What other assets are closely related to these assets?''
+\end{itemize}
+
+In which we enumerate the following information assets for Euro 2.0 in \hypertableref{tab:informationAssets}:
+
+\begin{center}
+\begin{tabular}{ | p{6cm} | p{8cm} | }
+  \hline
+  \textbf{Information Asset} & \textbf{Description}
+  \\ \hline
+  Reserve Bank Account Access & Used to access funds sent to and from the reserve bank account.
+  \\ \hline
+  \specialcell{
+  	Ethereum Contract Data: \\
+	\quad Status \\
+	\quad Balance \\
+	\quad Delegate Transfer Nonce \\
+	\quad Recovery Account \\
+	\quad Total Supply \\
+  } & All of the decentralized data of the Euro 2.0 system.
+  \\ \hline
+  \specialcell{
+  	Ethereum Admin Keys: \\
+  	\quad Master Account Key \\
+  	\quad Reserve Key \\
+  	\quad Account Approver Key \\
+	\quad Enforcement Key \\
+  	\quad Designator Key \\
+  	\quad Delegate Key \\
+  } & The keys to all the special admin functions of the Euro 2.0 system.
+  \\ \hline
+  \specialcell{DB Credentials: \\
+    \quad ID \\
+	\quad AML \\
+    \quad Transfer Info \\
+    \quad Bank Gateway \\
+  } & The credentials to the traditional centralized databases of the Euro 2.0 system.
+  \\ \hline
+  Customer Keys & Ethereum address private keys for the customer to access their money.
+  \\ \hline
+  \specialcell{Customer Data: \\
+  	\quad Sender and Receiver Identities \\
+  	\quad Reserve Bank Transaction Data \\
+  	\quad Backup Keys \\
+  	\quad ID $\Leftrightarrow$ Address Mapping \\
+  	\quad Escrow Data \\
+  	\quad Bank Transaction Data
+  } & Various customer data.
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Euro 2.0 Possible Information Assets}
+\label{tab:informationAssets}
+
+\subsubsection{Selecting Critical Information Assets} \label{sssec:5.2:criticalAssets}
+
+The ``critical few'' information assets are those that have a significant adverse affect on the organization if disclosed, modified, lost, destroyed, or access interrupted. From the list of enumerated information is derived the critical information assets:
+
+\begin{enumerate}[(I)] \label{enum:criticalInformationAssets}
+	\item User Money
+	\item Ethereum Admin Keys
+	\item User Identity
+\end{enumerate}
+
+These are chosen as critical information assets to be representative of the majority of information assets enumerated in \hypertableref{tab:informationAssets}. Limiting the number of critical information assets reduces the number of risk profiles in \hypersectionref{ssec:5.3} and simplifies the complexity of the risk analysis in \hypersectionref{ssec:5.4}. \textit{Ethereum Contract Data} and \textit{User Keys} were also considered as critical information assets but are adequately represented by \textit{User Money}. \textit{User Transfer History} was also considered as a critical information asset but is heavily related enough to \textit{User Identity} to disregard.
+
+\subsubsection{Information Asset and Containers Analysis} \label{sssec:5.2:analysis}
+
+The following subsections describe in detail the critical information asset profiles and information assets containers for \hyperref[sssec:5.2:userMoney]{User Money}, \hyperref[sssec:5.2:ethereumAdminKeys]{Ethereum Admin Keys}, and \hyperref[sssec:5.2:userIdentity]{User Identity} that will be the basis of enumerating risk profiles in \hypersectionref{ssec:5.3} .
+
+Allegro Worksheet 8 summarizes the key aspects of a \textit{Critical Information Asset Profile} filled out during \textit{Step 2 - Develop Information Asset Profile}. The Asset Profile includes information about the asset, rationale for selection, organizational description, owners, and security requirements. The security requirements characterize how an information asset is to be protected and are key for evaluating impact of risks. Security requirements of information assets are explained in \hypertableref{tab:securityRequirements}.
+
+\begin{center}
+\begin{tabular}{ | l | p{10.5cm} | }
+  \hline
+  \textbf{Security Requirement} & \textbf{Description}
+  \\ \hline
+  Confidentiality & Ensuring that only authorized people or systems have access to the information asset
+  \\ \hline
+  Integrity & Ensuring that an information asset remains in the condition that was intended by the owner and for the purposes intended by the owner.
+  \\ \hline
+  Availability & Ensuring that the information asset remains accessible to authorized users.
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Security Requirements of Information Assets}
+\label{tab:securityRequirements}
+
+\textit{Information Asset Containers} are where an information assets are stored, transported, or processed. \textit{``In an information security risk assessment, the identification of containers is essential to identifying risks to the information asset itself.''} They are they key points of vulnerability and threats as well as the key points to apply mitigations and preventive measures for an information asset. An information asset containers can be technical, physical, or people and internal or external to the organization.  In the context of Euro 2.0 risk analysis we focus mainly on technical and people asset containers. Three important points about the security of information assets with regards to information asset containers:
+
+\begin{enumerate}
+	\item The \textbf{way} in which an information asset is protected or secured is through controls implemented an the container level.
+	\item The \textbf{degree} in which an information asset is protected or secured is based on how well the controls are implemented at the container level.
+	\item Any \textbf{vulnerabilities} and \textbf{threats} to the container in which the information asset lives are inherited by the information asset.
+\end{enumerate}
+
+The information asset containers for the \hyperref[enum:criticalInformationAssets]{critical information assets} were identified by working through OCTAVE Allegro \textit{Step 3 - Identify Information Asset Containers} and listed in the description of critical information asset profiles in subsections \ref{sssec:5.2:userMoney}, \ref{sssec:5.2:ethereumAdminKeys}, and \ref{sssec:5.2:userIdentity}.
+
+\subsubsection{Critical Asset I: User Money} \label{sssec:5.2:userMoney}
+
+\subsubsection{Critical Asset II: Ethereum Admin Keys} \label{sssec:5.2:ethereumAdminKeys}
+
+\subsubsection{Critical Asset III: User Identity} \label{sssec:5.2:userIdentity}
 
 \subsection{Risk Profiles} \label{ssec:5.3}
 
