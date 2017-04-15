@@ -48,11 +48,13 @@
 
 \usepackage{times} %Sets font to Times New Roman
 \usepackage{fancyhdr} %Allows more control of headers and footers
-\setlength{\parindent}{0cm} %Set paragraph indentation to zero
+\setlength{\parindent}{0cm} %Set paragraph indentation to zero %consider removing this...
+
 \usepackage{setspace} %Allows setting spacing between lines
 \onehalfspacing %Set spacing to 1.5x
+
 \usepackage{parskip}
-\setlength{\parskip}{\baselineskip}
+%\setlength{\parskip}{1.5\baselineskip}
 %\hangindent=0.7cm
 
 \hyphenation{põhi-tekstis üliõpilas-kood lehe-küljed joonda-takse} %Correcting incorrect hyphenation (?)
@@ -72,6 +74,10 @@
 \usepackage{enumerate} %for more control of ordered lists
 
 \usepackage[none]{hyphenat} %kill hyphenation
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 
 % --- new commands ---
 
@@ -1570,7 +1576,7 @@ In which we explore in the sub research questions:
 	\textbf{RQ3.4: }\textit{What are the mitigation strategies or alternative design suggestions for the Euro 2.0 system?}
 \end{quoting}
 
-\textit{RQ3.1} through \textit{RQ3.4} are answered by applying Steps 1 through 8 of the OCTAVE Allegro risk assessment methodology\cite{CaralliIntroducingOCTAVE2007} to the system described in \hypernameref{sec:3}. \hypersectionref{ssec:5.1} answers \textit{RQ3.1} by establishing a risk measurement criteria consistent with the values of the Euro 2.0 foundation. \hypersectionref{ssec:5.2} works through constructing information asset profiles and identifying information asset containers to answer \textit{RQ3.2}. In \hypersectionref{ssec:5.3} we identify areas of concern and threat scenarios to construct comprehensive information asset risk profiles, answering \textit{RQ3.3}. \hypersectionref{ssec:5.4} users the risk profiles to perform a risk analysis and propose mitigation strategies and design suggestions answering \textit{RQ3.4}. Finally from the above analysis we can make conclusions of the overall risks in Euro 2.0 to answer \textit{RQ3} and also suggest further avenues of research in the \hyperref[ssec:5.5]{Conclusion}.
+\textit{RQ3.1} through \textit{RQ3.4} are answered by applying Steps 1 through 8 of the OCTAVE Allegro risk assessment methodology\cite{CaralliIntroducingOCTAVE2007} to the system described in \hypernameref{sec:3}. \hypersectionref{ssec:5.1} answers \textit{RQ3.1} by establishing a risk measurement criteria consistent with the values of the Euro 2.0 foundation. \hypersectionref{ssec:5.2} works through constructing information asset profiles and identifying information asset containers to answer \textit{RQ3.2}. In \hypersectionref{ssec:5.3} we perform the risk analysis by identifying areas of concern and threat scenarios to construct comprehensive information asset risk profiles, answering \textit{RQ3.3}. \hypersectionref{ssec:5.4} users the risk profiles to categorize the risk analysis results and propose mitigation strategies and design suggestions answering \textit{RQ3.4}. Finally from the above analysis we can make conclusions of the overall risks in Euro 2.0 to answer \textit{RQ3} and also suggest further avenues of research in the \hyperref[ssec:5.5]{Conclusion}.
 
 The OCTAVE Allegro risk assessment was chosen for its simplicity and organization value based risk analysis methodology. The literature was interpreted for application to the Euro 2.0 System and Foundation with assumptions on hypothetical organization structure when the system is production ready. For the risk assessment, user represents both personal users and merchants in the Euro 2.0 digital currency.
 
@@ -1785,9 +1791,9 @@ The amounts are arbitrary and derived from the same reasoning as \textit{One Tim
 \label{tab:availabilityRiskCriteria}
 
 
-\subsubsection{Ranking Risk Measurement Criteria} \label{sssec:5.1:ranking}
+\subsubsection{Ranking Impact Areas} \label{sssec:5.1:ranking}
 
-Activity 2 of Step 1 of OCTAVE Allegro is prioritization of the risk criteria determined in Activity 1. \hypertableref{tab:riskCriteriaRanking} shows the rank risk criteria of Euro 2.0 ranked with 6 as the highest and 1 as the lowest.
+Activity 2 of Step 1 of OCTAVE Allegro prioritizes impact areas determined in Activity 1. \hypertableref{tab:impactAreasRanking} shows the ranked impact areas of Euro 2.0 ranked with 6 as the highest and 1 as the lowest.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1810,8 +1816,8 @@ Activity 2 of Step 1 of OCTAVE Allegro is prioritization of the risk criteria de
 \end{tabular}
 }
 \end{center}
-\captionof{table}{Risk Criteria Ranking}
-\label{tab:riskCriteriaRanking}
+\captionof{table}{Impact Areas Ranking}
+\label{tab:impactAreasRanking}
 
 The most important risk criteria are those that are significant detractors to user growth of the new digital currency. The financial livelihood of the user (\textbf{M}) is at the top of the list. A realized risk resulting in monetary loss of the user will likely lose the user and negative virality (user telling his friends Euro 2.0 is risky) will prevent other users from joining.  The reputation of the organization and monetary confidence (\textbf{R}) is next in the line as a realized risk here discourages users from joining. Next is the privacy of users (\textbf{P}) which also encourages a negative user experience and detracts growth if significantly breached. Next is the availability (\textbf{A}) system. Finally, the least important of the risk criteria, is the financial losses of the organization (\textbf{F}) and legal fines and lawsuits (\textbf{L}). Mistakes are likely to happen, as long as the foundation is still alive, there is more value at the start to ensure user happiness and growth.
 
@@ -1963,7 +1969,7 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
   \hline
   \textbf{Container} & \textbf{Type} & \textbf{Owners} & \textbf{Description}
   \\ \hline
-  Wallet Server & \specialcell{Technical \\ Internal} & Convenience Department & The wallet service performs the EUR2 delegate transfer operation. 
+  Wallet Server & \specialcell{Technical \\ Internal} & Convenience Department & The wallet service performs the EUR2 delegate transfer operation.
   \\ \hline
   ID Server & \specialcell{Technical \\ Internal} & Identity Department & The ID server currently handles escrow of funds to an ID and addresses and keys backup.
   \\ \hline
@@ -2088,7 +2094,7 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
   \\ \hline
   \textbf{(3) Description} & Identity refers to ID code and any other personally identifiable information.
   \\ \hline
-  \textbf{(4) Owners} & The User and partially the Identity department. 
+  \textbf{(4) Owners} & The User and partially the Identity department.
   \\ \hline
   \textbf{(5) Security Requirements} &
   	\hskip-0.2cm
@@ -2100,7 +2106,7 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
 		\textbf{Availability} & Only needs to be available when user looks up an address by ID or approves an address.
 	\end{tabular}
   \\ \hline
-  \textbf{(6) Most Important Security Requirement} & \textbf{Confidentiality} because of the consequences of a server 	
+  \textbf{(6) Most Important Security Requirement} & \textbf{Confidentiality} because of the consequences of a server
   \\ \hline
 \end{tabular}
 }
@@ -2140,9 +2146,154 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
 \captionof{table}{User Identity Asset Containers}
 \label{tab:assetContainersUserIdentity}
 
-\subsection{Risk Profiles} \label{ssec:5.3}
+\subsection{Risk Profiles and Analysis} \label{ssec:5.3}
 
-\subsection{Risk Analysis and Mitigation} \label{ssec:5.4}
+In this section we perform a risk analysis on the critical information assets and containers of \hypersectionref{ssec:5.2}. The output of this section is multiple \textit{Information Asset Risk Profiles} for each critical information asset, the results of performing \textit{Step 5 - Identify Threat Scenarios}, \textit{Step 6 - Identify Risks}, and \textit{Step 7 - Analyze Risks} of the OCTAVE Allegro methodology. \hypersectionref{sssec:5.3:methodology} gives an overview of the methodology used to construct the profiles and the subsequent sections present the completed \textit{Information Asset Risk Profiles} for \hypernameref{sssec:5.3:userMoneyRiskProfiles}, \hypernameref{sssec:5.3:ethereumAdminKeysRiskProfiles}, and \hypernameref{sssec:5.3:userIdentityRiskProfiles}.
+
+\subsubsection{Risk Analysis Methodology} \label{sssec:5.3:methodology}
+
+The goal of the risk analysis is to enumerate the most relevant risks for critical information assets.
+
+\begin{align*}
+	\text{Risk} = \text{Threat} + \text{Impact}
+\end{align*}
+
+A \textit{risk} is the possibility of suffering harm or loss to the foundation or users, the combination of a \textit{threat} (condition), an \textit{impact} (consequence), and an \textit{probability} (uncertainty) of the risk being realized. The \textit{Information Asset Risk Profiles} resulting from the risk analysis will have the structure outlined in \hypertableref{tab:informationAssetRiskProfileStructure}.
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & A descriptive statement of a situation that could affect an information asset.
+  \\ \hline
+  (2) Actor & Who would exploit the threat?
+  \\ \hline
+  (3) Means & How would the actor exploit the threat?
+  \\ \hline
+  (4) Motive & What would be the actor's incentive to exploit the threat?
+  \\ \hline
+  (5) Outcome & What would the resulting effect be on the information asset?
+  	 \begin{itemize}
+		 \item Disclosure
+		 \item Modification
+		 \item Destruction
+		 \item Interruption
+     \end{itemize}
+	 \vspace*{-\baselineskip}
+  \\ \hline
+  (6) Security Requirements & How would the information asset's security requirements be breached?
+  \\ \hline
+  (7) Probability & What is the likelihood this scenario could occur?
+  	\begin{itemize}
+		\item High
+		\item Medium
+		\item Low
+	\end{itemize}
+	\vspace*{-\baselineskip}
+  \\ \hline
+  (8) Consequences & What are the consequences to the organization or information asset owner as an outcome of the breached security requirements?
+  \\ \hline
+  (9) Severity & How severe are the consequences to the organization or asset owner by impact area?
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Information Asset Risk Profile Structure}
+\label{tab:informationAssetRiskProfileStructure}
+
+In the OCTAVE Allegro methodology \textit{Threat Scenario (1)} is also known as an \textit{Area of Concern}. They are synonymous, both a statement describing a potential undesirable situation that can affect the security criteria of an information asset, just a threat describes the scenario more systematically with properties (2) through (5). \textit{Areas of concern} are conceived in \textit{Step 4 - Identify Areas of Concern} from intuition of the risk analyst. The \textit{Areas of Concern} act as seeds to systematically develop \textit{Threats} in \textit{Step 5 - Identify Threat Scenarios} by considering \textit{Threat Trees} and \textit{Threat Scenario} questionnaires for each type of information asset container. The outcome of the exercise is to fill in properties (1) through (7) in the \textit{Information Asset Risk Profile} in \hypertableref{tab:informationAssetRiskProfileStructure}. \textit{Step 6 - Analyze Risks} provides guidance for documenting the consequences, property (8), of the realized risk on the organization and information asset owners.
+
+Finally in \textit{Step 7 - Analyze Risks}, a qualitative \textit{impact value} is assigned to describe the extend of the impact to the organization the consequences of a realized risk for an information asset. The impact value is computed for every risk profile in a risk analysis matrix using the impact areas defined in \hypertableref{tab:riskImpactAreas} with the following columns:
+
+\begin{itemize}
+	\item \textit{Impact Area} - the impact area for the described by the row
+	\item \textit{Ranking} - the ranking of the impact area described in \hypertableref{tab:impactAreasRanking}
+	\item \textit{Impact Value} - probability of the threat scenario occurring with weight: N/A (0), Low (1), Medium (2), High (3)
+	\item \textit{Score} - the ranking multiplied by the impact value
+\end{itemize}
+
+Finally the total impact value for the risk profile is computed as the some of the scores for each row. These impact scores are used to prioritize and categorize the threat scenarios for mitigation approaches in \hypersectionref{ssec:5.4}.
+
+\subsubsection{(I) User Money Risk Profiles} \label{sssec:5.3:userMoneyRiskProfiles}
+
+\todo[inline]{link back to asset profile definition in the last section}
+
+\paragraph{(1) Keys Stolen from User Device }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & Attacker steals user private key from client application and steals sends all EUR2 to an account of his choice.
+  \\ \hline
+  (2) Actor & Fraudster wanting to steal EUR2 for financial gain.
+  \\ \hline
+  (3) Means & 
+    \begin{itemize}
+      \item The attacker could use a phishing attack to install malware that grabs the keys when they’re unencrypted.
+      \item An attacker could make a fake application client to get the user to sign away his/her funds.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+  (4) Motive & Financial Gain
+  \\ \hline
+  (5) Outcome &
+  	 \begin{itemize}
+	   \item Disclosure of the user private keys to a fraudster.
+       \item Interruption of the service of funds to the user.
+     \end{itemize}
+	 \vspace*{-\baselineskip}
+  \\ \hline
+  (6) Security Requirements & Confidentiality and Availability of the funds are breached since they are no longer accessible.
+  \\ \hline
+  (7) Probability & High
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+      \item User loses all of his money in the EUR2 system.
+      \item User will tells his friends that EUR2 is insecure for storing money. 
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Keys Stolen from User Device Risk Profile}
+\label{tab:riskProfileKeysStolenFromUserDevice}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& High (3)		& 18
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& Low (1)		& 4
+  \\ \hline
+  S & Payments Network Unusable					& 3	& N/A (0)		& 0
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& N/A (0)		& 0
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& Medium (2)	& 2
+  \\ \hline
+  & & & \textbf{TOTAL} & 39
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Keys Stolen from User Device Severity}
+\label{tab:severityKeysStolenFromUserDevice}
+
+\subsubsection{(II) Ethereum Admin Keys Risk Profiles} \label{sssec:5.3:ethereumAdminKeysRiskProfiles}
+
+\subsubsection{(III) User Identity Risk Profiles} \label{sssec:5.3:userIdentityRiskProfiles}
+
+\subsection{Risk Mitigation} \label{ssec:5.4}
 
 \subsection{Conclusion} \label{ssec:5.5}
 
