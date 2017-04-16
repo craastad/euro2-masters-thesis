@@ -239,7 +239,8 @@ CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial I
 KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
 ISSRM & \textit{Information Systems Security Risk Management} \\
 SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system. \\
-LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK
+LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK \\
+API & \textit{Application Programming Interface}, describing communicating between two servers
 \end{tabular}
 
 \pagebreak
@@ -2218,7 +2219,7 @@ Finally the total impact value for the risk profile is computed as the some of t
 
 \subsubsection{(I) User Money Risk Profiles} \label{sssec:5.3:userMoneyRiskProfiles}
 
-\todo[inline]{link back to asset profile definition in the last section}
+The risk profiles presented in this section are for the critical information asset I. User Money described in \hypersectionref{sssec:5.2:userMoney}.
 
 \paragraph{(1) Keys Stolen from User Device }
 
@@ -2230,16 +2231,16 @@ Finally the total impact value for the risk profile is computed as the some of t
   \\ \hline
   (1) Threat Scenario & Attacker steals user private key from client application and steals sends all EUR2 to an account of his choice.
   \\ \hline
-  (2) Actor & Fraudster wanting to steal EUR2 for financial gain.
+  (2) Actor & Attacker wishing to steal EUR2 for financial gain.
   \\ \hline
-  (3) Means & 
+  (3) Means &
     \begin{itemize}
       \item The attacker could use a phishing attack to install malware that grabs the keys when they’re unencrypted.
       \item An attacker could make a fake application client to get the user to sign away his/her funds.
     \end{itemize}
     \vspace*{-\baselineskip}
   \\ \hline
-  (4) Motive & Financial Gain
+  (4) Motive & Financial gain.
   \\ \hline
   (5) Outcome &
   	 \begin{itemize}
@@ -2255,14 +2256,14 @@ Finally the total impact value for the risk profile is computed as the some of t
   (8) Consequences &
     \begin{itemize}
       \item User loses all of his money in the EUR2 system.
-      \item User will tells his friends that EUR2 is insecure for storing money. 
+      \item User will tells his friends that EUR2 is insecure for storing money.
     \end{itemize}
     \vspace*{-\baselineskip}
   \\ \hline
 \end{tabular}
 }
 \end{center}
-\captionof{table}{Keys Stolen from User Device Risk Profile}
+\captionof{table}{Risk Profile: Keys Stolen from User Device}
 \label{tab:riskProfileKeysStolenFromUserDevice}
 
 \begin{center}
@@ -2289,9 +2290,578 @@ Finally the total impact value for the risk profile is computed as the some of t
 \captionof{table}{(9) Severity: Keys Stolen from User Device Severity}
 \label{tab:severityKeysStolenFromUserDevice}
 
+\paragraph{(2) Programming Error in the Ethereum Contract }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & Ethereum smart contract has a programming error that allows attacker to create counterfeit EUR2.
+  \\ \hline
+  (2) Actor & Attacker with high knowledge of Ethereum smart contract exploits.
+  \\ \hline
+  (3) Means & Attacker find vulnerability in Accounts contract to set a increase a balance without restriction.
+  \\ \hline
+  (4) Motive & Use falsely created EUR2 to buy goods and services or cash out from the reserve into EUR.
+  \\ \hline
+  (5) Outcome & Modification of the balances against the rules of the system.
+  \\ \hline
+  (6) Security Requirements & Integrity is compromised as the attacker's EUR2 balance does not represent a real world counterpart of EUR. Availability may be compromised if system vulnerability cannot be fixed before exploitation is contained.
+  \\ \hline
+  (7) Probability & Medium
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+      \item Foundation will be liable for difference of real and falsified EUR2 and may charged with fines and penalties.
+      \item Entire Euro 2.0 system may need to be shutdown if vulnerability is exploited enough and funds cannot be frozen before being used.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: Programming Error in the Ethereum Contract}
+\label{tab:riskProfileProgrammingErrorInContract}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& High (3)		& 18
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& N/A (0)		& 0
+  \\ \hline
+  S & Payments Network Unusable					& 3	& Medium (2)	& 6
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& High (3)		& 6
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& High (3)		& 3
+  \\ \hline
+  & & & \textbf{TOTAL} & 48
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Keys Stolen from User Device Severity}
+\label{tab:severityProgrammingErrorInContract}
+
+\paragraph{(3) Spoof ID to Ethereum Address Lookup }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & An attacker spoofs the process of looking up an ethereum address for an ID and replaces it with his own.
+  \\ \hline
+  (2) Actor & Outside attacker with high knowledge of computer networking.
+  \\ \hline
+  (3) Means & Attacker sets up man in the middle attack for API calls going to ID server from outside sources and replaces the response with his choice.
+  \\ \hline
+  (4) Motive & Financial gain by forcing all transfers to an ID (including newly created EUR2) be sent to an address under his control instead of intended recipient address.
+  \\ \hline
+  (5) Outcome &
+ 	 \begin{itemize}
+      \item Modification of intended recipient of funds.
+      \item Interruption of the service of funds transfer to legitimate users.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+  (6) Security Requirements & Confidentiality and Availability. Only the intended recipient of funds should be able to use them.
+  \\ \hline
+  (7) Probability & Medium
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item Recipients don’t get paid for goods and services.
+		\item Users lose EUR2 intended to be for themselves.
+		\item Foundation may be liable for losses.
+		\item Fines and lawsuits may ensue for bad security measures.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: Spoof ID to Address Lookup}
+\label{tab:riskProfileSpoofIdToAddressLookup}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& High (3)		& 18
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& Medium (2)	& 8
+  \\ \hline
+  S & Payments Network Unusable					& 3	& High (3)		& 9
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& High (3)		& 6
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& High (3)		& 3
+  \\ \hline
+  & & & \textbf{TOTAL} & 59
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Spoof ID to Address Lookup}
+\label{tab:severitySpoofIdToAddressLookup}
+
+\paragraph{(4) User Keys Stolen from Backup System }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & An attacker breaks the challenge of backup system and steals user keys.
+  \\ \hline
+  (2) Actor & Outside attacker with knowledge of cryptography.
+  \\ \hline
+  (3) Means & Attacker queries ID server with ID codes acquired from outside source, gets challenge information, then breaks the challenge to get keys, and uses a dictionary attack to decrypt the keys.
+  \\ \hline
+  (4) Motive & Financial gain by gaining access to user funds.
+  \\ \hline
+  (5) Outcome &
+ 	 \begin{itemize}
+      \item Disclosure of user private keys.
+      \item Interruption of access of funds to user with lost keys.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+  (6) Security Requirements & Confidentiality and Availability of users funds.
+  \\ \hline
+  (7) Probability & Low
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item User loses his funds, leaves the system, and tells all his friends it cannot be trusted.
+		\item Foundation loses trust of users.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: User Keys Stolen from Backup System}
+\label{tab:riskProfileUserIdsStolenFromBackupSystem}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& High (3)		& 18
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& Low (1)		& 4
+  \\ \hline
+  S & Payments Network Unusable					& 3	& N/A (0)		& 0
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& Medium (2)	& 4
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& Medium (2)	& 2
+  \\ \hline
+  & & & \textbf{TOTAL} & 43
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: User Keys Stolen from Backup System}
+\label{tab:severityUserIdsStolenFromBackupSystem}
+
+\paragraph{(5) Ethereum Scalability }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & Ethereum decentralized network can't keep up with the volume of transactions in the the system and delays transactions.
+  \\ \hline
+  (2) Actor & No intentional actor.
+  \\ \hline
+  (3) Means & Ethereum does not solve scalability issues and cannot handle all the activity of all decentralized applications. Transactions are either significantly delayed or never picked up by miners.
+  \\ \hline
+  (4) Motive & No motive for no actor.
+  \\ \hline
+  (5) Outcome & Interruption or delays in processing transactions.
+  \\ \hline
+  (6) Security Requirements & Availability of users funds is compromised if network can no longer keep up.
+  \\ \hline
+  (7) Probability & Low
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item Transactions are delayed because of difficult for miners to pick them up.
+		\item Euro 2.0 becomes unusable for payments because of low availability.
+		\item Foundation reputation suffers because it can no longer fulfills objectives.
+		\item Potential fines and lawsuits for lost business.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: Ethereum Scalability}
+\label{tab:riskProfileEthereumScalability}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& N/A (0)		& 0
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& N/A (0)		& 0
+  \\ \hline
+  S & Payments Network Unusable					& 3	& High (3)		& 9
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& N/A (0)		& 0
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& Medium (2)	& 2
+  \\ \hline
+  & & & \textbf{TOTAL} & 26
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Ethereum Scalability}
+\label{tab:severityEthereumScalability}
+
 \subsubsection{(II) Ethereum Admin Keys Risk Profiles} \label{sssec:5.3:ethereumAdminKeysRiskProfiles}
 
+The risk profiles presented in this section are for the critical information asset II. Ethereum Admin Keys described in \hypersectionref{sssec:5.2:ethereumAdminKeys}.
+
+\paragraph{(1) Steal Admin Keys from Online Server }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & Attacker finds vulnerability on server with admin key and:
+    \begin{itemize}
+		\item Steals Approver key to approve accounts not linked to a real identity to aid in criminal money.
+		\item Steals Reserve key to create EUR2 without a EUR counterpart.
+		\item Steals Delegate key to steal fees.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+  (2) Actor & Attacker with system infiltration knowledge.
+  \\ \hline
+  (3) Means & Find and exploit a server vulnerability on public internet and steal the key from the local filesystem.
+  \\ \hline
+  (4) Motive & Financial gain and aid criminal activity by accessing addresses not linked to an ID.
+  \\ \hline
+  (5) Outcome & Disclosure of confidential admin keys.
+  \\ \hline
+  (6) Security Requirements & Confidentiality of admin keys.
+  \\ \hline
+  (7) Probability & Medium
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item Addresses can be approved and transact without a linked real identity.
+		\item Can create EUR2 not backed by EUR creating financial loss for the Foundation.
+		\item Delegation fees stolen.
+		\item Reputation of organization affected by news.
+		\item Fines and penalties from allowing transactions without proper identification.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: Steal Admin Key from Online Server}
+\label{tab:riskProfileStealAdminKeyFromOnlineServer}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& High (3)		& 18
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& N/A (0)		& 0
+  \\ \hline
+  S & Payments Network Unusable					& 3	& Medium (2)	& 6
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& High (0)		& 6
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& High (2)		& 2
+  \\ \hline
+  & & & \textbf{TOTAL} & 26
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Steal Admin Key from Online Server}
+\label{tab:severityStealAdminKeyFromOnlineServer}
+
+\paragraph{(2) Tamper CryptoFiat Key Generation }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & An attacker tampers with the key generation process and compromises CryptoFiat master contract creation to deploy a new contract with backdoors into the entire system.
+  \\ \hline
+  (2) Actor & A clever attacker with insight on key generation malware and smart contracts.
+  \\ \hline
+  (3) Means & Use social engineering or physical break in to implant virus on key generators computer.
+  \\ \hline
+  (4) Motive & Create backdoors to the entire system for unlimited financial gain.
+  \\ \hline
+  (5) Outcome & Disclosure of confidential master admin key.
+  \\ \hline
+  (6) Security Requirements & Confidentiality of master admin key is compromised.
+  \\ \hline
+  (7) Probability & Low
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item Every aspect of the system can be compromised when attacker gains the ability to deploy contracts with access to Euro 2.0 balances.
+		\item Reputation of foundation is gone and users no longer trust the system with their finances.
+		\item Fines and penalties for weak security practices.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: Tamper Key Generation}
+\label{tab:riskProfileTamperKeyGeneration}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& High (3)		& 18
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& N/A (0)		& 0
+  \\ \hline
+  S & Payments Network Unusable					& 3	& High (3)		& 9
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& High (0)		& 6
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& High (2)		& 2
+  \\ \hline
+  & & & \textbf{TOTAL} & 51
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Tamper CryptoFiat Key Generation}
+\label{tab:severityTamperKeyGeneration}
+
 \subsubsection{(III) User Identity Risk Profiles} \label{sssec:5.3:userIdentityRiskProfiles}
+
+The risk profiles presented in this section are for the critical information asset III. User Identity described in \hypersectionref{sssec:5.2:userIdentity}.
+
+\paragraph{(1) ID or AML Database Hacked }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & An attacker finds a security vulnerability in the ID or AML server and gains access to database.
+  \\ \hline
+  (2) Actor & An attacker with knowledge of server exploits.
+  \\ \hline
+  (3) Means & Attacker exploits a security vulnerability in the ID or AML server to obtain access to the database.
+  \\ \hline
+  (4) Motive & The ID to address mapping allows an attacker to link all transactions on the Ethereum Blockchain to real identities and sell this information to interested parties or publish the mapping online as an act of cyberterrorism.
+  \\ \hline
+  (5) Outcome & Disclosure of user identities and their mapping to Ethereum blockchain addresses. 
+  \\ \hline
+  (6) Security Requirements & Confidentiality of the Identity of user transactions is breached.
+  \\ \hline
+  (7) Probability & Medium
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item Identity of all user transactions is compromised and published for attacker gain.
+		\item The Foundation loses the trust of its users with their money.
+		\item The Foundation may receive fines and penalties for weak security practices.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: ID or AML Database Hacked}
+\label{tab:riskProfileIdOrAmlDatabaseHacked}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& Low (1)		& 6
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& High (3)		& 12
+  \\ \hline
+  S & Payments Network Unusable					& 3	& High (3)		& 9
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& Medium (2)	& 4
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& Medium (2)	& 2
+  \\ \hline
+  & & & \textbf{TOTAL} & 48
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: ID or AML Database Hacked}
+\label{tab:severityIdOrAmlDatabaseHacked}
+
+\paragraph{(2) Brute Force ID Address Lookup }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & An attacker enumerates all valid Estonian ID codes and queries ID server for addresses.
+  \\ \hline
+  (2) Actor & An attacker with knowledge of server exploits and Estonian ID code structure.
+  \\ \hline
+  (3) Means & ID server has no restrictions on address lookup. Attacker enumerates possible Estonian ID codes and queries the ID server for Ethereum addresses. For given ID codes, owner information can be queried from SK LDAP directory. The number of possible Estonian ID codes is approximately 144 million based on the following structure \cite{Martens2010electronicIdentity}:
+    \begin{itemize}
+		\item gender/century of the birth digit (one digit for two attributes)
+		\item date of birth digits (YY+MM+DD)
+		\item three random digits
+		\item one checksum digit
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+  (4) Motive & The ID to address mapping allows an attacker to link all transactions on the Ethereum Blockchain to real identities and sell this information to interested parties or publish the mapping online as an act of cyberterrorism.
+  \\ \hline
+  (5) Outcome & Disclosure of user identities and their mapping to Ethereum blockchain addresses. 
+  \\ \hline
+  (6) Security Requirements & Confidentiality of the identity of user transactions is breached.
+  \\ \hline
+  (7) Probability & High
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item Identity of all user transactions is compromised and published for attacker gain.
+		\item The Foundation loses the trust of its users with their money.
+		\item The Foundation may receive fines and penalties for weak security practices.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: Brute Force ID Address Lookup}
+\label{tab:riskProfileBruteForceIdAddressLookup}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& Low (1)		& 6
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& High (3)		& 12
+  \\ \hline
+  S & Payments Network Unusable					& 3	& High (3)		& 9
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& Medium (2)	& 4
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& High (3)		& 3
+  \\ \hline
+  & & & \textbf{TOTAL} & 49
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Brute Force ID Address Lookup}
+\label{tab:severityBruteForceIdAddressLookup}
+
+\paragraph{(3) Spoof ID Authorization }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & An attacker exploits an insecure implementation of Estonian ID card authentication to approve addresses without a valid ID.
+  \\ \hline
+  (2) Actor & An attacker with knowledge of exploits on Estonia ID authentication.
+  \\ \hline
+  (3) Means & Attacker spoofs communication channel between ID Server and DigiDocService to fake authentications.
+  \\ \hline
+  (4) Motive & Create addresses on Euro 2.0 system anonymously that cannot be traced to a valid ID useful for criminal activity.
+  \\ \hline
+  (5) Outcome & Modification of information of what is a valid or invalid ID.
+  \\ \hline
+  (6) Security Requirements & Integrity of identity is breached.
+  \\ \hline
+  (7) Probability & Low
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item Attacker is able to create an address not linked to a real ID that can be used to get away with fraud and other attacks on the system.
+		\item Foundation can no longer know for certainty what real world identity belongs to which addresses.
+		\item The Foundation may receive fines and penalties for weak AML practices.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: Spoof ID Authorization}
+\label{tab:riskProfileSpoofIdAuthorization}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& Low (1)		& 6
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& Low (1)		& 4
+  \\ \hline
+  S & Payments Network Unusable					& 3	& High (3)		& 9
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& Low (1)		& 2
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& High (3)		& 3
+  \\ \hline
+  & & & \textbf{TOTAL} & 39
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Spoof ID Authorization}
+\label{tab:severitySpoofIdAuthorization}
 
 \subsection{Risk Mitigation} \label{ssec:5.4}
 
