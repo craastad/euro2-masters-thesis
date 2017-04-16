@@ -14,10 +14,17 @@
 \usepackage{graphicx} %Allow using graphics in the text
 \usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry} %Set the page margins
 \usepackage{titlesec} %Package for title style
+\usepackage[table]{xcolor} %make a colorful table
 \usepackage{longtable} %Package so tables can be longer than one page
 \usepackage{multirow} %Package so table cells can span multiple rows
 \usepackage[colorinlistoftodos]{todonotes} %Package so you can add nice TODO marks in your paper with \todo{TODO text...}
 \usepackage{cite} %For Bibtex
+
+%colors for risk categorization table
+\definecolor{pool1}{HTML}{FF3333}
+\definecolor{pool2}{HTML}{FF9933}
+\definecolor{pool3}{HTML}{FFFF33}
+\definecolor{pool4}{HTML}{99FF33}
 
 \usepackage{hyperref}
 % \usepackage{url} %Package in order to nicely use URLs
@@ -122,7 +129,7 @@
 ITC70LT\\[0cm]
 Christopher David Raastad\\
 \begin{LARGE}
-\textsc{Security, Scalability, and Privacy Analysis of the Euro 2.0 Digital Currency\\}
+\textsc{Security and Privacy Analysis of the Euro 2.0 Digital Currency\\}
 \end{LARGE}
 Master thesis\\[2cm]
 \end{center}
@@ -159,7 +166,7 @@ Associated Professor\\[0cm]
 ITC70LT\\[0cm]
 Christopher David Raastad\\
 \begin{LARGE}
-\textsc{Euro 2.0 Digitaalne Valuuta Turvalisuse, Skaleeritamise, ja Privaatsuse Analüüs\\}
+\textsc{Euro 2.0 Digitaalne Valuuta Turvalisuse ja Privaatsuse Analüüs\\}
 \end{LARGE}
 Magister\\[2cm]
 \end{center}
@@ -1529,6 +1536,10 @@ The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC 
 
 \todo[inline]{Write how the features are fulfilled (with many many diagrams)}
 
+\subsection{Conclusion} \label{ssec:3.7}
+
+\todo[inline]{Write Chapter 3 conclusion}
+
 \pagebreak
 
 %--------------------CHAPTER 4-----------------
@@ -2217,7 +2228,7 @@ Finally in \textit{Step 7 - Analyze Risks}, a qualitative \textit{impact value} 
 
 Finally the total impact value for the risk profile is computed as the some of the scores for each row. These impact scores are used to prioritize and categorize the threat scenarios for mitigation approaches in \hypersectionref{ssec:5.4}.
 
-\subsubsection{(I) User Money Risk Profiles} \label{sssec:5.3:userMoneyRiskProfiles}
+\subsubsection{Risk Profiles I: User Money} \label{sssec:5.3:userMoneyRiskProfiles}
 
 The risk profiles presented in this section are for the critical information asset I. User Money described in \hypersectionref{sssec:5.2:userMoney}.
 
@@ -2540,7 +2551,7 @@ The risk profiles presented in this section are for the critical information ass
 \captionof{table}{(9) Severity: Ethereum Scalability}
 \label{tab:severityEthereumScalability}
 
-\subsubsection{(II) Ethereum Admin Keys Risk Profiles} \label{sssec:5.3:ethereumAdminKeysRiskProfiles}
+\subsubsection{Risk Profiles II: Ethereum Admin Keys} \label{sssec:5.3:ethereumAdminKeysRiskProfiles}
 
 The risk profiles presented in this section are for the critical information asset II. Ethereum Admin Keys described in \hypersectionref{sssec:5.2:ethereumAdminKeys}.
 
@@ -2601,11 +2612,11 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   S & Payments Network Unusable					& 3	& Medium (2)	& 6
   \\ \hline
-  F & One Time Financial Loss for Foundation	& 2	& High (0)		& 6
+  F & One Time Financial Loss for Foundation	& 2	& High (3)		& 6
   \\ \hline
-  L & Fines and Lawsuits						& 1	& High (2)		& 2
+  L & Fines and Lawsuits						& 1	& High (3)		& 3
   \\ \hline
-  & & & \textbf{TOTAL} & 26
+  & & & \textbf{TOTAL} & 48
   \\ \hline
 \end{tabular}
 \end{center}
@@ -2661,9 +2672,9 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   S & Payments Network Unusable					& 3	& High (3)		& 9
   \\ \hline
-  F & One Time Financial Loss for Foundation	& 2	& High (0)		& 6
+  F & One Time Financial Loss for Foundation	& 2	& High (3)		& 6
   \\ \hline
-  L & Fines and Lawsuits						& 1	& High (2)		& 2
+  L & Fines and Lawsuits						& 1	& High (3)		& 3
   \\ \hline
   & & & \textbf{TOTAL} & 51
   \\ \hline
@@ -2672,7 +2683,68 @@ The risk profiles presented in this section are for the critical information ass
 \captionof{table}{(9) Severity: Tamper CryptoFiat Key Generation}
 \label{tab:severityTamperKeyGeneration}
 
-\subsubsection{(III) User Identity Risk Profiles} \label{sssec:5.3:userIdentityRiskProfiles}
+\paragraph{(3) Bribe Key Custodians }
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | p{14cm} |}
+  \hline
+  \textbf{Property} & \textbf{Description}
+  \\ \hline
+  (1) Threat Scenario & An attacker gains access to admin keys by bribing key custodians.
+  \\ \hline
+  (2) Actor & A nation state or global corporation with a great amount of disposable income.
+  \\ \hline
+  (3) Means & Bribe key custodians with an offer they can't refuse for access to the keys.
+  \\ \hline
+  (4) Motive & Will to sabotage the Euro 2.0 system for financial or political gain.
+  \\ \hline
+  (5) Outcome & Disclosure of confidential master key and Destruction of the system through malicious activity.
+  \\ \hline
+  (6) Security Requirements & Confidentiality of an admin key is compromised and Availability of the system could be at stake.
+  \\ \hline
+  (7) Probability & Low
+  \\ \hline
+  (8) Consequences &
+    \begin{itemize}
+		\item Every aspect of the system can be compromised when attacker gains the ability to deploy contracts with access to Euro 2.0 balances.
+		\item Reputation of foundation is gone and users no longer trust the system with their finances.
+		\item Fines and penalties for weak security practices.
+    \end{itemize}
+    \vspace*{-\baselineskip}
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Profile: Bribe Key Custodians}
+\label{tab:riskProfileBribeKeyCustodian}
+
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Impact Area} & \textbf{Description} & \textbf{Ranking} & \textbf{Value} & \textbf{Score}
+  \\ \hline
+  M & One Time Monetary Loss for a User			& 6	& High (3)		& 18
+  \\ \hline
+  R & Reputation and Monetary Confidence		& 5	& High (3)		& 15
+  \\ \hline
+  P & User Financial Information Revealed		& 4	& N/A (0)		& 0
+  \\ \hline
+  S & Payments Network Unusable					& 3	& High (3)		& 9
+  \\ \hline
+  F & One Time Financial Loss for Foundation	& 2	& High (3)		& 6
+  \\ \hline
+  L & Fines and Lawsuits						& 1	& Medium (2)	& 2
+  \\ \hline
+  & & & \textbf{TOTAL} & 50
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{(9) Severity: Bribe Key Custodians}
+\label{tab:severityBribeKeyCustodian}
+
+
+\subsubsection{Risk Profiles III: User Identity} \label{sssec:5.3:userIdentityRiskProfiles}
 
 The risk profiles presented in this section are for the critical information asset III. User Identity described in \hypersectionref{sssec:5.2:userIdentity}.
 
@@ -2692,7 +2764,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   (4) Motive & The ID to address mapping allows an attacker to link all transactions on the Ethereum Blockchain to real identities and sell this information to interested parties or publish the mapping online as an act of cyberterrorism.
   \\ \hline
-  (5) Outcome & Disclosure of user identities and their mapping to Ethereum blockchain addresses. 
+  (5) Outcome & Disclosure of user identities and their mapping to Ethereum blockchain addresses.
   \\ \hline
   (6) Security Requirements & Confidentiality of the Identity of user transactions is breached.
   \\ \hline
@@ -2759,7 +2831,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   (4) Motive & The ID to address mapping allows an attacker to link all transactions on the Ethereum Blockchain to real identities and sell this information to interested parties or publish the mapping online as an act of cyberterrorism.
   \\ \hline
-  (5) Outcome & Disclosure of user identities and their mapping to Ethereum blockchain addresses. 
+  (5) Outcome & Disclosure of user identities and their mapping to Ethereum blockchain addresses.
   \\ \hline
   (6) Security Requirements & Confidentiality of the identity of user transactions is breached.
   \\ \hline
@@ -2865,7 +2937,216 @@ The risk profiles presented in this section are for the critical information ass
 
 \subsection{Risk Mitigation} \label{ssec:5.4}
 
+In this section we use the results of the risk profiles and severity analysis in \hypersectionref{ssec:5.3} to determine a risk mitigation approach for each critical information asset with the guidelines of OCTAVE Allegro \textit{Step 8 - Select Mitigation Approach}. In \hypersectionref{sssec:5.4:riskCategorization} we enumerate the impact value risk score for each risk profile, categorize them by probability and risk score in a \textit{Relative Risk Matrix}, and determine pools of risk mitigation approaches. Then for all risk profiles of each critical information asset, we select a risk mitigation approach and describe the risk mitigation strategy in sections \hypernameref{sssec:5.4:riskMitigationUserMoney}, \hypernameref{sssec:5.4:riskMitigationEthereumAdminKeys}, \hypernameref{sssec:5.4:riskMitigationUserIdentity}.
+
+\subsubsection{Risk Categorization} \label{sssec:5.4:riskCategorization}
+
+For all documented risks in a security risk analysis an organization must decide on one of the following risk mitigation approaches:
+
+\begin{itemize}
+	\item \textbf{Accept} - take no action to address the risk and accept the consequences.
+	\item \textbf{Mitigate} - address the risk by developing and implementing the controls to counter the underlying threat and/or minimize the resulting impact.
+	\item \textbf{Defer} - neither accept nor mitigate the risk, but perform further investigation
+\end{itemize}
+
+Risk mitigation requires a balanced approach of risk avoidance and limitation.
+
+\begin{itemize}
+	\item \textbf{Avoidance} - implement appropriate controls to prevent threats and vulnerabilities from being exploited
+	\item \textbf{Limitation} - implement strategies that limit the adverse impact on the organization if a risk is realized
+\end{itemize}
+
+Along with an element of cost, in which the cost of avoiding and limiting a risk must correspond to the value of the asset being protected and potential impact on the organization.
+
+To aid the decision of which mitigation approach to apply for each risk, we build a \textit{Relative Risk Matrix} of probability vs. risk score. The results of the risk analysis for critical information assets (\hypersectionref{ssec:5.3}) are enumerated in \hypertableref{tab:riskAnalysisResults}.
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | l | l | l | l |}
+  \hline
+  \textbf{Symbol} & \textbf{Information Asset} & \textbf{Risk Profile} & \textbf{Probability} & \textbf{Score}
+  \\ \hline
+  (I:1) & User Money & Keys Stolen from User Device & High & 39
+  \\ \hline
+  (I:2) & User Money & Programming Error in the Ethereum Contract & Medium & 48
+  \\ \hline
+  (I:3) & User Money & Spoof ID to Ethereum Address Lookup & Medium & 59
+  \\ \hline
+  (I:4) & User Money & User Keys Stolen from Backup System & Low & 43
+  \\ \hline
+  (I:5) & User Money & Ethereum Scalability & Low & 26
+  \\ \hline
+  (II:1) & Admin Keys & Steal Admin Keys from Online Server & Medium & 48
+  \\ \hline
+  (II:2) & Admin Keys & Tamper CryptoFiat Key Generation & Low & 51
+  \\ \hline
+  (II:3) & Admin Keys & Bribe Key Custodians & Low & 50
+  \\ \hline
+  (III:1) & User Identity & ID or AML Database Hacked & Medium & 48
+  \\ \hline
+  (III:2) & User Identity & Brute Force ID Address Lookup & High & 49
+  \\ \hline
+  (III:3) & User Identity & Spoof ID Authorization & Low & 39
+  \\ \hline
+\end{tabular}
+}
+\end{center}
+\captionof{table}{Risk Analysis Results}
+\label{tab:riskAnalysisResults}
+
+We arbitrarily divide total risk score into the three buckets 0 to 30 , 31 to 45, and 45 to 63. Based on risk analysis results we construct Relative Risk Matrix in \hypertableref{tab:relativeRiskMatrix}.
+
+\begin{center}
+\begin{tabular}{ | c | c | c | c |}
+  \hline
+  & \multicolumn{3}{|c|}{\textbf{Risk Score}}
+  \\ \hline
+  \textbf{Probability} & \textbf{45 to 63} & \textbf{31 to 45} & \textbf{0 to 30}
+  \\ \hline
+  \textbf{High} & \cellcolor{pool1} (III:2) & \cellcolor{pool1} (I:1) & \cellcolor{pool2} 
+  \\ \hline
+  \textbf{Medium} & \cellcolor{pool2} \specialcell{(I:2)\\ (I:3)\\ (II:1) \\(III:1)} & \cellcolor{pool2} & \cellcolor{pool3} (II:1)
+  \\ \hline
+  \textbf{Low} & \cellcolor{pool3} \specialcell{(II:2)\\(II:3)} & \cellcolor{pool3} \specialcell{(I:4)\\(III:3)} & \cellcolor{pool4} (I:5)
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Relative Risk Matrix}
+\label{tab:relativeRiskMatrix}
+
+In which we assign the following risk mitigation decision categories (\hypertableref{tab:riskMitigationApproach}).
+
+\begin{center}
+\begin{tabular}{ | c | c | c |}
+  \hline
+  \textbf{Categorization} & \textbf{Mitigation Approach} & \textbf{Applicable Risks}
+  \\ \hline
+  \cellcolor{pool1} & Mitigate & (I:1), (III:2)
+  \\ \hline
+  \cellcolor{pool2} & Mitigate or Defer & (I:2), (I:3), (II:1), (III:1)
+  \\ \hline
+  \cellcolor{pool3} & Defer or Accept & (I:4), (II:2), (II:3), (III:3)
+  \\ \hline
+  \cellcolor{pool4} & Accept & (I:5)
+  \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Relative Risk Matrix}
+\label{tab:riskMitigationApproach}
+
+We present the risk mitigation decisions for the risk profiles in \hypersectionref{sssec:5.4:riskMitigationUserMoney}, \hypersectionref{sssec:5.4:riskMitigationEthereumAdminKeys}, and \hypersectionref{sssec:5.4:riskMitigationUserIdentity}.
+
+\subsubsection{Risk Mitigation I: User Money} \label{sssec:5.4:riskMitigationUserMoney}
+
+We present the risk mitigation strategy for User Money information asset defined in \hypersectionref{sssec:5.2:userMoney} with risk profiles defined in \hypersectionref{sssec:5.3:userMoneyRiskProfiles}.
+
+\paragraph{(I:1) Keys Stolen from User Device}
+
+Mitigation Approach: \textbf{Mitigate}
+
+Key management is currently the toughest problem of cryptocurrency user experience. The reputation of the Euro 2.0 foundation hinges on the ability of users to securely manage their EUR2 keys. The current client wallet implementation stores keys in uses password protected local storage, which has the disadvantages of being easy to hack and easy to lose keys. Fortunately, the wallet solutions for Bitcoin keys are completely applicable to Ethereum. Eskandari et al. build a comprehensive comparison of key management techniques for Bitcoin juxtaposed to cash and online banking\cite{Eskandari2015}. We propose two mitigation approaches to helping users secure their keys, an air-gapped wallet like Armory or hosted wallet like Coinbase.
+
+An air-gapped key storage wallet like Armory\cite{bitcoinArmory} allows users to a more malware resistant, offline, and recoverable key storage without a trusted third party, thus reducing the chance of theft or loss of keys. Since Bitcoin and Ethereum use the same key generation mechanism a similar solution could be built and offered by the Euro 2.0 foundation.
+
+Another approach is for key storage to be completely delegated to a online third party, such as Bitcoin's Coinbase. This creates a user experience with the same properties as an online bank\cite{Eskandari2015} suitable for average users that don't want to deal with key management.
+
+\paragraph{(I:2) Programming Error in the Ethereum Contract}
+
+Mitigation Approach: \textbf{Mitigate}
+
+Consequences are extremely high for a bug in the Euro 2.0 contracts that could basically result in a total meltdown of the digital currency. There are two suggestions mitigate risk of a programming error in the smart contracts:
+\begin{itemize}
+	\item Write tests for the contract to clearly define exactly functionality of the code using a testing framework, such as Truffle\cite{ethereumTruffle}.
+	\item Security audit of Euro 2.0 smart contracts by industry professionals, such as Smart Contract Solutions\cite{smartContractSolutions}
+\end{itemize}
+
+\paragraph{(I:3) Spoof ID to Ethereum Address Lookup}
+
+Mitigation Approach: \textbf{Mitigate} and \textbf{Defer}
+
+There are two clients looking up Ethereum Addresses by ID, user clients and the reserve bank gateway. Each has its own mitigation strategy.
+
+The risk of bank gateway calls to ID server being spoofed can be mitigated by the ID Server and Bank Gateway communicating on a secure network with SSL or a VPN.
+
+The risk of user client calls to ID server for address lookup can be deferred for further research. Establishing a secure connection between clients and ID server will be at the expense of an open API by requiring clients to have credentials to establish a TLS connection.
+
+\paragraph{(I:4) User Keys Stolen from Backup System}
+
+Mitigation Approach: \textbf{Defer}
+
+User keys stolen from the backup system is a risk that can be accepted for the time being. It only affects a single users who chooses to backup their keys. It has low likelihood due to the nature of the challenge. More research needs to be done on how cryptographically vulnerable is the challenge to attacks.
+
+\paragraph{(I:5) Ethereum Scalability}
+
+Mitigation Approach: \textbf{Accept}
+
+Ethereum and blockchain scalability is an active avenue of development in the community with scalability initiatives such as Sharding\cite{shardingFaq} and Proof of Stake\cite{proofOfStakeFaq}. For the near future scalability is not an immediate threat to the viability of an Ethereum based digital currency like Euro 2.0.
+
+\subsubsection{Risk Mitigation II: Ethereum Admin Keys} \label{sssec:5.4:riskMitigationEthereumAdminKeys}
+
+We present the risk mitigation strategy for User Money information asset defined in \hypersectionref{sssec:5.2:ethereumAdminKeys} with risk profiles defined in \hypersectionref{sssec:5.3:ethereumAdminKeysRiskProfiles}.
+
+\paragraph{(II:1) Steal Admin Keys from Online Server}
+
+Mitigation Approach: \textbf{Mitigate}
+
+Admin keys of the Euro 2.0 digital currency system should be protected at all cost. We propose mitigation strategies depending on the key hosted on a server.
+
+The \textit{Reserve} key should never touch the internet. Ideally this key should be kept completely offline in an air gapped storage for manual transactions. For automated reserve processes, the node should live on a dedicated private network with only a dedicated Ethereum node to broadcast signed transactions.
+
+The \textit{Enforcer} and \textit{Designator} key should never need to to touch the internet. All risk is mitigated if these keys live completely offline to sign transactions.
+
+The \textit{Approver} and \textit{Delegate} keys unfortunately must live on a server touching the internet to be used in automated processes. Best practices must be followed with these keys on live servers with the following possible mitigations:
+
+\begin{itemize}
+	\item Key should be stored password protected on the server and the password entered on application startup (though memory dumps now have extremely confidential information, the password)
+	\item Have jobs see if approver or delegate keys have been used in ethereum blockchain events without proper events on the servers.
+	\item Invest in a HSM (Hardware Security Module) to store the key.
+\end{itemize} 
+
+\paragraph{(II:2) Tamper CryptoFiat Key Generation}
+
+Mitigation Approach: \textbf{Defer}
+
+This risk can be mitigated later by researching and designing an auditable key ceremony to generate the CryptoFiat master key (or any admin key) on new hardware to make it impossible for an attacker to tamper the key generation of any admin keys.
+
+\paragraph{(II:3) Bribe Key Custodians}
+
+Mitigation Approach: \textbf{Defer}
+
+Although bribery proposes a significant risk, it is not important until the value of the system vastly outweighs the value transacting on the system. This risk can be significantly mitigated by implementing Multi-sign M of N signatures for CryptoFiat Master, Enforcement, and Delegator contracts so that multiple individuals would need to be bribed in order to compromise the key.
+
+\subsubsection{Risk Mitigation III: User Identity} \label{sssec:5.4:riskMitigationUserIdentity}
+
+We present the risk mitigation strategy for User Money information asset defined in \hypersectionref{sssec:5.2:userIdentity} with risk profiles defined in \hypersectionref{sssec:5.3:userIdentityRiskProfiles}.
+
+\paragraph{(III:1) ID or AML Database Hacked}
+
+Mitigation Approach: \textbf{Mitigate}
+
+We propose mitigations for each database separately.
+
+The AML database never needs to be accessible from the internet and only needs to be hosted in the law enforcement private network.
+
+The ID Server should have standard security procedures applied for databases. The database should not be open up to the public internet, but only accessible from a private network where the server lives. The endpoints to ID server should be carefully audited to prevent security breaches and code injection.
+
+Finally a secure communication channel needs to exist to transfer between ID server and AML server to transfer ID to address mappings on a private connection, either an internal network or VPN.
+
+\paragraph{(III:2) Brute Force ID Address Lookup}
+
+Mitigation Approach: \textbf{Mitigate}
+
+Brute Force ID address lookup can be prevented by adding rate limiting to the API endpoint to a reasonable usages per source IP.
+
+\paragraph{(III:3) Spoof ID Authorization}
+
+Mitigation Approach: \textbf{Accept}
+
+Estonian ID card system has been in production for more than 15 years today and is trusted with banks, telecoms, and the government of Estonia for authentication needs\cite{Martens2010electronicIdentity}. A properly implemented Estonia and Mobile ID implementation should not be not something the Euro 2.0 system should worry about.
+
 \subsection{Conclusion} \label{ssec:5.5}
+
+\todo[inline]{Chapter 5 conclusion and future work}
 
 \pagebreak
 
