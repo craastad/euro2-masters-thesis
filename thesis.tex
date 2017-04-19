@@ -91,13 +91,16 @@
 
 % --- new commands ---
 
-% creates hyperref using the name of a section
+% creates hyperref using the name of a reference
 \newcommand{\hypernameref}[1]{\hyperref[#1]{\nameref{#1}}}
 
-% creates a hyperref in form "Table #" to a table
+% creates a hyperref in form "Table #" for a table
 \newcommand{\hypertableref}[1]{\hyperref[#1]{Table \ref{#1}}}
 
-% creates a hyperref in form "Section #" to a table
+% creates a hyperref in form "Figure #" for a figure
+\newcommand{\hyperfigureref}[1]{\hyperref[#1]{Figure \ref{#1}}}
+
+% creates a hyperref in form "Section #" for a section
 \newcommand{\hypersectionref}[1]{\hyperref[#1]{Section \ref{#1}}}
 
 % make font look like code
@@ -243,14 +246,15 @@ Table of abbreviations and terms
 \end{center}}
 
 \begin{tabular}{p{3 cm} p{10cm}}
-BTC & Bitcoin currency code\\
-AML & \textit{Anti Money Laundering}, processes implemented by Financial Institutions to hinder money laundering and comply with regulation\\
-CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial Institutions to hinder terrorist financing and comply with regulation\\
-KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
-ISSRM & \textit{Information Systems Security Risk Management} \\
-SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system. \\
-LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK \\
-API & \textit{Application Programming Interface}, describing communicating between two servers
+	BTC & Bitcoin currency code\\
+	AML & \textit{Anti Money Laundering}, processes implemented by Financial Institutions to hinder money laundering and comply with regulation\\
+	CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial Institutions to hinder terrorist financing and comply with regulation\\
+	KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
+	ISSRM & \textit{Information Systems Security Risk Management} \\
+	SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system. \\
+	LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK \\
+	API & \textit{Application Programming Interface}, describing communicating between two servers \\
+	UX & \textit{User Experience}
 \end{tabular}
 
 \pagebreak
@@ -1550,10 +1554,10 @@ The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC 
 
 \subsection{Introduction} \label{ssec:4.1}
 
-In this chapter we explore the social technical impacts of the Euro 2.0 system on key stakeholders. We explore the research question:
+In this chapter we explore the social technical implications of the Euro 2.0 system on key stakeholders. We do this by exploring the research question:
 
 \begin{quoting}
-	\textbf{RQ2:} How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, governments, and financial institutions?
+	\textbf{RQ2:} \textit{How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, governments, and banks?}
 \end{quoting}
 
 In which we explore in the following sub research questions.
@@ -1565,22 +1569,17 @@ In which we explore in the following sub research questions.
 	\textbf{RQ2.2:} \textit{What changes in the relationship of money for stakeholders after adopting the Euro 2.0 digital currency?}
 \end{quoting}
 \begin{quoting}
-	\textbf{RQ2.3:} \textit{What are the enabling and inhibiting factors influencing the transition to the Euro 2.0 digital currency}
+	\textbf{RQ2.3:} \textit{What are the enabling and inhibiting factors influencing the transition to the Euro 2.0 digital currency?}
 \end{quoting}
 
-\begin{enumerate}
-	\item Users
-	\item Merchants
-	\item Banks
-	\item Governments
-\end{enumerate}
+We approach the research questions design and UX influenced interpretation of the \textit{Change Formula} from the field of Organization Development\cite{dannemiller1992}. In \hypersectionref{ssec:4.2} we define methods and terminology of the analysis, first the \textit{Change Formula}, then our interpretation as \textit{Change Analysis}, and then define the stakeholders of Euro 2.0 system for the analysis. In \hypersectionref{ssec:4.3} we answer \textbf{RQ2.1} by describing the current state of money for each stakeholder. Likewise in \hypersectionref{ssec:4.4} we answer \textbf{RQ2.2} by describing the future state of money for each stakeholder under hypothetical use of the Euro 2.0 digital currency. Note in both \ref{ssec:4.3} and \ref{ssec:4.4} we use state and relationship interchangeably to correspond to \textit{Change Analysis} terminology. In \hypersectionref{ssec:4.5} we perform the change analysis for each stakeholder to answer \textbf{RQ2.3}. And finally we summarize our findings and future work in the conclusion, \hypersectionref{ssec:4.6}.
 
-\subsection{Research Methods} \label{ssec:4.2}
+\subsection{Analysis Preparation} \label{ssec:4.2}
 
 \subsubsection{Change Formula} \label{sssec:4.2:changeFormula}
-We approach the research questions design and UX influenced interpretation of the \textit{Formula for Change} from the field of Organization Development. Originally written on a chalkboard by scientist David Gleicher, the formula stuck in the mind of organizational behavior expert Richard Beckhard, and first published in Sloan Management Review\cite{beckhard1975} and later in book by Beckhard and Harris.\cite{organizationalTransitions1977} In the review paper, Cady et al. state ``The formula describes the conditions, that when met, will move an individual, group, or whole system in a direction of their choosing.''\cite{changeFormula2014}
+The \textit{Change Formula} was originally written on a chalkboard by scientist David Gleicher and stuck in the mind of organizational behavior expert Richard Beckhard\cite{changeFormula2014}. The formula was first published in Sloan Management Review\cite{beckhard1975} and later in book by Beckhard and Harris\cite{organizationalTransitions1977}. Succinctly described in the review paper, Cady et al., \textit{``The formula describes the conditions, that when met, will move an individual, group, or whole system in a direction of their choosing.''} \cite{changeFormula2014}.
 
-The improved version of the formula by Dannemiller\cite{dannemiller1992} is described that change will occur when the following conditions are satisfied:
+The improved version of the formula by Dannemiller\cite{dannemiller1992} states that change will occur when the following condition is satisfied:
 
 \begin{equation}
 	D \times V \times F > R
@@ -1593,16 +1592,42 @@ The improved version of the formula by Dannemiller\cite{dannemiller1992} is desc
 	\item $R$ : Resistance to change and first steps
 \end{itemize}
 
-If any one of $D$, $V$, or $F$ is zero, i.e. neglected or overlooked, then the resistance to change will not be overcome.
+If any one of $D$, $V$, or $F$ is zero, i.e. neglected or overlooked, then the resistance to change will not be overcome and the intended behavioral change will not ensue.
+
+We use the \textit{Change Formula} in the context of Euro 2.0 as the change of stakeholders using Euro 2.0 digital currency instead of Euro in the traditional monetary system. This is the academic basis of the analysis technique proposed in the following section.
 
 \subsubsection{Change Analysis} \label{sssec:4.2:changeAnalysis}
 
-\begin{figure}[h]
+\textit{Change Analysis} is a UX and User Design interpretation of the \textit{Change Formula}. It provides a framework to analyze how a new system will affect key stakeholders and seeds future research questions. The concepts of \textit{Change Analysis} are depicted in \hyperfigureref{fig:changeAnalysis} and described below. Stakeholders refer to human or organizational actors interacting with the system.
+
+\textbf{Current State} is the current state of the world for the stakeholders before the proposed change. This includes actions and functions stakeholders can do, motivations and psychological factors, as well as consequences and side-affects of these functions. In regards to the Change Formula, the current state includes the dissatisfaction $D$ and provides a starting point for listing factors influencing first steps $F$ and resistance $R$.
+
+\textbf{Future State} is the state of the world after the proposed change. This also includes actions and functions stakeholders can do, motivations and psychological factors, as well as consequences and side-affects of these functions. In regards to the Change Formula, the future state is the vision of change $V$.
+
+\textbf{Enablers} are the \textit{Patterns}, \textit{Habits}, \textit{Behaviors}, and \textit{Motivation} that would encourage stakeholders for the proposed change from the current to the future state of the world. In regards to the Change Formula, enablers are those factors supporting first steps to the change $F$.
+
+\textbf{Inhibitors} are the factors that would discourage stakeholders from the proposed change from the current to the future state of world including \textit{Existing Policy Legislation}, \textit{Parties with Vested Interest}, \textit{Infrastructure and Technology}, and \textit{Personal Barriers to Change}. In regards to the Change Formula, inhibitors are those factors contributing to resistance of change $R$.
+
+The outcome of the change analysis is an understanding of how the change will impact the stakeholders, a set of inhibitors and enablers for that change, and further areas of design research to validate or disprove the findings.
+
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{change-analysis}
     \caption{Change Analysis Overview}
     \label{fig:changeAnalysis}
 \end{figure}
+
+\subsubsection{Key Stakeholders} \label{sssec:4.2:keyStakeholders}
+
+The key stakeholders of the Euro 2.0 system are listed below.
+
+\textbf{Users} are everyday users of financial systems sending and receiving transactions for personal use.
+
+\textbf{Merchants} represent businesses users of financial system sending and receiving money for business use. In the context of this analysis we use merchants as the first use case representative of business entities.
+
+\textbf{Banks} represent financial institutions in the financial system, including traditional banks and payment processors. For this analysis a bank is both a traditional bank making money off of holdings and a payment processor making money off of transactions.
+
+\textbf{Government} represents the government entities in a financial institution including the regulators defining the rules of a financial system, the central bank managing the economic value of the fiat currency, the law enforcement policing money, and the tax board collecting taxes.
 
 \subsection{Current State of Money} \label{ssec:4.3}
 
@@ -3258,6 +3283,7 @@ The following are suggested improvements to the Euro 2.0 system based on the sec
 	\item research security comparison of Ethereum vs. No Ethereum
 	\item research privacy, ZCash, ZkSNARKs
 	\item research scalability
+	\item research miner attacks, proof of stake vs proof of work
 \end{itemize}
 
 \pagebreak
