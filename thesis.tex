@@ -1333,6 +1333,15 @@ Its functions are listed in \hypertableref{tab:delegationFunctions}}.
 
 The centralized components of the Euro 2.0 prototype are built with traditional client server architecture. Currently these are maintained by the Euro 2.0 Foundation, but would ideally be given over to government or the central bank to run their own monetary system. We only give a high level overview of the centralized component architecture, not going into any significant details of their implementation. At the time of the writing the components are based off of an unfinished prototype with quite a few bugs and some components not yet built. The goal of the subsection is to describe how the centralize components could be set up in such a system, where are the important keys and data are held, and in \hypersectionref{ssec:3.6} how these components interact with the client and Ethereum to fulfill the features described in \hypersectionref{ssec:3.2}.
 
+\hyperfigureref{fig:euro2architecture} shows the architecture of the Euro 2.0 digital currency showing the interaction between both centralized and decentralized components. The figure is quite a helpful reference point when relating the components to their place in the system.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{euro2-architecture}
+    \caption{Euro 2.0 Architecture}
+    \label{fig:euro2architecture}
+\end{figure}
+
 \subsubsection{Client} \label{sssec:3.5:client}
 For our purposes the client refers to code running on a user's device interacting with the Euro 2.0 system. This can be a smart phone application or laptop browser. This is typically Javascript displaying the UI and making HTTP REST calls to the servers for interactions with the system. In the current prototype the client library does not interact directly with the decentralized components, but goes through the servers for all actions. The client will typically be storing a user's private keys in order to access their EUR2 funds.
 
