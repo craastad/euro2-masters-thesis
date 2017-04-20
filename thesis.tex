@@ -7,7 +7,7 @@
 %
 %  Translated to English 2017/03/10 by Chris Raastad
 %
-\documentclass[12pt]{article} %Document class definition and text size settings
+\documentclass[a4paper,12pt]{article} %Document class definition and text size settings
 %
 %Packages can be explored in more details: https://www.ctan.org/pkg/PACKAGE_NAME?lang=en
 %
@@ -58,10 +58,11 @@
 \setlength{\parindent}{0cm} %Set paragraph indentation to zero %consider removing this...
 
 \usepackage{setspace} %Allows setting spacing between lines
-\onehalfspacing %Set spacing to 1.5x
+% \onehalfspacing %Set spacing to 1.5x LaTeX
+\linespread{1.25} %Set spacing to 1.5x like MS word
 
 \usepackage{parskip}
-%\setlength{\parskip}{1.5\baselineskip}
+%\setlength{\parskip}{1.5\baselineskip} % default for parskip
 %\hangindent=0.7cm
 
 \hyphenation{põhi-tekstis üliõpilas-kood lehe-küljed joonda-takse} %Correcting incorrect hyphenation (?)
@@ -1000,7 +1001,7 @@ The \textit{Data} contract provides the main data access layer for all subcontra
 
 \paragraph{InternalData Contract}
 
-\textit{InternalData} is the main contract for accessing data storage used by all subcontracts. All functions here are marked \code{internal}, meaning they can only be accessed from within a contract. All subcontracts extend \textit{InternalData}. Data access functions are listed in \hypertableref{tab:internalDataAccessFunctions}, account status functions are listed in \hypertableref{tab:internalDataAccountStatusFunctions}, modifiers in \hypertableref{tab:internalDataModifiers}, and account functions in \hypertableref{tab:internalDataAccountFunctions}.
+\textit{InternalData} is the main contract for accessing data storage used by all subcontracts. All functions here are marked \code{internal}, meaning they can only be accessed from within a contract. All subcontracts extend \textit{InternalData}. Data access functions are listed in \hypertableref{tab:internalDataAccessFunctions}, account status functions are listed in \hypertableref{tab:internalDataAccountStatusFunctions}, modifiers in \hypertableref{tab:internalDataModifiers}, and account functions in \hypertableref{tab:internalDataAccountFunctions}. The data dependency of functional contracts on \textit{InternalData} and \textit{CryptoFiat} are depicted in \hyperfigureref{fig:contractData}.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1049,6 +1050,13 @@ The \textit{Data} contract provides the main data access layer for all subcontra
 \end{center}
 \captionof{table}{InternalData account status functions}
 \label{tab:internalDataAccountStatusFunctions}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{contract-data}
+    \caption{Contract Data Dependencies}
+    \label{fig:contractData}
+\end{figure}
 
 \begin{center}
 \resizebox{\textwidth}{!}{
