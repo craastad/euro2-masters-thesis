@@ -135,13 +135,13 @@
 ITC70LT\\[0cm]
 Christopher David Raastad\\
 \begin{LARGE}
-\textsc{Security Analysis of the Euro 2.0 Digital Currency\\}
+\textsc{Security Analysis of the Euro 2.0 Digital Currency Prototype\\}
 \end{LARGE}
 Master thesis\\[2cm]
 \end{center}
 
 \begin{flushright} %Align text to the right
-Alex Norta\\[0cm]
+Alexander Horst Norta\\[0cm]
 PhD\\[0cm]
 Associated Professor\\[0cm]
 \end{flushright}
@@ -172,15 +172,15 @@ Associated Professor\\[0cm]
 ITC70LT\\[0cm]
 Christopher David Raastad\\
 \begin{LARGE}
-\textsc{Euro 2.0 Digitaalne Valuuta Turvalisuse Analüüs\\}
+\textsc{Euro 2.0 Digitaalne Valuuta Prototüübi Turvalisuse Analüüs\\}
 \end{LARGE}
 Magister\\[2cm]
 \end{center}
 
 \begin{flushright} %Joondab teksti paremale
-Alex Norta\\[0cm]  \todo[noline]{Tõlgi PhD eesti keelde}
+Alexander Horst Norta\\[0cm]
 PhD\\[0cm]
-Associate Professor\\[0cm]  \todo[noline]{Tõlgi Associated Professor eesti keelde}
+Dotsent\\[0cm]
 \end{flushright}
 
 \cfoot{Tallinn, Estonia 2017} %Lisab asukoha ja kuupäeva jalusesse
@@ -205,16 +205,11 @@ May 8th 2017
 \pagebreak
 
 %---------------------------ABSTRACT---------------------------------
-\selectlanguage{estonian}
 \section*{\begin{center}
 Abstract
 \end{center}}
 
-\todo[inline]{Write English abstract \ldots}
-
-If the thesis is written in English, the abstract is $\frac{1}{2}$ A4 long and the abstract in Estonian (\textit{Annotatsioon}) is of length 1 A4.
-
-The last paragraph of abstract is obligatory and must be written accordingly:
+Digital money in the form of cards, bank accounts, and online payments has been around for the last few decades. The cryptocurrency Bitcoin emerged as a completely new paradigm of storing and transferring value outside of the regulations and governments of the traditional financial system. The blockchain distributed ledger consensus technology powering Bitcoin inspired similar cryptocurrency clones, specialized use cases, and the creation of a general purpose distributed application computing platform Ethereum. Despite the innovations in value transfer, cryptocurrencies have a very niche use in daily transactions outside the circle of enthusiasts. The problem is the lack of incentive for users and merchants alike to hold all of their assets in a cryptocurrency. Significant cost and friction is associated with moving funds in and out of cryptocurrencies through exchanges and payment processors as well as the risk of wildly fluctuating exchange rates. The Euro 2.0 Foundation presents a fiat backed, fully regulated, government backed digital currency to alleviate these shortcomings. This thesis presents a security analysis of the proposed Euro 2.0 digital currency prototype. We present the features and architecture of the Euro 2.0 digital currency system, a fusion of traditional client server components, Estonia ID card authentication, and Ethereum smart contract decentralized distributed computing platform. Then we present a change analysis of the impact of Euro 2.0 on the stakeholders including users, merchants, banks, and government. Finally we present a information system security risk analysis based on the OCTAVE Allegro methodology of key information assets user money, Ethereum admin keys, and user identity. From the security analysis we present suggestions and mitigation strategies of the biggest risks of a hybrid centralized and decentralized Euro 2.0 digital currency system.
 
 \todo[inline]{Fill in English abstract thesis details \ldots}
 
@@ -223,6 +218,7 @@ The thesis is in English and contains [pages] pages of text, [chapters] chapters
 \pagebreak
 
 %-----------------------------ANNOTATSIOON-----------------------------------
+\selectlanguage{estonian}
 \section*{\begin{center}
 Annotatsioon
 \end{center}}
@@ -235,7 +231,7 @@ Annotatsiooni viimane lõik on kohustuslik ja omab järgmist sõnastust:
 
 \todo[inline]{Täitke eesti keele annotatsiooni lõputöö detailid \ldots}
 
-Lõputöö on kirjutatud [mis keeles] keeles ning sisaldab teksti [lehekülgede arv] leheküljel, [peatükkide arv] peatükki, [jooniste arv] joonist, [tabelite arv] textit.
+Lõputöö on kirjutatud inglise keeles ning sisaldab teksti [lehekülgede arv] leheküljel, [peatükkide arv] peatükki, [jooniste arv] joonist, [tabelite arv] textit.
 
 \pagebreak
 
@@ -321,7 +317,7 @@ The thesis utilizes methods from design science and Information Systems Security
 
 \subsection{Structure of the Thesis} \label{ssec:1.4}
 
-\hypernameref{sec:2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID card, and security analysis methodology. \hypernameref{sec:3} will describe the motivation, features, smart contracts, and implementation architecture of the Euro 2.0 system and prototype needed for analysis. \hypernameref{sec:4} will analyze the impact of Euro 2.0 on stakeholders using change analysis to better understand the socio-technical impact of the proposed digital currency. In \hypernameref{sec:5} we will perform a security risk analysis of the proposed Euro 2.0 prototype implementation OCTAVE Allegro, an ISSRM based security analysis methodology. Finally \hypernameref{sec:7} will summarize the thesis, answer the research question, and suggest future avenues of research.
+\hypernameref{sec:2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID card, and security analysis methodology. \hypernameref{sec:3} will describe the motivation, features, smart contracts, and implementation architecture of the Euro 2.0 system and prototype needed for analysis. \hypernameref{sec:4} will analyze the impact of Euro 2.0 on stakeholders using change analysis to better understand the socio-technical impact of the proposed digital currency. In \hypernameref{sec:5} we will perform a security risk analysis of the proposed Euro 2.0 prototype implementation OCTAVE Allegro, an ISSRM based security analysis methodology. Finally \hypernameref{sec:6} will summarize the thesis, answer the research question, and suggest future avenues of research.
 
 \pagebreak
 
@@ -360,9 +356,6 @@ Existing crypto currencies not great for payments...
 
 \subsection{Estonia ID Card}
 
-\subsection{Future Adoption Research}
-?
-
 \subsection{OCTAVE Allegro}
 
 \pagebreak
@@ -395,7 +388,7 @@ Answering \textit{RQ1} lays the groundwork for further analysis in \hypernameref
 
 \subsection{Euro 2.0 Motivation} \label{ssec:3.2}
 
-The idea of Euro 2.0 originated in 2014 from Kristo Käärmann's blogpost \textit{Government Backed Bitcoin}\cite{kaarmann2014government}. Following the success of Bitcoin, he saw an opportunity for a payments settled on a Government backed cryptocurrency, \textit{EuroCoin}, pegged one to one to real world Euro counterpart. Paypal cofounder Max Levchin supports the same idea, \textit{``I am confident that there will be a form of settlement that will be a crypto-currency''}\cite{pando2014levchin}. Bitcoin's short term fluctuations, functioning both as a commodity and a currency\todo{citation}, in value make it unreasonable for end to end holdings in a fiat based economy\todo{cite something about fluctuations}. Removing financial intermediaries in payments reduces the costs of transactions.
+The idea of Euro 2.0 originated in 2014 from Kristo Käärmann's blogpost \textit{Government Backed Bitcoin}\cite{kaarmann2014government}. Following the success of Bitcoin, he saw an opportunity for a payments settled on a Government backed cryptocurrency, \textit{EuroCoin}, pegged one to one to real world Euro counterpart. Paypal cofounder Max Levchin supports the same idea, \textit{``I am confident that there will be a form of settlement that will be a crypto-currency''}\cite{pando2014levchin}. Bitcoin's short term fluctuations, functioning both as a commodity and a currency, in value make it unreasonable for end to end holdings in a fiat based economy. Removing financial intermediaries in payments reduces the costs of transactions.
 
 Even some governments have expressed interests in digital currency. The Swedish central bank debated whether to become the first to issue digital currency as a response to the country's move away from cash\cite{milne2016sweden}. The UK government pushed for a ``Call for Information'' on digital currencies in order to assess risks\cite{nermin2014ukcall} that was later responded by Citi bank's global Treasury and Trade Services (TTS) Technology and Innovation Team with a suggestion for government to create its own digital currency\cite{spaven2015ukcurrency}:
 
@@ -430,7 +423,7 @@ From this business problem derives the key pillars of Euro 2.0:
 
 \textit{Government can control monetary supply} (5) follows from the ideal scenario of (4), the central bank can issue new money directly into the digital monetary system without a real world euro counterpart.
 
-\textit{Features for Law Enforcement and AML} (6) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any third party, including government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which require means of necessary intervention that typically happen today via cooperation with traditional financial institutions\todo{cite relationship between banks and government}.
+\textit{Features for Law Enforcement and AML} (6) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any third party, including government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which require means of necessary intervention that typically happen today via cooperation with traditional financial institutions.
 
 \subsection{Euro 2.0 Features} \label{ssec:3.3}
 
