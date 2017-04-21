@@ -306,10 +306,10 @@ In order to do a risk analysis, the key features of the Euro 2.0 system need to 
 \subsection{Research Methods} \label{ssec:1.3}
 The thesis utilizes methods from design science and Information Systems Security Risk Management (ISSRM) to approach the research questions. The main contributions are:
 \begin{itemize}
-	\item Analysis of stakeholders behavior transition to Euro 2.0 system
-	\item Risk analysis of the current Euro 2.0 system
-	\item Recommendations to mitigate most severe risks
-	\item Validation of risks and vulnerabilities on existing codebase test network
+	\item Presentation of the Euro 2.0 digital currency prototype
+	\item Change analysis of stakeholders' transition to Euro 2.0 money transfer
+	\item Security Risk analysis of the Euro 2.0 prototype
+	\item Recommendations how to mitigate risks
 \end{itemize}
 
 \subsection{Structure of the Thesis} \label{ssec:1.4}
@@ -348,24 +348,67 @@ Ethereum state is held in objects called \textit{accounts}. An account is compos
 
 \begin{itemize}
 	\item \textit{nonce} - a counter used to make sure each transaction can only be processed once
-	\item \textit{balance} - amount of Ether, the currency of Ethereum, in the account
+	\item \textit{balance} - amount of Ether in the account
 	\item \textit{contract code} - the code associated with this account, if present
 	\item \textit{storage} - storage space for this account
 \end{itemize}
 
-An Ethereum account is named with a 20 byte address. This address is the \code{Keccak-256} hash of a public key of a private generated from an Elliptic Curve Digital Signature Algorithm. Accounts come in two flavors: \textit{Externally Controlled Accounts} and \textit{Contract Accounts}. Externally controlled accounts are controlled by private keys of users outside of Ethereum and can be used to send messages by creating and signing transactions. Contract account code is executed upon a received messages to the address. This code can in read and write to local storage, send other messages, and also create contracts. Both types of accounts store a balance of \textit{Ether}, the currency of Ethereum, which can be used as a store of value and as fee for miners to execute EVM code. Ether is produced by miners as an output of producing blocks in a Proof-of-Work mechanism. Unlike bitcoin, Ether doesn't have a capped total supply, but is anticipated to be produced at the same rate of Ether being lost in unaccessible accounts where the private key is lost or unknown.
+An Ethereum account is named with a 20 byte address. This address is the \code{Keccak-256} hash of a public key of a private generated from an Elliptic Curve Digital Signature Algorithm. Accounts come in two flavors: \textit{Externally Controlled Accounts} and \textit{Contract Accounts}. Externally controlled accounts are controlled by private keys of users outside of Ethereum and can be used to send messages by creating and signing transactions. Contract account code is executed upon a received messages to the address. This executed code can read and write to local storage, send other messages, and also create contracts. Both types of accounts store a balance of \textit{Ether}, the currency of Ethereum, which can be used as a store of value and as fee for miners to execute EVM code. Ether is produced by miners as an output of producing blocks in a Proof-of-Work mechanism. Unlike bitcoin, Ether doesn't have a capped total supply, but is anticipated to be produced at the same rate of Ether being lost to unaccessible accounts where the private key is lost or unknown.
 
-\paragraph*{Transactions}
+\paragraph*{Messages and Transactions}
 
-\paragraph*{Messages}
+Messages and transactions in Ethereum are the same construct. A \textit{Transaction} refers to a signed message from an externally owned Ethereum account with the following fields:
+
+\begin{itemize}
+	\item Recipient Ethereum address of the message
+	\item Signature identifying the sender
+	\item Amount of Ether transferred from the sender to the recipient
+	\item Optional data field accessible by smart contract
+	\item \code{STARTGAS} value in Ether, the maximum amount of fee a given transaction is allowed to execute
+	\item \code{GASPRICE} value in Ether, the fee the sender pays per computational step
+\end{itemize}
+
+Transactions are persisted on the blockchain. Account code will be executed upon receipt of a message. Gas allows for a Turing complete scripting language by creating economical disincentive for accidental or intentional denial of service attacks through infinite loops or expensive computations. Each computational step has a fee in a multiple of \code{GASPRICE} and when greater or equal to transaction specified \code{STARTGAS} has been executed, the computation fails with all execution changes rollback. Blocks of transactions also have a dynamic gas limit to the total computational expense of an entire block of transactions.
+
+Messages refer to those originating from a contract \code{CALL} opcode and not by an external actor. These are not persisted on the blockchain and are only virtual objects in the Ethereum execution environment of nodes on the network. Messages contain the following fields:
+
+\begin{itemize}
+	\item Sender Ethereum address of the message
+	\item Recipient Ethereum address of the message
+	\item Amount of ether to transfer with the message
+	\item Optional data field
+	\item \code{STARTGAS} value in Ether delegated to the message from calling contract original gas
+\end{itemize}
+
+Limited top level \code{STARTGAS} prevents contracts from calling in infinite recursive loops.
 
 \paragraph*{Ethereum State Transition Function}
 
-\paragraph*{Code Execution}
+Unlike Bitcoin's unspent transaction output (\textit{UTXO}), Ethereum employs an account model of system state. The Ethereum state $S$ represents the state of all addresses, balances, contracts, and data in the Ethereum. Given a transaction $TX$ the new Ethereum state $S'$ is computed by the state transaction function $APPLY(S,TX) -> S'$ and does the following according to the Ethereum Whitepaper\cite{whitepaper}:
+
+\begin{itemize}
+	\item Check if transaction is valid, signature is valid, and nonce matches sender account nonce; if not throw an error.
+	\item Calculate transaction fee as \code{STARTGAS * GASPRICE}, determine the sending address from the signature, subtract the fee from the sender's account balance, and increments the sender's nonce. If there is not enough balance, throw an error.
+	\item Initialize \code{GAS = STARTGAS}, and take off a certain quantity of gas per byte to pay for the bytes in the transaction.
+	\item Transfer the transaction value from the sender's account to the receiving account. If the receiving account does not yet exist, it is created. If the receiving account is a contract, run the contract's code either to completion or until the execution runs out of gas.
+	\item If the value transfer failed because the sender had insufficient balance or the code execution ran out of gas, revert all state changes except the payment of the fees, and add the fees to the miner's account.
+	\item Otherwise, refund the fees for all remaining gas to the sender, and send the gas fees consumed to the miner.
+\end{itemize}
+
+State is calculated and stored identically on every node in the network for all transactions.
+
+\paragraph*{Ethereum Code}
+
+Ethereum code is fundamentally a low-level, stack-based, byte code language referred to as the ``EVM code''. Ethereum code is usually written in high level languages such as python based Serpent\cite{serpent} or javascript based Solidity, which is described in \hypersectionref{sssec:2:ethereum:soliditySmartContracts}, and then compiled to EVM bytecode. Code executes until an error is thrown, runs out of gas, or a \code{STOP} or \code{RETURN} statement is executed. Persistence capabilities include a last-in-first-out (LIFO) \textit{stack} in which values can be pushed and popped, an infinitely expandable byte array \textit{memory}, or contract \textit{storage}, a key value store which persists after computation has finished (unlike the memory or stack). Executing code also has access to the value, sender, and data of an incoming message and can return a byte array of data as an output.
 
 \paragraph*{Events}
+Events are a space optimized, searchable, storage of predefined conditions in contracts described formally in the Yellowpaper\cite{yellowpaper}. This is analogous to logs in the traditional computing. These logs are not usable like contract storage in future Ethereum computations, but provide searchable records of the past usable in Ethereum applications.
 
-\subsection{Solidity Smart Contracts} \label{sssec:2:ethereum:soliditySmartContracts}
+\paragraph*{Blockchain and Mining}
+
+Ethereum has a proof-of-work mining mechanism, like Bitcoin, to economically incentivize miner nodes to maintain the global state of Ethereum network for Ether rewards. Miners compete to solve a cryptographic puzzle to produce valid blocks of transactions. The hash of the previous block is an input to a new block, hence forming a Blockchain record of transactions. In the process of mining, the block validation process executes the EVM code for all contracts involved in transactions. This implies that all EVM code is being executed simultaneously by all nodes in the network and all contract data is public and shared on the network. Blocks are mined in Ethereum at an average rate of ten to fifteen seconds unlike, the rate of ten minutes of Bitcoin. The security of the network lies in the difficulty of producing valid blocks, with valid cryptographic proof-of-work puzzle, and valid state transition faster than new blocks of honest nodes.
+
+\subsubsection{Solidity Smart Contracts} \label{sssec:2:ethereum:soliditySmartContracts}
 
 \paragraph*{Data}
 
@@ -377,7 +420,28 @@ Throw Exceptions
 
 \subsection{Estonia ID Card}
 
-\subsection{OCTAVE Allegro}
+\subsection{ISSRM Framework}
+
+Information System Security Risk Management (ISSRM) is a broad field with \textit{``over 200 practitioner-oriented risk management methods and several academic security modeling frameworks available"}\cite{Dubois2010}. Duboi et al. build a unified domain model of ISSRM by surveying and categorizing risk management standards, information security and information technology standards, risk management methodologies, and security frameworks, as well as the state of the art of security modeling languages. This serves as a useful source of representative security risk analysis frameworks to choose from.
+
+Ahmed and Matulevi\v{c}ius explore eliciting security requirements earlier in business process modeling by introducing security risk oriented patterns\cite{Ahmed:2014:SBP:2588915.2589308}. The goal is to ``align business processes and security requirements elicited using security risk-oriented patterns'' to mitigate security risks. This gives a good contextual framework for thinking through a security analysis on business processes.
+
+Uzunov and Fernandez give a deeply technical overview of security patterns of distributed systems\cite{Uzunov:2014:EPL:2588915.2589309}. They first survey threat patterns, pattern-based threat taxonomies, and architectural contexts for the threat patterns. Then they provide a list first level security threat patterns and second level meta-security threat patterns to see further analysis. Then they construct a specialized taxonomy of security threats for distributed and peer to peer systems. The ideas presented are useful input for the Euro 2.0. security risk analysis in \hypersectionref{sec:5}.
+
+From the review of ISSRM frameworks, \textit{OCTAVE Allegro} was chosen as the simplest framework allowing a strait forward risk analysis of the Euro 2.0 proccesses using a seven step methodology\cite{CaralliIntroducingOCTAVE2007}:
+
+\begin{itemize}
+	\item \textit{Step 1 - Establish Risk Measurement Criteria}
+	\item \textit{Step 2 - Develop an Information Asset Profile}
+	\item \textit{Step 3 - Identify Information Asset Containers}
+	\item \textit{Step 4 - Identify Areas of Concern}
+	\item \textit{Step 5 - Identify Threat Scenarios}
+	\item \textit{Step 6 - Identify Risks}
+	\item \textit{Step 7 - Analyze Risks}
+	\item \textit{Step 8 - Select Mitigation Approach}
+\end{itemize}
+
+We use inspiration from security patterns of from the other two papers as input for the OCTAVE Allegro risk analysis. We chose not to undergo formal modeling or complicated modeling software, as complexity explodes when applied to a complicated system like Euro 2.0, without any benefits of the time invested.
 
 \pagebreak
 
