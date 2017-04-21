@@ -226,10 +226,6 @@ Annotatsioon
 
 \todo[inline]{Kirjuta annotatsiooni eesti keeles \ldots}
 
-Kui töö põhikeel on inglise keel, siis esitatakse annotatsioon (Abstract) inglise keeles mahuga $\frac{1}{2}$ A4 lehekülge ja annotatsioon eesti keeles mahuga vähemalt 1 A4 lehekülg.
-
-Annotatsiooni viimane lõik on kohustuslik ja omab järgmist sõnastust:
-
 \todo[inline]{Täitke eesti keele annotatsiooni lõputöö detailid \ldots}
 
 Lõputöö on kirjutatud inglise keeles ning sisaldab teksti [lehekülgede arv] leheküljel, [peatükkide arv] peatükki, [jooniste arv] joonist, [tabelite arv] textit.
@@ -338,22 +334,46 @@ Existing crypto currencies not great for payments...
 
 \subsubsection{Anonymity vs. Regulation vs. Trust}
 
-\subsection{Ethereum}
+\subsection{Ethereum} \label{ssec:2:ethereum}
+
+Ethereum generalizes Blockchain technology as a decentralized computing platform for building distributed applications. Ethereum is used to implement the decentralized component of Euro 2.0, providing the main account balance and state data and functionality described in \hypersectionref{ssec:3.4}. \hypersectionref{sssec:2:ethereum:platform} gives an overview of the necessary details of the Ethereum platform and \hypersectionref{sssec:2:ethereum:soliditySmartContracts} outlines the key points of the Solidity Smart Contracts programming language used later in the thesis.
+
+\subsubsection{Ethereum Platform} \label{sssec:2:ethereum:platform}
+
+The core of Ethereum is the \textit{Ethereum Virtual Machine} (EVM), which functions as a decentralized general purpose computing platform with Turning complete scripting functionality. Ethereum is formally specified in Wood's \textit{Ethereum: A Secure Decentralised Generalised Transaction Ledger}\cite{yellowpaper}, also know as the ``Yellowpaper'' functioning as a ``technical bible'' of the Ethereum platform. The Yellowpaper, although very detailed and thorough, is too low level of a formal specification to be digestible as an introduction to the platform. Buterin's Ethereum Whitepaper, \textit{A Next-Generation Smart Contract and Decentralized Application Platform}\cite{whitepaper}, is a high level introduction to the platform suitable for understanding the key decentralized concepts of Euro 2.0.  Anderson et al. compare Namecoin, Peercoin, and Ethereum to Bitcoin, looking at factors such as Blockchain disk size and client bootstrapping security, and present the results of a crawler on the Ethereum Blockchain looking at contract usages and Zombie contracts\cite{Anderson2016NewKO}.
+
+\paragraph*{Accounts}
+
+Ethereum state is held in objects called \textit{accounts}. An account is composed of the following fields:
+
 \begin{itemize}
-	\item WTF is this thing?
-	\item addresses
-	\item messages
-	\item events
+	\item \textit{nonce} - a counter used to make sure each transaction can only be processed once
+	\item \textit{balance} - amount of Ether, the currency of Ethereum, in the account
+	\item \textit{contract code} - the code associated with this account, if present
+	\item \textit{storage} - storage space for this account
 \end{itemize}
 
-\subsection{Solidity Smart Contracts}
-\begin{itemize}
-	\item what can they do?
-	\item data
-	\item functions
-	\item modifiers
-	\item throw exceptions
-\end{itemize}
+An Ethereum account is named with a 20 byte address. This address is the \code{Keccak-256} hash of a public key of a private generated from an Elliptic Curve Digital Signature Algorithm. Accounts come in two flavors: \textit{Externally Controlled Accounts} and \textit{Contract Accounts}. Externally controlled accounts are controlled by private keys of users outside of Ethereum and can be used to send messages by creating and signing transactions. Contract account code is executed upon a received messages to the address. This code can in read and write to local storage, send other messages, and also create contracts. Both types of accounts store a balance of \textit{Ether}, the currency of Ethereum, which can be used as a store of value and as fee for miners to execute EVM code. Ether is produced by miners as an output of producing blocks in a Proof-of-Work mechanism. Unlike bitcoin, Ether doesn't have a capped total supply, but is anticipated to be produced at the same rate of Ether being lost in unaccessible accounts where the private key is lost or unknown.
+
+\paragraph*{Transactions}
+
+\paragraph*{Messages}
+
+\paragraph*{Ethereum State Transition Function}
+
+\paragraph*{Code Execution}
+
+\paragraph*{Events}
+
+\subsection{Solidity Smart Contracts} \label{sssec:2:ethereum:soliditySmartContracts}
+
+\paragraph*{Data}
+
+\paragraph*{Functions}
+
+\paragraph*{Modifiers}
+
+Throw Exceptions
 
 \subsection{Estonia ID Card}
 
