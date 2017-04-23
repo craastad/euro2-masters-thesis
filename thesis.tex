@@ -3671,42 +3671,41 @@ Estonian ID card system has been in production for more than 15 years today and 
 \subsubsection{Summary} \label{ssec:5.5:summary}
 In this chapter we applied the OCTAVE Allegro security analysis methodology\cite{CaralliIntroducingOCTAVE2007} to perform a security risk analysis for the Euro 2.0 digital currency system. Euro 2.0 foundation objectives, risk measurement criteria, and impact areas were introduced in \hypersectionref{ssec:5.1}. Critical information assets, containers, owners, and security requirements were presented in \hypersectionref{ssec:5.2}. For each critical information asset, risk profiles were defined and severity of realized risks computed in \hypersectionref{ssec:5.3}. In \hypersectionref{ssec:5.4}, risk scores were ranked and categorized and for each  risk profile mitigation strategies were proposed for Euro 2.0.
 
-\subsubsection{Implementation Suggestions} \label{ssec:5.5:suggestions}
+\subsubsection{Euro 2.0 Implementation Suggestions} \label{ssec:5.5:suggestions}
 The following are suggested improvements to the Euro 2.0 system based on the security analysis:
 
 \begin{itemize}
 	\item Help users secure the keys with air-gapped wallets.
 	\item Consider building an online interface to Euro 2.0 simulating an online bank avoiding key management altogether.
-	\item Write tests for the Ethereum Smart Contracts
-	\item Establish secure communication channels between Euro 2.0 internal servers (ID, Wallet, Reserve Bank, Ethereum Node)
-	\item Analyze (prove) the security of the key back up challenge
-	\item Implement security measures to admin keys (Approver and Delegate) running on web facing servers
-	\item Ensure admin key generation is secure, malware proof, and audited
-	\item Move manual usage of critical admin keys to M of N signatures
-	\item Protect databases with best practice security
-	\item Secure ID to address lookup endpoint to prevent against brute force attacks
+	\item Write tests for the Ethereum Smart Contracts.
+	\item Establish secure communication channels between Euro 2.0 internal servers (Identity, Wallet, Reserve Bank, Ethereum Node).
+	\item Analyze the security of the key backup challenge.
+	\item Implement best practice security measures for admin keys (Approver and Delegate) running on web facing servers.
+	\item Ensure admin key generation is secure, malware proof, and process audited and documented.
+	\item Move manual usage of critical admin keys to M of N signatures to reduce risks of misuse and bribery.
+	\item Protect databases with best practice security measures.
+	\item Secure ID to address lookup endpoint to prevent against brute force attacks.
 \end{itemize}
 
 \subsubsection{Limitations} \label{ssec:5.5:limitations}
 
-\todo[inline]{write limitations}
+Firstly the security analysis exhibited in this thesis was by no means comprehensive and for a hypothetical organization structure. We only analyzed three representative critical information assets in detail from the many possible information assets considered and those not yet discovered. Security is very contextual to a given organization. The results of the performed analysis yield relevance only to the assumptions of the hypothetical organization structure, which could be flawed. Hence, if the Euro 2.0 system does go live with a government backed structure, further security risk analysis would need to be done in that specific organizational setup.
 
-\begin{itemize}
-	\item security analysis is not comprehensive
-	\item limited to a partially complete prototype and fictitious organization
-	\item
-\end{itemize}
+Secondly the security analysis was reactive. For a not yet fully live prototype like Euro 2.0, preventive security analysis could be yield more beneficial and actionable results. This could be done with a similar approach outlined by Ahmed and Matulevi\v{c}ius\cite{Ahmed:2014:SBP:2588915.2589308} to explore securing business process at earlier developments stages and eliciting security requirements.
+
+Finally, the security analysis was performed at a very high level. No major implementation details of the communication protocols and centralized servers were used in the analysis. More low level threats and vulnerabilities should be considered, such as those listed in the \textit{Extensible Pattern-based Library and Taxonomy of Security Threats for Distributed Systems} of Uzunov et al\cite{Uzunov:2014:EPL:2588915.2589309}.
 
 \subsubsection{Future Work} \label{ssec:5.5:futureWork}
 
-\todo[inline]{future work}
+A few major topics of a decentralized distributed ledger based systems like Ethereum were overlooked by the security risk analysis of this thesis: \textbf{Scalability}, \textbf{Privacy}, and \textbf{Network Attacks}.
 
-\begin{itemize}
-	\item research security comparison of Ethereum vs. No Ethereum
-	\item research privacy, ZCash, ZkSNARKs
-	\item research scalability
-	\item research miner attacks, proof of stake vs proof of work
-\end{itemize}
+\textbf{Scalability} refers to the long term stability of the Ethereum platform when every node on the network must run all the code and store the current state of the world. Eventually blockchain storage will be larger than an average server's disk space, and hence need considerable improvements to continue with the same architecture. We accepted the risk of scalability in the Euro 2.0 security risk analysis even though it is a serious problem that needs to be further investigated before a state can sponsor a digital currency on a decentralized platform like Ethereum. Ethereum has proposed projects like Sharding\cite{shardingFaq} and Proof of Stake\cite{proofOfStakeFaq} to combat scalability. General discussion about a scalable blockchain protocol ``for nodes bounded by $O(N)$ computational power to process a transaction load and state size of $O(N^{2-\varepsilon})$'' is described in Buterin's \textit{Notes on Scalable Blockchain Protocols}\cite{notesOnScalableBlockchains}.
+
+\textbf{Privacy} heavily influenced the decision to include user identity as a critical information asset (\hypersectionref{sssec:5.2:userIdentity}) because revealing an identity behind an Ethereum address would link the entire transaction history of that address to a user. Having linkable transaction histories on a public blockchain is design decision the currently proposed Euro 2.0 system can't get around. Dynamically generating ethereum addresses for every new transaction can help, but is still be susceptible to clustering and graph analysis as outlined by Don and Shamir \textit{Quantitative Analysis of the Full Bitcoin Transaction Graph}\cite{Ron2013}. Zcash (formally Zerocash) provides a truly anonymous decentralized payments experience employing zk-SNARKs \textit{zero-knowledge Succinct Non-interactive ARguments of Knowledge}\cite{zerocash}. New developments such as HAWK, explained by Kosba et al. \textit{Hawk: The Blockchain Model of Cryptography and Privacy-Preserving Smart Contracts}\cite{hawk}, bring similar privacy guarantees to smart contracts. Bridging the gap between Zcash and Ethereum adding privacy to Ethereum smart contracts is gaining interest and developing in the community\cite{ZcashEtherumUpdate}\cite{zkSNARKsBlog}\cite{zkSNARKsPaper}. Future research would entail incorporating cutting edge methods in smart contract privacy into the Euro 2.0 digital currency.
+
+\textbf{Network Attacks} have been studied extensively in the Bitcoin community, such as in Eclipse attacks\cite{EclipseAttacks}, \textit{Majority is not Enough: Bitcoin Mining is Vulnerable}\cite{MajorityIsNotEnough}, and the rigorous approach to proving properties of the Blockchain \textit{The Bitcoin Backbone Protocol: Analysis and Applications}\cite{BitcoinBackboneProtocol}. Similar research is lacking in the Ethereum space. As mining pools become larger and more commercialized there is more of a risk of mining attacks on the Ethereum network. Further research can be done to analyze and asses the risk of attacks on the network.
+
+Finally, one very important open question: \textit{does a decentralized implementation of transactions and accounts in a digital currency give a security advantage over a completely centralized client-server implementation}? Why do we need Ethereum? Does decentralization improve the integrity of a monetary system over the complicated implementation and privacy tradeoffs of traditional financial systems?
 
 \pagebreak
 
