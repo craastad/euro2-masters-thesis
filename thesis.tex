@@ -18,7 +18,9 @@
 \usepackage{longtable} %Package so tables can be longer than one page
 \usepackage{multirow} %Package so table cells can span multiple rows
 \usepackage[colorinlistoftodos]{todonotes} %Package so you can add nice TODO marks in your paper with \todo{TODO text...}
-\usepackage{cite} %For Bibtex
+
+\usepackage{biblatex}
+\addbibresource{thesis.bib}
 
 %colors for risk categorization table
 \definecolor{pool1}{HTML}{FF3333}
@@ -526,7 +528,7 @@ From this business problem derives the key pillars of Euro 2.0:
 
 \textit{Identities of all Users} (3) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting distributed ledger records in the court). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main driver of the first prototype.
 
-\textit{Convenient Conversion of Fiat to and from Digital Euro} (4) makes it easy for users to gradually start using the digital currency from existing financial infrastructure. At first this exchange gateway can be a private financial institution, similar to Tether\cite{tether2016whitepaper}, with a proof of reserve of the one to one Euro backing. Ideally this conversion service is hosted by the central bank itself to limit the number of financial intermediaries.
+\textit{Convenient Conversion of Fiat to and from Digital Euro} (4) makes it easy for users to gradually start using the digital currency from existing financial infrastructure. At first this exchange gateway can be a private financial institution, similar to Tether\cite{tether}, with a proof of reserve of the one to one Euro backing. Ideally this conversion service is hosted by the central bank itself to limit the number of financial intermediaries.
 
 \textit{Government can control monetary supply} (5) follows from the ideal scenario of (4), the central bank can issue new money directly into the digital monetary system without a real world euro counterpart.
 
@@ -3718,8 +3720,8 @@ Finally, one very important open question: \textit{does a decentralized implemen
 
 %------------------------------Bibliography-----------------------------------
 \addcontentsline{toc}{section}{References} \label{sec:refs}
-\bibliography{thesis}{References}
-\bibliographystyle{plain}
+\printbibliography
+
 \pagebreak
 
 %-----------------------------APPENDICES--------------------------------
@@ -3730,12 +3732,13 @@ Finally, one very important open question: \textit{does a decentralized implemen
 \subsection*{A.1: Euro 2.0 Codebase} \label{ssec:a.1}
 \url{http://github.com/cryptofiat}
 
-\subsection*{A.2: Archive of Cited Web Pages} \label{ssec:a.2}
-
-\subsection*{A.3: Euro 2.0 Contract Codebase} \label{ssec:a.3}
+\subsection*{A.2: Euro 2.0 Contract Codebase} \label{ssec:a.2}
 \url{https://github.com/cryptofiat/contract}
 
-\subsection*{A.4: CryptoFiat Contract} \label{ssec:a.4}
+\subsection*{A.3: CryptoFiat Contract} \label{ssec:a.3}
 \url{https://github.com/cryptofiat/contract/blob/master/CryptoFiat.sol}
+
+\subsection*{A.4: Archive of Cited Web Pages} \label{ssec:a.4}
+\url{https://goo.gl/5jJKRc}
 
 \end{document}
