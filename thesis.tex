@@ -82,6 +82,7 @@
 \usepackage{enumerate} %for more control of ordered lists
 
 \usepackage[none]{hyphenat} %kill hyphenation
+\usepackage{ragged2e} % for nice justification in abstracts
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -173,7 +174,7 @@ Associated Professor\\[0cm]
 ITC70LT\\[0cm]
 Christopher David Raastad\\
 \begin{LARGE}
-\textsc{Euro 2.0 Digitaalne Valuuta Prototüübi Turvalisuse Analüüs\\}
+\textsc{Euro 2.0 Digitaalne Valuuta Prototüübi Turvalisusanalüüs\\}
 \end{LARGE}
 Magister\\[2cm]
 \end{center}
@@ -210,7 +211,7 @@ May 8th 2017
 Abstract
 \end{center}}
 
-Digital money in the form of cards, bank accounts, and online payments has been around for the last few decades. The cryptocurrency Bitcoin emerged as a completely new paradigm of storing and transferring value outside of the regulations and governments of the traditional financial system. The blockchain distributed ledger consensus technology powering Bitcoin inspired similar cryptocurrency clones, specialized use cases, and the creation of a general purpose distributed application computing platform Ethereum. Despite the innovations in value transfer, cryptocurrencies have a very niche use in daily transactions outside the circle of enthusiasts. The problem is the lack of incentive for users and merchants alike to hold all of their assets in a cryptocurrency. Significant cost and friction is associated with moving funds in and out of cryptocurrencies through exchanges and payment processors as well as the risk of wildly fluctuating exchange rates. The Euro 2.0 Foundation presents a fiat backed, fully regulated, government backed digital currency to alleviate these shortcomings. This thesis presents a security analysis of the proposed Euro 2.0 digital currency prototype. We present the features and architecture of the Euro 2.0 digital currency system, a fusion of traditional client server components, Estonia ID card authentication, and Ethereum smart contract decentralized distributed computing platform. Then we present a change analysis of the impact of Euro 2.0 on the stakeholders including users, merchants, banks, and government. Finally we present a information system security risk analysis based on the OCTAVE Allegro methodology of key information assets user money, Ethereum admin keys, and user identity. From the security analysis we present suggestions and mitigation strategies of the biggest risks of a hybrid centralized and decentralized Euro 2.0 digital currency system.
+Digital money in the form of cards, bank accounts, and online payments has been around for the last few decades. The cryptocurrency Bitcoin emerged as a completely new paradigm of storing and transferring value outside of the regulations and governments of the traditional financial system. The blockchain distributed ledger consensus technology powering Bitcoin inspired similar cryptocurrency clones, specialized use cases, and the creation of a general purpose distributed application computing platform Ethereum. Despite the innovations in value transfer, cryptocurrencies have a very niche use in daily transactions outside the circle of enthusiasts. The problem is the lack of incentive for users and merchants alike to hold all of their assets in a cryptocurrency. Significant cost and friction is associated with moving funds in and out of cryptocurrencies through exchanges and payment processors as well as the risk of wildly fluctuating exchange rates. The Euro 2.0 Foundation presents a fiat backed, fully regulated, government backed digital currency to alleviate these shortcomings. This thesis presents a security analysis of the proposed Euro 2.0 digital currency prototype. We present the features and architecture of the Euro 2.0 digital currency, a fusion of traditional client server components, Estonia ID card authentication, and Ethereum smart contract decentralized distributed computing platform. Then we present a change analysis of the impact of the Euro 2.0 digital on the stakeholders including users, merchants, banks, and government. Finally we present an information system security risk analysis based on the OCTAVE Allegro methodology of key information assets user money, Ethereum admin keys, and user identity. From the security analysis we present suggestions and mitigation strategies of the biggest risks of a hybrid centralized and decentralized Euro 2.0 digital currency system.
 
 \todo[inline]{Fill in English abstract thesis details \ldots}
 
@@ -224,7 +225,7 @@ The thesis is in English and contains [pages] pages of text, [chapters] chapters
 Annotatsioon
 \end{center}}
 
-\todo[inline]{Kirjuta annotatsiooni eesti keeles \ldots}
+\sloppy Digitaalne raha on kaartide, pangakontode ja internetimaksete kujul olemas olnud juba aastakümneid. Krüptoraha Bitcoin kujundas täiesti uue paradigma väärtuste hoidmisele ja ülekannete tegemisele väljaspool traditsiooniliste finantssüsteemide regulatsioone ning valitsust. Plokiahela abil loodi ühtse tehnoloogiaga avalik raamatupidamisregister, olles inspireeritud sarnaste krüptorahade kloonidest, erilistest kasutamisjuhtudest ja üldotstarbelise rakenduste arvutamise platvormi Ethereum loomisest. Vaatamata väärtuste ülekannete protsesside innovatsioonile on krüptoraha väljaspool entusiastide ringe igapäevakasutuses siiski niši staatuses. Probleem tuleneb sellest, et kasutajatel ning kaupmeestel puuduvad stiimulid kõiki oma varasid krüptovaluutas hoida. Lisaks valuutakursside suurtele kõikumistele seostatakse krüptoraha märkimisväärseid kulusid ja huvide vastuolusid raha liigutamisega krüptovaluutasse ja tagasi valuutavahetuste ja maksete töötlemise protsesside käigus. Euro 2.0 Sihtasutus esitleb täielikult reguleeritud, ametlike volitustega ja valitsuse poolt toetatud digitaalvaluutat, millega soovitakse kõiki neid puudusi leevendada. Käesolev magistritöö esitab kavandatava Euro 2.0 digitaalvaluuta prototüübi turvalisusanalüüsi. Töös on välja toodud Euro 2.0 digitaalvaluuta omadused ja ülesehitus,  traditsiooniliste kliendiserverite lülide, Eesti ID-kaardi autentimise ning Ethereum targa lepingu detsentraliseeritud hajusandmetöötluse platvormi integratsioon. Järgmisena on esitatud analüüs Euro 2.0 digitaalvaluuta mõjust huvigruppidele, hõlmates kasutajaid, kaupmehi, panku ja valitsust. Lõpetuseks tuuakse välja infosüsteemi turvariskid toetudes OCTAVE Allegro kasutajate varade olulise teabe metoodikale, Ethereumi haldajate võtmete ja kasutajate identideedi analüüsile. Turvalisusanalüüsi põhjal esitatakse soovitused ja leevendamise strateegiad hübriid-tsentraliseeritud ja detsentraliseeritud Euro 2.0 digitaalvaluutasüsteemi suurimatele riskidele.
 
 \todo[inline]{Täitke eesti keele annotatsiooni lõputöö detailid \ldots}
 
@@ -419,6 +420,7 @@ Ethereum has a proof-of-work mining mechanism, like Bitcoin, to economically inc
 Throw Exceptions
 
 \subsection{Estonia ID Card}
+
 
 \subsection{ISSRM Framework}
 
