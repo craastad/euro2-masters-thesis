@@ -241,21 +241,21 @@ Lõputöö on kirjutatud inglise keeles ning sisaldab teksti [lehekülgede arv] 
 Table of abbreviations and terms
 \end{center}}
 
-\begin{tabular}{p{3 cm} p{10cm}}
+\begin{tabular}{p{2cm} p{12cm}}
 	BTC & Bitcoin currency code\\
 	AML & \textit{Anti Money Laundering}, processes implemented by Financial Institutions to hinder money laundering and comply with regulation\\
 	CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial Institutions to hinder terrorist financing and comply with regulation\\
 	KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
 	ISSRM & \textit{Information Systems Security Risk Management} \\
-	SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system. \\
+	SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system \\
 	LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK \\
 	API & \textit{Application Programming Interface}, describing communicating between two servers \\
 	UX & \textit{User Experience} \\
 	PIC & \textit{Personal Identity Code}, issued by the Estonian CMB \\
 	CMB & \textit{Citizenship and Migration Board} of Estonia\\
-	PKI & Public Key Infrastructure\\
-	RSA & ???\\
-  TLS & ???
+	PKI & \text{Public Key Infrastructure}\\
+	RSA & widely used public-key crypto-system for secure data transmission\\
+	TLS & \textit{Transport Layer Security}, cryptographic protocol to provide secure communication over a computer network
 \end{tabular}
 
 \pagebreak
@@ -275,32 +275,29 @@ Table of abbreviations and terms
 %-----------------------------CHAPTER 1 - INTRODUCTION-------------------------------
 \section{Introduction} \label{sec:1}
 
+\subsection{The Road to Digital Currency} \label{ssec:1.1}
 Payments today are the laggard of the information age. While emails can be sent instantly for free anywhere in the world, money is either slow and/or expensive to move digitally. Bank transfers can take days, only work during business hours, and have high fees across borders. Card payments are instant, but subject merchants to high fees and chargeback risks. Paypal brought convenient payments to the web, but at a high cost to accept payments and move funds internationally. Fintech companies like Venmo and Square can create the illusion of fast payments, but still take days to settle in the background with the potential chargeback risks. This cost comes from the highly regulated centralized financial payments systems with little economic incentive to reduce fees. A usable digital currency would greatly alleviate this friction in transferring value that theoretically costs the economy an estimated 1\% of GDP annually \cite{kaarmann2013cost}.
 
-Bitcoin was the first successful implementation of a decentralized digital currency. Nakamoto's peer to peer digital cash system completely sidestepped the existing financial system\cite{nakamoto2008bitcoin}. Its clever proof of work consensus protocol, economic incentives for nodes to maintain the network, pseudo anonymity, and irreversible transactions implemented on the public ledger Blockchain technology has been called ``the next technological revolution''\todo{citation, probably from Blockchain Revolution}. Hundreds of Altcoins followed Bitcoin's lead borrowing from the Blockchain technology to implement other flavors of cryptocurrency and digital asset management. Despite the rapid growth of the cryptocurrency ecosystem, everyday payments are a niche use case for digital currencies, which are more commonly used for investment and financial speculation\cite{Khairuddin:2016:EMB:2851581.2892500}. Merchants accepting Bitcoin payments are in fact immediately converting funds to a fiat currency for a non negligible fee. Bitcoin Exchanges are high cost gatekeepers between the cryptocurrency and financial systems.
+Bitcoin was the first successful implementation of a decentralized digital currency. Nakamoto's peer to peer digital cash system completely sidestepped the existing financial system\cite{nakamoto2008bitcoin}. Its clever proof of work consensus protocol, economic incentives for nodes to maintain the network, pseudo anonymity, and irreversible transactions implemented on the public ledger Blockchain technology has been called ``the next technological revolution''\cite{BlockchainRevolution}. Hundreds of Altcoins followed Bitcoin's lead borrowing from the Blockchain technology to implement other flavors of cryptocurrency and digital asset management\cite{coinMarketCap}. Despite the rapid growth of the cryptocurrency ecosystem, everyday payments are a niche use case for digital currencies, which are more commonly used for investment and financial speculation\cite{Khairuddin:2016:EMB:2851581.2892500}. Merchants accepting Bitcoin payments are in fact immediately converting funds to a fiat currency for a non negligible fee. Bitcoin Exchanges are high cost gatekeepers between the cryptocurrency and financial systems.
 
-What is missing today are incentives for parties on both sides of payments to hold assets end to end in digital currency. The cost and friction of moving between two financial systems, crypto and fiat, eliminates the perceived benefits of crypto currencies. The Euro 2.0 project aims to implement fiat currency on digital currency technology and reduce friction by eliminating unnecessary financial intermediaries. The unanimous adoption of Estonian ID card in Estonia and the Ethereum distributed application platform make a prototype system possible. This thesis introduces the Euro 2.0 system, its impact on stakeholders in the payments, and assesses the security, scalability, and privacy risks of the implementation to determine whether this system can in fact reasonably support a national digital currency.
-
-\subsection{Existing Body of Knowledge} \label{ssec:1.1}
-\todo[inline]{Existing body of knowledge to gap detection}
-
+What is missing today are incentives for parties on both sides of payments to hold assets end to end in digital currency. The cost and friction of moving between two financial systems, crypto and fiat, eliminates the perceived benefits of crypto currencies. The Euro 2.0 project aims to implement fiat currency on digital currency technology and reduce friction by eliminating unnecessary financial intermediaries. The unanimous adoption of Estonian ID card in Estonia and the rise of the Ethereum distributed application platform make a usable digital currency prototype possibly. But can a regulated, government backed, digital currency system be securely built? No literature has explored the security of real money moving to the crypto realm. This thesis introduces the Euro 2.0 digital currency prototype, its impact on stakeholders in the payments, and assesses the security risks of the implementation to determine whether this system can in fact reasonably support a national digital currency.
 
 \subsection{Research Questions} \label{ssec:1.2}
 
-This thesis explores the feasibility of the Euro 2.0 digital currency by answering the following research question:
+This thesis analyzes the feasibility of the proposed Euro 2.0 digital currency by exploring the following research question:
 \begin{quoting}
-	\textbf{RQ: }\textit{How do we assure that the proposed Euro 2.0 digital currency does not have any major security, scalability, or privacy flaws compromising the usefulness of the monetary system?}
+	\textbf{RQ: }\textit{How do we assure that the proposed Euro 2.0 digital currency system does not have any major security flaws compromising its usefulness as a monetary system?}
 \end{quoting}
 
 In which we explore in sub research questions:
 \begin{quoting}
-\textbf{RQ1: }\textit{How do we describe the relevant features needed for analysis of the Euro 2.0 digital currency?}
+\textbf{RQ1: }\textit{How do we describe the features and components of the Euro 2.0 digital currency system for a security analysis?}
 \end{quoting}
 \begin{quoting}
-\textbf{RQ2: }\textit{How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, governments, and financial institutions?}
+\textbf{RQ2: }\textit{How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, banks, and governments?}
 \end{quoting}
 \begin{quoting}
-\textbf{RQ3: }\textit{How do we assess the security and privacy risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
+\textbf{RQ3: }\textit{How do we assess the security risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
 \end{quoting}
 
 Answering \textbf{RQ} will result in one of two possible outcomes:
@@ -309,20 +306,22 @@ Answering \textbf{RQ} will result in one of two possible outcomes:
 	\item The Euro 2.0 system has one or more serious risks that need to be addressed before significant adoption.
 \end{itemize}
 
-In order to do a risk analysis, the key features of the Euro 2.0 system need to be identified and implementation details described by answering \textbf{RQ1}. Following a clear specification of the system, \textbf{RQ2} explores the current and future relationship with money of key stakeholders after adoption of Euro 2.0. This exploration of the stakeholders' relationship with money grounds the analysis of the impact of realized risks uncovered in \textbf{RQ3}. The severity and likelihood of realized risks to the monetary system lead to an answer to the original research question \textbf{RQ}.
+In order to do a risk analysis, the key features of the Euro 2.0 system need to be identified and implementation details described by answering \textbf{RQ1}. Following a clear description of the system, \textbf{RQ2} explores the current and future relationship with money of key stakeholders after adoption of Euro 2.0. This exploration of the stakeholders' relationship with money guides the security analysis to asses the impact of realized risks discovered in \textbf{RQ3}. The severity and likelihood of realized risks to the monetary system lead to an answer to the original research question \textbf{RQ}.
 
 \subsection{Research Methods} \label{ssec:1.3}
 The thesis utilizes methods from design science and Information Systems Security Risk Management (ISSRM) to approach the research questions. The main contributions are:
 \begin{itemize}
-	\item Presentation of the Euro 2.0 digital currency prototype
-	\item Change analysis of stakeholders' transition to Euro 2.0 money transfer
-	\item Security Risk analysis of the Euro 2.0 prototype
-	\item Recommendations how to mitigate risks
+	\item Presentation of the features and components of the proposed Euro 2.0 digital currency prototype
+	\item Change analysis of stakeholders adopting the Euro 2.0
+	\item Security Risk analysis of the Euro 2.0 system
+	\item Design recommendations for Euro 2.0
 \end{itemize}
+
+The features and components are presented by a code review of the Euro 2.0 codebase (\hyperref[ssec:a.1]{Appendix A.1}). The change analysis is based on an interpretation of the Change Formula\cite{changeFormula2014} described in \hypersectionref{ssec:4.2}. The security risk analysis employs the OCTAVE Allegro risk analysis framework presented in \hypersectionref{ssec:2:issrmFramework} in which design recommendations follow from the output of the analysis.
 
 \subsection{Structure of the Thesis} \label{ssec:1.4}
 
-\hypernameref{sec:2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID card, and security analysis methodology. \hypernameref{sec:3} will describe the motivation, features, smart contracts, and implementation architecture of the Euro 2.0 system and prototype needed for analysis. \hypernameref{sec:4} will analyze the impact of Euro 2.0 on stakeholders using change analysis to better understand the socio-technical impact of the proposed digital currency. In \hypernameref{sec:5} we will perform a security risk analysis of the proposed Euro 2.0 prototype implementation OCTAVE Allegro, an ISSRM based security analysis methodology. Finally \hypernameref{sec:6} will summarize the thesis, answer the research question, and suggest future avenues of research.
+\hypernameref{sec:2} will give an overview of the existing body of knowledge needed to understand the remaining chapters including: traditional finance, Bitcoin, Tether, Ethereum, Estonia ID card, and ISSRM frameworks. \hypernameref{sec:3} will describe the motivation, features, smart contracts, and implementation architecture of the Euro 2.0 digital currency prototype needed for a security analysis. \hypernameref{sec:4} will perform a change analysis to better understand the socio-technical impact of stakeholders adopting the Euro 2.0 digital currency. In \hypernameref{sec:5} we will perform a OCTAVE Allegro information security risk analysis of the Euro 2.0 system resulting in mitigations proposals and design recommendations. Finally \hypernameref{sec:6} will summarize the thesis, answer the research question, and suggest future avenues of research.
 
 \pagebreak
 
@@ -338,7 +337,7 @@ Existing crypto currencies not great for payments...
 
 \subsubsection{Bitcoin}
 
-\subsubsection{Tether}
+\subsubsection{Tether} \label{ssec:2:tether}
 
 Tether is the project most resembling the Euro 2.0 digital currency system by supporting ``fiat currencies on the Bitcoin blockchain.''\cite{tether}. The Tether coin is built on top of the Omni Protocol, which coins to be created by embedding data in Bitcoin transactions\cite{omniProtocolSpec}. The Hong Kong based company Tether Limited holds a reserve of Fiat currency, currently USD and EUR, that can be converted to and from Tethered TUSD and TEUR on Bitcoin Blockchain. TUSD and TEUR can be transferred, stored, and spent like Bitcoin. Tether Limited maintains a proof of reserve that at any given time the balance of fiat currency held in the reserves will be equal to (or greater than) the number of tethers in circulation. Tethers in circulation exist as a decentralized digital currency but reserve assets must be administered by centralized Tether Limited.
 
@@ -428,7 +427,7 @@ Ethereum has a proof-of-work mining mechanism, like Bitcoin, to economically inc
 
 Throw Exceptions
 
-\subsection{Estonia ID Card}
+\subsection{Estonia ID Card} \label{ssec:2:estoniaIdCard}
 
 Estonian ID Card and Mobile ID is used to identity users in the the Euro 2.0 digital currency system. The detailed architecture of the ID card system is not considered in the security analysis presented in this thesis. Martens summarizes the development of the national electronic Identity Management System (eIDMS), describing its technical features, its historical development, and the contributions from the public and private sector\cite{Martens2010electronicIdentity}. Springall et al. perform a security analysis of Estonian internet voting scheme and in their introduction provide an overview of the Estonian national ID card infrastructure \cite{estoniaInternetVoting}.
 
@@ -444,7 +443,7 @@ The central agency of the Estonia ID card system is the Estonia Citizenship and 
 The Estonian ID card contains two electronic RSA key pair certificates, one for authentication and one for legally binding signatures regulated under the Estonian Digital Signatures Act and administered by SK Certification Center\cite{aboutSk2017}. The card also has an unprotected data file containing the personal information displayed on the physical card. Public key certificates are stored in a public LDAP database administered by SK\cite{skAboutLdap2017}. Certificates require a pin code for use. Both certificates and card have a validity of five years for citizens or length of validity of legal residence if less than five years. Mobile ID is offered by carriers through a special PKI-capable SIM card and allows the same functionality as the ID card through a mobile interface. Estonia ID card or Mobile ID TLS authentication is widely used in online banking in the country. A user sends an authentication requests, enters his pin code, and if the certificate is still valid, is authenticated to the website.
 
 
-\subsection{ISSRM Framework}
+\subsection{ISSRM Framework} \label{ssec:2:issrmFramework}
 
 Information System Security Risk Management (ISSRM) is a broad field with \textit{``over 200 practitioner-oriented risk management methods and several academic security modeling frameworks available"}\cite{Dubois2010}. Duboi et al. build a unified domain model of ISSRM by surveying and categorizing risk management standards, information security and information technology standards, risk management methodologies, and security frameworks, as well as the state of the art of security modeling languages. This serves as a useful source of representative security risk analysis frameworks to choose from.
 
