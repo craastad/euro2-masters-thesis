@@ -248,7 +248,12 @@ Table of abbreviations and terms
 	SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system. \\
 	LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK \\
 	API & \textit{Application Programming Interface}, describing communicating between two servers \\
-	UX & \textit{User Experience}
+	UX & \textit{User Experience} \\
+	PIC & \textit{Personal Identity Code}, issued by the Estonian CMB \\
+	CMB & \textit{Citizenship and Migration Board} of Estonia\\
+	PKI & Public Key Infrastructure\\
+	RSA & ???\\
+  TLS & ???
 \end{tabular}
 
 \pagebreak
@@ -420,6 +425,19 @@ Ethereum has a proof-of-work mining mechanism, like Bitcoin, to economically inc
 Throw Exceptions
 
 \subsection{Estonia ID Card}
+
+Estonian ID Card and Mobile ID is used to identity users in the the Euro 2.0 digital currency system. The detailed architecture of the ID card system is not considered in the security analysis presented in this thesis. Martens summarizes the development of the national electronic Identity Management System (eIDMS), describing its technical features, its historical development, and the contributions from the public and private sector\cite{Martens2010electronicIdentity}. Springall et al. perform a security analysis of Estonian internet voting scheme and in their introduction provide an overview of the Estonian national ID card infrastructure \cite{estoniaInternetVoting}.
+
+The central agency of the Estonia ID card system is the Estonia Citizenship and Migration Board (CMB), under the authority of the Ministry of Interior, with the responsibility of maintaining the population register, administering national Personal Identification Codes (PIC), and issuing identity documents. The 11 digit PIC has the following structure:
+
+\begin{itemize}
+	\item digit for gender and century of the birth (one digit for two attributes)
+	\item date of birth digits (YY+MM+DD)
+	\item three random digits
+	\item one checksum digit
+\end{itemize}
+
+The Estonian ID card contains two electronic RSA key pair certificates, one for authentication and one for legally binding signatures regulated under the Estonian Digital Signatures Act and administered by SK Certification Center\cite{aboutSk2017}. The card also has an unprotected data file containing the personal information displayed on the physical card. Public key certificates are stored in a public LDAP database administered by SK\cite{skAboutLdap2017}. Certificates require a pin code for use. Both certificates and card have a validity of five years for citizens or length of validity of legal residence if less than five years. Mobile ID is offered by carriers through a special PKI-capable SIM card and allows the same functionality as the ID card through a mobile interface. Estonia ID card or Mobile ID TLS authentication is widely used in online banking in the country. A user sends an authentication requests, enters his pin code, and if the certificate is still valid, is authenticated to the website.
 
 
 \subsection{ISSRM Framework}
