@@ -834,7 +834,7 @@ The enforcement features allow law enforcement to do their job that would be tra
 
 The convenience features are not necessarily central to a functioning and compliant fiat and digital monetary system, but are quite useful to increase the usefulness and usability barrier. They are quite important to consider in a security analysis, hence listed here.
 
-\paragraph{Wallet Security}
+\paragraph*{Wallet Security}
 Client
 \begin{itemize}
 	\item \textbf{CC1} - Encrypt wallet
@@ -843,12 +843,12 @@ Client
 
 Since private keys are stored locally on a user's device, they should be encrypted (\textbf{CC1}) with some password when not in use and decrypted (\textbf{CC2}) when needed for signing transactions.
 
-\paragraph{Key Backup}
+\paragraph*{Key Backup}
 
 Client
 \begin{itemize}
 	\item \textbf{CC3} - Encrypt keys for addresses
-	\item \textbf{CC4} - Create a challenge question
+	\item \textbf{CC4} - Create a cryptographic challenge
 	\item \textbf{CC5} - Send addresses, keys, and challenge to backup server for an ID
 	\item \textbf{CC6} - Retrieve addresses and keys from backup server for an ID with challenge answer
 	\item \textbf{CC7} - Decrypt keys for addresses
@@ -861,9 +861,9 @@ Server
 	\item \textbf{CS3} - Load encrypted addresses and keys for an ID
 \end{itemize}
 
-Since keys are stored locally, if not backed up, they can be easily lost with the device. Euro2.0 provides a centralised convenience feature to back up these keys for an ID and secured by a challenge question. The user can encrypt their keys with a password (\textbf{CC3}), create a challenge question (\textbf{CC4}), send the addresses, encrypted keys, and challenge to the server (\textbf{CC5}) to be saved (\textbf{CS1}). The user can then retrieve the addresses and encrypted keys for an ID from the server (\textbf{CC6}) by providing the correct challenge answer checked by the server (\textbf{CS2}) (\textbf{CS3}), and finally the keys can be decrypted by the user (\textbf{CC7}).
+Since keys are stored locally, if not backed up, they can be easily lost with the device. Euro2.0 provides a centralized convenience feature to back up these keys for an ID and secured by a challenge question. The user can encrypt their keys with a password (\textbf{CC3}), create a cryptographic challenge (\textbf{CC4}), send the addresses, encrypted keys, and challenge to the server (\textbf{CC5}) to be saved (\textbf{CS1}). The user can then retrieve the addresses and encrypted keys for an ID from the server (\textbf{CC6}) by providing the correct challenge answer checked by the server (\textbf{CS2}) (\textbf{CS3}), and finally the keys can be decrypted by the user (\textbf{CC7}).
 
-\paragraph{Transfer Info}
+\paragraph*{Transfer Details}
 
 Client
 \begin{itemize}
@@ -879,9 +879,9 @@ Server
 	\item \textbf{CS5} - Load transfer details for a transaction hash
 \end{itemize}
 
-Transfer info features provide extra information to transfers only visible to sender and receiver. First a sender of a transaction encrypts two copies of the transfer details, one with the sender's public key and the other with the recipient's private key (\textbf{CC8}). Then these can be saved to the transfer info server with the transaction's hash (\textbf{CC9} and \textbf{CS4}). Then these details can be loaded from the server (\textbf{CS5}) by the sender or receiver from the server (\textbf{CC10}) and decrypted with their respective private key (\textbf{CC11}).
+Transfer details features provide extra information to transfers only visible to sender and receiver. First a sender of a transaction encrypts two copies of the transfer details, one with the sender's public key and the other with the recipient's private key (\textbf{CC8}). Then these can be saved to the transfer details server with the transaction's hash (\textbf{CC9} and \textbf{CS4}). Then these details can be loaded from the server (\textbf{CS5}) by the sender or receiver from the server (\textbf{CC10}) and decrypted with their respective private key (\textbf{CC11}).
 
-\paragraph{Account Recovery}
+\paragraph*{Account Recovery}
 
 Client
 \begin{itemize}
@@ -896,11 +896,11 @@ Server
 
 Account recovery features offer some protection from accidentally losing keys to an address. A user can set a very trusted address, a friend or close relative, with the able to recover funds (\textbf{CC12}). This trusted party at any time can perform the funds recovery and withdraw all of the account's funds to their account with their key (\textbf{CC13}) executed by the server (\textbf{CS6}).
 
-\paragraph{Delegated Transfers - Send without Ether}
+\paragraph*{Delegated Transfers - Send without Ether}
 
 Client
 \begin{itemize}
-	\item \textbf{CC13} - Execute EUR2 transaction with EUR2 fee without gas
+	\item \textbf{CC13} - Execute EUR2 transaction with a EUR2 fee instead of Ether for gas
 \end{itemize}
 
 \begin{itemize}
@@ -1501,7 +1501,7 @@ The centralized components of the Euro 2.0 prototype are built with traditional 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{euro2-architecture}
+	\makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{euro2-architecture}}
     \caption{Euro 2.0 Architecture}
     \label{fig:euro2architecture}
 \end{figure}
@@ -1557,16 +1557,16 @@ Wallet server is the main entry point for conveniently creating transactions in 
 
 \subsubsection{Transfer Details Server} \label{sssec:3.5:transferDetailsServer}
 
-Transfer info server has a single purpose of saving transfer info for transactions off chain. It provides a general purpose interface that is up to the client to ensure proper encryption of transfer details so that sender and recipient can view the details. The functionality is simply:
+Transfer details server has a single purpose of saving transfer details for transactions off chain. It provides a general purpose interface that is up to the client to ensure proper encryption of transfer details so that sender and recipient can view the details. The functionality is simply:
 
 \begin{itemize}
 	\item Save transfer details for a transaction hash
 	\item Load transfer details for a transaction hash
 \end{itemize}
 
-\subsubsection{Transfer Info Database} \label{sssec:3.5:transferInfoDatabase}
+\subsubsection{Transfer Details Database} \label{sssec:3.5:transferDetailsDatabase}
 
-This is the database providing for the Transfer Info Server. It's simply a key value store with transaction hash as the key and a blob of data as the value (reference implementation is Google's LevelDB).
+This is the database providing for the Transfer Details Server. It's simply a key value store with transaction hash as the key and a blob of data as the value (reference implementation is Google's LevelDB).
 
 \subsubsection{Bank Gateway} \label{sssec:3.5:bankGateway}
 
@@ -1604,7 +1604,46 @@ The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC 
 
 \subsection{Fulfillment of Features} \label{ssec:3.6}
 
-\todo[inline]{Write how the features are fulfilled (with many many diagrams)}
+This section describes how the decentralized components of \hypersectionref{ssec:3.4} and the centralized components of \hypersectionref{ssec:3.5} work together to fulfill the features described in \hypersectionref{ssec:3.3}. Again \hyperfigureref{fig:euro2architecture} is a great reference for how the centralized and decentralized components fit together. The overview is this chapter is very high level. The exact implementations are in progress and so the most up to date source is the code in the Github repository linked to in \hyperref[ssec:a.1]{Appendix A.1}.
+
+\subsubsection{Account Features Implementation} \label{sssec:3.6:account}
+
+The account features are described in \hypersectionref{sssec:3.3:accounts}. An account is created (\textbf{AC1}) in the Client when a private and public key are created. The account only actually gets to Ethereum when a transaction is sent from this address or the account is approved. The client fulfills viewing balance (\textbf{AC2}), that is the sum of all balance of all addresses for an ID by first getting all addresses for a locally saved ID from the ID server, then getting all transactions for those addresses from the Wallet Server. The Wallet server aggregates all address (\textbf{AC2}) by querying all transaction events for all addresses using Ethereum events.
+
+\subsubsection{Identity Features Implementation} \label{sssec:3.6:identity}
+
+The identity features are described in \hypersectionref{sssec:3.3:identity}. Address approval (\textbf{IC1}) for a Client goes through asynchronous calls to ID Server using an Estonian ID authentication scheme. Identity Server uses SK DigiDocService to check if the Estonian ID is valid and for authentication (\textbf{IS1}). For a valid authenticated ID the Identity Server uses the Identity Admin key to approve the given Ethereum address (\textbf{IS2}) with a Ethereum transaction and then saves the ID to address mapping in the Identity database (\textbf{IS3}). The identity server provides looking up Ethereum address by ID (\textbf{IS4}) by simply querying the Identity database for the newest approved address for the ID.
+
+\subsubsection{Transaction Features Implementation} \label{sssec:3.6:transactions}
+
+The transaction features are described in \hypersectionref{sssec:3.3:transactions}. Sending EUR2 to an address (\textbf{TC1}) happens by the client making a request to the Wallet server, which then does a delegate transfer on behalf of the client to the Ethereum address. Sending EUR2 to an ID (\textbf{TC2}) happens very similarly, except the Wallet server looks up the address for the ID from Identity Server. Receiving EUR2 to an address (\textbf{TC3}) is as simple as giving the sender a newly created Ethereum address, the address creator will need to approve the address before they can use received funds. Send to an ID (\textbf{TC4}) requires the client to make a request to ID server to hold a transaction in escrow, in which ID server creates a new temporary not-approved Ethereum address (\textbf{TS2}). When the ID recipient creates and approves a new address, ID server will immediately send the funds to the new address and abandoning the temporary escrow address (\textbf{TS3}). Sending EUR2 to a EUR bank account is a special call to wallet server, which then creates a delegate transfer to the reserve bank, and communicates the receiving EUR bank account number on a private communication channel. Resolving an ID to an address (\textbf{TS1}) happens by asking Identity server. The Bank Reserve admin is responsible for executing valid EUR transactions (\textbf{TS4}) via an online banking interface. Executing valid EUR2 transactions happens by sending signed transactions to Ethereum accounts contract via the Ethereum node.
+
+\subsubsection{Reserve Features Implementation} \label{sssec:3.6:reserve}
+
+The reserve features are described in \hypersectionref{sssec:3.3:reserve}. Converting EUR to EUR2 (\textbf{RC1}) starts by a user sending EUR to the reserve bank account (displayed in the Client). When the reserve bank receives the EUR bank transaction, it also receives the ID code of the sender. The Reserve Bank then asks the Identity server to get the Ethereum address (\textbf{RS1}) of the ID, then the reserve uses it's Reserve Admin key to increase supply by sending a transaction to the Reserve contract to create EUR2 (\textbf{RS2}), then the reserve creates a regular transaction to send the equivalent amount of EUR2 to the user address.  Converting EUR2 to EUR (\textbf{RC2}) happens very similarly. The client creates a transaction through Wallet server to the reserve with the bank details communicated secretly to the Reserve Bank. Then the Reserve Bank creates decreases the EUR2 using it's public key thereby destroying EUR2 (\textbf{RS3}), and then initiates a regular EUR bank transaction to the received bank details. Finally assigning reserve bank address (\textbf{RA1}) happens by signing a transaction to the reserve contract with the reserve admin key. Managing the reserve bank account (\textbf{RA2}) is provided by traditional online bank.
+
+\subsubsection{Enforcement Features Implementation} \label{sssec:3.6:enforcement}
+
+The enforcement features are listed in \hypersectionref{sssec:3.3:enforcement}. Freezing an account (\textbf{EA1}) and seizing funds to close an account (\textbf{EA2}) are performed by signing an Ethereum transaction to the enforcement contract using the enforcement admin key calling the respective function. Assigning a new enforcement (\textbf{EA3}) is done by signing an Ethereum transaction with the enforcement admin key to the enforcement contract. Assigning a new designator (\textbf{EA4}) or assigning a new designator address (\textbf{EA5}) is done again by signing an Ethereum transaction with the designator admin key to call a function in the enforcement contract. Creating an AML database with transactions and IDs linked to addresses (\textbf{ES2}) requires securely importing the ID to address mapping from the Identity address then querying all transactions from the Ethereum blockchain and saving them in the AML database. Running AML checks on all names (\textbf{ES1}) can be done on the AML database with standard AML check procedures of normal banks. Opening up this AML and transaction to an analysis (\textbf{EA6}) is provided by a standard WEB UI to the AML database.
+
+\subsubsection{Convenience Features Implementation} \label{sssec:3.3:convenience}
+
+The convenience features are listed in \hypersectionref{sssec:3.3:convenience}.
+
+\paragraph*{Wallet Security Features Implementation}
+Wallet security in the client is provided by standard AES encryption with a user chosen password of the private keys before storing in local storage (\textbf{CC1}). Similarly private keys are decrypted with AES decryption of the encrypted private keys with the user password (\textbf{CC2}).
+
+\paragraph*{Key Backup Features Implementation}
+Key backup happens with a cryptographic challenge created by the client (\textbf{CC3-7}) and administered by API calls to the Identity server (\textbf{CS1-3}). The exact details of the cryptographic challenge are not explained here or considered for the security analysis.
+
+\paragraph*{Transfer Details Features Implementation}
+Transfer details is described almost entirely in detail in the well in the \hyperref[sssec:3.3:convenience]{Convenience Features Section}. Transfer details encryption, posting, loading, and decryption for a transaction hash (\textbf{CC8-11}) happens on clients and the Transfer details server simply saves and loads the pairs of encrypted transfer details (\textbf{CS4-5}) for a given Ethereum transaction hash.
+
+\paragraph*{Account Recovery Features Implementation}
+Account recovery has not been yet implemented as a convenience method for clients and servers in the Euro 2.0 system. But, since the AccountRecovery contract is deployed on the blockchain any user could create a client or sign Ethereum transactions with the command line to this contract set up and utilize (\textbf{CC12-13}) an account recovery scheme (\textbf{CS6}).
+
+\paragraph*{Delegated Transfers Features Implementation}
+Delegated transfers are implemented by Clients making transfer via the Wallet Server API. The wallet server takes requests with the signed transactions from the client (\textbf{CC13}) and then repackages the request into an to Ethereum transaction signed by the Delegator admin key and to the Delegation contract to be executed.
 
 \subsection{Conclusion} \label{ssec:3.7}
 
@@ -2347,8 +2386,8 @@ In which we enumerate the following information assets for Euro 2.0 in \hypertab
   \\ \hline
   \specialcell{DB Credentials: \\
     \quad ID \\
-	\quad AML \\
-    \quad Transfer Info \\
+		\quad AML \\
+    \quad Transfer details \\
     \quad Bank Gateway \\
   } & The credentials to the traditional centralized databases of the Euro 2.0 system.
   \\ \hline
