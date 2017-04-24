@@ -252,10 +252,13 @@ Table of abbreviations and terms
 	CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial Institutions to hinder terrorist financing and comply with regulation\\
 	ETC & \textit{Ether}, Ethereum currency code\\
 	ISSRM & \textit{Information Systems Security Risk Management} \\
+	JSON & \textit{JavaScript Object Notation}, a serialization format for REST API calls\\
 	KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
 	LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK \\
 	PIC & \textit{Personal Identity Code}, issued by the Estonian CMB \\
-	PKI & \text{Public Key Infrastructure}\\
+	PKI & \textit{Public Key Infrastructure}\\
+	REST & \textit{REpresentational State Transfer}, a web server communication paradigm\\
+	RPC & \textit{Remote Precedure Call}, external function call \\
 	RSA & widely used public-key crypto-system for secure data transmission\\
 	SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system \\
 	TLS & \textit{Transport Layer Security}, cryptographic protocol to provide secure communication over a computer network\\
@@ -1492,9 +1495,9 @@ The \textit{Delegation} contract allows a third party to initiate transactions i
 
 \subsection{Centralized Components} \label{ssec:3.5}
 
-The centralized components of the Euro 2.0 prototype are built with traditional client server architecture. Currently these are maintained by the Euro 2.0 Foundation, but would ideally be given over to government or the central bank to run their own monetary system. We only give a high level overview of the centralized component architecture, not going into any significant details of their implementation. At the time of the writing the components are based off of an unfinished prototype with quite a few bugs and some components not yet built. The goal of the subsection is to describe how the centralize components could be set up in such a system, where are the important keys and data are held, and in \hypersectionref{ssec:3.6} how these components interact with the client and Ethereum to fulfill the features described in \hypersectionref{ssec:3.2}.
+The centralized components of the Euro 2.0 prototype are built with traditional client server architecture. Currently these are maintained by the Euro 2.0 Foundation, but would ideally be given over to government or the central bank to run their own monetary system. We only give a high level overview of the centralized component architecture, not going into any significant details of their implementation. At the time of the writing the components are based off of an unfinished prototype with quite a few bugs and some components not yet built. The goal of the subsection is to describe how the centralized components could be set up in such a system, where are the important keys and data are held, and in \hypersectionref{ssec:3.6} how these components interact with the client and Ethereum to fulfill the features described in \hypersectionref{ssec:3.2}.
 
-\hyperfigureref{fig:euro2architecture} shows the architecture of the Euro 2.0 digital currency showing the interaction between both centralized and decentralized components. The figure is quite a helpful reference point when relating the components to their place in the system.
+\hyperfigureref{fig:euro2architecture} shows the architecture of the Euro 2.0 digital currency with its centralized and decentralized components. The figure is quite a helpful reference point when relating components to their place in the system. The Client is shown in purple as it does not necessarily have an owner. The green clouds represent external third party services not under control of the Euro 2.0 foundation. The blue represents all centralized components under control of the Euro 2.0 foundation. The green box represents the Ethereum network and deployed smart contracts in the system. Yellow keys represent the distribution of admin keys and whether they are or are not located on a server. Finally the arrows between components show the data flow between components
 
 \begin{figure}[ht]
     \centering
@@ -1521,129 +1524,14 @@ The ID server is an interface to all the ID operations of the system. It's main 
 
 The ID Database holds the data needed for the ID server. The tables include:
 
-\begin{center}
-\begin{tabular}{ | l | p{10cm} | }
- \hline
- \textbf{backup\_challenge} & ...
- \\ \hline\hline
- id\_code & ...
- \\ \hline
- plaintext & ...
- \\ \hline
- encrypted & ...
- \\ \hline
- active & ...
- \\ \hline
-\end{tabular}
-\end{center}
-\captionof{table}{Id Database Backup Challenge Table}
-\label{tab:idDatabaseBackupChallenge}
-
-\begin{center}
-\begin{tabular}{ | l | p{10cm} | }
- \hline
- \textbf{escrow} & ...
- \\ \hline\hline
- id\_code & ...
- \\ \hline
- private\_key & ...
- \\ \hline
- address & ...
- \\ \hline
- cleared & ...
- \\ \hline
- clearing\_hash & ...
- \\ \hline
-\end{tabular}
-\end{center}
-\captionof{table}{ID Database Escrow Table}
-\label{tab:idDatabaseEscrow}
-
-\begin{center}
-\begin{tabular}{ | l | p{10cm} | }
- \hline
- \textbf{ethereum\_account} & ...
- \\ \hline\hline
- owner\_id & ...
- \\ \hline
- address & ...
- \\ \hline
- activated & ...
- \\ \hline
- creation\_time & ...
- \\ \hline
- modification\_time & ...
- \\ \hline
- authorisation\_type & ...
- \\ \hline
- transaction\_hash & ...
- \\ \hline
-\end{tabular}
-\end{center}
-\captionof{table}{ID Database Ethereum Address Table}
-\label{tab:idDatabaseEthereumAddress}
-
-\begin{center}
-\begin{tabular}{ | l | p{10cm} | }
- \hline
- \textbf{ethereum\_account} & ...
- \\ \hline\hline
- key\_backup & ...
- \\ \hline
- challenge & ...
- \\ \hline
- address & ...
- \\ \hline
- key\_enc & ...
- \\ \hline
- active & ...
- \\ \hline
-\end{tabular}
-\end{center}
-\captionof{table}{ID Database Key Backup Table}
-\label{tab:idDatabaseKeyBackup}
-
-\begin{center}
-\begin{tabular}{ | l | p{10cm} | }
- \hline
- \textbf{ethereum\_account} & ...
- \\ \hline\hline
- ldap\_response & ...
- \\ \hline
- id\_code & ...
- \\ \hline
- first\_name & ...
- \\ \hline
- last\_name & ...
- \\ \hline
-\end{tabular}
-\end{center}
-\captionof{table}{ID Database LDAP Response Table}
-\label{tab:idDatabaseLdapResponse}
-
-\begin{center}
-\begin{tabular}{ | l | p{10cm} | }
- \hline
- \textbf{pending\_authorisation} & ...
- \\ \hline\hline
- auth\_identifier & ...
- \\ \hline
- type & ...
- \\ \hline
- address & ...
- \\ \hline
- serialised\_mobile\_id\_session & ...
- \\ \hline
- creation\_time & ...
- \\ \hline
- modification\_time & ...
- \\ \hline
- bank\_transfer\_payment\_reference & ...
- \\ \hline
-\end{tabular}
-\end{center}
-\captionof{table}{ID Database Pending Authorization Table}
-\label{tab:idDatabasePendingAuthorization}
+\begin{itemize}
+	\item \textbf{ethereum\_account} - stores ID to Ethereum address mapping with columns: PID \textit{owner\_id}, Ethereum \textit{address}, boolean \textit{activated}, \textit{creation\_time}, \textit{modification\_time}, Estonian ID \textit{authorisation\_type}, and Ethereum \textit{transaction\_hash}
+	\item \textbf{escrow} - stores escrow transactions to an ID with columns: PID \textit{id\_code}, encrypted \textit{private\_key}, Ethereum \textit{address}, boolean \textit{cleared}, and \textit{clearning\_hash}
+	\item \textbf{backup\_challenge} - stores information about backup challenges with columns: PID \textit{id\_code}, \textit{plaintext}, \textit{encrypted} text, and boolean \textit{active}
+	\item \textbf{key\_backup} - stores actual encrypted key backups with columns: \textit{challenge}, Ethereum \textit{address}, encrypted \textit{key\_enc}, and \textit{active}
+	\item \textbf{ldap\_response} - stores response from SK LDAP lookups with columns: \textit{first\_name}, \textit{last\_name}, PID and \textit{id\_code}.
+	\item \textbf{pending\_authorisation} - stores pending authorizations for an Estonian ID or Mobile ID card authentication with columns: \textit{auth\_identifier}, \textit{type}, \textit{address}, \textit{serialised\_mobile\_id\_session}, \textit{creation\_time}, \textit{modification\_time}, and \textit{bank\_transfer\_payment\_reference}
+\end{itemize}
 
 \subsubsection{SK LDAP Directory Service}
 
@@ -1691,6 +1579,10 @@ The Bank Gateway is the entry point for the real euros in Euro 2.0. The function
 	\item Handle EUR2 to EUR payments
 \end{itemize}
 
+\subsubsection{Bank Gateway Database} \label{sssec:3.5:bankGatewayDb}
+
+The Bank Gateway Database store sent or received EUR transaction details from Reserve Bank account for records of operations with EUR.
+
 \subsubsection{AML Server} \label{sssec:3.5:amlServer}
 
 The AML server provides the functionality to law enforcement to police the system, including:
@@ -1708,7 +1600,7 @@ The AML database provides law enforcement the transaction and identity data need
 
 \subsubsection{Ethereum Gateway} \label{sssec:3.5:ethereumGateway}
 
-The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC calls to post and receive data from the Ethereum network. All RPC calls from centralized components go through this interface.
+The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC calls to post and receive data from the Ethereum network\cite{ethereumJsonRpc}. All RPC calls from centralized components go through this node.
 
 \subsection{Fulfillment of Features} \label{ssec:3.6}
 
