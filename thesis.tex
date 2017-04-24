@@ -18,8 +18,8 @@
 \usepackage{longtable} %Package so tables can be longer than one page
 \usepackage{multirow} %Package so table cells can span multiple rows
 
-\usepackage[colorinlistoftodos]{todonotes} %Package so you can add nice TODO marks in your paper with \todo{TODO text...}
-% \usepackage[disable]{todonotes} %disables TODO notes
+% \usepackage[colorinlistoftodos]{todonotes} %Package so you can add nice TODO marks in your paper with \todo{TODO text...}
+\usepackage[disable]{todonotes} %disables TODO notes
 
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
@@ -223,7 +223,7 @@ Digital money in the form of cards, bank accounts, and online payments has been 
 
 \todo[inline]{Fill in English abstract thesis details \ldots}
 
-The thesis is in English and contains 109 pages of text, 6 chapters, 3 figures, 75 tables.
+The thesis is in English and contains 112 pages of text, 6 chapters, 3 figures, 75 tables.
 
 \pagebreak
 
@@ -237,7 +237,7 @@ Annotatsioon
 
 \todo[inline]{Täitke eesti keele annotatsiooni lõputöö detailid \ldots}
 
-Lõputöö on kirjutatud inglise keeles ning sisaldab teksti 100 leheküljel, 6 peatükki, 3 joonist, 75 textit.
+Lõputöö on kirjutatud inglise keeles ning sisaldab teksti 112 leheküljel, 6 peatükki, 3 joonist, 75 tabelit.
 
 \pagebreak
 
@@ -507,7 +507,7 @@ Data in Solidity smart contracts are like fields in other object oriented langua
 	\item \code{uint256} - an unsigned 256 bit integer
 	\item \code{bool} - boolean
 	\item \code{bytes32} - fixed sized byte array of 32 bytes
-	\item \code{\_ArrayType[]} - represents a dynamically sized array of \code{\_ArrayType} 
+	\item \code{\_ArrayType[]} - represents a dynamically sized array of \code{\_ArrayType}
 	\item \code{mapping(\_KeyType => \_ValueType)} - a dynamically sized mapping (hash table) with quite a few Ethereum specific intricacies not listed below. There is no size function and mappings cannot be listed.
 \end{itemize}
 
@@ -1747,7 +1747,7 @@ Second would be to reduce the scope of the security analysis altogether to just 
 In this chapter we explore the social technical implications of the Euro 2.0 system on key stakeholders. We do this by exploring the research question:
 
 \begin{quoting}
-	\textbf{RQ2:} \textit{How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, governments, and banks?}
+	\textbf{RQ2:} \textit{How does adoption of Euro 2.0 digital currency impact the relationship with money for key stakeholders: users, merchants, banks, and governments?}
 \end{quoting}
 
 In which we explore in the following sub research questions.
@@ -2167,7 +2167,7 @@ The analysis presented in this chapter was based on the author's observations of
 After explaining the features and implementation details of the Euro 2.0 system in \hypernameref{sec:3} and exploring the change in relationship with money of stakeholders \hypernameref{sec:4}, we are ready to analyze the risks of Euro 2.0 system. This chapter answers the research question:
 
 \begin{quoting}
-	\textbf{RQ3:} \textit{How do we assess the security and privacy risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
+	\textbf{RQ3:} \textit{How do we assess the security risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
 \end{quoting}
 
 In which we explore in the sub research questions:
@@ -3784,7 +3784,7 @@ A few major topics of a decentralized distributed ledger based systems like Ethe
 %-------------------------------SUMMARY---------------------------
 \section{Summary} \label{sec:6}
 
-In this thesis we explored the feasibility of a decentralized digital currency supporting a government backed monetary system.  The first four chapters set the stage for the subsequent security risk analysis. The Introduction \hyperchapterref{sec:1} introduced the motivation, research questions, and research methods of the thesis. In \hyperchapterref{sec:2} we gave an overview of the existing literature on currencies and payments, Bitcoin, Trust and Cryptocurrencies, Ethereum, Estonian ID Card, ISSRM methods, and OCTAVE Allegro risk analysis framework. In \hyperchapterref{sec:3} we presented the motivation behind the Euro 2.0 digital currency system, documented the features, meticulously walked through the decentralized Ethereum smart contract implementation of the core of the system, described the client server components at a high level, and how they work together to fulfill the features. In \hyperchapterref{sec:4} we turned our attention to change analysis and hypothesized the impact of the Euro 2.0 digital currency adoption for stakeholders including users, merchants, banks, and government.
+In this thesis we explored the feasibility of a decentralized digital currency supporting a government backed monetary system.  The first four chapters set the stage for the security risk analysis that follows. The Introduction \hyperchapterref{sec:1} introduced the motivation, research questions, and research methods of the thesis. In \hyperchapterref{sec:2} we gave an overview of the existing literature on currencies and payments, Bitcoin, Trust and Cryptocurrencies, Ethereum, Estonian ID Card, ISSRM methods, and OCTAVE Allegro risk analysis framework. In \hyperchapterref{sec:3} we presented the motivation behind the Euro 2.0 digital currency system, documented the features, meticulously walked through the decentralized Ethereum smart contract implementation of the core of the system, described the client server components at a high level, and how they work together to fulfill the features. In \hyperchapterref{sec:4} we turned our attention to change analysis and hypothesized the impact of the Euro 2.0 digital currency adoption for stakeholders including users, merchants, banks, and government.
 
 In \hyperchapterref{sec:5} we performed a security risk analysis using the OCTAVE Allegro framework. In the context of the risk analysis we defined the business objectives and organizational structure of the hypothetical Euro 2.0 Foundation as well as impact areas and risk criteria for the analysis. Next we defined the information assets and containers for the key information assets of the security risk analysis, \hypernameref{sssec:5.2:userMoney}, \hypernameref{sssec:5.2:ethereumAdminKeys}, and \hypernameref{sssec:5.2:userIdentity}. Then for each critical risk asset we enumerated multiple  risk profiles for various threat scenarios. Finally we categorized the risk impact results and proposed mitigation strategies.
 
