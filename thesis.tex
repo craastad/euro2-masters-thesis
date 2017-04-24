@@ -529,10 +529,10 @@ We use inspiration from security patterns of from the other two papers as input 
 \section{Chapter 3} \label{sec:3}
 
 \subsection{Introduction} \label{ssec:3.1}
-This chapter introduces the Euro 2.0 digital currency system. The contents of this section are based from a prototype developed by the Euro 2.0 Foundation as a non profit initiative. All the original code is accessible in Github under the MIT License as indicated in \hyperref[ssec:a.1]{Appendix A.1}. The chapter answers the following research question:
+This chapter introduces the Euro 2.0 digital currency system. The contents of this section are based from a prototype developed by the Euro 2.0 Foundation as a non profit initiative. The code is accessible in Github under the MIT License as indicated in \hyperref[ssec:a.1]{Appendix A.1}. The chapter explores the following research question:
 
 \begin{quoting}
-\textbf{RQ1:} \textit{How do we describe the relevant features needed for risk analysis of the Euro 2.0 digital currency?}
+\textbf{RQ1:} \textit{How do we describe the features and components of the Euro 2.0 digital currency system for a security analysis?}
 \end{quoting}
 
 Which is broken down into the following sub-questions:
@@ -546,10 +546,10 @@ Which is broken down into the following sub-questions:
 	\textbf{RQ1.3: }\textit{What are the centralized components?}
 \end{quoting}
 \begin{quoting}
-	\textbf{RQ1.4: }\textit{How do the decentralized and centralized work together to provide the features?}
+	\textbf{RQ1.4: }\textit{How do the decentralized and centralized work together to fulfill the features?}
 \end{quoting}
 
-Answering \textit{RQ1} lays the groundwork for further analysis in \hypernameref{sec:4} and \hypernameref{sec:5}. \hypersectionref{ssec:3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. \hypersectionref{ssec:3.3} will give an overview of the system architecture and features currently implemented answering \textit{RQ1.1}. \hypersectionref{ssec:3.4} will give an overview of the decentralized components built on the Ethereum platform answering \textit{RQ1.2}. \hypersectionref{ssec:3.5} will give an overview of centralized components built with traditional software development architecture answering \textit{RQ1.3}. Finally \hypersectionref{ssec:3.6} will briefly describe how the centralized and decentralized components work together to fulfill the features of \hypersectionref{ssec:3.2} answering \textit{RQ1.4}.
+Answering \textit{RQ1} lays the groundwork for further analysis in \hypernameref{sec:4} and \hypernameref{sec:5}. \hypersectionref{ssec:3.2} will briefly go through the motivation behind the Euro 2.0 digital currency system. \hypersectionref{ssec:3.3} will give an overview of the system architecture and features currently implemented answering \textit{RQ1.1}. \hypersectionref{ssec:3.4} will give an overview of the decentralized components built on the Ethereum platform answering \textit{RQ1.2}. \hypersectionref{ssec:3.5} will give an overview of centralized components built with traditional software development architecture answering \textit{RQ1.3}. Finally \hypersectionref{ssec:3.6} will briefly describe how the centralized and decentralized components work together to fulfill the features answering \textit{RQ1.4}.
 
 \subsection{Euro 2.0 Motivation} \label{ssec:3.2}
 
@@ -558,37 +558,37 @@ The idea of Euro 2.0 originated in 2014 from Kristo Käärmann's blogpost \texti
 Even some governments have expressed interests in digital currency. The Swedish central bank debated whether to become the first to issue digital currency as a response to the country's move away from cash\cite{milne2016sweden}. The UK government pushed for a ``Call for Information'' on digital currencies in order to assess risks\cite{nermin2014ukcall} that was later responded by Citi bank's global Treasury and Trade Services (TTS) Technology and Innovation Team with a suggestion for government to create its own digital currency\cite{spaven2015ukcurrency}:
 
 \begin{quoting}
-	\textit{``The greatest benefits of digital currencies can be realised through the government issuing a digital form of legal tender. This currency would be less expensive, more efficient and provide greater transparency than current physical legal tender or electronic methods.''}
+	\textit{``The greatest benefits of digital currencies can be realized through the government issuing a digital form of legal tender. This currency would be less expensive, more efficient and provide greater transparency than current physical legal tender or electronic methods.''}
 \end{quoting}
 
-Following the rise in popularity of Ethereum, in mid 2016, another blogpost by Käärmann \textit{The future of money may be in the ether}\cite{kaarmann2016ether} described the rough idea of the system. I describe Euro 2.0 as solving the business problem:
+Following the rise in popularity of Ethereum, in mid 2016, another blogpost by Käärmann \textit{The future of money may be in the ether}\cite{kaarmann2016ether} described the rough idea of the system. We can describe Euro 2.0 as attempting to solve the business problem:
 
 \begin{quoting}
-	\textit{How do I build a system to digitally store and transact fiat currency without a centralised for-profit financial intermediary conveniently, trustfully, and securely while satisfying government regulations?}
+	\textit{How do I build a system to digitally store and transact fiat currency without a centralized for-profit financial intermediary conveniently, trustfully, and securely while satisfying government regulations?}
 \end{quoting}
 
 From this business problem derives the key pillars of Euro 2.0:
 
 \begin{enumerate}
-	\item Fiat Backed
-	\item Decentralised Accounts and Transactions
-	\item Identities of all Users
-	\item Convenient Conversion of Fiat to and from Digital Euro
+	\item Fiat backed
+	\item Decentralized accounts and transactions
+	\item Identities of all users
+	\item Convenient conversion between fiat and digital assets
 	\item Government can control monetary supply
-	\item Features for Law Enforcement and AML
+	\item Features for law enforcement and AML
 \end{enumerate}
 
-\textit{Fiat Backed} (1) provides monetary stability to the system and builds trust with users and merchants to keep assets in the digital format. This eliminates the issue of constantly fluctuating daily value between real world and digital assets seen in crypto currencies today.
+\textit{Fiat backed} (1) provides monetary stability to the system and builds trust with users and merchants to keep assets in the digital format. This eliminates the issue of constantly fluctuating daily value between real world and digital assets seen in crypto currencies today.
 
-\textit{Decentralised Accounts and Transactions} (2) comes from the need of an impeccable record and process of transacting value that no centralised party can modify in a database. This is the key benefit and usecase of distributed ledger technology.
+\textit{Decentralized accounts and transactions} (2) comes from the need of an impeccable record and process of transacting value that no centralised party can modify in a database. This is the key benefit and usecase of distributed ledger technology.
 
-\textit{Identities of all Users} (3) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting distributed ledger records in the court). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main driver of the first prototype.
+\textit{Identities of all users} (3) builds trust in the system for users, merchants, and governments. If everyone is identified, any transaction can be legally ramified (assuming legislation arises supporting distributed ledger records in the court). The strong identity of Estonian ID card is a perfect fit for a digitally identifying mechanism and the main driver of the first prototype.
 
-\textit{Convenient Conversion of Fiat to and from Digital Euro} (4) makes it easy for users to gradually start using the digital currency from existing financial infrastructure. At first this exchange gateway can be a private financial institution, similar to Tether\cite{tether}, with a proof of reserve of the one to one Euro backing. Ideally this conversion service is hosted by the central bank itself to limit the number of financial intermediaries.
+\textit{Convenient conversion between fiat and digital assets} (4) makes it easy for users to gradually start using the digital currency from existing financial infrastructure. At first this exchange gateway can be a private financial institution, similar to Tether\cite{tether}, with a proof of reserve of the one to one Euro backing. Ideally this conversion service is hosted by the central bank itself to limit the number of financial intermediaries.
 
 \textit{Government can control monetary supply} (5) follows from the ideal scenario of (4), the central bank can issue new money directly into the digital monetary system without a real world euro counterpart.
 
-\textit{Features for Law Enforcement and AML} (6) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any third party, including government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which require means of necessary intervention that typically happen today via cooperation with traditional financial institutions.
+\textit{Features for law enforcement and AML} (6) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any third party, including government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which requires necessary intervention that typically happen today via cooperation with regulated financial institutions.
 
 \subsection{Euro 2.0 Features} \label{ssec:3.3}
 
@@ -722,7 +722,7 @@ Features are implemented with a combination of decentralized and centralized com
  \\ \hline
  Seize & Remove EUR2 from an address and send them to the designator account.
  \\ \hline
- Name checks & AML PEP and Sanction list check on real name of person.
+ AML checks & AML database lookup based on real name of person.
  \\ \hline
 \end{tabular}
 \end{center}
@@ -821,7 +821,7 @@ Admin
 
 Server
 \begin{itemize}
-	\item \textbf{ES1} - Name checks on ID names
+	\item \textbf{ES1} - AML checks on ID names
 	\item \textbf{ES2} - Create database of transactions with ID
 \end{itemize}
 
@@ -904,13 +904,13 @@ Client
 	\item \textbf{CS7} - Fulfill delegated EUR2 transaction and claim EUR2 fee
 \end{itemize}
 
-Finally, this convenience feature eliminates the side effect of using Ethereum, consuming gas (ether) in transactions. A trusted third party, the wallet server in this case, can execute transactions on behalf of the sender (\textbf{CC13}) and take the fee in EUR2 cents instead of ether (\textbf{CS7}). This requires only the trusted third party to have Ether and the user can only worry about EUR2.
+Finally, this convenience feature eliminates the side effect of using Ethereum, consuming gas (ether) in transactions. A trusted third party, the wallet server in this case, can execute transactions on behalf of the sender (\textbf{CC13}) and take the fee in EUR2 cents instead of Ether (\textbf{CS7}). This requires only the trusted third party to have Ether and the user can only worry about EUR2.
 
 \subsection{Decentralized Components} \label{ssec:3.4}
 
-This section walks through the decentralized components of the Euro 2.0 system on the Ethereum distributed applications platform. The main container of code deployment is the \textit{Contract}. Once deployed, the contract is on the Blockchain forever processing messages (transactions) sent to it unless an optional destroy function is implemented and called. All function calls and data modifications are irreversible and publicly visible while being executed on the 1000s of computers on the Ethereum network maintaining the Ethereum Blockchain. Thus we describe the implementation of the contracts in detail, since there is an of the code, once deployed, and is important in the security analysis considerations.
+This section walks through the decentralized components of the Euro 2.0 system on the Ethereum distributed application platform. The main container of code deployment is the \textit{Contract}. Once deployed, the contract is on the Blockchain forever processing received transactions and messages, unless an optional destroy function is implemented and called. All function calls and data modifications are irreversible and publicly visible while being executed on the thousands of computers on the Ethereum network maintaining the Ethereum Blockchain. Thus we describe the implementation of the Euro 2.0 contracts in detail, since this non-revertible code is important for security considerations.
 
-The decentralized contracts are comprised of of the main administrator contract (\textit{CryptoFiat}), shared contracts (\textit{Constants}, \textit{Relay}, \textit{Data}, \textit{InternalData}), and the upgradable subcontracts providing functionality to the system (\textit{Accounts}, \textit{Approving}, \textit{Reserve}, \textit{Enforcement}, \textit{AccountRecovery}, \textit{Delegation}). These decentralized contracts function as gateways to the shared decentralized data of the Euro 2.0 system used together with centralized components and client explained in \hypersectionref{ssec:3.5} to fulfill the features, described in \hypersectionref{ssec:3.6}.
+The decentralized contracts are comprised of of the main administrator contract (\textit{CryptoFiat}), shared contracts (\textit{Constants}, \textit{Relay}, \textit{Data}, \textit{InternalData}), and the upgradable subcontracts providing functionality to the system (\textit{Accounts}, \textit{Approving}, \textit{Reserve}, \textit{Enforcement}, \textit{AccountRecovery}, \textit{Delegation}). The contract code can be found in \hyperref[ssec:a.2]{Appendix A:2}. These decentralized contracts function as gateways to the shared decentralized data of the Euro 2.0 system used together with centralized components of \hypersectionref{ssec:3.5} to fulfill the features of the system in \hypersectionref{ssec:3.6}.
 
 \todo[inline]{Diagram with inheritance structure of all contracts}
 
@@ -949,7 +949,7 @@ The heart of decentralized Euro 2.0 is the \textit{CryptoFiat} contract. This co
  \\ \hline
  \code{appointMasterAccount} & \code{address next} & Sets \code{masterAccount} to \code{next} and hence gives up control of the CryptoFiat contract. Can only be called by master account owner.
  \\ \hline
- \code{upgrade} & \specialcell{\code{uint256 id},\\ \code{address next}} & Upgrades the active contract with \code{id} to the address \code{next}. Only owner of master account can call this. \code{prev} cannot be the same contract as \code{next}. \code{next} cannot be an already active contract. \code{contractAddress}, \code{contractId}, and \code{contracts} are updated appropriately.
+ \code{upgrade} & \specialcell{\code{uint256 id}\\ \code{address next}} & Upgrades the active contract with \code{id} to the address \code{next}. Only owner of master account can call this. \code{prev} cannot be the same contract as \code{next}. \code{next} cannot be an already active contract. \code{contractAddress}, \code{contractId}, and \code{contracts} are updated appropriately.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -996,7 +996,7 @@ The \textit{Constants} contract has no functionality, but holds convenient value
  \\ \hline
  ACCOUNT\_RECOVERY & 6 & Contract assigning account recovery options
  \\ \hline
- DELEGATION & 7 & ???
+ DELEGATION & 7 & Contract providing delegate transfers
  \\ \hline
 \end{tabular}
 \end{center}
@@ -1004,7 +1004,7 @@ The \textit{Constants} contract has no functionality, but holds convenient value
 \label{tab:constantSubcontractIds}
 
 \begin{center}
-\begin{tabular}{ | l | l | p{10cm} | }
+\begin{tabular}{ | l | l | p{8cm} | }
  \hline
  Contract Name & Id & Description
  \\ \hline\hline
@@ -1012,7 +1012,7 @@ The \textit{Constants} contract has no functionality, but holds convenient value
  \\ \hline
  BALANCE & 2 & Account balance
  \\ \hline
- DELEGATED\_TRANSFER\_NONCE & 3 & ???
+ DELEGATED\_TRANSFER\_NONCE & 3 & Delegate transfer nonce for original sender address
  \\ \hline
  RECOVERY\_ACCOUNT & 4 & Recovery account assignments
  \\ \hline
@@ -1053,13 +1053,12 @@ The \textit{Constants} contract has no functionality, but holds convenient value
  & \code{address indexed source}
  & Event signifying address \code{source} was approved.
  \\ \hline
- \\ \hline
  \code{AccountClosed}
  & \code{address indexed source}
  & Event signifying address \code{source} was closed.
  \\ \hline
  \code{AccountFreeze}
- & \specialcell{\code{address indexed source}, \code{bool frozen}}
+ & \specialcell{\code{address indexed source} \\ \code{bool frozen}}
  & Event signifying address \code{source} was frozen.
  \\ \hline
  \code{SupplyChanged}
@@ -1077,14 +1076,13 @@ The \textit{Constants} contract has no functionality, but holds convenient value
 The \textit{Relay} contract holds convenience methods for subcontracts to access each other. The functions in \hypertableref{tab:relayFunctions} use the reference to \textit{CryptoFiat} in \hypertableref{tab:relayData} to provide a reference to all deployed subcontracts. There is also convenient restriction modifiers listed in \hypertableref{tab:relayModifiers}.
 
 \begin{center}
-\resizebox{\textwidth}{!}{
 \begin{tabular}{ | l | l | p{9cm} | }
  \hline
  Name & Type & Description
  \\ \hline\hline
  \code{cryptoFiat} & \code{address} & Reference to main \textit{CryptoFiat} contract deployment used to resolve address to all other contracts
  \\ \hline
-\end{tabular}}
+\end{tabular}
 \end{center}
 \captionof{table}{Relay contract data}
 \label{tab:relayData}
@@ -1133,7 +1131,7 @@ The \textit{Relay} contract holds convenience methods for subcontracts to access
 
 \paragraph{Data Contract}
 
-The \textit{Data} contract provides the main data access layer for all subcontracts which is accessed by convenience methods in the \textit{InternalData} contract. No subcontracts work with this contract directly. The main data object is defined in \hypertableref{tab:dataData} and functions on this data in \hypertableref{tab:dataFunctions}.
+The \textit{Data} contract provides the main data access layer for all subcontracts which is accessed by convenience methods in the \textit{InternalData} contract. No subcontracts work with the \textit{Data} contract directly. The main data object is defined in \hypertableref{tab:dataData} and functions on this data in \hypertableref{tab:dataFunctions}.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1165,7 +1163,7 @@ The \textit{Data} contract provides the main data access layer for all subcontra
 
 \paragraph{InternalData Contract}
 
-\textit{InternalData} is the main contract for accessing data storage used by all subcontracts. All functions here are marked \code{internal}, meaning they can only be accessed from within a contract. All subcontracts extend \textit{InternalData}. Data access functions are listed in \hypertableref{tab:internalDataAccessFunctions}, account status functions are listed in \hypertableref{tab:internalDataAccountStatusFunctions}, modifiers in \hypertableref{tab:internalDataModifiers}, and account functions in \hypertableref{tab:internalDataAccountFunctions}. The data dependency of functional contracts on \textit{InternalData} and \textit{CryptoFiat} are depicted in \hyperfigureref{fig:contractData}.
+\textit{InternalData} is the main interface for accessing data storage used by all subcontracts. All functions here are marked \code{internal}, meaning they can only be accessed from within a contract and not called by external transactions or messages. All subcontracts extend \textit{InternalData}. Data access functions are listed in \hypertableref{tab:internalDataAccessFunctions}, account status functions are listed in \hypertableref{tab:internalDataAccountStatusFunctions}, modifiers in \hypertableref{tab:internalDataModifiers}, and account functions in \hypertableref{tab:internalDataAccountFunctions}. The data dependency of functional subcontracts on \textit{InternalData} and \textit{CryptoFiat} are depicted in \hyperfigureref{fig:contractData}.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1175,19 +1173,19 @@ The \textit{Data} contract provides the main data access layer for all subcontra
  \\ \hline\hline
  \code{\_balanceOf} & \code{address addr} & Returns \code{uint256} BALANCE stored for address \code{addr}.
  \\ \hline
- \code{\_setBalanceOf} & \specialcell{\code{address addr},\\ \code{uint256 value}} & Stores BALANCE of \code{value} for \code{addr}.
+ \code{\_setBalanceOf} & \specialcell{\code{address addr}\\ \code{uint256 value}} & Stores BALANCE of \code{value} for \code{addr}.
  \\ \hline
  \code{\_statusOf} & \code{address addr} & Returns \code{uint256} account STATUS of address \code{addr} as listed in status codes of \hypertableref{tab:constantAccountStates}.
  \\ \hline
- \code{\_setStatusOf} & \specialcell{\code{address addr},\\ \code{uint256 value}} & Stores account STATUS of \code{value} for \code{addr}.
+ \code{\_setStatusOf} & \specialcell{\code{address addr}\\ \code{uint256 value}} & Stores account STATUS of \code{value} for \code{addr}.
  \\ \hline
- \code{\_delegatedTransferNonceOf} & \code{address addr} & Returns \code{uint256} of last nonce used in delegatedTransfer for address \code{addr}.
+ \code{\_delegatedTransferNonceOf} & \code{address addr} & Returns \code{uint256} of last nonce used in delegatedTransfer for original sender address \code{addr}.
  \\ \hline
- \code{\_setDelegatedTransferNonceOf} & \specialcell{\code{address addr},\\ \code{uint256 value}} & Stores last nonce used \code{value} in delegatedTransfer for address \code{addr}.
+ \code{\_setDelegatedTransferNonceOf} & \specialcell{\code{address addr}\\ \code{uint256 value}} & Stores last nonce used \code{value} in delegatedTransfer for original sender address \code{addr}.
  \\ \hline
  \code{\_recoveryAccountOf} & \code{address addr} & Returns the \code{address} recovery account set for address \code{addr}.
  \\ \hline
- \code{\_setRecoveryAccountOf} & \specialcell{\code{address addr},\\ \code{address value}} & Stores recovery account \code{value} for address \code{addr}.
+ \code{\_setRecoveryAccountOf} & \specialcell{\code{address addr}\\ \code{address value}} & Stores recovery account \code{value} for address \code{addr}.
  \\ \hline
  \code{\_totalSupply} & & Returns total supply \code{uint256} of tokens in circulation.
  \\ \hline
@@ -1217,7 +1215,7 @@ The \textit{Data} contract provides the main data access layer for all subcontra
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{contract-data}
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{contract-data}}
     \caption{Contract Data Dependencies}
     \label{fig:contractData}
 \end{figure}
@@ -1247,9 +1245,9 @@ The \textit{Data} contract provides the main data access layer for all subcontra
  \hline
  Function & Args & Description
  \\ \hline\hline
- \code{\_withdraw} & \specialcell{\code{address account},\\ \code{uint256 amount}} & Withdraws \code{amount} from balance of \code{account}. Throws exception if \code{amount} is more than balance.
+ \code{\_withdraw} & \specialcell{\code{address account}\\ \code{uint256 amount}} & Withdraws \code{amount} from balance of \code{account}. Throws exception if \code{amount} is more than balance.
  \\ \hline
- \code{\_deposit} & \specialcell{\code{address account},\\ \code{uint256 amount}} & Deposits \code{amount} into balance for \code{account}. Throws exception if amount to withdraw plus balance is less than balance (overflow).
+ \code{\_deposit} & \specialcell{\code{address account}\\ \code{uint256 amount}} & Deposits \code{amount} into balance for \code{account}. Throws exception if amount to withdraw plus balance is less than balance (overflow).
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1275,7 +1273,7 @@ The \textit{Accounts} contract exposes all the functions, listed in \hypertabler
  \\ \hline
  \code{isFrozen} & \code{address account} &  Returns \code{bool} whether \code{account} is frozen (can not send funds).
  \\ \hline
- \code{transfer} & \specialcell{\code{address destination},\\ \code{uint256 amount}} & Withdraws \code{amount} from caller \code{msg.sender} and deposits \code{amount} into \code{destination}. Restricted to \code{msg.sender} that \code{canSend} and \code{destination} that \code{canReceive}. Logs \code{Transfer} event for \code{source}, \code{destination}, and \code{amount}.
+ \code{transfer} & \specialcell{\code{address destination}\\ \code{uint256 amount}} & Withdraws \code{amount} from caller \code{msg.sender} and deposits \code{amount} into \code{destination}. Restricted to \code{msg.sender} that \code{canSend} and \code{destination} that \code{canReceive}. Logs \code{Transfer} event for \code{source}, \code{destination}, and \code{amount}.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1283,7 +1281,7 @@ The \textit{Accounts} contract exposes all the functions, listed in \hypertabler
 \label{tab:accountsFunctions}
 
 \subsubsection{Approving Contract} \label{sssec:3.5:approving}
-\textit{Approving} contract exposes the functions necessary for approving accounts to transact in Euro 2.0. Only the \code{accountApprover}, \hypertableref{tab:approvingData}, can approve accounts. Modifiers, \hypertableref{tab:approvingModifiers} restrict access to functions, \hypertableref{tab:approvingFunctions}, to \code{accountApprover}.
+\textit{Approving} contract exposes the functions necessary for approving accounts to transact in Euro 2.0. Only the \code{accountApprover}, \hypertableref{tab:approvingData}, can approve accounts. Modifiers, \hypertableref{tab:approvingModifiers}, restrict access to functions, \hypertableref{tab:approvingFunctions}, to \code{accountApprover}.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1332,7 +1330,7 @@ The \textit{Accounts} contract exposes all the functions, listed in \hypertabler
 
 \subsubsection{Reserve Contract} \label{sssec:3.5:reserve}
 
-The \textit{Reserve} contract exposes the functions to increase and decrease supply of EUR2 in the Euro 2.0. Only the \code{reserveBank} account, \hypertableref{tab:reserveData}, can perform these tasks. The modifier in \hypertableref{tab:reserveModifiers} restrict access to functions listed in \hypertableref{tab:reserveFunctions} to \code{reserveBank}.
+The \textit{Reserve} contract exposes the functions to increase and decrease supply of EUR2 in the Euro 2.0. Only the \code{reserveBank} account, \hypertableref{tab:reserveData}, can perform these actions. The modifier in \hypertableref{tab:reserveModifiers} restrict access to functions listed in \hypertableref{tab:reserveFunctions} to \code{reserveBank}.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1425,7 +1423,7 @@ The \textit{Enforcement} contract exposes the functions for law enforcement to f
  \\ \hline
  \code{appointAccountDesignator} & \code{address next} & Assigns address of \code{accountDesignator} to \code{next}, removing privileges of the old address. Restricted to \code{onlyAccountDesignator}.
  \\ \hline
- \code{withdraw} & \specialcell{\code{address from}, \\ \code{uint256 amount}} & Withdraws \code{amount} from account \code{from} and deposits \code{amount} into law enforcement \code{account}. Restricted to \code{onlyLawEnforcer} and \code{account} \code{canReceive}. Logs \code{Transfer} event with \code{from}, designator \code{account}, and \code{amount}.
+ \code{withdraw} & \specialcell{\code{address from} \\ \code{uint256 amount}} & Withdraws \code{amount} from account \code{from} and deposits \code{amount} into law enforcement \code{account}. Restricted to \code{onlyLawEnforcer} and \code{account} \code{canReceive}. Logs \code{Transfer} event with \code{from}, designator \code{account}, and \code{amount}.
  \\ \hline
  \code{freezeAccount} & \code{address target} & Sets status of \code{target} account to FROZEN so it can no longer send funds. Restricted to \code{onlyLawEnforcer}. Logs \code{AccountFreeze} event with \code{target} and value {true}.
  \\ \hline
@@ -1450,7 +1448,7 @@ The \textit{AccountRecovery} exposes functionality intended for an account recov
  \\ \hline\hline
  \code{designateRecoveryAccount} & \code{address recoveryAccount} & Sets the recovery account for \code{msg.sender} to address \code{recoveryAccount}, replacing an existing \code{recoveryAccount}. To remove a recovery account the address 0 can be set.
  \\ \hline
- \code{recoverBalance} & \specialcell{\code{address from}, \\ \code{address into}} & Withdraws all funds from account \code{from} and deposits all funds to account \code{into} and then closing account \code{from} by setting its status to CLOSED. Restricted to account \code{from} \code{canSend} and account \code{into} \code{canReceive}. Logs \code{AccountClosed} event of \code{from} account and \code{Transfer} event of \code{from} account, \code{into} account, and \code{amount}.
+ \code{recoverBalance} & \specialcell{\code{address from} \\ \code{address into}} & Withdraws all funds from account \code{from} and deposits all funds to account \code{into} and then closing account \code{from} by setting its status to CLOSED. Restricted to account \code{from} \code{canSend} and account \code{into} \code{canReceive}. Logs \code{AccountClosed} event of \code{from} account and \code{Transfer} event of \code{from} account, \code{into} account, and \code{amount}.
  \\ \hline
 \end{tabular}}
 \end{center}
@@ -1459,8 +1457,7 @@ The \textit{AccountRecovery} exposes functionality intended for an account recov
 
 \subsubsection{Delegation Contract} \label{sssec:3.5:delegation}
 
-\todo[inline]{The \textit{Delegation} contract is magic...}
-Its functions are listed in \hypertableref{tab:delegationFunctions}}.
+The \textit{Delegation} contract allows a third party to initiate transactions in the Euro 2.0 system on behalf of other senders for a fee. This allows the third party to pay the fee in Ether of creating an Ethereum transaction while the original sender can just pay a fee in EUR2. The transactions must be signed by the original sender meaning there is no possibility the delegate can make unsigned transactions on behalf of another sender. The functions of the contract are listed in \hypertableref{tab:delegationFunctions}}.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1468,24 +1465,24 @@ Its functions are listed in \hypertableref{tab:delegationFunctions}}.
  \hline
  Function & Args & Description
  \\ \hline\hline
- \code{nonceOf} & \code{address account} & Sets delegated transfer nonce of \code{account}.
+ \code{nonceOf} & \code{address account} & Returns delegate transfer nonce for original sender \code{account}.
  \\ \hline
  \code{transfer}
     & \specialcell{
  		% transfer request
-        \code{uint256 nonce}, \\
-		\code{address destination}, \\
-		\code{uint256 amount}, \\
-		\code{uint256 fee}, \\
+        \code{uint256 nonce} \\
+		\code{address destination} \\
+		\code{uint256 amount} \\
+		\code{uint256 fee} \\
         % transfer request signed by source
-        \code{bytes signature}, \\
+        \code{bytes signature} \\
         % whom to pay for fulfilling transfer
         \code{address delegate}
  	   }
-    & Makes a delegate transfer from a \code{source} account, recovered by extracting public key from elliptic curve \code{signature}, to \code{destination} of \code{amount} with fee \code{fee} paid to \code{delegate}. \code{nonce} is used to prevent replay attacks. Logs \code{Transfer} event for \code{source} account (in signature), \code{destination}, and \code{amount} and if there is a fee, also logs \code{Transfer} event for \code{source}, \code{delegate}, and the \code{fee}.
+    & Makes a delegate transfer from a \code{source} account, recovered by extracting public key from elliptic curve \code{signature}, to \code{destination} account of EUR2 \code{amount} with EUR2 fee \code{fee} paid to \code{delegate}. The \code{msg.sender} pays the Ether fee for the transaction instead of \code{source}. \code{nonce} is used to prevent replay attacks for the same \code{source} account. Logs \code{Transfer} event for \code{source} account (in signature), \code{destination}, and \code{amount} and if there is a fee, also logs \code{Transfer} event for \code{source}, \code{delegate}, and the \code{fee}.
  \\ \hline
  \code{multitransfer}
- 	& \specialcell{\code{uint256 count}, \\ \code{bytes transfers}, \\ \code{address delegate}}
+ 	& \specialcell{\code{uint256 count} \\ \code{bytes transfers} \\ \code{address delegate}}
 	& Performs the same logic as \code{transfer} for \code{count} number of transfers encoded in \code{transfers} byte array.
  \\ \hline
 \end{tabular}}
@@ -3792,13 +3789,10 @@ Finally, one very important open question: \textit{does a decentralized implemen
 \subsection*{A.1: Euro 2.0 Codebase} \label{ssec:a.1}
 \url{http://github.com/cryptofiat}
 
-\subsection*{A.2: Euro 2.0 Contract Codebase} \label{ssec:a.2}
-\url{https://github.com/cryptofiat/contract}
-
-\subsection*{A.3: CryptoFiat Contract} \label{ssec:a.3}
+\subsection*{A.2: CryptoFiat Contract} \label{ssec:a.2}
 \url{https://github.com/cryptofiat/contract/blob/master/CryptoFiat.sol}
 
-\subsection*{A.4: Archive of Cited Web Pages} \label{ssec:a.4}
+\subsection*{A.3: Archive of Cited Web Pages} \label{ssec:a.3}
 \url{https://goo.gl/5jJKRc}
 
 \end{document}
