@@ -242,20 +242,21 @@ Table of abbreviations and terms
 \end{center}}
 
 \begin{tabular}{p{2cm} p{12cm}}
-	BTC & Bitcoin currency code\\
 	AML & \textit{Anti Money Laundering}, processes implemented by Financial Institutions to hinder money laundering and comply with regulation\\
-	CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial Institutions to hinder terrorist financing and comply with regulation\\
-	KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
-	ISSRM & \textit{Information Systems Security Risk Management} \\
-	SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system \\
-	LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK \\
 	API & \textit{Application Programming Interface}, describing communicating between two servers \\
-	UX & \textit{User Experience} \\
-	PIC & \textit{Personal Identity Code}, issued by the Estonian CMB \\
+	BTC & \textit{Bitcoin} currency code\\
 	CMB & \textit{Citizenship and Migration Board} of Estonia\\
+	CTF & \textit{Counter Terrorist Financing}, processes implemented by Financial Institutions to hinder terrorist financing and comply with regulation\\
+	ETC & \textit{Ether}, Ethereum currency code\\
+	ISSRM & \textit{Information Systems Security Risk Management} \\
+	KYC & \textit{Know Your Customer}, proccesses of Financial institution to identify and verify customers' identities to aid AML and CTF\\
+	LDAP & \textit{Lightweight Directory Access Protocol} hosted by SK \\
+	PIC & \textit{Personal Identity Code}, issued by the Estonian CMB \\
 	PKI & \text{Public Key Infrastructure}\\
 	RSA & widely used public-key crypto-system for secure data transmission\\
-	TLS & \textit{Transport Layer Security}, cryptographic protocol to provide secure communication over a computer network
+	SK & \textit{Sertifitseerimiskeskus} (Certification Center), SK ID Solutions AS, the only Certificate Authority (CA) in Estonia for the Estonian ID card system \\
+	TLS & \textit{Transport Layer Security}, cryptographic protocol to provide secure communication over a computer network\\
+	UX & \textit{User Experience}
 \end{tabular}
 
 \pagebreak
@@ -356,9 +357,9 @@ Currently Bitcoin has a major benefit low cost transactions, since miners are in
 
 \subsubsection{Tether} \label{sssec:2:tether}
 
-Tether is the project most resembling the Euro 2.0 digital currency system by supporting ``fiat currencies on the Bitcoin blockchain.''\cite{tether}. The Tether coin is built on top of the Omni Protocol, which coins to be created by embedding data in Bitcoin transactions\cite{omniProtocolSpec}. The Hong Kong based company Tether Limited holds a reserve of Fiat currency, currently USD and EUR, that can be converted to and from Tethered TUSD and TEUR on Bitcoin Blockchain. TUSD and TEUR can be transferred, stored, and spent like Bitcoin. Tether Limited maintains a proof of reserve that at any given time the balance of fiat currency held in the reserves will be equal to (or greater than) the number of tethers in circulation. Tethers in circulation exist as a decentralized digital currency but reserve assets must be administered by centralized Tether Limited.
+Tether is the project most resembling the Euro 2.0 digital currency system by supporting ``fiat currencies on the Bitcoin blockchain.''\cite{tether}. The Tether coin is built on top of the Omni Protocol, which coins to be created by embedding data in Bitcoin transactions\cite{omniProtocolSpec}. The Hong Kong based company Tether Limited holds a reserve of Fiat currency, currently USD and EUR, that can be converted to and from Tethered TUSD and TEUR on Bitcoin Blockchain. TUSD and TEUR can be transferred, stored, and spent like Bitcoin. Tether Limited maintains a proof of reserve that at any given time the balance of fiat currency held in the reserves will be equal to (or greater than) the number of tethers in circulation. Tethers in circulation exist as a decentralized digital currency but reserve assets must be administered by centralized Tether Limited. Tether transacts just like Bitcoin, hence, is subject to the same trust and regulatory issues outlined in the next section.
 
-\subsubsection{Anonymity, Regulation, and Trust}
+\subsubsection{Anonymity, Regulation, and Trust} \label{sssec:2:anonymityRegulationTrust}
 
 Bitcoin gained early attention for the infamous Silk Road, the ``Ebay for Drugs''\cite{EbayForDrugs}. The website amassed over 1000 vendors, tens of millions of dollars of revenue, and triple digit yearly growth until it was shutdown by the FBI in 2013 after two and a half years operation\cite{NotAnEbayForDrugs}. The buyers were protected in escrow Bitcoin transaction, only releasing payment to the seller if the buyer was completely satisfied. Bitcoin allowed payments amongst parties that can never trust each other in real life. \textit{``Anonymity and lack of regulation which is meant to free users from central authorities also empowers drug dealers and money launderers''}\cite{Ali:2015:BPU:2990603.2990632}.
 
@@ -2872,7 +2873,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Keys Stolen from User Device Severity}
+\captionof{table}{Severity: Keys Stolen from User Device Severity}
 \label{tab:severityKeysStolenFromUserDevice}
 
 \paragraph{(2) Programming Error in the Ethereum Contract }
@@ -2931,7 +2932,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Keys Stolen from User Device Severity}
+\captionof{table}{Severity: Keys Stolen from User Device Severity}
 \label{tab:severityProgrammingErrorInContract}
 
 \paragraph{(3) Spoof ID to Ethereum Address Lookup }
@@ -2997,7 +2998,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Spoof ID to Address Lookup}
+\captionof{table}{Severity: Spoof ID to Address Lookup}
 \label{tab:severitySpoofIdToAddressLookup}
 
 \paragraph{(4) User Keys Stolen from Backup System }
@@ -3061,7 +3062,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: User Keys Stolen from Backup System}
+\captionof{table}{Severity: User Keys Stolen from Backup System}
 \label{tab:severityUserIdsStolenFromBackupSystem}
 
 \paragraph{(5) Ethereum Scalability }
@@ -3122,7 +3123,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Ethereum Scalability}
+\captionof{table}{Severity: Ethereum Scalability}
 \label{tab:severityEthereumScalability}
 
 \subsubsection{Risk Profiles II: Ethereum Admin Keys} \label{sssec:5.3:ethereumAdminKeysRiskProfiles}
@@ -3194,7 +3195,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Steal Admin Key from Online Server}
+\captionof{table}{Severity: Steal Admin Key from Online Server}
 \label{tab:severityStealAdminKeyFromOnlineServer}
 
 \paragraph{(2) Tamper CryptoFiat Key Generation }
@@ -3254,7 +3255,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Tamper CryptoFiat Key Generation}
+\captionof{table}{Severity: Tamper CryptoFiat Key Generation}
 \label{tab:severityTamperKeyGeneration}
 
 \paragraph{(3) Bribe Key Custodian }
@@ -3314,7 +3315,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Bribe Key Custodian}
+\captionof{table}{Severity: Bribe Key Custodian}
 \label{tab:severityBribeKeyCustodian}
 
 
@@ -3379,7 +3380,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: ID or AML Database Hacked}
+\captionof{table}{Severity: ID or AML Database Hacked}
 \label{tab:severityIdOrAmlDatabaseHacked}
 
 \paragraph{(2) Brute Force ID Address Lookup }
@@ -3446,7 +3447,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Brute Force ID Address Lookup}
+\captionof{table}{Severity: Brute Force ID Address Lookup}
 \label{tab:severityBruteForceIdAddressLookup}
 
 \paragraph{(3) Spoof ID Authorization }
@@ -3506,7 +3507,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{(9) Severity: Spoof ID Authorization}
+\captionof{table}{Severity: Spoof ID Authorization}
 \label{tab:severitySpoofIdAuthorization}
 
 \subsection{Risk Mitigation} \label{ssec:5.4}
