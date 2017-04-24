@@ -107,6 +107,9 @@
 % creates a hyperref in form "Section #" for a section
 \newcommand{\hypersectionref}[1]{\hyperref[#1]{Section \ref{#1}}}
 
+% creates a hyperref in form "Section #" for a section
+\newcommand{\hyperchapterref}[1]{\hyperref[#1]{Chapter \ref{#1}}}
+
 % make font look like code
 \def\code#1{\texttt{#1}}
 
@@ -301,7 +304,7 @@ In which we explore in sub research questions:
 \textbf{RQ3: }\textit{How do we assess the security risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
 \end{quoting}
 
-Answering \textbf{RQ} will result in one of two possible outcomes:
+The result of exploring \textbf{RQ} will result in one of the following outcomes:
 \begin{itemize}
 	\item The Euro 2.0 system is free from significant risks in functioning as a digital monetary system.
 	\item The Euro 2.0 system has one or more serious risks that need to be addressed before significant adoption.
@@ -328,6 +331,8 @@ The features and components are presented by a code review of the Euro 2.0 codeb
 
 %--------------------CHAPTER 2 - BRIDGE-----------------
 \section{Chapter 2: Bridge of Knowledge} \label{sec:2}
+
+\subsection{Introduction} \label{ssec:2:introduction}
 
 In this chapter we present background research needed to understand the rest of the thesis in Chapters \hyperref[sec:3]{3}, \hyperref[sec:4]{4}, and \hyperref[sec:5]{5}. \hypersectionref{ssec:2:finance} presents the costs associated with the currency and payments. \hypersectionref{ssec:2:cryptocurrencies} presents Bitcoin, Tether, and research analyzing trust in payments needed to understand the motivation behind Euro 2.0. \hypersectionref{ssec:2:ethereum} presents Ethereum in detail focusing on its accounts and messages, execution model, and the details of the high level programming language Solidity. \hypersectionref{ssec:2:estoniaIdCard} presents some background on the Estonian ID card system. Then in \hypersectionref{ssec:2:issrmFramework} we present findings on ISSRM frameworks, security risk patterns of distributed systems, and our decision to choose OCTAVE Allegro as a risk analysis framework for this thesis.
 
@@ -3758,14 +3763,18 @@ A few major topics of a decentralized distributed ledger based systems like Ethe
 
 \textbf{Network Attacks} have been studied extensively in the Bitcoin community, such as in Eclipse attacks\cite{EclipseAttacks}, \textit{Majority is not Enough: Bitcoin Mining is Vulnerable}\cite{MajorityIsNotEnough}, and the rigorous approach to proving properties of the Blockchain \textit{The Bitcoin Backbone Protocol: Analysis and Applications}\cite{BitcoinBackboneProtocol}. Similar research is lacking in the Ethereum space. As mining pools become larger and more commercialized there is more of a risk of mining attacks on the Ethereum network. Further research can be done to analyze and asses the risk of attacks on the network.
 
-Finally, one very important open question: \textit{does a decentralized implementation of transactions and accounts in a digital currency give a security advantage over a completely centralized client-server implementation}? Why do we need Ethereum? Does decentralization improve the integrity of a monetary system over the complicated implementation and privacy tradeoffs of traditional financial systems?
-
 \pagebreak
 
 %-------------------------------SUMMARY---------------------------
 \section{Summary} \label{sec:6}
 
-\todo[inline]{Write Summary (Chapter 6) \ldots}
+In this thesis we explored the feasibility of a decentralized digital currency supporting a government backed monetary system.  The first four chapters set the stage for the subsequent security risk analysis. The Introduction \hyperchapterref{sec:1} introduced the motivation, research questions, and research methods of the thesis. In \hyperchapterref{sec:2} we gave an overview of the existing literature on currencies and payments, Bitcoin, Trust and Cryptocurrencies, Ethereum, Estonian ID Card, ISSRM methods, and OCTAVE Allegro risk analysis framework. In \hyperchapterref{sec:3} we presented the motivation behind the Euro 2.0 digital currency system, documented the features, meticulously walked through the decentralized Ethereum smart contract implementation of the core of the system, described the client server components at a high level, and how they work together to fulfill the features. In \hyperchapterref{sec:4} we turned our attention to change analysis and hypothesized the impact of the Euro 2.0 digital currency adoption for stakeholders including users, merchants, banks, and government.
+
+In \hyperchapterref{sec:5} we performed a security risk analysis using the OCTAVE Allegro framework. In the context of the risk analysis we defined the business objectives and organizational structure of the hypothetical Euro 2.0 Foundation as well as impact areas and risk criteria for the analysis. Next we defined the information assets and containers for the key information assets of the security risk analysis, \hypernameref{sssec:5.2:userMoney}, \hypernameref{sssec:5.2:ethereumAdminKeys}, and \hypernameref{sssec:5.2:userIdentity}. Then for each critical risk asset we enumerated multiple  risk profiles for various threat scenarios. Finally we categorized the risk impact results and proposed mitigation strategies.
+
+Despite the analysis, both outcomes mentioned in \hypersectionref{ssec:1.2} are inconclusive. We cannot conclude from a high level security analysis that the Euro 2.0 digital currency system is free from significant risks to function as a monetary system; the highest risk is the unknown. At the same time, we could not deem any of the risks presented in \hypersectionref{ssec:5.3} as so severe as preventing the digital currency to function as designed, especially if the mitigation strategies in \hypersectionref{ssec:5.4} are considered and implemented. On the other hand, a decentralized cryptocurrency implemented with smart contracts exposes severe risks on two fronts: admin keys and revealing user identity. Due to the Ethereum smart contract implementation of Euro 2.0, the holder of the CrytpoFiat master key possesses an unprecedented amount of power over the security and functionality of a monetary system non existent in fragmented financial systems. Likewise the complete openness of the public ledger, even with pseudo-anonymous identities and keys generated for each transaction, still exposes users to major privacy revelations about their transaction history if the identity mapping is ever revealed. These two risks are considerable and must be further researched in other cryptography based digital currency proposals.
+
+Finally, one very important open question: \textit{does a decentralized implementation of transactions and accounts in a digital currency give a security advantage over a completely centralized client-server implementation}? Why do we need Ethereum? Does decentralization improve the integrity of a monetary system over the complicated implementation and privacy tradeoffs?
 
 \pagebreak
 
