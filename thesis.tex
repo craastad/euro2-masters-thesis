@@ -1602,7 +1602,7 @@ The AML database provides law enforcement the transaction and identity data need
 
 The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC calls to post and receive data from the Ethereum network\cite{ethereumJsonRpc}. All RPC calls from centralized components go through this node.
 
-\subsection{Fulfillment of Features} \label{ssec:3.6}
+\subsection{Implementation of Features} \label{ssec:3.6}
 
 This section describes how the decentralized components of \hypersectionref{ssec:3.4} and the centralized components of \hypersectionref{ssec:3.5} work together to fulfill the features described in \hypersectionref{ssec:3.3}. Again \hyperfigureref{fig:euro2architecture} is a great reference for how the centralized and decentralized components fit together. The overview is this chapter is very high level. The exact implementations are in progress and so the most up to date source is the code in the Github repository linked to in \hyperref[ssec:a.1]{Appendix A.1}.
 
@@ -1647,7 +1647,16 @@ Delegated transfers are implemented by Clients making transfer via the Wallet Se
 
 \subsection{Conclusion} \label{ssec:3.7}
 
-\todo[inline]{Write Chapter 3 conclusion}
+\subsubsection{Summary} \label{ssec:3.7:summary}
+In this chapter we made a best effort to communicate the features, architecture, and implementation of the proposed Euro 2.0 digital currency system.  In \hypersectionref{ssec:3.2} we gave an overview of the motivation behind the Euro 2.0 system and what goals it's trying to achieve. \hypersectionref{ssec:3.3} listed the specific features of Euro 2.0 by domain. \hypersectionref{ssec:3.4} gives a detailed overview of the Ethereum smart contracts and data comprising of the decentralized components of Euro 2.0. \hypersectionref{ssec:3.5} gives a high level overview of the client server centralized components of the Euro 2.0 system and a very useful architectural diagram in \hyperfigureref{fig:euro2architecture}. Then \hypersectionref{ssec:3.6} attempts to describe roughly how the centralized and decentralized components work together to implement the features. Together we have a good idea of what the Euro 2.0 system looks like to analyze its impact on stakeholders in \hyperchapterref{sec:4} and use as a basis of an information security risk analysis in \hyperchapterref{sec:5}.
+
+\subsubsection{Future Work} \label{ssec:3.7:futureWork}
+
+Describing a complex, experimental, technical system in writing is extremely challenging. Future work would be avoidance of such task. Technical documentation can never come to the clarity of implemented software code. Any attempt describe a complex technical system in will sacrifice the clarity of code for misleading summaries and approximate drawings. Yet code is usually a disaster to understand without an extensive suite of unit and integration tests, especially in a prototype built through a series of casual hacking system. There are two future avenues of research.
+
+First is to avoid diving into details in the code level and limit all analysis to formalized business process models of the system. Ethereum and client server components can be abstracted to goal models and business processes analyzed with formal models like Colored Petri Nets\cite{6903169}\cite{Jensen:2007:CPN:1266780.1266789}.
+
+Second would be to reduce the scope of the security analysis altogether to just the Ethereum smart contracts. There is substantial research about smart contract vulnerabilities that could fuel a more focused and fruitful code level security analysis\cite{cryptoeprint:2016:1007}\cite{Atzei2017}\cite{cryptoeprint:2015:460}.
 
 \pagebreak
 
