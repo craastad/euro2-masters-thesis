@@ -17,7 +17,9 @@
 \usepackage[table]{xcolor} %make a colorful table
 \usepackage{longtable} %Package so tables can be longer than one page
 \usepackage{multirow} %Package so table cells can span multiple rows
+
 \usepackage[colorinlistoftodos]{todonotes} %Package so you can add nice TODO marks in your paper with \todo{TODO text...}
+% \usepackage[disable]{todonotes} %disables TODO notes
 
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
@@ -46,7 +48,6 @@
 
 \usepackage{amssymb} %For square itemized listss
 \renewcommand{\labelitemi}{\tiny$\blacksquare$} %For square itemized lists
-
 
 \usepackage{caption} %Needed to customise captions for tables and figures
 \captionsetup{labelsep=period} %Set table and figure caption name to be separated with text with a period
@@ -89,6 +90,8 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+
+\usepackage{listings}
 
 \usepackage{graphicx}
 \graphicspath{ {images/} }
@@ -220,7 +223,7 @@ Digital money in the form of cards, bank accounts, and online payments has been 
 
 \todo[inline]{Fill in English abstract thesis details \ldots}
 
-The thesis is in English and contains [pages] pages of text, [chapters] chapters, [figures] figures, [tables] tables.
+The thesis is in English and contains 109 pages of text, 6 chapters, 3 figures, 75 tables.
 
 \pagebreak
 
@@ -234,7 +237,7 @@ Annotatsioon
 
 \todo[inline]{Täitke eesti keele annotatsiooni lõputöö detailid \ldots}
 
-Lõputöö on kirjutatud inglise keeles ning sisaldab teksti [lehekülgede arv] leheküljel, [peatükkide arv] peatükki, [jooniste arv] joonist, [tabelite arv] textit.
+Lõputöö on kirjutatud inglise keeles ning sisaldab teksti 100 leheküljel, 6 peatükki, 3 joonist, 75 textit.
 
 \pagebreak
 
@@ -479,13 +482,89 @@ Ethereum has a proof-of-work mining mechanism, like Bitcoin, to economically inc
 
 \subsubsection{Solidity Smart Contracts} \label{sssec:2:ethereum:soliditySmartContracts}
 
+Solidity is a high level programming languages to define Smart Contracts for the Ethereum Virtual Machines\cite{solidity}. It has syntax is similar to Javascript, statically typed, supports inheritance, libraries, and many other features. A high level overview of a very small subset of features of Solidity needed to understand the smart contracts discussed in this thesis are described below.
+
+\paragraph*{Contract Structure}
+
+A minimal viable Solidity Smart contract is defined below in the \code{contract.sol} file below:
+
+\begin{lstlisting}
+pragma solidity ^0.4.10;
+
+contract ContractName {
+	...
+}
+\end{lstlisting}
+
+\code{pragma} declares the version of solidity. \code{contract} indicates a contract with ContractName. Contract is synonymous to class in most object oriented programming languages. Inside the contract definition can be any number of \textit{data} fields, \textit{functions}, \textit{modifiers}, and \textit{events} described below.
+
 \paragraph*{Data}
+
+Data in Solidity smart contracts are like fields in other object oriented languages. They have the basic structure of \code{<type> <visibility> <name>}. Example types are listed below:
+
+\begin{itemize}
+	\item \code{address} - a 20 byte value of an Ethereum address
+	\item \code{uint256} - an unsigned 256 bit integer
+	\item \code{bool} - boolean
+	\item \code{bytes32} - fixed sized byte array of 32 bytes
+	\item \code{\_ArrayType[]} - represents a dynamically sized array of \code{\_ArrayType} 
+	\item \code{mapping(\_KeyType => \_ValueType)} - a dynamically sized mapping (hash table) with quite a few Ethereum specific intricacies not listed below. There is no size function and mappings cannot be listed.
+\end{itemize}
+
+Visibility choices are listed below:
+
+\begin{itemize}
+	\item \code{public} - automatic getter function is generated
+	\item \code{internal} - can only be accessed internally to current contract or contracts inheriting from the current
+	\item \code{private} - only visible to current contract and no inherited contracts
+\end{itemize}
+
+Because smart contracts are deployed on the blockchain \textbf{all data is stored on every node of the Ethereum network} whether it's ``public'' or ``private''. Hence secrets can only be kept be saving encrypted data or hashes.
 
 \paragraph*{Functions}
 
+Functions headers are defined in a contract with the following structure:
+\lstset{basicstyle=\scriptsize}
+\begin{lstlisting}
+function name(<parameters>) {internal|external} [modifier] [returns (<return types>)]
+\end{lstlisting}
+
+\code{name} is the name of the function. \code{<parameters>} are the parameters of the function such as \code{(address source, uint256 amount)}. \code{internal} function can only be used in the current contract while \code{external} function can be called from messages directly to the deployed contract. \code{returns} is optional and specifies the function's single or multiple \code{(<return types>)}. \code{modifier} is described in the next section.
+
+A function body can have some implicit values accessible in functions, such as \code{msg.sender} which is the sender address of the message or transaction calling the function or \code{msg.value}, the amount of Ether sent with the message.
+
 \paragraph*{Modifiers}
 
-Throw Exceptions
+A modifier is a special block of code to add validation or assertion logic to a function. For example,
+
+\lstset{basicstyle=\small}
+\begin{lstlisting}
+address public masterAccount;
+modifier onlyMasterAccount {
+    if(msg.sender != masterAccount) throw;
+    _ ;
+}
+\end{lstlisting}
+
+can be used in a function like,
+
+\lstset{basicstyle=\scriptsize}
+\begin{lstlisting}
+function appointMasterAccount(address next) onlyMasterAccount { masterAccount = next; }
+\end{lstlisting}
+
+to restrict \code{appointMasterAccount} to only a caller transactions whose sender is an address \code{masterAccount} (meaning the transaction was signed by master account's private key) otherwise the function executes \code{throw}. \code{throw} is a very important command in the Solidity programming language, throwing an exception, reverting all execution, and forfeiting all gas to the miner. Contract functions typically have many many modifiers and/or validation logic to throw an exception for unexpected input.
+
+\paragraph*{Events}
+
+Events are the last major construct used in this thesis. An event is a sort of structured log message that is later searchable in the Ethereum blockchain. For example, inside a function could have the event defined:
+
+\lstset{basicstyle=\scriptsize}
+\begin{lstlisting}
+event Transfer(address indexed source, address indexed destination, uint256 amount)
+\end{lstlisting}
+
+which can be executed in a function by calling \code{Transfer(source, destination, amount)}. This creates a log entry in the Ethereum blockchain that could be searched for a particular \code{source} and \code{destination} address.
 
 \subsection{Estonia ID Card} \label{ssec:2:estoniaIdCard}
 
