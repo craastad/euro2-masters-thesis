@@ -806,7 +806,7 @@ Server
 	\item \textbf{IS1} - Check external source for valid ID
 	\item \textbf{IS2} - Approve address
 	\item \textbf{IS3} - Save ID number to address mapping
-	\item \textbf{IS4} - Look up ethereum address by ID
+	\item \textbf{IS4} - Look up Ethereum address by ID
 \end{itemize}
 
 In order for an address to transact EUR2, it needs to be approved, that is linked with an identity. The server here plays a critical role in approving the address by checking a client approval request (\textbf{IC1}) with an external source (\textbf{IS1}) then both approving this address on the blockchain (\textbf{IS2}) and saving this mapping (\textbf{IS3}) for use in other components (\textbf{IS4}).
@@ -831,7 +831,7 @@ Server
 	\item \textbf{TS5} - Execute valid EUR2 transaction
 \end{itemize}
 
-The transaction features are the heart of the EUR2 system. What differentiates Euro 2.0 from other cryptocurrencies is the ability to easily send funds amongst digital (EUR2) and real (EUR) Euros. \textbf{TC1} and \textbf{TC3} allow a user to transact EUR2 directly with the Ethereum decentralized system using ethereum addresses. \textbf{TC2} and \textbf{TC4} allow a user to conveniently send EUR2 to a human being via their ID code using the centralized identity infrastructure (\textbf{IS4}). Funds sent to an ID that does not yet have an Ethereum address will have EUR2 held to a new ethereum address in Escrow (\textbf{TS2}) and then later released and transferred to an address created and approved by the receiver (\textbf{TS3}). \textbf{TS5} provides the infrastructure to execute EUR2 transactions for \textbf{TC1} through \textbf{TC4}. A centralized party needs to provide the mediation gateway (\textbf{TS4}) allowing a user to send EUR2 to a EUR bank account (\textbf{TC5}).
+The transaction features are the heart of the EUR2 system. What differentiates Euro 2.0 from other cryptocurrencies is the ability to easily send funds amongst digital (EUR2) and real (EUR) Euros. \textbf{TC1} and \textbf{TC3} allow a user to transact EUR2 directly with the Ethereum decentralized system using Ethereum addresses. \textbf{TC2} and \textbf{TC4} allow a user to conveniently send EUR2 to a human being via their ID code using the centralized identity infrastructure (\textbf{IS4}). Funds sent to an ID that does not yet have an Ethereum address will have EUR2 held to a new Ethereum address in Escrow (\textbf{TS2}) and then later released and transferred to an address created and approved by the receiver (\textbf{TS3}). \textbf{TS5} provides the infrastructure to execute EUR2 transactions for \textbf{TC1} through \textbf{TC4}. A centralized party needs to provide the mediation gateway (\textbf{TS4}) allowing a user to send EUR2 to a EUR bank account (\textbf{TC5}).
 
 \subsubsection{Reserve Features} \label{sssec:3.3:reserve}
 
@@ -855,7 +855,7 @@ Server
 	\item \textbf{RS3} - Destroy EUR2
 \end{itemize}
 
-The reserve features allow convenient conversion between EUR and EUR2. The reserve process for converting from EUR to EUR2 is to to receive a EUR bank transaction with an individuals ID (\textbf{RS1}), create EUR2 (\textbf{RS2}) of the equivalent amount, resolve the ID to an ethereum address (\textbf{TS1}), and send this to the address for the ID (\textbf{TS5}).  Likewise the process from converting EUR2 to EUR is receiving a EUR2 transaction (\textbf{RC1}), destroy the EUR2 (\textbf{RS3}), and send a bank transfer of the equivalent amount in EUR (\textbf{TS4}). Finally there is admin feature to assign the reserve EUR2 address to make conversions (\textbf{RA1}) and actually perform manage the banking operations on the bank account (\textbf{RA2}).
+The reserve features allow convenient conversion between EUR and EUR2. The reserve process for converting from EUR to EUR2 is to to receive a EUR bank transaction with an individuals ID (\textbf{RS1}), create EUR2 (\textbf{RS2}) of the equivalent amount, resolve the ID to an Ethereum address (\textbf{TS1}), and send this to the address for the ID (\textbf{TS5}).  Likewise the process from converting EUR2 to EUR is receiving a EUR2 transaction (\textbf{RC1}), destroy the EUR2 (\textbf{RS3}), and send a bank transfer of the equivalent amount in EUR (\textbf{TS4}). Finally there is admin feature to assign the reserve EUR2 address to make conversions (\textbf{RA1}) and actually perform manage the banking operations on the bank account (\textbf{RA2}).
 
 \subsubsection{Enforcement Features} \label{sssec:3.3:enforcement}
 
@@ -974,7 +974,7 @@ The heart of decentralized Euro 2.0 is the \textit{CryptoFiat} contract. This co
  \hline
  Name & Type & Description
  \\ \hline\hline
- \code{masterAccount} & \code{address} & Master ethereum account whose allowed to do operations on the CryptoFiat contract. Set in the constructor and changeable by master account owner.
+ \code{masterAccount} & \code{address} & Master Ethereum account whose allowed to do operations on the CryptoFiat contract. Set in the constructor and changeable by master account owner.
  \\ \hline
  \code{contractAddress} & \code{uint256 => address} & Stores mapping from subcontract id to deployed address of active subcontract.
  \\ \hline
@@ -1556,8 +1556,8 @@ The centralized components of the Euro 2.0 prototype are built with traditional 
 \subsubsection{Client} \label{sssec:3.5:client}
 For our purposes the client refers to code running on a user's device interacting with the Euro 2.0 system. This can be a smart phone application or laptop browser. This is typically Javascript displaying the UI and making HTTP REST calls to the servers for interactions with the system. In the current prototype the client library does not interact directly with the decentralized components, but goes through the servers for all actions. The client will typically be storing a user's private keys in order to access their EUR2 funds.
 
-\subsubsection{ID Server} \label{sssec:3.5:idServer}
-The ID server is an interface to all the ID operations of the system. It's main functions include:
+\subsubsection{Identity Server} \label{sssec:3.5:idServer}
+The Identity server is an interface to all the ID operations of the system. It's main functions include:
 
 \begin{itemize}
 	\item Authorization process for ID card, mobile ID, or bank transfer
@@ -1567,9 +1567,9 @@ The ID server is an interface to all the ID operations of the system. It's main 
 	\item Addresses and keys backup system for an ID
 \end{itemize}
 
-\subsubsection{ID Database} \label{sssec:3.5:idDatabase}
+\subsubsection{Identity Database} \label{sssec:3.5:idDatabase}
 
-The ID Database holds the data needed for the ID server. The tables include:
+The Identity Database holds the data needed for the Identity server. The tables include:
 
 \begin{itemize}
 	\item \textbf{ethereum\_account} - stores ID to Ethereum address mapping with columns: PID \textit{owner\_id}, Ethereum \textit{address}, boolean \textit{activated}, \textit{creation\_time}, \textit{modification\_time}, Estonian ID \textit{authorisation\_type}, and Ethereum \textit{transaction\_hash}
@@ -1582,11 +1582,11 @@ The ID Database holds the data needed for the ID server. The tables include:
 
 \subsubsection{SK LDAP Directory Service}
 
-Estonian certificate center (SK)\cite{aboutSk2017} provides an LDAP (Lightweight Directory Access Protocol) server to look up public certificates and legal name for a given Estonia ID number\cite{skAboutLdap2017}\cite{skLdapTechnical2017}. This service is the provider for ID server to look up real names given an Estonian ID code.
+Estonian certificate center (SK)\cite{aboutSk2017} provides an LDAP (Lightweight Directory Access Protocol) server to look up public certificates and legal name for a given Estonia ID number\cite{skAboutLdap2017}\cite{skLdapTechnical2017}. This service is the provider for Identity server to look up real names given an Estonian ID code.
 
 \subsubsection{SK DigiDocService}
 
-Estonian certificate center (SK) provides a DigiDocService which allows registered services to provide the ability for users to authenticate themselves with Estonian Mobile-ID or ID card\cite{skDigiDocService2017}. This service is the provider for ID Server to authenticate users using their Mobile ID or Estonian ID card.
+Estonian certificate center (SK) provides a DigiDocService which allows registered services to provide the ability for users to authenticate themselves with Estonian Mobile-ID or ID card\cite{skDigiDocService2017}. This service is the provider for Identity Server to authenticate users using their Mobile ID or Estonian ID card.
 
 \subsubsection{Wallet Server} \label{sssec:3.5:walletServer}
 
@@ -1647,7 +1647,7 @@ The AML database provides law enforcement the transaction and identity data need
 
 \subsubsection{Ethereum Gateway} \label{sssec:3.5:ethereumGateway}
 
-The Ethereum Gateway is an ethereum full node able to process Ethereum JSON-RPC calls to post and receive data from the Ethereum network\cite{ethereumJsonRpc}. All RPC calls from centralized components go through this node.
+The Ethereum Gateway is an Ethereum full node able to process Ethereum JSON-RPC calls to post and receive data from the Ethereum network\cite{ethereumJsonRpc}. All RPC calls from centralized components go through this node.
 
 \subsection{Implementation of Features} \label{ssec:3.6}
 
@@ -1655,15 +1655,15 @@ This section describes how the decentralized components of \hypersectionref{ssec
 
 \subsubsection{Account Features Implementation} \label{sssec:3.6:account}
 
-The account features are described in \hypersectionref{sssec:3.3:accounts}. An account is created (\textbf{AC1}) in the Client when a private and public key are created. The account only actually gets to Ethereum when a transaction is sent from this address or the account is approved. The client fulfills viewing balance (\textbf{AC2}), that is the sum of all balance of all addresses for an ID by first getting all addresses for a locally saved ID from the ID server, then getting all transactions for those addresses from the Wallet Server. The Wallet server aggregates all address (\textbf{AC2}) by querying all transaction events for all addresses using Ethereum events.
+The account features are described in \hypersectionref{sssec:3.3:accounts}. An account is created (\textbf{AC1}) in the Client when a private and public key are created. The account only actually gets to Ethereum when a transaction is sent from this address or the account is approved. The client fulfills viewing balance (\textbf{AC2}), that is the sum of all balance of all addresses for an ID by first getting all addresses for a locally saved ID from the Identity server, then getting all transactions for those addresses from the Wallet Server. The Wallet server aggregates all address (\textbf{AC2}) by querying all transaction events for all addresses using Ethereum events.
 
 \subsubsection{Identity Features Implementation} \label{sssec:3.6:identity}
 
-The identity features are described in \hypersectionref{sssec:3.3:identity}. Address approval (\textbf{IC1}) for a Client goes through asynchronous calls to ID Server using an Estonian ID authentication scheme. Identity Server uses SK DigiDocService to check if the Estonian ID is valid and for authentication (\textbf{IS1}). For a valid authenticated ID the Identity Server uses the Identity Admin key to approve the given Ethereum address (\textbf{IS2}) with a Ethereum transaction and then saves the ID to address mapping in the Identity database (\textbf{IS3}). The identity server provides looking up Ethereum address by ID (\textbf{IS4}) by simply querying the Identity database for the newest approved address for the ID.
+The identity features are described in \hypersectionref{sssec:3.3:identity}. Address approval (\textbf{IC1}) for a Client goes through asynchronous calls to Identity Server using an Estonian ID authentication scheme. Identity Server uses SK DigiDocService to check if the Estonian ID is valid and for authentication (\textbf{IS1}). For a valid authenticated ID the Identity Server uses the Identity Admin key to approve the given Ethereum address (\textbf{IS2}) with a Ethereum transaction and then saves the ID to address mapping in the Identity database (\textbf{IS3}). The identity server provides looking up Ethereum address by ID (\textbf{IS4}) by simply querying the Identity database for the newest approved address for the ID.
 
 \subsubsection{Transaction Features Implementation} \label{sssec:3.6:transactions}
 
-The transaction features are described in \hypersectionref{sssec:3.3:transactions}. Sending EUR2 to an address (\textbf{TC1}) happens by the client making a request to the Wallet server, which then does a delegate transfer on behalf of the client to the Ethereum address. Sending EUR2 to an ID (\textbf{TC2}) happens very similarly, except the Wallet server looks up the address for the ID from Identity Server. Receiving EUR2 to an address (\textbf{TC3}) is as simple as giving the sender a newly created Ethereum address, the address creator will need to approve the address before they can use received funds. Send to an ID (\textbf{TC4}) requires the client to make a request to ID server to hold a transaction in escrow, in which ID server creates a new temporary not-approved Ethereum address (\textbf{TS2}). When the ID recipient creates and approves a new address, ID server will immediately send the funds to the new address and abandoning the temporary escrow address (\textbf{TS3}). Sending EUR2 to a EUR bank account is a special call to wallet server, which then creates a delegate transfer to the reserve bank, and communicates the receiving EUR bank account number on a private communication channel. Resolving an ID to an address (\textbf{TS1}) happens by asking Identity server. The Bank Reserve admin is responsible for executing valid EUR transactions (\textbf{TS4}) via an online banking interface. Executing valid EUR2 transactions happens by sending signed transactions to Ethereum accounts contract via the Ethereum node.
+The transaction features are described in \hypersectionref{sssec:3.3:transactions}. Sending EUR2 to an address (\textbf{TC1}) happens by the client making a request to the Wallet server, which then does a delegate transfer on behalf of the client to the Ethereum address. Sending EUR2 to an ID (\textbf{TC2}) happens very similarly, except the Wallet server looks up the address for the ID from Identity Server. Receiving EUR2 to an address (\textbf{TC3}) is as simple as giving the sender a newly created Ethereum address, the address creator will need to approve the address before they can use received funds. Send to an ID (\textbf{TC4}) requires the client to make a request to Identity server to hold a transaction in escrow, in which Identity server creates a new temporary not-approved Ethereum address (\textbf{TS2}). When the ID recipient creates and approves a new address, Identity server will immediately send the funds to the new address and abandoning the temporary escrow address (\textbf{TS3}). Sending EUR2 to a EUR bank account is a special call to wallet server, which then creates a delegate transfer to the reserve bank, and communicates the receiving EUR bank account number on a private communication channel. Resolving an ID to an address (\textbf{TS1}) happens by asking Identity server. The Bank Reserve admin is responsible for executing valid EUR transactions (\textbf{TS4}) via an online banking interface. Executing valid EUR2 transactions happens by sending signed transactions to Ethereum accounts contract via the Ethereum node.
 
 \subsubsection{Reserve Features Implementation} \label{sssec:3.6:reserve}
 
@@ -2129,7 +2129,7 @@ The analysis presented in this chapter was based on the author's observations of
 
 \subsection{Introduction} \label{ssec:5:intro}
 
-After explaining the features and implementation details of the Euro 2.0 system in \hypernameref{sec:3} and exploring the change in relationship with money of stakeholders \hypernameref{sec:4}, we are ready to analyze the risks of Euro 2.0 system. This chapter answers the research question:
+After explaining the features and implementation details of the Euro 2.0 system in \hyperchapterref{sec:3} and exploring the change in relationship with money of stakeholders \hyperchapterref{sec:4}, we are ready to analyze the security risks of Euro 2.0 system. This chapter answers the research question:
 
 \begin{quoting}
 	\textbf{RQ3:} \textit{How do we assess the security risks of Euro 2.0 digital currency system and potential impact on stakeholders?}
@@ -2149,7 +2149,7 @@ In which we explore in the sub research questions:
 	\textbf{RQ3.4: }\textit{What are the mitigation strategies or alternative design suggestions for the Euro 2.0 system?}
 \end{quoting}
 
-\textit{RQ3.1} through \textit{RQ3.4} are answered by applying Steps 1 through 8 of the OCTAVE Allegro risk assessment methodology\cite{CaralliIntroducingOCTAVE2007} to the system described in \hypernameref{sec:3}. \hypersectionref{ssec:5.1} answers \textit{RQ3.1} by establishing a risk measurement criteria consistent with the values of the Euro 2.0 foundation. \hypersectionref{ssec:5.2} works through constructing information asset profiles and identifying information asset containers to answer \textit{RQ3.2}. In \hypersectionref{ssec:5.3} we perform the risk analysis by identifying areas of concern and threat scenarios to construct comprehensive information asset risk profiles, answering \textit{RQ3.3}. \hypersectionref{ssec:5.4} uses the risk profiles to categorize the risk analysis results and propose mitigation strategies and design suggestions answering \textit{RQ3.4}. Finally from the above analysis we can make conclusions of the overall risks in Euro 2.0 to answer \textit{RQ3} and also future research in \hypersectionref{enum:criticalInformationAssets}.
+\textit{RQ3.1} through \textit{RQ3.4} are answered by applying Steps 1 through 8 of the OCTAVE Allegro risk assessment framework\cite{CaralliIntroducingOCTAVE2007} to the system described in \hyperchapterref{sec:3}. \hypersectionref{ssec:5.1} answers \textit{RQ3.1} by establishing a risk measurement criteria consistent with the values of the Euro 2.0 foundation. \hypersectionref{ssec:5.2} works through constructing information asset profiles and identifying information asset containers to answer \textit{RQ3.2}. In \hypersectionref{ssec:5.3} we perform the risk analysis by identifying areas of concern and threat scenarios to construct comprehensive information asset risk profiles, answering \textit{RQ3.3}. \hypersectionref{ssec:5.4} uses the risk profiles to categorize the risk analysis results and propose mitigation strategies and design suggestions answering \textit{RQ3.4}. Finally from the above analysis we can make conclusions of the overall risks in Euro 2.0 to answer \textit{RQ3} and also future research in \hypersectionref{enum:criticalInformationAssets}.
 
 The OCTAVE Allegro risk assessment was chosen for its simplicity and organization value based risk analysis methodology. The literature was interpreted for application to the Euro 2.0 System and Foundation assuming a hypothetical organization structure when the system is production ready. For the risk assessment, user represents both personal users and merchants in the Euro 2.0 digital currency.
 
@@ -2158,7 +2158,7 @@ In this section we perform \textit{Step 1 - Establish Risk Measurement Criteria}
 
 \subsubsection{Foundation Mission and Objectives} \label{sssec:5.1:objectives}
 
-The Euro 2.0 Foundation is a non profit initiative to bring transparency and friction to the monetary system through digital currency. In order for the system to reach wide spread adoption and financial sustainability, it must be completely taken over and supported by the government. Throughout the risk analysis we will refer to the \textit{Euro 2.0 Foundation} as the government entity responsible for launching and maintaining this government backed digital currency. In the OCTAVE Allegro risk assessment, we interpret all references to Business and Organization to mean the Euro 2.0 Foundation.
+The Euro 2.0 Foundation is a non profit initiative to bring transparency and friction to the monetary system through digital currency. In order for the system to reach widespread adoption and financial sustainability, it must be completely taken over and supported by the government. Throughout the risk analysis we will refer to the \textit{Euro 2.0 Foundation} as the government entity responsible for launching and maintaining this government backed digital currency. In the OCTAVE Allegro risk assessment, we interpret all references to Business and Organization to mean the Euro 2.0 Foundation.
 
 The Euro 2.0 Foundation mission is to \textit{``Reduce friction in transfer of value in the economy by unlocking the power of digital currency''}. It's objectives are:
 
@@ -2195,7 +2195,7 @@ The organization is structured with the following functions:
 
 \subsubsection{Defining Risk Measurement Criteria} \label{sssec:5.1:defining}
 
-OCTAVE Allegro Step 1 Activity 2 is the definition of a qualitative set of impact areas with risk measurement criteria to the foundation. Each impact area is a factor in the risk analysis in \hypersectionref{ssec:5.4}. The supplemented impact areas by the OCTAVE Allegro framework were used as a starting point for defining the impact areas specifically for Euro 2.0, although most of the resulting impact areas were created specifically for this risk assessment. \hypertableref{tab:riskImpactAreas} lists the final risk measurement impact areas:
+OCTAVE Allegro Step 1 Activity 2 guides the definition of a qualitative set of impact areas with risk measurement criteria to the foundation. Each impact area is a factor in the risk analysis in \hypersectionref{ssec:5.4}. The supplemented impact areas by the OCTAVE Allegro framework were used as a starting point for defining the impact areas specifically for Euro 2.0, although most of the resulting impact areas were created specifically for this risk assessment. \hypertableref{tab:riskImpactAreas} lists the final risk measurement impact areas:
 
 \begin{center}
 \begin{tabular}{ | l | l |}
@@ -2273,7 +2273,7 @@ The loss amounts in the risk criteria are arbitrary and for approximate qualitat
 
 \paragraph{(F) Foundation One Time Financial Loss}
 
-\textit{Foundation One Time Financial Loss} is the only prescribed impact area from the \textit{Risk Measurement Criteria - Financial} Allegro Worksheet 2. This impact area describes the one time monetary losses the Euro 2.0 Foundation is liable for based on realized risks. \textit{Operating Costs} did not make sense to include due to the lack of financials about the projected operating costs of the Euro 2.0 Foundation. \textit{Revenue Loss} doesn't make sense to include since this is currently a non-profit initiative without the intention of revenue. The risk measurement criteria for this impact area are described in \hypertableref{tab:foundationFinancialLossRiskCriteria}.
+\textit{Foundation One Time Financial Loss} is the only prescribed impact area used from the \textit{Risk Measurement Criteria - Financial} Allegro Worksheet 2. This impact area describes the one time monetary losses the Euro 2.0 Foundation is liable for based on realized risks. \textit{Operating Costs} did not make sense to include due to the lack of financials about the projected operating costs of the Euro 2.0 Foundation. \textit{Revenue Loss} doesn't make sense to include since this is currently a non-profit initiative without the intention of revenue. The risk measurement criteria for this impact area are described in \hypertableref{tab:foundationFinancialLossRiskCriteria}.
 
 \begin{center}
 \begin{tabular}{ | l | p{12cm} | }
@@ -2356,7 +2356,7 @@ The amounts are arbitrary and derived from the same reasoning as \textit{Foundat
   \\ \hline
   \textbf{Medium} & Noticeable disruption, 5 to 60 minute delay for payment operations.
   \\ \hline
-  \textbf{High} & Sever disruption, more than 60 minute delay for payment operations.
+  \textbf{High} & Severe disruption, more than 60 minute delay for payment operations.
   \\ \hline
 \end{tabular}
 \end{center}
@@ -2470,7 +2470,7 @@ The \textit{critical few} information assets are those that have a significant a
 	\item User Identity
 \end{enumerate}
 
-These are chosen as critical information assets to be representative of the majority of information assets enumerated in \hypertableref{tab:informationAssets}. Limiting the number of critical information assets reduces the number of risk profiles in \hypersectionref{ssec:5.3} and simplifies the complexity of the risk analysis in \hypersectionref{ssec:5.4}. \textit{Ethereum Contract Data} and \textit{User Keys} were also considered as critical information assets but are adequately represented by \textit{User Money}. \textit{User Transfer History} was also considered as a critical information asset but is related enough to \textit{User Identity} to be disregarded.
+These are chosen as critical information assets to be representative of the majority of information assets enumerated in \hypertableref{tab:informationAssets}. The critical information assets are described in more detail in \hypertableref{tab:assetProfileUserMoney}, \hypertableref{tab:assetProfileEthereumAdminKeys}, and \hypertableref{tab:assetProfileUserIdentity}. Limiting the number of critical information assets reduces the number of risk profiles in \hypersectionref{ssec:5.3} and simplifies the complexity of the risk analysis in \hypersectionref{ssec:5.4}. \textit{Ethereum Contract Data} and \textit{User Keys} were also considered as critical information assets but are adequately represented by \textit{User Money}. \textit{User Transfer History} was also considered as a critical information asset but is related enough to \textit{User Identity} to be disregarded.
 
 \subsubsection{Information Asset and Containers Analysis} \label{sssec:5.2:analysis}
 
@@ -2494,7 +2494,7 @@ Allegro Worksheet 8 summarizes the key aspects of a \textit{Critical Information
 \captionof{table}{Security Requirements of Information Assets}
 \label{tab:securityRequirements}
 
-\textit{Information Asset Containers} are where an information assets are stored, transported, or processed. \textit{``In an information security risk assessment, the identification of containers is essential to identifying risks to the information asset itself.''} They are they key points of vulnerability and threats as well as the key points to apply mitigations and preventive measures for an information asset. An information asset containers can be technical, physical, or people and internal or external to the organization.  In the context of Euro 2.0 risk analysis we focus mainly on technical and people asset containers. Three important points about the security of information assets with regards to information asset containers:
+\textit{Information Asset Containers} are where information assets are stored, transported, or processed. \textit{``In an information security risk assessment, the identification of containers is essential to identifying risks to the information asset itself.''} They are they key points of vulnerability and threats as well as the key points to apply mitigations and preventive measures for an information asset. An information asset containers can be technical, physical, or people and internal or external to the organization.  In the context of Euro 2.0 risk analysis we focus mainly on technical and people asset containers. Three important points about the security of information assets with regards to information asset containers:
 
 \begin{enumerate}
 	\item The \textbf{way} in which an information asset is protected or secured is through controls implemented an the container level.
@@ -2544,13 +2544,13 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
   \\ \hline
   Wallet Server & \specialcell{Technical \\ Internal} & Convenience & The wallet service performs the EUR2 delegate transfer operation.
   \\ \hline
-  ID Server & \specialcell{Technical \\ Internal} & Identity & The ID server currently handles escrow of funds to an ID and addresses and keys backup.
+  Identity Server & \specialcell{Technical \\ Internal} & Identity & The Identity server currently handles escrow of funds to an ID and addresses and keys backup.
   \\ \hline
   Bank Gateway Server & \specialcell{Technical \\ Internal} & Reserve Bank & The bank gateway server handles the conversion from EUR to EUR2.
   \\ \hline
   Ethereum Node & \specialcell{Technical \\ Internal} & Smart Contracts & This node is the interface to all the operations with the Ethereum network.
   \\ \hline
-  User Client & \specialcell{Technical \\ External} & \specialcell{User \\ Convenience} & User's device to interact with the Euro 2.0 system.
+  User Client & \specialcell{Technical \\ External} & \specialcell{User \\ Convenience} & User device to interact with the Euro 2.0 system.
   \\ \hline
   Ethereum Smart Contracts & \specialcell{Technical \\ External} & \specialcell{No Owner \\ Smart Contracts} & Deployed smart contracts on Ethereum blockchain that hold all of the decentralized balance and account data and operations in the system.
   \\ \hline
@@ -2572,7 +2572,7 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
 \resizebox{\textwidth}{!}{
 \begin{tabular}{ | p{5cm} | p{12cm} | }
   \hline
-  \textbf{(1) Critical Asset} & The Ethereum Admin keys are those ethereum address keys that control the critical functionality inside the Euro 2.0 smart contracts.
+  \textbf{(1) Critical Asset} & The Ethereum Admin keys are those Ethereum address keys that control the critical functionality inside the Euro 2.0 smart contracts.
   \\ \hline
   \textbf{(2) Rationale for Selection} & The core of the monetary system is controlled with these keys. Deploying and changing new contracts and rules of how data can be read and written. A compromised admin key could prove devastating for the entire system.
   \\ \hline
@@ -2642,7 +2642,7 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
   \\ \hline
   Bank Gateway & \specialcell{Technical \\ Internal} & Reserve & Device holding the reserve key file used to sign transactions and do operations for the reserve.
   \\ \hline
-  ID Server & \specialcell{Technical \\ Internal} & Identity & Server holding the approver key file needed to approve addresses for authorized IDs.
+  Identity Server & \specialcell{Technical \\ Internal} & Identity & Server holding the approver key file needed to approve addresses for authorized IDs.
   \\ \hline
   Wallet Server & \specialcell{Technical \\ Internal} & Convenience & Server holding the delegator key file needed to sign delegate transactions on behalf of users.
   \\ \hline
@@ -2672,9 +2672,9 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
   \textbf{(5) Security Requirements} &
   	\hskip-0.2cm
   	\begin{tabular}{p{2.5cm}|p{9.06cm}}
-		\textbf{Confidentiality} & Highly confidential, only the ID server, owning user, and other users that have been told that ID code.
+		\textbf{Confidentiality} & Highly confidential, only the Identity server, owning user, and other users that have been told that ID code.
 		\\ \hline
-		\textbf{Integrity} & The ID should be exactly as is for the ID server or user approving an address.
+		\textbf{Integrity} & The ID should be exactly as is for the Identity server or user approving an address.
 		\\ \hline
 		\textbf{Availability} & Only needs to be available when user looks up an address by ID or approves an address.
 	\end{tabular}
@@ -2693,9 +2693,9 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
   \hline
   \textbf{Container} & \textbf{Type} & \textbf{Owners} & \textbf{Description}
   \\ \hline
-  ID Server & \specialcell{Technical \\ Internal} & Identity & Manages ID authentication and approval of Ethereum addresses for users.
+  Identity Server & \specialcell{Technical \\ Internal} & Identity & Manages ID authentication and approval of Ethereum addresses for users.
   \\ \hline
-  ID Database & \specialcell{Technical \\ Internal} & Identity & Database storing ID to Ethereum address mapping, escrow, and keys backups.
+  Identity Database & \specialcell{Technical \\ Internal} & Identity & Database storing ID to Ethereum address mapping, escrow, and keys backups.
   \\ \hline
   AML Server & \specialcell{Technical \\ Internal} & Law Enforcement & Server providing AML operations to Law Enforcement.
   \\ \hline
@@ -2711,7 +2711,7 @@ The information asset containers for the \hyperref[enum:criticalInformationAsset
   \\ \hline
   SK DigiDocService & \specialcell{Technical \\ External} & SK ID Solutions AS & Estonian ID authentication services.
   \\ \hline
-  People & \specialcell{People \\ External} & Anyone & Knowledge of ID numbers can be found in many external proccesses in Estonia.
+  People & \specialcell{People \\ External} & Anyone & Knowledge of ID numbers can be found in many external documents and proccesses in Estonia.
   \\ \hline
 \end{tabular}
 }
@@ -2923,11 +2923,11 @@ The risk profiles presented in this section are for the critical information ass
   \hline
   \textbf{Property} & \textbf{Description}
   \\ \hline
-  (1) Threat Scenario & An attacker spoofs the process of looking up an ethereum address for an ID and replaces it with his own.
+  (1) Threat Scenario & An attacker spoofs the process of looking up an Ethereum address for an ID and replaces it with his own.
   \\ \hline
   (2) Actor & Outside attacker with high knowledge of computer networking.
   \\ \hline
-  (3) Means & Attacker sets up man in the middle attack for API calls going to ID server from outside sources and replaces the response with his choice.
+  (3) Means & Attacker sets up man in the middle attack for API calls going to Identity server from outside sources and replaces the response with his choice.
   \\ \hline
   (4) Motive & Financial gain by forcing all transfers to an ID (including newly created EUR2) be sent to an address under his control instead of intended recipient address.
   \\ \hline
@@ -2993,7 +2993,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   (2) Actor & Outside attacker with knowledge of cryptography.
   \\ \hline
-  (3) Means & Attacker queries ID server with ID codes acquired from outside source, gets challenge information, then breaks the challenge to get encrypted keys, and uses a dictionary attack to find the password to decrypt the keys.
+  (3) Means & Attacker queries Identity server with ID codes acquired from outside source, gets challenge information, then breaks the challenge to get encrypted keys, and uses a dictionary attack to find the password to decrypt the keys.
   \\ \hline
   (4) Motive & Financial gain by stealing to user funds.
   \\ \hline
@@ -3248,7 +3248,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   (1) Threat Scenario & An attacker gains access to admin keys by bribing key custodians.
   \\ \hline
-  (2) Actor & A nation state or global corporation with a great amount of disposable income.
+  (2) Actor & A nation state or global corporation with a great amount of resources.
   \\ \hline
   (3) Means & Bribe Key Custodian with an offer they can't refuse for access to the keys.
   \\ \hline
@@ -3303,7 +3303,7 @@ The risk profiles presented in this section are for the critical information ass
 
 The risk profiles presented in this section are for the critical information asset III. User Identity described in \hypersectionref{sssec:5.2:userIdentity}.
 
-\paragraph{(1) ID or AML Database Hacked }
+\paragraph{(1) Identity or AML Database Hacked }
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -3311,11 +3311,11 @@ The risk profiles presented in this section are for the critical information ass
   \hline
   \textbf{Property} & \textbf{Description}
   \\ \hline
-  (1) Threat Scenario & An attacker finds a security vulnerability in the ID or AML server and gains access to database.
+  (1) Threat Scenario & An attacker finds a security vulnerability in the Identity or AML server and gains access to database.
   \\ \hline
   (2) Actor & An attacker with knowledge of server exploits.
   \\ \hline
-  (3) Means & Attacker exploits a security vulnerability in the ID or AML server to obtain access to the database.
+  (3) Means & Attacker exploits a security vulnerability in the Identity or AML server to obtain access to the database.
   \\ \hline
   (4) Motive & The ID to address mapping allows an attacker to link all transactions on the Ethereum blockchain to real identities and sell this information to interested parties or publish the mapping online as an act of cyberterrorism.
   \\ \hline
@@ -3327,7 +3327,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   (8) Consequences &
     \begin{itemize}
-		\item Identity of all user transactions is compromised and published for attacker gain.
+		\item Identity of all users' transactions is compromised and published for attacker gain.
 		\item The Foundation loses the trust of its users with their money.
 		\item The Foundation may receive fines and penalties for weak security practices.
     \end{itemize}
@@ -3336,7 +3336,7 @@ The risk profiles presented in this section are for the critical information ass
 \end{tabular}
 }
 \end{center}
-\captionof{table}{Risk Profile: ID or AML Database Hacked}
+\captionof{table}{Risk Profile: Identity or AML Database Hacked}
 \label{tab:riskProfileIdOrAmlDatabaseHacked}
 
 \begin{center}
@@ -3360,7 +3360,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{Severity: ID or AML Database Hacked}
+\captionof{table}{Severity: Identity or AML Database Hacked}
 \label{tab:severityIdOrAmlDatabaseHacked}
 
 \paragraph{(2) Brute Force ID Address Lookup }
@@ -3371,11 +3371,11 @@ The risk profiles presented in this section are for the critical information ass
   \hline
   \textbf{Property} & \textbf{Description}
   \\ \hline
-  (1) Threat Scenario & An attacker enumerates all valid Estonian ID codes and queries ID server for addresses.
+  (1) Threat Scenario & An attacker enumerates all valid Estonian ID codes and queries Identity server for addresses.
   \\ \hline
   (2) Actor & An attacker with knowledge of server exploits and Estonian ID code structure.
   \\ \hline
-  (3) Means & ID server has no restrictions on address lookup. Attacker enumerates possible Estonian ID codes and queries the ID server for Ethereum addresses. For given ID codes, owner information can be queried from SK LDAP directory. The number of possible Estonian ID codes is approximately 144 million based on the following structure \cite{Martens2010electronicIdentity}:
+  (3) Means & Identity server has no restrictions on address lookup. Attacker enumerates possible Estonian ID codes and queries the Identity server for Ethereum addresses. For given ID codes, owner information can be queried from SK LDAP directory. The number of possible Estonian ID codes is approximately 144 million based on the following structure \cite{Martens2010electronicIdentity}:
     \begin{itemize}
 		\item gender/century of the birth digit (one digit for two attributes)
 		\item date of birth digits (YY+MM+DD)
@@ -3394,7 +3394,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   (8) Consequences &
     \begin{itemize}
-		\item Identity of all user transactions is compromised and published for attacker gain.
+		\item Identity of all users' transactions is compromised and published for attacker gain.
 		\item The Foundation loses the trust of its users with their money.
 		\item The Foundation may receive fines and penalties for weak security practices.
     \end{itemize}
@@ -3442,7 +3442,7 @@ The risk profiles presented in this section are for the critical information ass
   \\ \hline
   (2) Actor & An attacker with knowledge of exploits on Estonia ID authentication.
   \\ \hline
-  (3) Means & Attacker spoofs communication channel between ID Server and DigiDocService to fake authentications.
+  (3) Means & Attacker spoofs communication channel between Identity Server and DigiDocService to fake authentications.
   \\ \hline
   (4) Motive & Create addresses on Euro 2.0 system anonymously that cannot be traced to a valid ID useful for criminal activity.
   \\ \hline
@@ -3507,8 +3507,8 @@ For all documented risks in a security risk analysis an organization must decide
 Risk mitigation requires a balanced approach of risk avoidance and limitation.
 
 \begin{itemize}
-	\item \textbf{Avoidance} - implement appropriate controls to prevent threats and vulnerabilities from being exploited
-	\item \textbf{Limitation} - implement strategies that limit the adverse impact on the organization if a risk is realized
+	\item \textbf{Avoidance} - implement appropriate controls to prevent threats and vulnerabilities from being exploited.
+	\item \textbf{Limitation} - implement strategies that limit the adverse impact on the organization if a risk is realized.
 \end{itemize}
 
 Along with an element of cost, in which the cost of avoiding and limiting a risk must correspond to the value of the asset being protected and potential impact on the organization.
@@ -3537,7 +3537,7 @@ To aid the decision of which mitigation approach to apply for each risk, we buil
   \\ \hline
   (II:3) & Admin Keys & Bribe Key Custodian & Low & 50
   \\ \hline
-  (III:1) & User Identity & ID or AML Database Hacked & Medium & 48
+  (III:1) & User Identity & Identity or AML Database Hacked & Medium & 48
   \\ \hline
   (III:2) & User Identity & Brute Force ID Address Lookup & High & 49
   \\ \hline
@@ -3603,7 +3603,7 @@ Key management is currently the toughest problem of cryptocurrency user experien
 
 An air-gapped key storage wallet like Armory\cite{bitcoinArmory} provides users a more malware resistant, offline, and recoverable key storage without a trusted third party, thus reducing the chance of theft or loss of keys. Since Bitcoin and Ethereum use the same key generation mechanism a similar solution could be built and offered by the Euro 2.0 foundation.
 
-Another approach is for key storage to be completely delegated to a online third party, such as Bitcoin's Coinbase. This creates a user experience with the same properties as an online bank\cite{Eskandari2015} suitable for users who want to avoid key management.
+Another approach is for key storage to be completely delegated to a online third party, such as the popular exchange Coinbase. This creates a user experience with the same properties as an online bank\cite{Eskandari2015} suitable for users who want to avoid key management.
 
 \paragraph{(I:2) Programming Error in the Ethereum Contract}
 
@@ -3612,7 +3612,7 @@ Mitigation Approach: \textbf{Mitigate}
 Consequences are extremely high for a bug in the Euro 2.0 contracts that could basically result in a total meltdown of the digital currency. There are two suggestions mitigate risk of a programming error in the smart contracts:
 \begin{itemize}
 	\item Write tests for the contract to clearly define exactly functionality of the code using a testing framework, such as Truffle\cite{ethereumTruffle}.
-	\item Perform a security audit of Euro 2.0 smart contracts by industry professionals, such as Smart Contract Solutions\cite{smartContractSolutions}
+	\item Perform a security audit of Euro 2.0 smart contracts by industry professionals, such as Smart Contract Solutions\cite{smartContractSolutions}.
 \end{itemize}
 
 \paragraph{(I:3) Spoof ID to Ethereum Address Lookup}
@@ -3621,9 +3621,9 @@ Mitigation Approach: \textbf{Mitigate} and \textbf{Defer}
 
 There are two clients looking up Ethereum Addresses by ID, user clients and the reserve bank gateway. Each has its own mitigation strategy.
 
-The risk of bank gateway calls to ID server being spoofed can be mitigated by the ID Server and Bank Gateway communicating on a secure network with SSL or a VPN.
+The risk of bank gateway calls to Identity server being spoofed can be mitigated by the Identity Server and Bank Gateway communicating on a secure network with SSL or a VPN.
 
-The risk of user client calls to ID server for address lookup can be deferred for further research. Establishing a secure connection between clients and ID server will be at the expense of an open API by requiring clients to have credentials to establish a TLS connection.
+The risk of user client calls to Identity server for address lookup can be deferred for further research. Establishing a secure connection between clients and Identity server will be at the expense of an open API by requiring clients to have credentials to establish a TLS connection.
 
 \paragraph{(I:4) User Keys Stolen from Backup System}
 
@@ -3655,7 +3655,7 @@ The \textit{Approver} and \textit{Delegate} keys unfortunately must live on a se
 
 \begin{itemize}
 	\item Key should be stored password protected on the server and the password entered on application startup (though memory dumps now have extremely confidential information, the password).
-	\item Have jobs see if approver or delegate keys have been used in ethereum blockchain events without proper events on the servers.
+	\item Have jobs see if approver or delegate keys have been used in Ethereum blockchain events without proper events on the servers.
 	\item Invest in a HSM (Hardware Security Module) to store the key.
 \end{itemize}
 
@@ -3675,7 +3675,7 @@ Although bribery proposes a significant risk, it is not important until the valu
 
 We present the risk mitigation strategy for User Money information asset defined in \hypersectionref{sssec:5.2:userIdentity} with risk profiles defined in \hypersectionref{sssec:5.3:userIdentityRiskProfiles}.
 
-\paragraph{(III:1) ID or AML Database Hacked}
+\paragraph{(III:1) Identity or AML Database Hacked}
 
 Mitigation Approach: \textbf{Mitigate}
 
@@ -3683,9 +3683,9 @@ We propose mitigations for each database separately.
 
 The AML database never needs to be accessible from the internet and only needs to be hosted in the law enforcement private network.
 
-The ID Server should have standard security procedures applied for databases. The database should not be open up to the public internet, but only accessible from a private network where the server lives. The endpoints to ID server should be carefully audited to prevent security breaches and code injection.
+The Identity Server should have standard security procedures applied for databases. The database should not be open up to the public internet, but only accessible from a private network where the server lives. The endpoints to Identity server should be carefully audited to prevent security breaches and code injection.
 
-Finally a secure communication channel needs to exist to transfer between ID server and AML server to transfer ID to address mappings on a private connection, either an internal network or VPN.
+Finally a secure communication channel needs to exist to transfer between Identity server and AML server to transfer ID to address mappings on a private connection, either an internal network or VPN.
 
 \paragraph{(III:2) Brute Force ID Address Lookup}
 
@@ -3715,7 +3715,7 @@ The following are suggested improvements to the Euro 2.0 system based on the sec
 	\item Analyze the security of the key backup challenge.
 	\item Implement best practice security measures for admin keys (Approver and Delegate) running on web facing servers.
 	\item Ensure admin key generation is secure, malware proof, and process audited and documented.
-	\item Move manual usage of critical admin keys to M of N signatures to reduce risks of misuse and bribery.
+	\item Move manual usage of critical admin keys to M of N signatures to reduce risks of misuse, loss, and bribery.
 	\item Protect databases with best practice security measures.
 	\item Secure ID to address lookup endpoint to prevent against brute force attacks.
 \end{itemize}
@@ -3724,7 +3724,7 @@ The following are suggested improvements to the Euro 2.0 system based on the sec
 
 Firstly the security analysis exhibited in this thesis was by no means comprehensive and for a hypothetical organization structure. We only analyzed three representative critical information assets in detail from the many possible information assets considered and those not yet discovered. Security is very contextual to a given organization. The results of the performed analysis yield relevance only to the assumptions of the hypothetical organization structure, which could be flawed. Hence, if the Euro 2.0 system does go live with a government backed structure, further security risk analysis would need to be done in that specific organizational setup.
 
-Secondly the security analysis was reactive. For a not yet fully live prototype like Euro 2.0, preventive security analysis could be yield more beneficial and actionable results. This could be done with a similar approach outlined by Ahmed and Matulevi\v{c}ius\cite{Ahmed:2014:SBP:2588915.2589308} to explore securing business process at earlier developments stages and eliciting security requirements.
+Secondly the security analysis performed was reactive. Since the Euro 2.0 is a not yet live prototype, research in security requirements engineering could yield more beneficial and actionable results for the foundation. This could be done with a similar approach outlined by Ahmed and Matulevi\v{c}ius\cite{Ahmed:2014:SBP:2588915.2589308} to explore securing business process at earlier developments stages and eliciting security requirements.
 
 Finally, the security analysis was performed at a very high level. No major implementation details of the communication protocols and centralized servers were used in the analysis. More low level threats and vulnerabilities should be considered, such as those listed in the \textit{Extensible Pattern-based Library and Taxonomy of Security Threats for Distributed Systems} of Uzunov et al\cite{Uzunov:2014:EPL:2588915.2589309}.
 
@@ -3732,9 +3732,9 @@ Finally, the security analysis was performed at a very high level. No major impl
 
 A few major topics of a decentralized distributed ledger based systems like Ethereum were overlooked by the security risk analysis of this thesis: \textbf{Scalability}, \textbf{Privacy}, and \textbf{Network Attacks}.
 
-\textbf{Scalability} refers to the long term stability of the Ethereum platform when every node on the network must run all the code and store the current state of the world. Eventually blockchain storage will be larger than an average server's disk space, and hence need considerable improvements to continue with the same architecture. We accepted the risk of scalability in the Euro 2.0 security risk analysis even though it is a serious problem that needs to be further investigated before a state can sponsor a digital currency on a decentralized platform like Ethereum. Ethereum has proposed projects like Sharding\cite{shardingFaq} and Proof of Stake\cite{proofOfStakeFaq} to combat scalability. General discussion about a scalable blockchain protocol ``for nodes bounded by $O(N)$ computational power to process a transaction load and state size of $O(N^{2-\varepsilon})$'' is described in Buterin's \textit{Notes on Scalable Blockchain Protocols}\cite{notesOnScalableBlockchains}.
+\textbf{Scalability} refers to the long term stability of the Ethereum platform when every node on the network must run all the code and store the current state of the world. Eventually blockchain storage will be larger than an average server's disk space, and hence need considerable improvements to continue with the same architecture. We accepted the risk of scalability in the Euro 2.0 security risk analysis even though it is a serious problem that needs to be further investigated before a state can sponsor a digital currency on a decentralized platform like Ethereum. Ethereum has proposed projects like Sharding\cite{shardingFaq} and Proof of Stake\cite{proofOfStakeFaq} to combat scalability. General discussion about a scalable blockchain protocol \textit{``for nodes bounded by $O(N)$ computational power to process a transaction load and state size of $O(N^{2-\varepsilon})$''} is described in Buterin's \textit{Notes on Scalable Blockchain Protocols}\cite{notesOnScalableBlockchains}.
 
-\textbf{Privacy} heavily influenced the decision to include user identity as a critical information asset (\hypersectionref{sssec:5.2:userIdentity}) because revealing an identity behind an Ethereum address would link the entire transaction history of that address to a user. Having linkable transaction histories on a public blockchain is design decision the currently proposed Euro 2.0 system can't get around. Dynamically generating ethereum addresses for every new transaction can help, but is still be susceptible to clustering and graph analysis as outlined by Don and Shamir \textit{Quantitative Analysis of the Full Bitcoin Transaction Graph}\cite{Ron2013}. Zcash (formally Zerocash) provides a truly anonymous decentralized payments experience employing zk-SNARKs \textit{zero-knowledge Succinct Non-interactive ARguments of Knowledge}\cite{zerocash}. New developments such as HAWK, explained by Kosba et al. \textit{Hawk: The Blockchain Model of Cryptography and Privacy-Preserving Smart Contracts}\cite{hawk}, bring similar privacy guarantees to smart contracts. Bridging the gap between Zcash and Ethereum adding privacy to Ethereum smart contracts is gaining interest and developing in the community\cite{ZcashEtherumUpdate}\cite{zkSNARKsBlog}\cite{zkSNARKsPaper}. Future research would entail incorporating cutting edge methods in smart contract privacy into the Euro 2.0 digital currency.
+\textbf{Privacy} heavily influenced the decision to include user identity as a critical information asset (\hypersectionref{sssec:5.2:userIdentity}) because revealing an identity behind an Ethereum address would link the entire transaction history of that address to a user. Having linkable transaction histories on a public blockchain is design decision the currently proposed Euro 2.0 system can't get around. Dynamically generating Ethereum addresses for every new transaction can help, but is still be susceptible to clustering and graph analysis as outlined by Don and Shamir \textit{Quantitative Analysis of the Full Bitcoin Transaction Graph}\cite{Ron2013}. Zcash (formally Zerocash) provides a truly anonymous decentralized payments experience employing zk-SNARKs \textit{zero-knowledge Succinct Non-interactive ARguments of Knowledge}\cite{zerocash}. New developments such as HAWK, explained by Kosba et al. \textit{Hawk: The Blockchain Model of Cryptography and Privacy-Preserving Smart Contracts}\cite{hawk}, bring similar privacy guarantees to smart contracts. Bridging the gap between Zcash and Ethereum adding privacy to Ethereum smart contracts is gaining interest and developing in the community\cite{ZcashEtherumUpdate}\cite{zkSNARKsBlog}\cite{zkSNARKsPaper}. Future research would entail incorporating cutting edge methods in smart contract privacy into the Euro 2.0 digital currency.
 
 \textbf{Network Attacks} have been studied extensively in the Bitcoin community, such as in Eclipse attacks\cite{EclipseAttacks}, \textit{Majority is not Enough: Bitcoin Mining is Vulnerable}\cite{MajorityIsNotEnough}, and the rigorous approach to proving properties of the blockchain \textit{The Bitcoin Backbone Protocol: Analysis and Applications}\cite{BitcoinBackboneProtocol}. Similar research is lacking in the Ethereum space. As mining pools become larger and more commercialized there is more of a risk of mining attacks on the Ethereum network. Further research can be done to analyze and asses the risk of attacks on the network.
 
