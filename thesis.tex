@@ -654,7 +654,7 @@ From this business problem derives the key pillars of Euro 2.0:
 
 \textit{Convenient conversion between fiat and digital assets} (4) makes it easy for users to gradually start using the digital currency from existing financial infrastructure. At first this exchange gateway can be a private financial institution, similar to Tether\cite{tether}, with a proof of reserve of the one to one Euro backing. Ideally this conversion service is hosted by the central bank itself to limit the number of financial intermediaries.
 
-\textit{Government can control monetary supply} (5) follows from the ideal scenario of (4), the central bank can issue new money directly into the digital monetary system without a real world euro counterpart.
+\textit{Government can control monetary supply} (5) follows from the ideal scenario of (4), the central bank can issue new money directly into the digital monetary system without a real world Euro counterpart.
 
 \textit{Features for law enforcement and AML} (6) is the most controversial aspect of the system. Bitcoin was made to sidestep the direct control of any third party, including government\cite{nakamoto2008bitcoin}. Euro 2.0 needs to be regulated from the start with full support of governments, which requires necessary intervention that typically happen today via cooperation with regulated financial institutions.
 
@@ -831,7 +831,7 @@ Server
 	\item \textbf{TS5} - Execute valid EUR2 transaction
 \end{itemize}
 
-The transaction features are the heart of the EUR2 system. What differentiates Euro 2.0 from other cryptocurrencies is the ability to easily send funds amongst digital (EUR2) and real (EUR) euros. \textbf{TC1} and \textbf{TC3} allow a user to transact EUR2 directly with the Ethereum decentralized system using ethereum addresses. \textbf{TC2} and \textbf{TC4} allow a user to conveniently send EUR2 to a human being via their ID code using the centralized identity infrastructure (\textbf{IS4}). Funds sent to an ID that does not yet have an Ethereum address will have EUR2 held to a new ethereum address in Escrow (\textbf{TS2}) and then later released and transferred to an address created and approved by the receiver (\textbf{TS3}). \textbf{TS5} provides the infrastructure to execute EUR2 transactions for \textbf{TC1} through \textbf{TC4}. A centralized party needs to provide the mediation gateway (\textbf{TS4}) allowing a user to send EUR2 to a EUR bank account (\textbf{TC5}).
+The transaction features are the heart of the EUR2 system. What differentiates Euro 2.0 from other cryptocurrencies is the ability to easily send funds amongst digital (EUR2) and real (EUR) Euros. \textbf{TC1} and \textbf{TC3} allow a user to transact EUR2 directly with the Ethereum decentralized system using ethereum addresses. \textbf{TC2} and \textbf{TC4} allow a user to conveniently send EUR2 to a human being via their ID code using the centralized identity infrastructure (\textbf{IS4}). Funds sent to an ID that does not yet have an Ethereum address will have EUR2 held to a new ethereum address in Escrow (\textbf{TS2}) and then later released and transferred to an address created and approved by the receiver (\textbf{TS3}). \textbf{TS5} provides the infrastructure to execute EUR2 transactions for \textbf{TC1} through \textbf{TC4}. A centralized party needs to provide the mediation gateway (\textbf{TS4}) allowing a user to send EUR2 to a EUR bank account (\textbf{TC5}).
 
 \subsubsection{Reserve Features} \label{sssec:3.3:reserve}
 
@@ -1617,7 +1617,7 @@ This is the database providing for the Transfer Details Server. It's simply a ke
 
 \subsubsection{Bank Gateway} \label{sssec:3.5:bankGateway}
 
-The Bank Gateway is the entry point for the real euros in Euro 2.0. The functionality includes:
+The Bank Gateway is the entry point for the real Euros in Euro 2.0. The functionality includes:
 
 \begin{itemize}
 	\item Update total reserve from uploaded bank statement files
@@ -1736,11 +1736,11 @@ We approach the research questions design and UX influenced interpretation of th
 \subsubsection{Change Formula} \label{sssec:4.2:changeFormula}
 The \textit{Change Formula} was originally written on a chalkboard by scientist David Gleicher and stuck in the mind of organizational behavior expert Richard Beckhard\cite{changeFormula2014}. The formula was first published in Sloan Management Review\cite{beckhard1975} and later in book by Beckhard and Harris\cite{organizationalTransitions1977}. Succinctly described in the review paper, Cady et al., \textit{``The formula describes the conditions, that when met, will move an individual, group, or whole system in a direction of their choosing.''} \cite{changeFormula2014}.
 
-The improved version of the formula by Dannemiller\cite{dannemiller1992} states that change will occur when the following condition is satisfied:
+The improved version of the formula by Dannemiller\cite{dannemiller1992} states that change will occur when the following condition is satisfied as represented by the qualitative equation:
 
-\begin{equation}
+\begin{equation*}
 	D \times V \times F > R
-\end{equation}
+\end{equation*}
 
 \begin{itemize}
 	\item $D$ : Dissatisfaction with the present situation
@@ -1751,21 +1751,21 @@ The improved version of the formula by Dannemiller\cite{dannemiller1992} states 
 
 If any one of $D$, $V$, or $F$ is zero, i.e. neglected or overlooked, then the resistance to change will not be overcome and the intended behavioral change will not ensue.
 
-We use the \textit{Change Formula} in the context of Euro 2.0 to analyze the change of stakeholders using Euro 2.0 digital currency instead of Euro in the traditional monetary system. This is the academic basis of the analysis technique proposed in the following section.
+We use the \textit{Change Formula} in the context of Euro 2.0 to analyze the change of stakeholders using Euro 2.0 digital currency instead of Euro in the traditional monetary system. This is the background for analysis technique proposed in the following section.
 
 \subsubsection{Change Analysis} \label{sssec:4.2:changeAnalysis}
 
-\textit{Change Analysis} is a UX and User Design interpretation of the \textit{Change Formula}. It is a framework to analyze how a new system will affect key stakeholders and seeds future design research. The concepts of \textit{Change Analysis} are depicted in \hyperfigureref{fig:changeAnalysis} and described below. Stakeholders refer to human or organizational actors interacting with the system.
+\textit{Change Analysis} is a UX and User Design interpretation of the \textit{Change Formula}. It is a framework to analyze how a new system will affect key stakeholders and avenues of suggest directions of future design research. The concepts of \textit{Change Analysis} are depicted in \hyperfigureref{fig:changeAnalysis} and described below. Stakeholders refer to human or organizational actors interacting with the system.
 
 \textbf{Current State} is the current state of the world for the stakeholders before the proposed change. This includes actions and functions stakeholders can do, motivations and psychological factors, as well as consequences and side-affects of these functions. In regards to the Change Formula, the current state includes the dissatisfaction $D$ and provides a starting point for listing factors influencing first steps $F$ and resistance $R$.
 
 \textbf{Future State} is the state of the world after the proposed change. This also includes actions and functions stakeholders can do, motivations and psychological factors, as well as consequences and side-affects of these functions. In regards to the Change Formula, the future state is the vision of change $V$.
 
-\textbf{Enablers} are the \textit{Patterns}, \textit{Habits}, \textit{Behaviors}, and \textit{Motivation} in the current state that would indicate stakeholders are ready to adapt proposed change in the future state of the world. In regards to the Change Formula, enablers are those factors supporting first steps to the change $F$.
+\textbf{Enablers} are the \textit{Patterns}, \textit{Habits}, \textit{Behaviors}, and \textit{Motivation} in the current state that would indicate stakeholders are ready to adapt the proposed change in the future state of the world. In regards to the Change Formula, enablers are those factors supporting first steps to the change $F$.
 
-\textbf{Inhibitors} are the factors in the current state that would discourage stakeholders from the proposed change to the future state of world including \textit{Existing Policy Legislation}, \textit{Parties with Vested Interest}, \textit{Infrastructure and Technology}, and \textit{Personal Barriers to Change}. In regards to the Change Formula, inhibitors are those factors contributing to resistance of change $R$.
+\textbf{Inhibitors} are the factors in the current state that would discourage stakeholders from the proposed change to the future state of the world including \textit{Existing Policy Legislation}, \textit{Parties with Vested Interest}, \textit{Infrastructure and Technology}, and \textit{Personal Barriers to Change}. In regards to the Change Formula, inhibitors are those factors contributing to resistance of change $R$.
 
-The outcome of the change analysis is an understanding of how the change will impact the stakeholders, a set of inhibitors and enablers for that change, and further areas of design research to validate or disprove the hypotheses.
+The outcome of the change analysis is an understanding of how the change will impact the stakeholders, a set of inhibitors and enablers for that change, and further areas of design research to validate or disprove the proposed hypotheses.
 
 \begin{figure}[ht]
     \centering
@@ -1865,7 +1865,7 @@ The current side affects and consequences of the monetary system for merchants a
 	\item They lose money to reversible payments
 	\item They lose money to transaction fees
 	\item They lose money from money admin fees
-	\item They lose money to opportunity cost of stuck money
+	\item They lose money to opportunity cost of unusable money in transit
 	\item They lose money by spending
 	\item They lose money from inflation
 	\item They lose money from currency fluctuations
@@ -1876,14 +1876,14 @@ The current side affects and consequences of the monetary system for merchants a
 Banks in the current monetary system have the following functions and use cases:
 
 \begin{itemize}
-	\item They keep other people's money safe
+	\item They keep other peoples' money safe
 	\item They make money with other peoples' money
 	\item They keep track of other peoples' money
 	\item They offer money through loans
 	\item They facilitate transactions
 	\item They hold balances of money
 	\item They offer financial instruments to protect other peoples' money
-	\item They verify and identify people for KYC/AML
+	\item They verify and identify people for AML \& KYC reasons
 	\item They pay salaries of employees
 \end{itemize}
 
@@ -1892,7 +1892,7 @@ Banks are influenced by the following psychological factors and behaviors:
 \begin{itemize}
 	\item They want to make money
 	\item They want to incentivize people to give them their money
-	\item They want to keep regulators happy
+	\item They want to keep regulators happy to stay in business
 \end{itemize}
 
 The current side affects and consequences of the monetary system for banks are:
@@ -1942,8 +1942,8 @@ Government is influenced by the following factors:
 The current side affects and consequences of the monetary system for government are:
 
 \begin{itemize}
-	\item Loses money in tax evasion
-	\item Loses money on defaulted loans
+	\item It loses money in tax evasion
+	\item It loses money on defaulted loans
 \end{itemize}
 
 \subsection{Future State of Money} \label{ssec:4.4}
@@ -1955,18 +1955,19 @@ In this subsection we look at the future state of money under adoption of Euro 2
 The key changes imposed by the Euro 2.0 system are as follows:
 
 \begin{itemize}
-	\item Transactions and balances are on a public ledger for Ethereum addresses
+	\item Transactions and balances are on a public ledger of Ethereum addresses
 	\item Financial institutions are no longer needed to do transactions and store balances
 	\item Publicly accessible decentralized computing network for transactions
-	\item Reserve bank can convert back and forth from euro and digital euro
+	\item Reserve bank can convert back and forth between Euro and digital Euro
 	\item Ability to send and receive money directly to Estonian ID codes
 	\item Euros encoded as secret cryptographic keys
 	\item All Ethereum addresses in the system are linked to real identities
-	\item No money admin fees for holding in the system
+	\item No money admin fees for holding assets in the system
 	\item Irreversible transactions
+	\item Money can be moved 24/7
 \end{itemize}
 
-The side effects of the euro 2.0 system:
+The side effects of the Euro 2.0 system:
 
 \begin{itemize}
 	\item All transactions must performed online
@@ -1982,7 +1983,6 @@ What changes particularly for users in the Euro 2.0 system are:
 	\item Less fees when financial intermediary is removed from transactions
 	\item The good and bad side affects of transparency of money
 	\item No money stuck in transit in pending transactions
-	\item Money can be moved 24/7
 	\item Simpler taxes
 	\item Limited to transact with on record goods and services (no under the table cash transactions)
 \end{itemize}
@@ -1993,10 +1993,9 @@ What changes particularly for merchants in the Euro 2.0 system are:
 
 \begin{itemize}
 	\item Less fees when financial intermediary is removed from transactions
-	\item Every transaction automatically on record
+	\item Every transaction is automatically on record
 	\item The good and bad side affects of transparency of money
 	\item No money stuck in transit in pending transactions
-	\item Money can be moved 24/7
 	\item Simpler taxes
 	\item Limited to transact with on record goods and services (no under the table cash transactions)
 \end{itemize}
@@ -2017,12 +2016,12 @@ What changes particularly for banks in the Euro 2.0 system are:
 What changes particularly for government in the Euro 2.0 system are:
 
 \begin{itemize}
-	\item More easy to track money
+	\item Easier to track money
 	\item Can freeze and seize assets more easily
 	\item Can collect taxes without a middleman or fees
-	\item Can allow realtime tax collection
+	\item Enables realtime tax collection
 	\item Eliminate tax evasion
-	\item Clear accurate statistics of the state and amount of money in the entire monetary system
+	\item Accurate statistics of the state and amount of money in the entire monetary system
 \end{itemize}
 
 \subsection{Changes Analysis} \label{ssec:4.5}
@@ -2043,11 +2042,11 @@ In this section we present the \textit{Inhibitors} and \textit{Enablers} of chan
 \paragraph*{Inhibitors}
 
 \begin{itemize}
-	\item Users are may not be ready to manage their own money.
+	\item Users may not be ready to manage their own money.
 	\item Users do not see how banks make money off of holding their financial assets and keep most of the return.
 	\item Users are already comfortable with the existing financial system.
-	\item Users will not adopt a new digital currency if the goods and services they use everyday do not accept the digital currency.
-	\item Users are not ready or don't understand the implications of a public ledger of transactions.
+	\item Users will not adopt a new digital currency if the goods and services they purchase everyday do not accept the digital currency.
+	\item Users don't understand the implications of a public ledger of transactions.
 	\item Regulations may lag to protect users from crime using digital currency.
 \end{itemize}
 
@@ -2056,8 +2055,8 @@ In this section we present the \textit{Inhibitors} and \textit{Enablers} of chan
 \paragraph*{Enablers}
 
 \begin{itemize}
-	\item Merchants save will save a lot of money accepting payment with low fees of digital currency over existing solutions.
-	\item Merchants will save a lot of time with automation of accounting and taxes.
+	\item Merchants will save money accepting payment with low fees of digital currency over existing solutions.
+	\item Merchants will save time with automation of accounting and taxes.
 	\item Merchants will not have to worry about chargebacks and fraud risks of reversible payment methods.
 	\item Merchants will not be affected by delays of pending payments.
 \end{itemize}
@@ -2066,9 +2065,9 @@ In this section we present the \textit{Inhibitors} and \textit{Enablers} of chan
 
 \begin{itemize}
 	\item Merchants may not move to the new system if users are not ready to use it.
-	\item Merchants dealing with cash for off record transactions have no incentive to use an on record system.
-	\item Installing new technology or systems to accept payments has overhead.
-	\item Accounting and tax firms will resist automation of these processes.
+	\item Merchants intentionally accepting cash for off the record transactions have no incentive to use a transparent system.
+	\item Installing new technology or systems to accept payments has overhead costs.
+	\item Accounting and tax firms will resist automation of their businesses.
 \end{itemize}
 
 \subsubsection{Change Analysis: Banks} \label{sssec:4.5:banks}
@@ -2113,15 +2112,15 @@ In this section we present the \textit{Inhibitors} and \textit{Enablers} of chan
 
 \subsection{Conclusion} \label{ssec:4.6}
 
-In this chapter we presented a change analysis of the stakeholders of the Euro 2.0 system. In \hypersectionref{ssec:4.2} we presented the \textit{Change Formula} and the interpreted a \textit{Change Analysis} framework. In \hypersectionref{ssec:4.3} we presented the  current relationship of stakeholders with money, the current state in change analysis. In \hypersectionref{ssec:4.4} we presented the  predicted relationship of stakeholders with money using the Euro 2.0 system, the future state in change analysis. Then in \hypersectionref{ssec:4.5} we presented the enabling and inhibiting factors for users to transition to the Euro 2.0 system, concluding the change analysis. Together, the sections of this chapter paint a picture of how the adoption of Euro 2.0 affects key stakeholders.
+In this chapter we presented a change analysis of the stakeholders of the Euro 2.0 system. In \hypersectionref{ssec:4.2} we presented the \textit{Change Formula} and the interpreted a \textit{Change Analysis} framework. In \hypersectionref{ssec:4.3} we presented the  current relationship of stakeholders with money, the current state in change analysis. In \hypersectionref{ssec:4.4} we presented the  predicted relationship of stakeholders with money using the Euro 2.0 system, the future state in change analysis. Then in \hypersectionref{ssec:4.5} we presented the enabling and inhibiting factors for users to transition to the Euro 2.0 system, concluding the change analysis. Together, the sections of this chapter paint a picture of how the adoption of Euro 2.0 could affect key stakeholders.
 
-The analysis presented in this chapter was based on the author's observations of the world of finance and cryptocurrencies from personal experience working in the Fintech space and backed up with very little academic research. Future work consists of the following:
+The analysis presented in this chapter was based on the author's observations of the world of finance and cryptocurrencies from experience working in the financial technology space. The hypotheses and claims in this chapter and not supported with any previous academic research. Future work consists of adding substance to the presented hypotheses with previous academic research or validation with future user research, including the following:
 
 \begin{itemize}
-	\item Research formalizing the current relationship of money for each of the stakeholders.
+	\item Research validating the current relationship of money for each of the stakeholders.
 	\item Research user testing the Euro 2.0 prototype on users and merchants and learning from their experiences.
 	\item Research presenting the Euro 2.0 to governments and banks and recording the findings.
-	\item Research backing supporting or rejecting the hypotheses of the of the enablers and inhibitors to change presented in this chapter.
+	\item Research supporting or rejecting the hypotheses of the of the enablers and inhibitors to change presented in this chapter.
 \end{itemize}
 
 \pagebreak
