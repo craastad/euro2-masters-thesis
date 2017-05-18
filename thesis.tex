@@ -678,40 +678,22 @@ Features are implemented with a combination of decentralized and centralized com
  \hline
  Domain & Abbr. & Description \\
  \hline
- \textbf{Account} & A & mechanism of storage of value in the system
+ \textbf{Account} & A & Mechanism of storage of value in the system
  \\ \hline
- \textbf{Identity} & I & features linking real life human identity to users
+ \textbf{Identity} & I & Features linking real life human identity to users
  \\ \hline
- \textbf{Transaction} & T & mechanism of transfer of value in the system
+ \textbf{Transaction} & T & Mechanism of transfer of value in the system
  \\ \hline
- \textbf{Reserve} & R & features regarding the exchange of value between traditional Euro (EUR) in the financial system and digital Euro (EUR2)
+ \textbf{Reserve} & R & Features regarding the exchange of value between traditional Euro (EUR) in the financial system and digital Euro (EUR2)
  \\ \hline
- \textbf{Enforcement} & E & features for government regulators and law enforcement to police the system for misuse and AML
+ \textbf{Enforcement} & E & Features for government regulators and law enforcement to police the system for misuse and AML
  \\ \hline
- \textbf{Convenience} & C & features for improving user experience and expanding use cases
+ \textbf{Convenience} & C & Features for improving user experience and expanding use cases
  \\ \hline
 \end{tabular}
 \end{center}
 \captionof{table}{Domains of Euro 2.0}
 \label{tab:domains}
-
-% TODO: I'm not sure if this table is actually relevant anymore
-% \hypertableref{tab:centVsDecent} gives an overview of the distribution of centralised and decentralised domains of the Euro 2.0 system.
-%
-% \begin{center}
-% \begin{tabular}{ |c|c| }
-%  \hline
-%  Centralised & Decentralised \\
-%  \hline
-%  Identity & Account \\
-%  Reserve & Transaction \\
-%  Enforcement & Network \\
-%  Convenience & \\
-%  \hline
-% \end{tabular}
-% \end{center}
-% \captionof{table}{Centralised vs. Decentralised Domains of Euro 2.0}
-% \label{tab:centVsDecent}
 
 \subsubsection{Entities} \label{sssec:3.3:entities}
 
@@ -849,7 +831,7 @@ Server
 	\item \textbf{TS5} - Execute valid EUR2 transaction
 \end{itemize}
 
-The transaction features are the heart of the EUR2 system. What differentiate Euro 2.0 from other cryptocurrencies is the ability to easily send funds amongst digital (EUR2) and real (EUR) euros. \textbf{TC1} and \textbf{TC3} allow a user to transact EUR2 directly with the Ethereum decentralised system using ethereum addresses. \textbf{TC2} and \textbf{TC4} allow a user to conveniently send EUR2 to a human being via their ID code using the centralised identity infrastructure (\textbf{IS4}). Funds sent to an ID that does not yet have an Ethereum address will have EUR2 held to a new ethereum address in Escrow (\textbf{TS2}) and then later released and transferred to an address created and approved by the receiver (\textbf{TS3}). \textbf{TS5} provides the infrastructure to execute EUR2 transactions for \textbf{TC1} through \textbf{TC4}. A centralised party needs to provide the mediation gateway (\textbf{TS4}) allowing a user to send EUR2 to a EUR bank account (\textbf{TC5}).
+The transaction features are the heart of the EUR2 system. What differentiates Euro 2.0 from other cryptocurrencies is the ability to easily send funds amongst digital (EUR2) and real (EUR) euros. \textbf{TC1} and \textbf{TC3} allow a user to transact EUR2 directly with the Ethereum decentralized system using ethereum addresses. \textbf{TC2} and \textbf{TC4} allow a user to conveniently send EUR2 to a human being via their ID code using the centralized identity infrastructure (\textbf{IS4}). Funds sent to an ID that does not yet have an Ethereum address will have EUR2 held to a new ethereum address in Escrow (\textbf{TS2}) and then later released and transferred to an address created and approved by the receiver (\textbf{TS3}). \textbf{TS5} provides the infrastructure to execute EUR2 transactions for \textbf{TC1} through \textbf{TC4}. A centralized party needs to provide the mediation gateway (\textbf{TS4}) allowing a user to send EUR2 to a EUR bank account (\textbf{TC5}).
 
 \subsubsection{Reserve Features} \label{sssec:3.3:reserve}
 
@@ -926,7 +908,7 @@ Server
 	\item \textbf{CS3} - Load encrypted addresses and keys for an ID
 \end{itemize}
 
-Since keys are stored locally, if not backed up, they can be easily lost with the device. Euro2.0 provides a centralized convenience feature to back up these keys for an ID and secured by a challenge question. The user can encrypt their keys with a password (\textbf{CC3}), create a cryptographic challenge (\textbf{CC4}), send the addresses, encrypted keys, and challenge to the server (\textbf{CC5}) to be saved (\textbf{CS1}). The user can then retrieve the addresses and encrypted keys for an ID from the server (\textbf{CC6}) by providing the correct challenge answer checked by the server (\textbf{CS2}) (\textbf{CS3}), and finally the keys can be decrypted by the user (\textbf{CC7}).
+Since keys are stored locally, if not backed up, they can be easily lost with the device. Euro 2.0 provides a centralized convenience feature to back up these keys for an ID and secured by a challenge question. The user can encrypt their keys with a password (\textbf{CC3}), create a cryptographic challenge (\textbf{CC4}), send the addresses, encrypted keys, and challenge to the server (\textbf{CC5}) to be saved (\textbf{CS1}). The user can then retrieve the addresses and encrypted keys for an ID from the server (\textbf{CC6}) by providing the correct challenge answer checked by the server (\textbf{CS2}) (\textbf{CS3}), and finally the keys can be decrypted by the user (\textbf{CC7}).
 
 \paragraph*{Transfer Details}
 
@@ -1041,7 +1023,7 @@ The heart of decentralized Euro 2.0 is the \textit{CryptoFiat} contract. This co
 
 \subsubsection{Shared Contracts: Constants, Relay, Data, InternalData} \label{sssec:3.4:shared}
 
-The code in the shared contracts in Euro 2.0 are exposed ultimately in the \textit{InternalData} contract interface that heavily calls \textit{Data contract}. \textit{InternalData} contract acts as an abstract Contract inherited by all the sub contracts providing functionality. Only the \textit{Data} contract is actually constructed and deployed on the blockchain, the other shared contracts are simply organising code. \textit{InternalData} inherits from \textit{Constants} and \textit{Relay}. While \textit{Relay} inherits from \textit{Constants} and references \textit{Data} for use by \textit{InternalData}. \textit{Data} inherits from \textit{Relay}.
+The code in the shared contracts in Euro 2.0 are exposed ultimately in the \textit{InternalData} contract interface that heavily calls \textit{Data contract}. \textit{InternalData} contract acts as an abstract Contract inherited by all the sub contracts providing functionality. Only the \textit{Data} contract is actually constructed and deployed on the blockchain, the other shared contracts are simply organizing code. \textit{InternalData} inherits from \textit{Constants} and \textit{Relay}. While \textit{Relay} inherits from \textit{Constants} and references \textit{Data} for use by \textit{InternalData}. \textit{Data} inherits from \textit{Relay}.
 
 \paragraph{Constants Contract}
 
@@ -1447,7 +1429,7 @@ The \textit{Reserve} contract exposes the functions to increase and decrease sup
 
 \subsubsection{Enforcement Contract} \label{sssec:3.5:enforcement}
 
-The \textit{Enforcement} contract exposes the functions for law enforcement to freeze and seize funds. The two roles are the law enforcer, who can do the actions to freeze and seize funds, and account designator, who can control the account where the funds can be seized, described in \hypertableref{tab:enforcementData}. Modifiers in \hypertableref{tab:enforcementModifiers} restrict access to functions based on roll. The functions are listed in \hypertableref{tab:enforcementFunctions}.
+The \textit{Enforcement} contract exposes the functions for law enforcement to freeze and seize funds. The two roles are the law enforcer, who can do the actions to freeze and seize funds, and account designator, who can control the account where the funds can be seized, described in \hypertableref{tab:enforcementData}. Modifiers in \hypertableref{tab:enforcementModifiers} restrict access to functions based on role. The functions are listed in \hypertableref{tab:enforcementFunctions}.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1591,7 +1573,7 @@ The ID Database holds the data needed for the ID server. The tables include:
 
 \begin{itemize}
 	\item \textbf{ethereum\_account} - stores ID to Ethereum address mapping with columns: PID \textit{owner\_id}, Ethereum \textit{address}, boolean \textit{activated}, \textit{creation\_time}, \textit{modification\_time}, Estonian ID \textit{authorisation\_type}, and Ethereum \textit{transaction\_hash}
-	\item \textbf{escrow} - stores escrow transactions to an ID with columns: PID \textit{id\_code}, encrypted \textit{private\_key}, Ethereum \textit{address}, boolean \textit{cleared}, and \textit{clearning\_hash}
+	\item \textbf{escrow} - stores escrow transactions to an ID with columns: PID \textit{id\_code}, encrypted \textit{private\_key}, Ethereum \textit{address}, boolean \textit{cleared}, and \textit{clearing\_hash}
 	\item \textbf{backup\_challenge} - stores information about backup challenges with columns: PID \textit{id\_code}, \textit{plaintext}, \textit{encrypted} text, and boolean \textit{active}
 	\item \textbf{key\_backup} - stores actual encrypted key backups with columns: \textit{challenge}, Ethereum \textit{address}, encrypted \textit{key\_enc}, and \textit{active}
 	\item \textbf{ldap\_response} - stores response from SK LDAP lookups with columns: \textit{first\_name}, \textit{last\_name}, PID and \textit{id\_code}.
@@ -1631,7 +1613,7 @@ Transfer details server has a single purpose of saving transfer details for tran
 
 \subsubsection{Transfer Details Database} \label{sssec:3.5:transferDetailsDatabase}
 
-This is the database providing for the Transfer Details Server. It's simply a key value store with transaction hash as the key and a blob of data as the value (reference implementation is Google's LevelDB).
+This is the database providing for the Transfer Details Server. It's simply a key value store with transaction hash as the key and a blob of data as the value.
 
 \subsubsection{Bank Gateway} \label{sssec:3.5:bankGateway}
 
@@ -1717,11 +1699,11 @@ In this chapter we made a best effort to communicate the features, architecture,
 
 \subsubsection{Future Work} \label{ssec:3.7:futureWork}
 
-Describing a complex, experimental, technical system in writing is extremely challenging. Future work would be avoidance of such task. Technical documentation can never come to the clarity of implemented software code. Any attempt describe a complex technical system in will sacrifice the clarity of code for misleading summaries and approximate drawings. Yet code is usually a disaster to understand without an extensive suite of unit and integration tests, especially in a prototype built through a series of casual hacking system. There are two future avenues of research.
+Describing a complex, experimental, technical system in writing is extremely challenging. Future work would be avoidance of such task. Technical documentation can never come to the clarity of implemented software code. Any attempt describe a complex technical system in will sacrifice the clarity of code for misleading summaries and approximate drawings. Yet code is usually a disaster to understand without an extensive suite of unit and integration tests, especially in a prototype built through a series of casual hacking sessions. There are two future avenues of research.
 
 First is to avoid diving into details in the code level and limit all analysis to formalized business process models of the system. Ethereum and client server components can be abstracted to goal models and business processes analyzed with formal models like Colored Petri Nets\cite{6903169}\cite{Jensen:2007:CPN:1266780.1266789}.
 
-Second would be to reduce the scope of the security analysis altogether to just the Ethereum smart contracts. There is substantial research about smart contract vulnerabilities that could fuel a more focused and fruitful code level security analysis\cite{cryptoeprint:2016:1007}\cite{Atzei2017}\cite{cryptoeprint:2015:460}.
+Second would be to reduce the scope of the security analysis altogether to just the Ethereum smart contracts. There is substantial research about smart contract vulnerabilities that could fuel a more focused and fruitful code level security analysis of the smart contracts involved with the Euro 2.0 system\cite{cryptoeprint:2016:1007}\cite{Atzei2017}\cite{cryptoeprint:2015:460}.
 
 \pagebreak
 
@@ -2744,13 +2726,7 @@ In this section we perform a risk analysis on the critical information assets an
 
 \subsubsection{Risk Analysis Methodology} \label{sssec:5.3:methodology}
 
-The goal of the risk analysis is to enumerate the most relevant risks for critical information assets.
-
-\begin{align*}
-	\text{Risk} = \text{Threat} + \text{Impact}
-\end{align*}
-
-A \textit{risk} is the possibility of suffering harm or loss to the foundation or users, the combination of a \textit{threat} (condition), an \textit{impact} (consequence), and an \textit{probability} (uncertainty) of the risk being realized. The \textit{Information Asset Risk Profiles} resulting from the risk analysis will have the structure outlined in \hypertableref{tab:informationAssetRiskProfileStructure}.
+The goal of the risk analysis is to enumerate the most relevant risks for critical information assets. A \textit{risk} is the possibility of suffering harm or loss to the foundation or users, the combination of a \textit{threat} (condition), an \textit{impact} (consequence), and an \textit{probability} (uncertainty) of the risk being realized. The \textit{Information Asset Risk Profiles} resulting from the risk analysis will have the structure outlined in \hypertableref{tab:informationAssetRiskProfileStructure}.
 
 \begin{center}
 \resizebox{\textwidth}{!}{
